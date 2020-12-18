@@ -1,26 +1,6 @@
 {
     "prefix": "d!",
     "ownerID": "611804698856521728",
-    "TOKEN": "NzExOTM3NTk5OTc1MDYzNTg0.XsKRjg.tSdWP8PFBssj3uJsk_sDZ_DzI_o",
-    "YTAPI": "AIzaSyDGU1YNlL8QBvvOp0n3Z6ALfFfhWU2YEU4",
-    "youtube_api": "AIzaSyBC_TU60mwgoMZRN2ZCOjR8QPo_tDlIosc",
-    "music": ":musical_note:",
-    "queue": ":bar_chart:",
-    "error": ":tools:",
-    "success": ":white_check_mark:",
     "everyoneMention": false,
-    "hostedBy": true,
-    "colors": {
-        "error": "0xFF0000",
-        "success": "0x00FF46",
-        "warning": "0xFFD100"
-    },
-    "emoji": {
-        "play": "▶️",
-        "stop": "⏹️",
-        "queue": "📄",
-        "success": "☑️",
-        "repeat": "🔁",
-        "error": "❌"
-    }
+    "hostedBy": true
 }
