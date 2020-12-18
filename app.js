@@ -26,19 +26,6 @@ client.queue = queue;
 const cooldowns = new Discord.Collection();
 const settings = require("./settings.js");
 
-const blapi = require("blapi");
-const apiKeys = {
-    "arcane-center.xyz": "043027ce7ef1b3e835df5e53c5460dabde3357c4b3b88c9e0aefbda1ba42226da19880f4ca05592b386232d67004fc70408018938626dd8b9751c3a50f61eff1", // Add other bot lists as needed
-    "botlist.space": "7d96f8dc85fde4969a3925b5e8772a08e59eec6f3799d7f91ae810f334e0826fe677b8a8d2c0826df3a16f94fe0f4589",
-    "bladebotlist.xyz/": "M3joAEZfPMASSrH.HaLR65YoXbpkOzZ.LdTzC585ki5KW1g",
-    "discord.boats": "mkmxT1hd51cX7DkEVAIkvYAgJHNSqZUrKwvZxSnidzhHR41A4qskvhGYaO3i5EP3j5LarjZce7QAA6BdsXSXQXi48Zlz6iQ4kvtxqTolvS1Tmx9vc5RnMjEiqkaFreAbZVUgJIdHVAD7hP1vgWeJTeFB0GP",
-    "space-bot-list.xyz": "a-tAOZLTAfQpVZZi2HX2qHJ3zqN-WNpMA6JEYtBO35KIIT.FVA",
-    "topcord.xyz": "79e9aSQplwC4Funr1MLbfy2JOuvAjgKz",
-    "botsdatabase.com": "8eb4397b32d5d81dc79340cd23fa7043563c11002eb08408e25aca6c95554d6c6f128213a589a5a432cb113e920fb670cda7fabaaf9f998c",
-    "mythicalbots.xyz": "mythicalbots.xyz"
-};
-blapi.handle(client, apiKeys, 60);
-
 client.settings = new Enmap({
     name: "settings",
     fetchAll: false,
