@@ -5,16 +5,12 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
     disableMentions: "all"
 });
-const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const http = require("http");
-const express = require("express");
-const app = express();
+
 const config = require("./config.json");
 const fs = require("fs");
 const queue = new Map();
 client.config = config;
 client.login(process.env.TOKEN);
-var scount = client.guilds.size;
 const db = require("quick.db");
 const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBLTOKEN, client);
@@ -183,29 +179,21 @@ client.on("disconnect", function(event) {
 });
 
 client.on("message", async message => {
-    const guildConf = client.settings.ensure(message.guild.id, settings);
+    client.settings.ensure(message.guild.id, settings);
 
     const prefixx = client.settings.get(message.guild.id, "prefix");
-
-    let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-    if (!prefixes[message.guild.id]) {
-        prefixes[message.guild.id] = {
-            prefixes: config.prefix
-        };
+    if (!client.settings.get(message.guild.id)) {
+        client.settings.set(message.guild.id, {
+            prefix: "d!"
+        })
     }
-    let prefix = prefixes[message.guild.id].prefixes;
+    let prefissssx = client.settings.get(message.guild.id, "prefix");
 
-    const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const prefixRegex = new RegExp(
-        `^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`
-    );
-    if (!prefixRegex.test(message.content)) return;
-    const [, matchedPrefix] = message.content.match(prefixRegex);
+    const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+    const matchedPrefix = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : prefissssx;
 
     if (!message.content.startsWith(matchedPrefix)) return;
 
-    if (message.author.bot) return undefined;
-    if (!message.content.startsWith(matchedPrefix)) return undefined;
 
     let command = message.content.toLowerCase().split(" ")[0];
     command = command.slice(matchedPrefix.length);
@@ -243,11 +231,3 @@ client.on("message", async message => {
         console.log(`${message.author.username} using command ${cmd}`);
     }
 });
-
-function delay(delayInms) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(2);
-        }, delayInms);
-    });
-}
