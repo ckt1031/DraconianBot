@@ -13,7 +13,7 @@ exports.run = async (client, msg, args) => {
 
   let banTaged = msg.mentions.users.first();
   let reason = args.slice(1).join(" ");
-
+  
   let mmqembed = new Discord.MessageEmbed()
     .setDescription(
       `:no_entry_sign: ${msg.author.username}, Missing Permission`
@@ -21,11 +21,6 @@ exports.run = async (client, msg, args) => {
     .setColor("#FFFF00");
   if (!msg.member.hasPermission("BAN_MEMBERS"))
     return msg.channel.send(mmqembed).then(msg => msg.delete(5000));
-  let notice2 = new Discord.MessageEmbed()
-    .setDescription(`<:cross1:747728200691482746> **You cannot ban yourself!**`)
-    .setColor("RED");
-  if (msg.mentions.users.first().id === msg.author.id)
-    return msg.channel.send(notice2);
   let kntlembed = new Discord.MessageEmbed()
     .setTitle("Command: +ban")
     .setDescription(
@@ -36,21 +31,20 @@ exports.run = async (client, msg, args) => {
     msg.delete();
     return msg.channel.send(kntlembed).then(msg => msg.delete(30000));
   }
-
-  let asuembed = new Discord.MessageEmbed()
-    .setTitle("指令: +ban")
-    .setDescription(
-      "你看到這條信息的話，可能你使用方法出錯了。\n\n**內容功能:** Ban一個成員\n**使用方法:** +ban [用戶] [原因]\n**例子:** +ban @RealKoolisw Noob"
-    )
+  let notice2 = new Discord.MessageEmbed()
+    .setDescription(`<:cross1:747728200691482746> **You cannot ban yourself!**`)
     .setColor("RED");
+  if (msg.mentions.users.first().id === msg.author.id)
+    return msg.channel.send(notice2);
+  
+
+  
   if (!reason) {
     msg.delete();
     return msg.channel.send(kntlembed).then(msg => msg.delete(30000));
   }
 
-  let lombed = new Discord.MessageEmbed()
-    .setAuthor(`Please create a called ${config.logsChannel} to log a Ban!`)
-    .setColor("#FFFF00");
+  
 
   let banEmbed = new Discord.MessageEmbed()
     .setColor("RED")
