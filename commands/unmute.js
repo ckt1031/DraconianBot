@@ -3,12 +3,19 @@ const config = require("../config.json");
 
 exports.run = async (client, message, args) => {
   
-   let logs = message.guild.channels.cache.find(x => x.name = config.logsChannel);
+   
   let embed6 = new Discord.MessageEmbed()
   .setDescription(`:no_entry_sign: ${message.author.username}, Missing Permission`)
   .setColor('RED')
+  let notice3 = new Discord.MessageEmbed()
+   .setDescription(`<:cross1:747728200691482746> **I don't have permission to unmute people!**`)
+   .setColor('RED')
     if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(embed6).then(msg=>msg.delete(5000));
-    if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.channel.send(`<:no:565766936189861889> Sorry, I don't have **\`Manage Roles\`** Permission!`).then(msg=>msg.delete(5000));
+    if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.channel.send(notice3).then(msg=>msg.delete(5000));
+    let notice2 = new Discord.MessageEmbed()
+   .setDescription(`<:cross1:747728200691482746> **You cannot do this for you!**`)
+   .setColor('RED')
+    if (message.mentions.users.first().id === message.author.id) return message.channel.send(notice2);
 let embed7 = new Discord.MessageEmbed()
   .setTitle("Wrong Usage!")
   .setDescription("Correct Example: d!unmute @RealKoolisw")
