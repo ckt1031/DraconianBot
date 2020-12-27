@@ -42,18 +42,6 @@ dbl.on("error", e => {
     console.log(`Oops! ${e}`);
 });
 
-fs.readdir("./commands/", (err, files) => {
-    const jsfiles = files.filter(f => f.split(".").pop() === "js");
-
-    if (jsfiles.length <= 0) {
-        return console.log("Couldn't find any commands!");
-    }
-
-    jsfiles.forEach(file => {
-        console.log(`Loading command ${file}`);
-    });
-});
-
 if (!db.get("giveaways")) db.set("giveaways", []);
 
 const {
