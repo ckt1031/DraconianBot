@@ -3,12 +3,10 @@ require("dotenv").config();
 const Enmap = require("enmap");
 const Discord = require("discord.js");
 const client = new Discord.Client({
-    disableMentions: "all"
+    disableMentions: "everyone"
 });
-
 const config = require("./config.json");
 const fs = require("fs");
-const queue = new Map();
 client.config = config;
 client.login(process.env.TOKEN);
 const db = require("quick.db");
@@ -16,17 +14,24 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.DBLTOKEN, client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-client.emotes = client.config.emotes;
+client.emotes = config.emoji;
 client.colors = client.config.colors;
-client.queue = queue;
 const cooldowns = new Discord.Collection();
 const settings = require("./settings.js");
 
 client.settings = new Enmap({
     name: "settings",
-    fetchAll: false,
+    fetchAll: true,
     autoFetch: true,
     cloneLevel: "deep"
+});
+
+const DisTube = require('distube')
+client.distube = new DisTube(client, {
+    leaveOnFinish: true,
+    leaveOnEmpty: true,
+    leaveOnStop: true,
+    youtubeDL: false
 });
 
 dbl.on("posted", () => {
@@ -164,8 +169,7 @@ client.on("messageDelete", function(message, channel) {
         content: message.content,
         author: message.author.tag,
         image: message.attachments.first() ?
-            message.attachments.first().proxyURL :
-            null
+            message.attachments.first().proxyURL : null
     });
 });
 
@@ -193,7 +197,6 @@ client.on("message", async message => {
     const matchedPrefix = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : prefissssx;
 
     if (!message.content.startsWith(matchedPrefix)) return;
-
 
     let command = message.content.toLowerCase().split(" ")[0];
     command = command.slice(matchedPrefix.length);
@@ -231,3 +234,26 @@ client.on("message", async message => {
         console.log(`${message.author.username} using command ${cmd}`);
     }
 });
+
+const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+client.distube
+    .on("playSong", (message, queue, song) => message.channel.send(
+        `${client.emotes.play} | Playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
+    ))
+    .on("addSong", (message, queue, song) => message.channel.send(
+        `${client.emotes.success} | Added ${song.name} - \`${song.formattedDuration}\` to the queue`
+    ))
+    .on("${client.emotes.play} |playList", (message, queue, playlist, song) => message.channel.send(
+        `${client.emotes.play} | Play \`${playlist.name}\` playlist (${playlist.total_items} songs).\nNow playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
+    ))
+    .on("addList", (message, queue, playlist) => message.channel.send(
+        `${client.emotes.success} | Added \`${playlist.name}\` playlist (${playlist.total_items} songs) to queue\n${status(queue)}`
+    ))
+    // DisTubeOptions.searchSongs = true
+    .on("searchResult", (message, result) => {
+        let i = 0;
+        message.channel.send(`**Choose an option from below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`);
+    })
+    // DisTubeOptions.searchSongs = true
+    .on("searchCancel", (message) => message.channel.send(`${client.emotes.error} | Searching canceled`))
+    .on("error", (message, err) => message.channel.send(`${client.emotes.error} | An error encountered: ${err}`));
