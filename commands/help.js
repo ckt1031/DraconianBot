@@ -17,6 +17,7 @@ module.exports.run = async (bot, message, args) => {
       "`8ball`, `cat`, `deaes256`, `kiss`, `meme`, `ngif`, `pat`, `poke`, `smug`, `spank`, `thigh`, `tickle`"
     )
     .addField("**:tada:Giveaways**", "`start-giveaway`, `reroll`, `end-giveaway`")
+    .addField("**:musical_note:**", "`play`, `stop`, `skip`, `queue`, `autoplay`, `loop`, `volume`")
     .addField(
       "**🛠️Moderation**",
       "`addrole`, `ban`, `clear`, `clearwarn`, `createchannel`, `createemoji`, `kick`, `lockchannel`, `mute`, `rename`, `unban`, `unlockdown`, `unmute`, `warn`, `warnings`"
