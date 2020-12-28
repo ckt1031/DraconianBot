@@ -20,7 +20,7 @@ exports.run = async (client, msg, args) => {
     )
     .setColor("#FFFF00");
   if (!msg.member.hasPermission("BAN_MEMBERS"))
-    return msg.channel.send(mmqembed).then(msg => msg.delete(5000));
+    return msg.channel.send(mmqembed).then(msg => msg.delete({timeout: 5000}));
   let kntlembed = new Discord.MessageEmbed()
     .setTitle("Command: +ban")
     .setDescription(
@@ -29,19 +29,18 @@ exports.run = async (client, msg, args) => {
     .setColor("RED");
   if (!banTaged) {
     msg.delete();
-    return msg.channel.send(kntlembed).then(msg => msg.delete(30000));
+    return msg.channel.send(kntlembed).then(msg => msg.delete({timeout: 10000}));
   }
   let notice2 = new Discord.MessageEmbed()
     .setDescription(`<:cross1:747728200691482746> **You cannot ban yourself!**`)
     .setColor("RED");
-  if (msg.mentions.users.first().id === msg.author.id)
-    return msg.channel.send(notice2);
-  
+  if (msg.mentions.users.first().id === msg.author.id) return msg.channel.send(notice2).then(msg => msg.delete({timeout: 10000}));
+    
 
   
   if (!reason) {
     msg.delete();
-    return msg.channel.send(kntlembed).then(msg => msg.delete(30000));
+    return msg.channel.send(kntlembed).then(msg => msg.delete({timeout: 30000}));
   }
 
   
