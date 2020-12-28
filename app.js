@@ -243,7 +243,7 @@ client.distube
     .on("addSong", (message, queue, song) => message.channel.send(
         `${client.emotes.success} | Added ${song.name} - \`${song.formattedDuration}\` to the queue`
     ))
-    .on("${client.emotes.play} |playList", (message, queue, playlist, song) => message.channel.send(
+    .on("playList", (message, queue, playlist, song) => message.channel.send(
         `${client.emotes.play} | Play \`${playlist.name}\` playlist (${playlist.total_items} songs).\nNow playing \`${song.name}\` - \`${song.formattedDuration}\`\n${status(queue)}`
     ))
     .on("addList", (message, queue, playlist) => message.channel.send(
