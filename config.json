@@ -2,5 +2,13 @@
     "prefix": "d!",
     "ownerID": "611804698856521728",
     "everyoneMention": false,
-    "hostedBy": true
+    "hostedBy": true,
+    "emoji": {
+        "play": "▶️",
+        "stop": "⏹️",
+        "queue": "📄",
+        "success": "☑️",
+        "repeat": "🔁",
+        "error": "❌"
+    }
 }

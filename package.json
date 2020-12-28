@@ -7,7 +7,7 @@
   "main": "app.js",
   "description": "Discord-Multi-Purpose Bot",
   "scripts": {
-    "start": "npm update&&node app.js"
+    "start": "node app.js"
   },
   "engines": {
     "node": "14.x"
@@ -20,16 +20,11 @@
     "@discordjs/opus": "^0.3.2",
     "axios": "^0.21.1",
     "blapi": "^2.0.1",
-    "boats.js": "^2.5.0",
-    "botlist.space": "^3.3.1",
     "cheerio": "^0.22.0",
     "cryptr": "^6.0.2",
     "dblapi.js": "^2.4.1",
-    "dblposter": "^1.3.1",
-    "discord-bot-list": "^1.0.1",
     "discord-giveaways": "^4.3.0",
     "discord.js": "^12.5.0",
-    "discordbots-api": "^0.0.2",
     "distube": "^2.8.8",
     "dotenv": "^8.2.0",
     "enmap": "^5.8.1",
@@ -37,8 +32,6 @@
     "ffmpeg-static": "^4.2.7",
     "fs": "^0.0.2",
     "fs-extra": "^9.0.1",
-    "get-youtube-id": "^1.0.1",
-    "google": "^2.1.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "ms": "^2.1.3",
@@ -48,11 +41,8 @@
     "os": "^0.1.1",
     "os-utils": "^0.0.14",
     "parse-ms": "^2.1.0",
-    "path": "^0.12.7",
-    "pidusage": "^2.0.21",
     "quick.db": "^7.1.2",
     "request": "^2.88.2",
-    "sbl.js": "^0.1.8",
     "simple-youtube-api": "^5.2.1",
     "snekfetch": "^4.0.4",
     "superagent": "^6.1.0",
@@ -60,12 +50,8 @@
     "url-monitor": "^1.3.3",
     "util": "^0.12.3",
     "weather-js": "^2.0.0",
-    "youtube-search": "^1.1.4",
-    "yt-search": "^2.5.1",
     "ytdl-core": "^4.2.1",
     "ytdl-core-discord": "^1.2.5",
-    "ytpl": "^2.0.4",
-    "ytsearcher": "^1.2.3",
-    "youtube-dl": "^3.0.2"
+    "ytpl": "^2.0.4"
   }
 }
