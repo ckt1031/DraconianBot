@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
     };
 
     const embed = new Discord.MessageEmbed()
-    .setColor(0xFFFF01)
+    .setColor('GREEN')
     .setTimestamp()
     .addField('Action:', 'Warn Check')
     .addField('User:', `${user.username}#${user.discriminator}`)

@@ -19,11 +19,12 @@ let embed1 = new Discord.MessageEmbed()
   
     let userID = args[0]
       message.guild.fetchBans().then(bans=> {
-      if(bans.size == 0) return message.channel.send(embed1)
+      if(bans.size == 0) return message.channel.send(embed1).then(m => m.delete({timeout: 15000}))
       let bUser = bans.find(b => b.user.id == userID)
-      if(!bUser) return message.channel.send(embed2)
+      if(!bUser) return message.channel.send(embed2).then(m => m.delete({timeout: 15000}))
+      message.channel.send(EMDDD)
       message.guild.members.unban(bUser.user)
-      }
+      })
 };
 
 exports.conf = {

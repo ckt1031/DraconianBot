@@ -20,10 +20,10 @@ exports.run = async (client, message, args) => {
     )
     .setColor("RED");
   if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES"))
-    return message.channel.send(notice3);
+    return message.channel.send(notice3).then(m => m.delete({timeout: 15000}));
   //let logchannel = message.guild.channels.cache.find(x => x.name = 'logs');
   if (!message.member.hasPermission("KICK_MEMBERS"))
-    return message.channel.send(notice1);
+    return message.channel.send(notice1).then(m => m.delete({timeout: 15000}));
   if (message.mentions.users.size < 1)
     return message
       .reply("You must mention someone to warn them.")
@@ -32,8 +32,9 @@ exports.run = async (client, message, args) => {
     .setDescription(`<:cross1:747728200691482746> **You cannot warn yourself**`)
     .setColor("RED");
   if (message.mentions.users.first().id === message.author.id)
-    return message.channel.send(notice2);
+    return message.channel.send(notice2).then(m => m.delete({timeout: 15000}));
   //if (!logchannel) return message.channel.send('I cannot find a logs channel');
+    
   if (reason.length < 1) reason = "No reason supplied.";
 
   if (!warns[`${user.id}, ${message.guild.id}`])
@@ -61,7 +62,7 @@ exports.run = async (client, message, args) => {
       warns[`${user.id}, ${message.guild.id}`].warns
     )
     .addField("Reason", reason);
-  let logchannel = message.guild.channels.cache.find(x => (x.name = "logs"));
+  
   let test1 = new Discord.MessageEmbed()
     .setDescription(
       `<:tick:702386031361523723> **Muted <@${user.id}> For 1 Hour** | **Reached Two Warnings**`

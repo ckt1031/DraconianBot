@@ -10,8 +10,8 @@ exports.run = async (client, message, args) => {
   let notice3 = new Discord.MessageEmbed()
    .setDescription(`<:cross1:747728200691482746> **I don't have permission to unmute people!**`)
    .setColor('RED')
-    if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(embed6).then(msg=>msg.delete(5000));
-    if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.channel.send(notice3).then(msg=>msg.delete(5000));
+    if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(embed6).then(m => m.delete({timeout: 5000}))
+    if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.channel.send(notice3).then(m => m.delete({timeout: 5000}))
     let notice2 = new Discord.MessageEmbed()
    .setDescription(`<:cross1:747728200691482746> **You cannot do this for you!**`)
    .setColor('RED')
@@ -23,7 +23,7 @@ let embed7 = new Discord.MessageEmbed()
     let member = message.mentions.users.first();
     if (!member) {
       message.delete()
-      return message.channel.send(embed7).then(msg=>msg.delete(5000))
+      return message.channel.send(embed7).then(m => m.delete({timeout: 5000}))
     }
     let embed8 = new Discord.MessageEmbed()
   .setDescription(`:x: **<@${member.id}>**未被靜音`)
@@ -46,11 +46,6 @@ let embed7 = new Discord.MessageEmbed()
     await (message.guild.member(member).roles.remove(muterole.id));
     message.channel.send(embed5);
 };
-
-exports.conf = {
-    aliases: []
-}
-
 exports.help = {
     name: "unmute",
     description: "Unmute someone",

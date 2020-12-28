@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     client.settings.set(message.guild.id, args[0], "prefix");
     
     // We can confirm everything's done to the client.
-    message.channel.send(`Guild configuration item ${prefix} has been changed to: ${args[0]}`);
+    message.channel.send(`My command prefix has been changed to: ${args[0]}`);
 }
 
 module.exports.help = {

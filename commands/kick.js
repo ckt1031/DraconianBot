@@ -8,7 +8,7 @@ exports.run = async (client, msg, args) => {
     )
     .setColor("RED");
   if (!msg.guild.member(client.user).hasPermission("KICK_MEMBERS"))
-    return msg.channel.send(notice3).then(msg => msg.delete(5000));
+    return msg.channel.send(notice3).then(m => m.delete({timeout: 5000}))
   let kickTaged = msg.mentions.users.first();
   let reason = args.slice(1).join(" ");
   let embed6 = new Discord.MessageEmbed()
@@ -17,7 +17,15 @@ exports.run = async (client, msg, args) => {
     )
     .setColor("RED");
   if (!msg.member.hasPermission("KICK_MEMBERS"))
-    return msg.channel.send(embed6).then(msg => msg.delete(5000));
+    return msg.channel.send(embed6).then(m => m.delete({timeout: 5000}));
+    let mmqembed = new Discord.MessageEmbed()
+    .setTitle("Command: d!kick")
+    .setDescription("Usage: d!kick @user reason")
+    .setColor("RED");
+  if (!kickTaged) {
+    msg.delete();
+    return msg.channel.send(mmqembed).then(m => m.delete({timeout: 5000}))
+  }
   let notice2 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **You cannot kick yourself!**`
@@ -25,31 +33,14 @@ exports.run = async (client, msg, args) => {
     .setColor("RED");
   if (msg.mentions.users.first().id === msg.author.id)
     return msg.channel.send(notice2);
-  let mmqembed = new Discord.MessageEmbed()
-    .setTitle("Command: +kick")
-    .setDescription("Usage: d!kick @user reason")
-    .setColor("RED");
-  if (!kickTaged) {
-    msg.delete();
-    return msg.channel.send(mmqembed).then(msg => msg.delete(30000));
-  }
+  
 
-  let kntlembed = new Discord.MessageEmbed()
-    .setTitle("指令: +kick")
-    .setDescription(
-      "你看到這條信息的話，可能你使用方法出錯了。\n\n**內容功能:** 踢出一個成員\n**使用方法:** +kick [用戶] [原因]\n**例子:** +kick @RealKoolisw Noob"
-    )
-    .setColor("RED");
   if (!reason) {
     msg.delete();
-    return msg.channel.send(mmqembed).then(msg => msg.delete(5000));
+    return msg.channel.send(mmqembed).then(m => m.delete({timeout: 5000}))
   }
 
-  let asuembed = new Discord.MessageEmbed()
-    .setTitle(
-      `Please create a Channel called ${config.logsChannel} to log the bans!`
-    )
-    .setColor("#FFFF00");
+  
 
   let kickEmbed = new Discord.MessageEmbed()
     .setColor("RED")

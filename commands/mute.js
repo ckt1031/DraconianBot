@@ -3,13 +3,14 @@ const ms = require("ms");
 const config = require("../config.json");
 
 exports.run = async (client, message, args) => {
+    let tomute = message.mentions.users.first();
   let notice3 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **I don't have permission to mute people!**`
     )
     .setColor("RED");
   if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES"))
-    return message.channel.send(notice3).then(msg => msg.delete(5000));
+    return message.channel.send(notice3).then(m => m.delete({timeout: 5000}))
 
   //!tempmute @user 1s/m/h/d
   let embed6 = new Discord.MessageEmbed()
@@ -18,7 +19,13 @@ exports.run = async (client, message, args) => {
     )
     .setColor("RED");
   if (!message.member.hasPermission("MANAGE_MESSAGES"))
-    return message.channel.send(embed6).then(msg => msg.delete(5000));
+    return message.channel.send(embed6).then(m => m.delete({timeout: 5000}))
+    const embed50 = new Discord.MessageEmbed()
+    .setTitle(`Command: d!mute`)
+    .setDescription(`Usage: d!mute @user length reason`)
+    .setColor(0xff0000)
+    .setFooter(`Beta Feature`);
+  if (!tomute) return message.channel.send(embed50);
   let notice2 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **You cannot mute yourself!**`
@@ -26,13 +33,8 @@ exports.run = async (client, message, args) => {
     .setColor("RED");
   if (message.mentions.users.first().id === message.author.id)
     return message.channel.send(notice2);
-  let tomute = message.mentions.users.first();
-  const embed50 = new Discord.MessageEmbed()
-    .setTitle(`Command: d!mute`)
-    .setDescription(`Usage: d!mute @user length reason`)
-    .setColor(0xff0000)
-    .setFooter(`Beta Feature`);
-  if (!tomute) return message.channel.send(embed50);
+
+  
   let muterole = client.guilds.cache
     .get(message.guild.id)
     .roles.cache.find(val => val.name === "Muted");
