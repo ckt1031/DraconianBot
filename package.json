@@ -7,7 +7,7 @@
   "main": "app.js",
   "description": "Discord-Multi-Purpose Bot",
   "scripts": {
-    "start": "node app.js"
+    "start": "node shard.js"
   },
   "engines": {
     "node": "14.x"
