@@ -9,7 +9,7 @@ exports.run = async (client, msg, args) => {
     )
     .setColor("RED");
   if (!msg.guild.member(client.user).hasPermission("BAN_MEMBERS"))
-    return msg.channel.send(notice3).then(msg => msg.delete(5000));
+    return msg.channel.send(notice3).then(msg => msg.delete({timeout: 5000}));
 
   let banTaged = msg.mentions.users.first();
   let reason = args.slice(1).join(" ");
