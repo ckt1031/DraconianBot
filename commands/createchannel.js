@@ -1,5 +1,12 @@
 const Discord = require("discord.js");
 exports.run = async (client, message, args) => { // eslint-disable-line no-unused-vars
+    let notice3 = new Discord.MessageEmbed()
+    .setDescription(
+      `<:cross1:747728200691482746> **I don't have permission to manage channel!**`
+    )
+    .setColor("RED");
+  if (!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS"))
+    return message.channel.send(notice3).then(msg => msg.delete({timeout: 5000}));
   try {
     let embed6 = new Discord.MessageEmbed()
   .setDescription(`:no_entry_sign: ${message.author.username}, Missing Permission`)

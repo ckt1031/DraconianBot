@@ -17,15 +17,16 @@ module.exports.run = async (bot, message, args) => {
       "`8ball`, `cat`, `deaes256`, `kiss`, `meme`, `ngif`, `pat`, `poke`, `smug`, `spank`, `thigh`, `tickle`"
     )
     .addField("**:tada:Giveaways**", "`start-giveaway`, `reroll`, `end-giveaway`")
-    .addField("**:musical_note:Music**", "`play`, `stop`, `skip`, `queue`, `autoplay`, `loop`, `volume`")
+    .addField("**:frame_photo:Image**", "`circle`, `delete`, `gay`, `changemymind`, `trigger`, `clyde`")
+    .addField("**:musical_note:Music**", "`play`, `stop`, `skip`, `queue`, `autoplay`, `loop`, `volume`, `pause`, `resume`")
     .addField(
       "**🛠️Moderation**",
-      "`addrole`, `ban`, `clear`, `clearwarn`, `createchannel`, `createemoji`, `kick`, `lockchannel`, `mute`, `rename`, `unban`, `unlockdown`, `unmute`, `warn`, `warnings`"
+      "`addrole`, `ban`, `clear`, `clearwarn`, `createchannel`, `createemoji`, `kick`, `lockchannel`, `mute`, `rename`, `slowmode`, `unban`, `unlockdown`, `unmute`, `warn`, `warnings`"
     )
-    .addField("**:underage:NSFW**", "`4knsfw`, `anal`, `ass`, `hentai`, `holo`, `pussy`, `porn`, `spank`")
+    .addField("**:underage:NSFW**", "`4knsfw`, `anal`, `ass`, `hentai`, `holo`, `pussy`, `porn`, `spank`, `urban`")
     .addField("**:gear:Custom Function**", "`setprefix`")
     .setFooter(
-      `©2020 Draconian Workshop | This command requested by ${message.author.username}#${message.author.discriminator}`
+      `©2021 Draconian Workshop | This command requested by ${message.author.username}#${message.author.discriminator}`
     )
   message.channel.send({ embed });
 };

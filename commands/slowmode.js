@@ -8,7 +8,7 @@ exports.run = (client, message, args) => {
     .setColor("RED");
   let notice1 = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **Failed to set slowmode in this channel, please eneter a valid number!**`
+      `<:cross1:747728200691482746> **Failed to set slowmode in this channel, please enter a valid number!**`
     )
     .setColor("RED");
   let noticwsse1 = new Discord.MessageEmbed()

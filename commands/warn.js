@@ -1,3 +1,5 @@
+
+
 const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
@@ -13,15 +15,14 @@ exports.run = async (client, message, args) => {
     .setDescription(
       `<:cross1:747728200691482746> **${message.author.username}, Missing Permission**`
     )
-    .setColor("GREEN");
+    .setColor("RED");
   let notice3 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **I don't have permission to warn people!**`
     )
     .setColor("RED");
-  if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES"))
+  if (!message.guild.member(client.user).hasPermission(['MANAGE_ROLES', 'KICK_MEMBERS', 'BAN_MEMBERS']))
     return message.channel.send(notice3).then(m => m.delete({timeout: 15000}));
-  //let logchannel = message.guild.channels.cache.find(x => x.name = 'logs');
   if (!message.member.hasPermission("KICK_MEMBERS"))
     return message.channel.send(notice1).then(m => m.delete({timeout: 15000}));
   if (message.mentions.users.size < 1)
