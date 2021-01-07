@@ -1,3 +1,5 @@
+
+
 const Discord = require("discord.js");
 const config = require("../config.json");
 
@@ -54,7 +56,7 @@ exports.run = async (client, msg, args) => {
     .setDescription(
       `<:tick:702386031361523723> **Kicked ${kickTaged.username}#${kickTaged.discriminator}** | **${reason}**`
     )
-    .setColor("#FFFF00");
+    .setColor("GREEN");
   msg.delete();
   msg.channel.send(suembed);
   msg.guild.member(kickTaged).kick(reason);
