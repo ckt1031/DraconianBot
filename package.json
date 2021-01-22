@@ -7,7 +7,7 @@
     "start": "node shard.js"
   },
   "engines": {
-    "node": "15.x"
+    "node": "14.x"
   },
   "repository": {
     "url": "https://github.com/RealKoolisw/Draconian"
