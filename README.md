@@ -1,5 +1,4 @@
-##### ⚠Admin Permission needed for Moderation commands
-##### ⚠Embed links needed for bot embed messages
+## Draconian Discord Bot
 
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
 Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)!
@@ -18,6 +17,9 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 - Meme/Fun commands
 - NSFW commands(Only for NSFW-channel)
 - More and more/ Coming Soon!!
+
+##### ⚠Admin Permission needed for Moderation commands
+##### ⚠Embed links needed for bot embed messages
 
 ## ☑ Tips/Main Commands:
 | Commands    |Description|
