@@ -3,10 +3,20 @@
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
 Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)!
 
+## Our official Bot Specials:
+- Bot stays in 24/7 with 99.991% weekly uptime [check here](https://status.koolisw.tk)
+- Hosted in stable hosters with encrypted data(without down issues)
+- Daily updates on npn packages and codes
+- Open source
+- Bot CPU/RAM optimization(in testing)
+- Shardings(coming soon in 500 or more servers)
+
 ## ☑ Best Features:
 - Full moderation commands (warn/mute/ban/kick/unmute.....)
 - Full server usefull admin commands (createchannel/createemoji/lockchannel.....)
 - Giveaways command
+- Being update with all discord bot list API
+- Stabe Discord Bot database based in `enmap`
 - Reload commands for Owners to refresh their new/current code's moderated commands without resatrting the bot
 - Full music system with queue/playlist support
 - Weekly updates for better bug fixes/maintaining
