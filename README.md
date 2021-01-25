@@ -39,5 +39,5 @@ Draconian Made by Koolisw, project [Here](https://github.com/RealKoolisw/Draconi
 1. To get Draconian ready to run locally, the first step is to clone this repository onto the machine you wish to run it on.
 2. **Node.js version 12.0x or newer is recommended to run Draconian since we are using Discord.js v12**
 3. Use NPM to install the dependencies from the project folder: `npm install`
-4. Edit the file config.json and insert your bot token.
-5. Start the bot from the project folder: `node app.js`
+4. Edit/create the file `.env` (or your hoster's provided environment secret) and insert your bot token in `TOKEN` value.
+5. Start the bot from the project folder: `node shard.js`
