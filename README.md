@@ -9,8 +9,8 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 - Full moderation commands (warn/mute/ban/kick/unmute.....)
 - Full server usefull admin commands (createchannel/createemoji/lockchannel.....)
 - Giveaways command
-- 99.99% Uptime 24/7
-
+- 99.991% Uptime 24/7
+- Full music system with queue/playlist support
 - Weekly updates for better bug fixes/maintaining
 - Tons of useful commands (whois/serverinfo/channel/snipe...)
 - Custom Prefix support
