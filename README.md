@@ -47,11 +47,20 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 If met any issues, go [here](https://github.com/RealKoolisw/Draconian/issues) to report bug and create new issue for supporting
 
 ## Changelogs:
+**v2.3 Alpha: (2021-02-10)**
+- Moving all data to MongoDB for better security and reduce storage
+- Economy commands
+
 **v2.3 Release Candidate: (2021-02-01)**
 - Deleting data from unuesd sevrers and long term not being used data for 2 months
 - Optimize Music System
 - Remove unused NPM Packages
-**v2.2 Stable Released: (2021-01-27)**
+- Leveling Commands with level cards
+- Optimize Discord Bot CPU & Ram Usage
+- Reset-default commands for privacy follows to official ToS
+
+**v2.2 Current Stable Released Version: (2021-01-27)**
+- Fixed bot doesn't response in some servers
 - Added help and command info
 - Optimized Enmap database and starter prefixes
 - Optimized&Fixed some commands
