@@ -42,12 +42,23 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 | ----------- | ----------- | 
 | d!help      | get the list of all coammnds       |
 | d!setprefix (value)   | Bot prefix currently is `d!`, you can change it yourself.       |
-## ☑ Planning Features:
-- Leveling System with leaderboard
-- Full Currency System
 
 ## ☑ Issue/Suggestions
 If met any issues, go [here](https://github.com/RealKoolisw/Draconian/issues) to report bug and create new issue for supporting
+
+## Changelogs:
+**v2.3 Release Candidate: (2021-02-01)**
+- Deleting data from unuesd sevrers and long term not being used data for 2 months
+- Optimize Music System
+- Remove unused NPM Packages
+**v2.2 Stable Released: (2021-01-27)**
+- Added help and command info
+- Optimized Enmap database and starter prefixes
+- Optimized&Fixed some commands
+- Fixed known bugs
+- Optimized stats command for laggy response
+- Moved the bot to stabler hosting (currently from Pterodactyl Panel to repl.it paid)
+- Added 24/7 Bot monitoring from [here](https://status.koolisw.tk)
 
 ## Github Repository
 Draconian Made by Koolisw, project [Here](https://github.com/RealKoolisw/Draconian)
