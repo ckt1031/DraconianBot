@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const superagent = require('superagent');
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     if (!message.mentions.users.first()) return message.reply("You need to mention someone to tickle them");
     if(message.mentions.users.first().id === "242263403001937920") return message.reply('You can\'t tickle him. He will explode on impact!');
     if (message.mentions.users.first().id == client.user.id) return message.channel.send("Nuuuuuuuuuuuuuuuuuuuuuu that tickless")
@@ -16,15 +16,10 @@ exports.run = async (client, message, args) => {
     message.channel.send({embed})
 };
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 0
-  };
-  
-  exports.help = {
-    name: 'tickle',
-    description: 'Tickles someone OwO',
-    usage: 'tickle'
-  };
+module.exports.help = {
+    name: "tickle",
+    description: "This command is used for generating tickle image.",
+    usage: "d!tickle <mention>",
+    accessableby: "Member",
+    aliases: []
+}

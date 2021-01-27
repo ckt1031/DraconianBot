@@ -1,7 +1,7 @@
 const discord = require('discord.js');
 const superagent = require('superagent')
 
-exports.run = (client, msg, args) => {
+module.exports.run = (client, msg, args) => {
   if (msg.channel.nsfw === true) {
     superagent.get('https://nekobot.xyz/api/image')
     .query({ type: 'pussy'})
@@ -18,3 +18,11 @@ exports.run = (client, msg, args) => {
     msg.channel.send("This isn't NSFW channel!")
   }
 };
+
+module.exports.help = {
+    name: "pussy",
+    description: "This command is used for calling NSFW images API to send them, but NSFW channel needed.",
+    usage: "d!pussy <mention>",
+    accessableby: "NSFW/Members",
+    aliases: []
+}

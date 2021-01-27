@@ -1,4 +1,4 @@
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
      if (!message.member.voice.channel) return message.channel.send(`${client.emotes.error} | You must be in a voice channel!`)
     if (!client.distube.isPlaying(message)) return message.channel.send(`${client.emotes.error} | You must be in a voice channel!`)
     let mode = null;
@@ -16,4 +16,12 @@ exports.run = async (client, message, args) => {
     mode = client.distube.setRepeatMode(message, mode);
     mode = mode ? mode == 2 ? "Repeat queue" : "Repeat song" : "Off";
     message.channel.send(`${client.emotes.repeat} | Set repeat mode to \`${mode}\``);
+}
+
+module.exports.help = {
+    name: "loop",
+    description: "This command is used for lopping the songs in music system.",
+    usage: "d!loop <off/song/queue>",
+    accessableby: "Connecting to Voice channel",
+    aliases: []
 }

@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const superagent = require('superagent');
 
 
-exports.run = async (client, message, args, tools) => {
+module.exports.run = async (client, message, args, tools) => {
     if (message.channel.nsfw == false) return message.channel.send('This is not NSFW channel')
     const { body } = await superagent
     .get("https://nekos.life/api/v2/img/wallpaper");
@@ -14,15 +14,10 @@ exports.run = async (client, message, args, tools) => {
     message.channel.send({embed})
 };
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 0
-  };
-  
-  exports.help = {
-    name: 'wallpaper',
-    description: 'Anime wallpapers OwO',
-    usage: 'wallpaper'
-  };
+module.exports.help = {
+    name: "wallpaper",
+    description: "Generating NSFW wallpapers randomly",
+    usage: "d!wallpaper",
+    accessableby: "NSFW/Member",
+    aliases: []
+}

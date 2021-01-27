@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const superagent = require('superagent');
 
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     const { body } = await superagent
     .get("https://nekos.life/api/v2/img/ngif");
     
@@ -14,15 +14,11 @@ exports.run = async (client, message, args) => {
     message.channel.send({embed})
 };
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 0
-  };
-  
-  exports.help = {
-    name: 'ngif',
-    description: 'Neko Gifs OwO',
-    usage: 'ngif'
-  };
+module.exports.help = {
+    name: "ngif",
+    description: "This command is used for generating ngif.",
+    usage: "d!ngif",
+    accessableby: "Members",
+    aliases: []
+}
+

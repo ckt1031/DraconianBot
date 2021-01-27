@@ -40,3 +40,11 @@ exports.run = async (client, message, args) => {
     });
 
 };
+
+module.exports.help = {
+    name: "reroll",
+    description: "This command is used for rerolling giveaways.",
+    usage: "d!reroll <giveaway-message-ID>",
+    accessableby: "Manage Messages",
+    aliases: []
+}

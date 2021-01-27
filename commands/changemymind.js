@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const canvacord = require("canvacord");
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     let notice3 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **Please type the text you want to changemymind!**`
@@ -16,4 +16,12 @@ exports.run = async (client, message, args) => {
         let triggered = new Discord.MessageAttachment(image, "changemymind.png")
 
         message.channel.send(triggered);
+}
+
+module.exports.help = {
+    name: "changemymind",
+    description: "Changemymind please.",
+    usage: "d!changemymind <text>(optional)",
+    accessableby: "Member",
+    aliases: []
 }

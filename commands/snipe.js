@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = (client, message, args) => {
+module.exports.run = (client, message, args) => {
     const msg = client.snipes.get(message.channel.id)
     if(!msg) return message.channel.send("There are no deleted messages in this channel!")
     const embed = new Discord.MessageEmbed()
@@ -9,4 +9,12 @@ exports.run = (client, message, args) => {
     if(msg.image)embed.setImage(msg.image)
     
     message.channel.send(embed)
+}
+
+module.exports.help = {
+    name: "snipe",
+    description: "This command is used for sniping latest message been deleted by members.",
+    usage: "d!snipe",
+    accessableby: "Member",
+    aliases: []
 }

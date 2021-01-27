@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = async (client, message, args) => { // eslint-disable-line no-unused-vars
+module.exports.run = async (client, message, args) => { // eslint-disable-line no-unused-vars
   try {
     let member = message.mentions.members.first();
 
@@ -20,16 +20,10 @@ exports.run = async (client, message, args) => { // eslint-disable-line no-unuse
   }
 };
 
-exports.conf = {
-  enabled: true,
-  aliases: ['upat'],
-  guildOnly: false,
-  permLevel: 'User'
-};
-
-exports.help = {
-  name: 'pat',
-  category: 'Weeb',
-  description: 'Pats a user for you.',
-  usage: 'pat <user>'
-};
+module.exports.help = {
+    name: "pat",
+    description: "This command is used for generating pat.",
+    usage: "d!pat <mentions>",
+    accessableby: "Members",
+    aliases: []
+}

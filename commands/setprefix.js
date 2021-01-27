@@ -16,5 +16,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name: "prefix"
+    name: "setprefix",
+    description: "This command is used for changing the prefix.",
+    usage: "d!setprefix <value>",
+    accessableby: "Manage Server",
+    aliases: []
 }

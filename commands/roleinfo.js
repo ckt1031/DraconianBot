@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
 
     let role = args.join(` `)
     if(!role) return message.reply("Specify a role!");
-    let gRole = client.guilds.cache.get(message.guild.id).roles.cache.find(val => val.name === role);
+    let gRole = message.guild.roles.cache.get(role)
     if(!gRole) return message.reply("Couldn't find that role.");
     
     const status = {
@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
     .setColor("#00ff00")
     .addField("ID", gRole.id, inline )
     .addField("Name", gRole.name, inline)
-    .addField("Mention", `\`<@${gRole.id}>\``, inline)
+    .addField("Mention", `<@&${gRole.id}>`, inline)
     .addField("Hex", gRole.hexColor, inline)
     .addField("Members", gRole.members.size, inline)
     .addField("Position", gRole.position, inline)
@@ -30,5 +30,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-  name:"roleinfo"
+    name: "roleinfo",
+    description: "This command is used for generating people IN RiP.",
+    usage: "d!roleinfo <roles-ID>",
+    accessableby: "Member",
+    aliases: []
 }

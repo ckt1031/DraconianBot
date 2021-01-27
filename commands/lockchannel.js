@@ -3,7 +3,7 @@
 const Discord = require("discord.js");
 const ms = require('ms');
 
-exports.run = (client, message, args) => {
+module.exports.run = (client, message, args) => {
     let dfgrdgdfgdf = new Discord.MessageEmbed()
     .setDescription(
       `<:tick:702386031361523723> **Lockdown lifted**`
@@ -70,3 +70,11 @@ exports.run = (client, message, args) => {
     });
   }
 };
+
+module.exports.help = {
+    name: "lockchannel",
+    description: "This command is used for locking the channels.",
+    usage: "d!lockchannel <duration>",
+    accessableby: "Manage Channels",
+    aliases: []
+}

@@ -23,15 +23,10 @@ module.exports.run = async (bot, message, args) => {
   }, ms(Timer));
 }
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 0
-  };
-  
-exports.help = {
-    name: 'timer',
-    description: 'Create a timer.',
-    usage: 'timer'
-  };
+module.exports.help = {
+    name: "timer",
+    description: "This command is used for timing.",
+    usage: "d!timer <duration in ms>",
+    accessableby: "Member",
+    aliases: []
+}

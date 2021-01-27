@@ -3,7 +3,7 @@ const fs = require("fs");
 const config = require("../config.json");
 
 exports.run = async (client, message, args) => {
-if (message.author.id != config.ownerID) return message.channel.send("Only my developer can use this command...");
+if (message.author.id != process.env.OWNERID) return message.channel.send("Only my developer can use this command...");
         message.channel.send("Developer command confirmed!");
 
     if (!args.length) return message.channel.send(`You didn't pass any command to reload, ${message.author}!`);
@@ -22,4 +22,13 @@ if (!command) return message.channel.send(`There is no command with name or alia
 	console.error(error);
 	message.channel.send(`There was an error while reloading a command \`${args[0]}\`:\n\`${error.message}\``);
 }
+return message.reply("Command reloaded")
+}
+
+module.exports.help = {
+    name: "reload-all",
+    description: "This command is used for reload specify commands without rebooting/restart the bot.",
+    usage: "d!reload-all",
+    accessableby: "Bot Owners",
+    aliases: []
 }

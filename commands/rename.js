@@ -26,15 +26,10 @@ exports.run = (client, message, args) => {
   message.channel.send(embed);
 };
 
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  permLevel: 2
-};
-
-exports.help = {
-  name: 'rename',
-  description: 'Rename the mentioned user.',
-  usage: 'rename @user|userID newname'
-};
+module.exports.help = {
+    name: "rename",
+    description: "This command is used for renaming someone's nickname.",
+    usage: "d!rename <mentions> <nickname>",
+    accessableby: "Manage Nicknames",
+    aliases: []
+}

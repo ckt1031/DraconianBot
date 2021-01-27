@@ -1,4 +1,4 @@
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
   try {
     if (!args[0]) return message.reply('You need to input the text to reverse!');
     
@@ -10,16 +10,10 @@ exports.run = async (client, message, args) => {
   }
 };
 
-exports.conf = {
-  enabled: true,
-  aliases: [],
-  guildOnly: false,
-  permLevel: 'User'
-};
-
-exports.help = {
-  name: 'reverse',
-  category: 'Fun',
-  description: 'Returns the string you input reversed',
-  usage: 'reverse <text>'
-};
+module.exports.help = {
+    name: "reverse",
+    description: "This command is used for reversing words.",
+    usage: "d!reverse",
+    accessableby: "Member",
+    aliases: []
+}

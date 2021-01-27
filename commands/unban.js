@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const config = require("../config.json");
 
-exports.run = (client, message, args) => {
+module.exports.run = (client, message, args) => {
   let reason = args.slice(1).join(' ');
     let user = args[0];
 
@@ -27,15 +27,10 @@ let embed1 = new Discord.MessageEmbed()
       })
 };
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 2
-};
-
-exports.help = {
-    name: 'unban',
-    description: 'Unbans the mentioned user from the server.',
-    usage: 'ban [user] [reason]'
-};
+module.exports.help = {
+    name: "unban",
+    description: "This command is used for unbanning someone",
+    usage: "d!unban <USER ID>",
+    accessableby: "Ban Members",
+    aliases: []
+}

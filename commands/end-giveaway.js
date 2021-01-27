@@ -1,6 +1,6 @@
 const ms = require('ms');
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
 
     // If the member doesn't have enough permissions
     if(!message.member.hasPermission('MANAGE_MESSAGES') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
@@ -43,3 +43,11 @@ exports.run = async (client, message, args) => {
     });
 
 };
+
+module.exports.help = {
+	name: "end-giveaway",
+	description: "This command is used for endding the currents giveaway section",
+	usage: "d!end-giveaway <giveaway-message-id>",
+	accessableby: "Manage Messages",
+	aliases: []
+} 

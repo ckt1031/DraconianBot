@@ -6,7 +6,7 @@ const ms = require("ms");
 //const mysql = require('mysql');
 //const file = require('../mysql.json');
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(" ");
   let user = message.mentions.users.first();
   let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
@@ -37,6 +37,22 @@ exports.run = async (client, message, args) => {
   //if (!logchannel) return message.channel.send('I cannot find a logs channel');
     
   if (reason.length < 1) reason = "No reason supplied.";
+
+  let dsfdsfsdf = new Discord.MessageEmbed()
+    .setDescription(
+      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**`
+    )
+    .setColor("RED");
+  let sdfsdfsdfsd = new Discord.MessageEmbed()
+    .setDescription(
+      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**`
+    )
+    .setColor("RED");
+  let botRolePossition = message.guild.member(client.user).roles.highest.position;
+  let rolePosition = message.guild.member(user).roles.highest.position;
+  let userRolePossition = message.member.roles.highest.position;
+  if (userRolePossition <= rolePosition) return message.channel.send(dsfdsfsdf)
+  if (botRolePossition <= rolePosition) return message.channel.send(sdfsdfsdfsd)
 
   if (!warns[`${user.id}, ${message.guild.id}`])
     warns[`${user.id}, ${message.guild.id}`] = {
@@ -122,15 +138,10 @@ exports.run = async (client, message, args) => {
   }
 };
 
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: ["smolyeet"],
-  permLevel: 0
-};
-
-exports.help = {
-  name: "warn",
-  description: "Issues a warning to the mentioned user.",
-  usage: "warn [mention] [reason]"
-};
+module.exports.help = {
+    name: "warn",
+    description: "Warn someone u hates/againsting rules, 2 warn for muting, 3 warns for kicking, 5 warns for banning",
+    usage: "d!warn <mention> <reason>",
+    accessableby: "Member",
+    aliases: []
+}

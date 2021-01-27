@@ -6,3 +6,11 @@ exports.run = async (client, message, args) => {
     }).join("\n");
     message.channel.send(`${client.emotes.queue} | **Server Queue**\n${q}`)
 }
+
+module.exports.help = {
+    name: "queue",
+    description: "This command is used for fetching queue from music system.",
+    usage: "d!queue",
+    accessableby: "Members",
+    aliases: []
+}

@@ -6,7 +6,7 @@ function checkDays(date) {
     let days = Math.floor(diff / 86400000);
     return days + (days == 1 ? " day" : " days") + " ago";
 };
-exports.run = (client, message, args) => {
+module.exports.run = (client, message, args) => {
     let verifLevels = ["None", "Low", "Medium", "(╯°□°）╯︵  ┻━┻", "┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻"];
     let region = {
         "brazil": "Brazil",
@@ -51,15 +51,10 @@ exports.run = (client, message, args) => {
   message.channel.send({embed});
 }
 
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: ["serverstats"],
-  permLevel: 0
-};
-
-exports.help = {
-  name: 'serverinfo',
-  description: 'Displays information about the server.',
-  usage: 'serverinfo'
-};
+module.exports.help = {
+    name: "serverinfo",
+    description: "This command is used for checking the server info.",
+    usage: "d!serverinfo",
+    accessableby: "Member",
+    aliases: []
+}

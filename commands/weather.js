@@ -41,5 +41,9 @@ module.exports.run = async (bot, message, args) => {
     
     }
 module.exports.help = {
-    name: "weather"
+    name: "weather",
+    description: "Check the weather in your location or area within newest climate/weather status",
+    usage: "d!weather <location/area>",
+    accessableby: "Members",
+    aliases: []
 }

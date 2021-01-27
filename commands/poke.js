@@ -3,7 +3,7 @@ const superagent = require('superagent');
 
 
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     if (!message.mentions.users.first()) return message.reply("You need to mention someone to pat them");
     if (message.mentions.users.first().id === client.user.id) return message.channel.send('<a:yayyy:497742636439044096>');
     if (message.mentions.users.first().id == message.author.id) return message.reply("Idk if thats possible chief")
@@ -24,15 +24,10 @@ exports.run = async (client, message, args) => {
     message.channel.send({embed})
 };
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 0
-  };
-  
-  exports.help = {
-    name: 'poke',
-    description: 'Pokes someone OwO',
-    usage: 'poke'
-  };
+module.exports.help = {
+    name: "poke",
+    description: "This command is used for poke someone",
+    usage: "d!poke <mention>",
+    accessableby: "Members",
+    aliases: []
+}

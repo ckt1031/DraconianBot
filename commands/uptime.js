@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 let days = 0;
 let week = 0;
 
-exports.run = (client, message, args) =>{
+module.exports.run = (client, message, args) =>{
     var milliseconds = parseInt((client.uptime % 1000) / 100),
   seconds = parseInt((client.uptime / 1000) % 60),
   minutes = parseInt((client.uptime / (1000 * 60)) % 60),
@@ -20,4 +20,12 @@ exports.run = (client, message, args) =>{
 
     message.channel.send(serverembed);
 
+}
+
+module.exports.help = {
+    name: "uptime",
+    description: "This command is used for reporting bot's uptime",
+    usage: "d!uptime",
+    accessableby: "Member",
+    aliases: []
 }

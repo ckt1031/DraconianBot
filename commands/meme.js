@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const request = require("request");
 
-exports.run = (client, message, _args) => {
+module.exports.run = (client, message, _args) => {
     try {
     //This is a command purely for memes
     request("https://some-random-api.ml/meme", function (error, _response, body) {
@@ -22,11 +22,10 @@ exports.run = (client, message, _args) => {
     }
 }
 
-exports.help = {
-    enabled: true,
-    hideHelp: false,
-    type: "image",
+module.exports.help = {
     name: "meme",
-    description: "The `meme` command displays a random meme from the interwebs.",
-    usage: "`yabe meme`",
+    description: "This command is used for generating some cool memes.",
+    usage: "d!meme",
+    accessableby: "Member",
+    aliases: []
 }

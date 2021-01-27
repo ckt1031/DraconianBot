@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const canvacord = require("canvacord");
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     let target = message.mentions.users.first() || message.author
 
   let avatar = message.attachments.array()[0]
@@ -23,6 +23,15 @@ exports.run = async (client, message, args) => {
            let rainbow = new Discord.MessageAttachment(image, "trigger.png")
           return message.channel.send(rainbow);
 }
+
+module.exports.help = {
+    name: "trigger",
+    description: "This command is used for generating trigger image",
+    usage: "d!trigger <mention or attachment>",
+    accessableby: "Member",
+    aliases: []
+}
+
     
 
 

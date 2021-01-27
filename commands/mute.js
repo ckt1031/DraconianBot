@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const ms = require("ms");
 const config = require("../config.json");
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     let tomute = message.mentions.users.first();
   let notice3 = new Discord.MessageEmbed()
     .setDescription(
@@ -34,6 +34,22 @@ exports.run = async (client, message, args) => {
   if (message.mentions.users.first().id === message.author.id)
     return message.channel.send(notice2);
 
+let dsfdsfsdf = new Discord.MessageEmbed()
+    .setDescription(
+      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**`
+    )
+    .setColor("RED");
+  let sdfsdfsdfsd = new Discord.MessageEmbed()
+    .setDescription(
+      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**`
+    )
+    .setColor("RED");
+  let botRolePossition = message.guild.member(client.user).roles.highest.position;
+  let rolePosition = message.guild.member(tomute).roles.highest.position;
+  let userRolePossition = message.member.roles.highest.position;
+  if (userRolePossition <= rolePosition) return message.channel.send(dsfdsfsdf)
+  if (botRolePossition <= rolePosition) return message.channel.send(sdfsdfsdfsd)
+
   
   let muterole = client.guilds.cache
     .get(message.guild.id)
@@ -60,7 +76,7 @@ exports.run = async (client, message, args) => {
   let mutetime = args[1];
   if (!mutetime) return message.channel.send(embed50);
   let reason = args.slice(2).join(" ");
-  if (!reason) return message.channel.send(embed50);
+   if (reason.length < 1) reason = "No reason given.";
 
   let logs = message.guild.channels.cache.find(
     x => (x.name = config.logsChannel)
@@ -97,8 +113,10 @@ exports.run = async (client, message, args) => {
   }, ms(mutetime));
 };
 
-//end of module
-
 module.exports.help = {
-  name: "mute"
-};
+    name: "mute",
+    description: "This command is used for muting some people really annoying.",
+    usage: "d!mute <mention> <duration> <reason>",
+    accessableby: "Manage Roles",
+    aliases: []
+}

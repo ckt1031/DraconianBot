@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = async (client, message, args) => { // eslint-disable-line no-unused-vars
+module.exports.run = async (client, message, args) => {
   try {    
     let member = message.mentions.members.first();
     require('request')({url: 'https://nekos.life/api/kiss', json: true}, (req, res, json) => {
@@ -20,16 +20,10 @@ exports.run = async (client, message, args) => { // eslint-disable-line no-unuse
   }
 };
 
-exports.conf = {
-  enabled: true,
-  aliases: [],
-  guildOnly: false,
-  permLevel: 'User'
-};
-
-exports.help = {
-  name: 'kiss',
-  category: 'Fun',
-  description: 'Returns a kiss',
-  usage: 'kiss <user>'
-};
+module.exports.help = {
+    name: "kiss",
+    description: "This command is used for kiss someone u loVe.",
+    usage: "d!kiss <mentions>",
+    accessableby: "Member",
+    aliases: []
+}

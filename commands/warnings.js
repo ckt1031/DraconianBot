@@ -19,3 +19,11 @@ exports.run = (client, message, args) => {
     .addField('Number of warnings:', warns[`${user.id}, ${message.guild.id}`].warns)
     message.channel.send({embed});
 }
+
+module.exports.help = {
+    name: "warnings",
+    description: "Check the people you mentioned who has warnings or not",
+    usage: "d!warnings <mention>",
+    accessableby: "Members",
+    aliases: []
+}

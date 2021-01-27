@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const request = require("request");
 
 
-exports.run = (client, message, [args, ...words]) => {
+module.exports.run = (client, message, [args, ...words]) => {
     const regex = /[!*();,:@&=+$.\/?%#[\]]/g;
 
     //Commented langs just translate to english
@@ -170,11 +170,10 @@ exports.run = (client, message, [args, ...words]) => {
     }
 }
 
-exports.help = {
-    enabled: true,
-    hideHelp: false,
-    type: "util",
+module.exports.help = {
     name: "translate",
-    description: "The `translate` command translates any text from any given language to another",
-    usage: "`yabe translate <source language>-<target language> <word or sentence to translate>`\nNote: the languages need to be in ISO 639-1 code format.\n\nFor a list of langs, use `yabe translate list`",
+    description: "This command is used for translating stuff. Example: d!translate zh-en 你好, response: hello here",
+    usage: "d!translate <language>-<to-translate-language> <text>",
+    accessableby: "Member",
+    aliases: []
 }

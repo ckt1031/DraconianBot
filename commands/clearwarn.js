@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require("fs");
 const ms = require("ms");
 
-exports.run = (client, message, args) => {
+module.exports.run = (client, message, args) => {
     let notice1 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **${message.author.username}, Missing Permission**`
@@ -55,15 +55,11 @@ exports.run = (client, message, args) => {
     message.channel.send({embed});
 }
 
-    exports.conf = {
-        enabled: true,
-        guildOnly: false,
-        aliases: [],
-        permLevel: 0
-      };
-      
-    exports.help = {
-      name: 'clearwarns',
-      description: 'Clear a user\'s warnings',
-      usage: 'clearwarns [mention]'
-    };
+
+module.exports.help = {
+    name: "clearwarn",
+    description: "Clear the warnings",
+    usage: "d!clearwarn <mention>",
+    accessableby: "Manage Roles",
+    aliases: []
+}    

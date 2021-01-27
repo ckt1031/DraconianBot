@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const canvacord = require("canvacord");
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     let notice3 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **Please type the text to clyde!**`
@@ -17,3 +17,11 @@ exports.run = async (client, message, args) => {
 
         message.channel.send(triggered);
 }
+
+module.exports.help = {
+    name: "clyde",
+    description: "Acts like clyde",
+    usage: "d!clyde <text>",
+    accessableby: "Member",
+    aliases: []
+}   

@@ -1,6 +1,6 @@
 const ms = require('ms');
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
 
     // If the member doesn't have enough permissions
     if(!message.member.hasPermission('MANAGE_MESSAGES') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
@@ -70,3 +70,11 @@ exports.run = async (client, message, args) => {
     message.channel.send(`Giveaway started in ${giveawayChannel}!`);
 
 };
+
+module.exports.help = {
+    name: "start-giveaway",
+    description: "This command is used for creating a giveawya for events.",
+    usage: "d!start-giveaway <channel> <duration> <winner> <prize>",
+    accessableby: "Member",
+    aliases: []
+}

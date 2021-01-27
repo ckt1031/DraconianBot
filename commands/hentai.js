@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const superagent = require('superagent');
 
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
     if (message.channel.nsfw === true) {
     const { body } = await superagent
     .get("https://nekos.life/api/v2/img/hentai");
@@ -18,15 +18,11 @@ exports.run = async (client, message, args) => {
   }
 };
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 0
-  };
-  
-  exports.help = {
-    name: 'ngif',
-    description: 'Neko Gifs OwO',
-    usage: 'ngif'
-  };
+module.exports.help = {
+    name: "hentai",
+    description: "This command is used for calling NSFW images API to send them, but NSFW channel needed.",
+    usage: "d!hentai",
+		accessablechannel: "NSFW Channel",
+    accessableby: "NSFW/Member",
+    aliases: []
+}

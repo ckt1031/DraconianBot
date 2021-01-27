@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const config = require("../config.json");
 
-exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {
   
    
   let embed6 = new Discord.MessageEmbed()
@@ -46,8 +46,11 @@ let embed7 = new Discord.MessageEmbed()
     await (message.guild.member(member).roles.remove(muterole.id));
     message.channel.send(embed5);
 };
-exports.help = {
+
+module.exports.help = {
     name: "unmute",
-    description: "Unmute someone",
-    usage: "unmute @mention"
+    description: "This command is used for unmuting someone",
+    usage: "d!unmute <mention>",
+    accessableby: "Manage Roles",
+    aliases: []
 }

@@ -1,9 +1,7 @@
-
-
 const Discord = require("discord.js");
 const config = require("../config.json");
 
-exports.run = async (client, msg, args) => {
+module.exports.run = async (client, msg, args) => {
   let notice3 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **I don't have permission to kick people!**`
@@ -28,6 +26,24 @@ exports.run = async (client, msg, args) => {
     msg.delete();
     return msg.channel.send(mmqembed).then(m => m.delete({timeout: 5000}))
   }
+
+  let dsfdsfsdf = new Discord.MessageEmbed()
+    .setDescription(
+      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**`
+    )
+    .setColor("RED");
+  let sdfsdfsdfsd = new Discord.MessageEmbed()
+    .setDescription(
+      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**`
+    )
+    .setColor("RED");
+  let botRolePossition = msg.guild.member(client.user).roles.highest.position;
+  let rolePosition = msg.guild.member(kickTaged).roles.highest.position;
+  let userRolePossition = msg.member.roles.highest.position;
+  if (userRolePossition <= rolePosition) return msg.channel.send(dsfdsfsdf)
+  if (botRolePossition <= rolePosition) return msg.channel.send(sdfsdfsdfsd)
+
+
   let notice2 = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> **You cannot kick yourself!**`
@@ -35,13 +51,17 @@ exports.run = async (client, msg, args) => {
     .setColor("RED");
   if (msg.mentions.users.first().id === msg.author.id)
     return msg.channel.send(notice2);
+
+    let sdfdfsdfsdfdfs = new Discord.MessageEmbed()
+    .setDescription(`<:cross1:747728200691482746> **An error occurred with banned that member!**`)
+    .setColor("RED");
+
+  if (!msg.guild.member(user).kickable) {
+    return msg.channel.send(sdfdfsdfsdfdfs);
+  }
   
 
-  if (!reason) {
-    msg.delete();
-    return msg.channel.send(mmqembed).then(m => m.delete({timeout: 5000}))
-  }
-
+   if (reason.length < 1) reason = "No reason given.";
   
 
   let kickEmbed = new Discord.MessageEmbed()
@@ -66,3 +86,11 @@ exports.run = async (client, msg, args) => {
   );
 
 };
+
+module.exports.help = {
+    name: "kick",
+    description: "This command is used for kicking people u hates or againsting your server rules.",
+    usage: "d!kick <mentions> <reason>",
+    accessableby: "Kick Members",
+    aliases: []
+}
