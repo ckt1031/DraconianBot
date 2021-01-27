@@ -17,8 +17,7 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 - Hosted in stable hosters with encrypted data(without down issues)
 - Daily updates on npn packages and codes
 - Open source
-- Bot CPU/RAM optimization(in testing)
-- Shardings(coming soon in 500 or more servers)
+- Easy to use
 
 ## ☑ Best Features:
 - Full moderation commands (warn/mute/ban/kick/unmute.....)
@@ -28,7 +27,6 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 - Stabe Discord Bot database based in `enmap`
 - Reload commands for Owners to refresh their new/current code's moderated commands without resatrting the bot
 - Full music system with queue/playlist support
-- Weekly updates for better bug fixes/maintaining
 - Tons of useful commands (whois/serverinfo/channel/snipe...)
 - Custom Prefix support
 - Live 24/7 bot support with bug report/suggestions
@@ -54,7 +52,7 @@ If met any issues, go [here](https://github.com/RealKoolisw/Draconian/issues) to
 ## Github Repository
 Draconian Made by Koolisw, project [Here](https://github.com/RealKoolisw/Draconian)
 ## Self-Hosting & Development
-# Requirement
+Requirement:
 - Node.js 12
 - Python(For Advanced Music feature)
 
