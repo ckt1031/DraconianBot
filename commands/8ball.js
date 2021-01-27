@@ -14,13 +14,15 @@ function doMagic8BallVoodoo() {
   return rand[Math.floor(Math.random() * rand.length)];
 }
 
-exports.run = async (client, message, args, level) => {
+module.exports.run = async (client, message, args) => {
+  if(!args[0]) return message.channel.send("Please ask me question first to access to this command.")
   message.channel.send("My anwser is: " + doMagic8BallVoodoo());
 };
 
-exports.help = {
-  name: "8ball",
-  category: "fun",
-  description: "Returns either yours or [member]'s avatar.",
-  usage: "avatar [member]"
-};
+module.exports.help = {
+    name: "8ball",
+    description: "This command is used for asking the bot what he wanted to answer as 8ball.",
+    usage: "d!8ball <questions>",
+    accessableby: "Member",
+		    aliases: []
+}
