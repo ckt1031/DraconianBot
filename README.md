@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://cdn.koolisw.tk/file/kooliswCDN/2337C846-7D15-450C-8485-CEA20602CDF7.jpeg">
+    <img src="https://cdn.koolisw.tk/file/kooliswCDN/F996F49F-5771-452D-9FA4-2E6713D2E138.png" height="130">
 </p>
 
 ## Draconian Discord Bot
