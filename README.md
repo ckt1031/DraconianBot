@@ -1,6 +1,8 @@
 <p align="center">
     <img src="https://cdn.koolisw.tk/file/kooliswCDN/F996F49F-5771-452D-9FA4-2E6713D2E138.png" height="200">
 </p>
+<img src="https://img.shields.io/uptimerobot/ratio/m787007739-f881254df38f1a06bbd53346?style=flat-square"
+            alt="Uptime">
 
 ## Draconian Discord Bot
 
