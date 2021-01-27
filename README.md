@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://cdn.koolisw.tk/file/kooliswCDN/2337C846-7D15-450C-8485-CEA20602CDF7.jpeg">
+</p>
+
 ## Draconian Discord Bot
 
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
