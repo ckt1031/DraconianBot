@@ -53,9 +53,16 @@ If met any issues, go [here](https://github.com/RealKoolisw/Draconian/issues) to
 
 ## Github Repository
 Draconian Made by Koolisw, project [Here](https://github.com/RealKoolisw/Draconian)
-## Self-Hosting
+## Self-Hosting & Development
+# Requirement
+- Node.js 12
+- Python(For Advanced Music feature)
+
 1. To get Draconian ready to run locally, the first step is to clone this repository onto the machine you wish to run it on.
-2. **Node.js version 12.0x or newer is recommended to run Draconian since we are using Discord.js v12**
+2. **Node.js version 12 or newer is recommended to run Draconian since we are using Discord.js v12**
 3. Use NPM to install the dependencies from the project folder: `npm install`
 4. Edit/create the file `.env` (or your hoster's provided environment secret) and insert your bot token in `TOKEN` value.
 5. Start the bot from the project folder: `node shard.js`
+6. Open `http://localhost:3000/` or your project URL to view the http output.
+
+
