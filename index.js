@@ -187,15 +187,15 @@ client.on("disconnect", function(event) {
 });
 
 client.on("message", async message => {
-  client.settings.ensure(message.guild.id, settings);
+const prefixesss = client.settings.ensure(message.guild.id, settings);
 
-  const prefixx = client.settings.get(message.guild.id, "prefix");
-  if (!client.settings.get(message.guild.id)) {
-    client.settings.set(message.guild.id, {
-      prefix: "d!"
-    });
-  }
-  let prefissssx = client.settings.get(message.guild.id, "prefix");
+	// const prefixss = client.settings.get(message.guild.id, 'prefix');
+	if (!client.settings.get(message.guild.id, 'prefix')) {
+		client.settings.set(message.guild.id, {
+			'prefix': 'd!'
+		});
+	}
+	
 
   const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
   const matchedPrefix = message.content.match(prefixMention)
