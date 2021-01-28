@@ -10,8 +10,8 @@ const fs = require("fs");
 client.config = config;
 client.login(process.env.TOKEN);
 const db = require("quick.db");
-const DBL = require("dblapi.js");
-const dbl = new DBL(process.env.DBLTOKEN, client);
+// const DBL = require("dblapi.js");
+// const dbl = new DBL(process.env.DBLTOKEN, client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.emotes = config.emoji;
@@ -51,13 +51,13 @@ fs.readdir("./commands/", (err, files) => {
   });
 });
 
-dbl.on("posted", () => {
-  console.log("Server count posted!");
-});
+// dbl.on("posted", () => {
+//  console.log("Server count posted!");
+// });
 
-dbl.on("error", e => {
-  console.log(`Oops! ${e}`);
-});
+// dbl.on("error", e => {
+ // console.log(`Oops! ${e}`);
+// });
 
 if (!db.get("giveaways")) db.set("giveaways", []);
 
