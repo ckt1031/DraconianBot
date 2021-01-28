@@ -203,7 +203,7 @@ const prefixesss = client.settings.ensure(message.guild.id, settings);
   const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
   const matchedPrefix = message.content.match(prefixMention)
     ? message.content.match(prefixMention)[0]
-    : prefixesss;
+    : prefixesss.prefix;
 
   if (!message.content.startsWith(matchedPrefix)) return;
 
