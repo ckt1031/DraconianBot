@@ -22,7 +22,7 @@ const settings = require("./settings.js");
 
 client.settings = new Enmap({
   name: "settings",
-  fetchAll: true,
+  fetchAll: false,
   autoFetch: true,
   cloneLevel: "deep"
 });
