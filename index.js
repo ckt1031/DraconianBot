@@ -20,6 +20,9 @@ client.snipes = new Map();
 const cooldowns = new Discord.Collection();
 const settings = require("./settings.js");
 
+const http = require('http');
+http.createServer((_, res) => res.end('Draconian Stays Online!')).listen(8080);
+
 client.settings = new Enmap({
   name: "settings",
   fetchAll: false,
