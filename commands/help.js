@@ -46,13 +46,7 @@ module.exports.run = async (bot, message, args) => {
 			var embed = new Discord.MessageEmbed()
 				.setTitle(`**Command: ${command.help.name}**`)
 				.setDescription(`
-            **Description:**
-						\`\`\`${command.help.description || "There is no Description for this command."}\`\`\`
-            **Usage:**
-						\`\`\`${command.help.usage || "No Usage"}\`\`\`
-            **Permissions:**
-						\`\`\`${command.help.accessableby || "Members"}\`\`\`
-            `)
+            **Description:**\n\`\`\`${command.help.description || "There is no Description for this command."}\`\`\`\n**Usage:**\n\`\`\`${command.help.usage || "No Usage"}\`\`\`\n**Permissions:**\n\`\`\`${command.help.accessableby || "Members"}\`\`\``)
 				.setColor('#4a4b4d')
 				.setFooter(
 				`©2021 Draconian Workshop | This command requested by ${message.author.username}#${message.author.discriminator}`

@@ -26,9 +26,9 @@ return message.reply("Command reloaded")
 }
 
 module.exports.help = {
-    name: "reload-all",
+    name: "reload",
     description: "This command is used for reload specify commands without rebooting/restart the bot.",
-    usage: "d!reload-all",
+    usage: "d!reload <commands>",
     accessableby: "Bot Owners",
     aliases: []
 }
