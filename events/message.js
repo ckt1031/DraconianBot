@@ -2,7 +2,7 @@ const settings = require("../settings.js");
 const Discord = require('discord.js');
 const cooldowns = new Discord.Collection();
 
-exports.run = (client, message) => {
+exports.run = async (client, message) => {
 	const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
 
 	if (!client.settings.get(message.guild.id, 'prefix')) {
