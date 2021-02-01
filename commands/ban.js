@@ -59,7 +59,7 @@ module.exports.run = async (client, msg, args) => {
 
   if (reason.length < 1) reason = "No reason given.";
 
-  if (!msg.guild.member(user).bannable) {
+  if (!msg.guild.member(banTaged).bannable) {
     return msg.channel.send(sdfdfsdfsdfdfs);
   }
 

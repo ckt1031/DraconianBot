@@ -9,7 +9,7 @@ const ms = require("ms");
 module.exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(" ");
   let user = message.mentions.users.first();
-  let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+  let warns = JSON.parse(fs.readFileSync("./temp-datastore/warnings.json", "utf8"));
 
   let notice1 = new Discord.MessageEmbed()
     .setDescription(
@@ -61,7 +61,7 @@ module.exports.run = async (client, message, args) => {
 
   warns[`${user.id}, ${message.guild.id}`].warns++;
 
-  fs.writeFile("./warnings.json", JSON.stringify(warns), err => {
+  fs.writeFile("./temp-datastore/warnings.json", JSON.stringify(warns), err => {
     if (err) throw err;
   });
 

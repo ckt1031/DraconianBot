@@ -24,7 +24,7 @@ module.exports.run = (client, message, args) => {
   if (!message.member.hasPermission("KICK_MEMBERS"))
     return message.channel.send(notice1).then(m => m.delete({timeout: 15000}));
     
-    let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+    let warns = JSON.parse(fs.readFileSync("./temp-datastore/warnings.json", "utf8"));
     let user = message.mentions.users.first();
     if(message.mentions.users.size < 1) return message.channel.send(noticEEEe2)
     if(!user) return message.channel.send(noticEEREe2);
@@ -42,7 +42,7 @@ module.exports.run = (client, message, args) => {
         reason = 'This user doesn\'t have any warnings:wink:'
     };
 
-    fs.writeFile("./warnings.json", JSON.stringify(warns), err => {
+    fs.writeFile("./temp-datastore/warnings.json", JSON.stringify(warns), err => {
         if(err) throw err;
       });
 

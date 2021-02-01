@@ -3,7 +3,7 @@ let days = 0;
 let week = 0;
 
 module.exports.run = (client, message, args) =>{
-	let nowtime = new Date().toLocaleString("zh-hk", { timeZone: "Asia/Hong_Kong" });
+	let nowtime = new Date().toLocaleString("en", { timeZone: "Asia/Hong_Kong" });
     var milliseconds = parseInt((client.uptime % 1000) / 100),
   seconds = parseInt((client.uptime / 1000) % 60),
   minutes = parseInt((client.uptime / (1000 * 60)) % 60),
