@@ -11,20 +11,22 @@ const db = require('quick.db');
 // Delete 2 lines code if you don't use discord bot lists of top.gg
 // const DBL = require('dblapi.js');
 // const dbl = new DBL(process.env.DBLTOKEN, client);
+const { GiveawaysManager } = require('discord-giveaways');
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.emotes = config.emoji;
 client.colors = client.config.colors;
 client.snipes = new Map();
+client.dbl = dbl
 const cooldowns = new Discord.Collection();
 const settings = require('./settings.js');
 let nz_date_string = new Date().toLocaleString("zh-hk", { timeZone: "Asia/Hong_Kong" });
 client.mapss = new Map();
 client.mapss.set('uptimedate', nz_date_string);
+["command", "dbl-loader", "event", "giveaway", "music"].forEach(x => require(`./handlers/${x}.js`)(client));
+const keepAlive = require('./server');
 
-
-const http = require('http');
-http.createServer((_, res) => res.end('Draconian Stays Online!')).listen(8080);
+keepAlive()
 
 // Delete this area of code if you don't use discord bot lists
 // const blapi = require('blapi');
@@ -47,48 +49,12 @@ client.distube = new DisTube(client, {
 	leaveOnFinish: true,
 	leaveOnEmpty: true,
 	leaveOnStop: true,
-	youtubeDL: true
+	youtubeDL: true,
+	updateYouTubeDL: true,
+	youtubeCookie: "GPS=1; YSC=w5dGoHzqQRI; VISITOR_INFO1_LIVE=B4ElBqxSDv4; PREF=tz=Asia.Hong_Kong"
 });
-
-fs.readdir('./commands/', (err, files) => {
-	if (err) return console.log(err);
-
-	files.forEach(file => {
-		if (!file.endsWith('.js')) return;
-
-		let props = require(`./commands/${file}`);
-
-		console.log('Successfully loaded ' + file);
-
-		let commandName = file.split('.')[0];
-
-		client.commands.set(commandName, props);
-
-	});
-});
-
-fs.readdir('./events/', (err, files) => {
-	if (err) console.log(err);
-	files.forEach(file => {
-		let eventFunc = require(`./events/${file}`);
-		console.log("loaded Event" + file)
-		let eventName = file.split(".")[0];
-		client.on(eventName, (...args) => eventFunc.run(client, ...args));
-	});
-});
-
-// Delete this area of code if you don't use discord bot lists
-// dbl.on('posted', () => {
-// 	console.log('Server count posted!');
-// });
-
-// dbl.on('error', e => {
-// 	console.log(`Oops! ${e}`);
-// });
-
 if (!db.get('giveaways')) db.set('giveaways', []);
 
-const { GiveawaysManager } = require('discord-giveaways');
 const GiveawayManagerWithOwnDatabase = class extends GiveawaysManager {
 	// This function is called when the manager needs to get all the giveaway stored in the database.
 	async getAllGiveaways() {
@@ -135,11 +101,14 @@ const GiveawayManagerWithOwnDatabase = class extends GiveawaysManager {
 // Create a new instance of your new class
 const manager = new GiveawayManagerWithOwnDatabase(client, {
 	storage: false, // Important - use false instead of a storage path
-	updateCountdownEvery: 5000,
+	updateCountdownEvery: 10000,
+	endedGiveawaysLifetime: 30000,
+	hasGuildMembersIntent: false,
 	default: {
 		botsCanWin: false,
 		exemptPermissions: ['MANAGE_MESSAGES', 'ADMINISTRATOR'],
-		embedColor: '#FF0000',
+		embedColor: '#ff6969',
+		embedColorEnd: "#505050",
 		reaction: '🎉'
 	}
 });
@@ -147,29 +116,7 @@ const manager = new GiveawayManagerWithOwnDatabase(client, {
 client.giveawaysManager = manager;
 // We now have a client.giveawaysManager property to manage our giveaways!
 
-client.giveawaysManager.on(
-	'giveawayReactionAdded',
-	(giveaway, member, reaction) => {
-		console.log(
-			`${member.user.tag} entered giveaway #${giveaway.messageID} (${
-			reaction.emoji.name
-			})`
-		);
-	}
-);
-
-client.giveawaysManager.on(
-	'giveawayReactionRemoved',
-	(giveaway, member, reaction) => {
-		console.log(
-			`${member.user.tag} unreact to giveaway #${giveaway.messageID} (${
-			reaction.emoji.name
-			})`
-		);
-	}
-);
-
-const status = queue =>
+client.status = queue =>
 	`Volume: \`${queue.volume}%\` | Filter: \`${queue.filter ||
 	'Off'}\` | Loop: \`${
 	queue.repeatMode
@@ -178,52 +125,3 @@ const status = queue =>
 			: 'This Song'
 		: 'Off'
 	}\` | Autoplay: \`${queue.autoplay ? 'On' : 'Off'}\``;
-client.distube
-	.on('playSong', (message, queue, song) =>
-		message.channel.send(
-			`${client.emotes.play} | Playing \`${song.name}\` - \`${
-			song.formattedDuration
-			}\`\n${status(queue)}`
-		)
-	)
-	.on('addSong', (message, queue, song) =>
-		message.channel.send(
-			`${client.emotes.success} | Added ${song.name} - \`${
-			song.formattedDuration
-			}\` to the queue`
-		)
-	)
-	.on('playList', (message, queue, playlist, song) =>
-		message.channel.send(
-			`${client.emotes.play} | Play \`${playlist.name}\` playlist (${
-			playlist.total_items
-			} songs).\nNow playing \`${song.name}\` - \`${
-			song.formattedDuration
-			}\`\n${status(queue)}`
-		)
-	)
-	.on('addList', (message, queue, playlist) =>
-		message.channel.send(
-			`${client.emotes.success} | Added \`${playlist.name}\` playlist (${
-			playlist.total_items
-			} songs) to queue\n${status(queue)}`
-		)
-	)
-	// DisTubeOptions.searchSongs = true
-	.on('searchResult', (message, result) => {
-		let i = 0;
-		message.channel.send(
-			`**Choose an option from below**\n${result
-				.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``)
-				.join('\n')}\n*Enter anything else or wait 60 seconds to cancel*`
-		);
-	})
-	// DisTubeOptions.searchSongs = true
-	.on('searchCancel', message =>
-		message.channel.send(`${client.emotes.error} | Searching canceled`)
-	)
-	.on('error', (message, err) =>
-		message.channel.send(
-			`${client.emotes.error} | An error encountered: ${err}`
-		)
-	);
