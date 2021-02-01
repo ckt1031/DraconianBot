@@ -75,11 +75,16 @@ Requirement:
 - Node.js 12
 - Python(For Advanced Music feature)
 
+Reminders:
+- If you are not using Discord Bot lists and top.gg, delete files from `handlers/dbl-loader.js` / `events/dbl/all-files` and removes all codes from index.js with `//`
+- If you are using Top.gg bot lists API, u need to delete `//` from commands lines from index.js
+
 1. To get Draconian ready to run locally, the first step is to clone this repository onto the machine you wish to run it on.
 2. **Node.js version 12 or newer is recommended to run Draconian since we are using Discord.js v12**
 3. Use NPM to install the dependencies from the project folder: `npm install`
 4. Edit/create the file `.env` (or your hoster's provided environment secret) and insert your bot token in `TOKEN` value.
 5. Start the bot from the project folder: `node shard.js`
 6. Open `http://localhost:3000/` or your project URL to view the http output.
+
 
 
