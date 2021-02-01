@@ -17,13 +17,14 @@ client.aliases = new Discord.Collection();
 client.emotes = config.emoji;
 client.colors = client.config.colors;
 client.snipes = new Map();
-client.dbl = dbl
+// client.dbl = dbl
 const cooldowns = new Discord.Collection();
 const settings = require('./settings.js');
 let nz_date_string = new Date().toLocaleString("zh-hk", { timeZone: "Asia/Hong_Kong" });
 client.mapss = new Map();
 client.mapss.set('uptimedate', nz_date_string);
-["command", "dbl-loader", "event", "giveaway", "music"].forEach(x => require(`./handlers/${x}.js`)(client));
+["command", "event", "giveaway", "music"].forEach(x => require(`./handlers/${x}.js`)(client));
+// ["dbl-loader"].forEach(x => require(`./handlers/${x}.js`)(client));
 const keepAlive = require('./server');
 
 keepAlive()
