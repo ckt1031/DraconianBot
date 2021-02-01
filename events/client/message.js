@@ -7,7 +7,7 @@ module.exports = async (client, message) => {
 
 	if (!client.settings.get(message.guild.id, 'prefix')) {
 		client.settings.set(message.guild.id, {
-			prefix: settings.prefix
+			'prefix': 'd!'
 		});
 	}
 
