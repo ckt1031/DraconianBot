@@ -19,8 +19,8 @@ client.colors = client.config.colors;
 client.snipes = new Map();
 // client.dbl = dbl
 const cooldowns = new Discord.Collection();
-const settings = require('./settings.js');
-let nz_date_string = new Date().toLocaleString("zh-hk", { timeZone: "Asia/Hong_Kong" });
+const settings = require('./settings.json');
+let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Asia/Hong_Kong" });
 client.mapss = new Map();
 client.mapss.set('uptimedate', nz_date_string);
 ["command", "event", "giveaway", "music"].forEach(x => require(`./handlers/${x}.js`)(client));
