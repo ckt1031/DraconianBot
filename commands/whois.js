@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require("moment")
 
 module.exports.run = async (bot, message, args) => {
   let trufal = {
@@ -20,19 +21,22 @@ module.exports.run = async (bot, message, args) => {
         user = message.author;
     }
     const member = message.guild.member(user)
+		const roles = member.roles.cache.map(r => `${r}`).join(', ')
+		let serveddrembed = new Discord.MessageEmbed()
+	.setDescription("<a:loading:806686528549814344> Fetching Uptime...")
+	.setColor("RED")
+
+	message.channel.send(serveddrembed).then( async (message) => {
     const embed = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor(`${user.tag} Info`, message.author.displayAvatarURL)
-        .setDescription(`**• Name：**${user.tag}\n**• ID: **${user.id}\n**• Account Type：**${trufal[user.bot]}\n**• Status：**${status[user.presence.status]}\n**• Game： **${user.presence.game ? user.presence.game.name : 'I do not see him playing anything!'}\n**• Created at:** ${user.createdAt}**\n**• Avatar：**[Click here](user.avatarURL)\n**• User Billings：** Draconian Free Package`)
+        .setDescription(`**• Name: **${user.tag}\n**• ID: **${user.id}\n**• Account Type: **${trufal[user.bot]}\n**• Status: **${user.presence.status.toUpperCase()}\n**• Game: **${user.presence.game ? user.presence.game.name : 'I do not see him playing anything!'}\n**• Created at: ** ${moment(user.joinedAt).format('DD-MM-YYYY')}\n**• Joined At: **${moment(user.createdAt).format('DD-MM-YYYY')}\n**• Avatar**: [Click here](${user.avatarURL()})\n**• Roles: **${roles}`)
 
-        .setThumbnail(user.avatarURL)
+        .setThumbnail(`${user.avatarURL()}`)
         .setTimestamp()
     
-    message.channel.send('<a:Discordloading:715868120795054142>Loading From Discord API')
-  .then((message) => {
-    setTimeout(function() {
-    message.edit({embed});
-  }, 2000)});
+    await message.edit(embed)
+	})
      
 }
 

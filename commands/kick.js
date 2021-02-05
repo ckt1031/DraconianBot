@@ -82,7 +82,7 @@ module.exports.run = async (client, msg, args) => {
   msg.guild.member(kickTaged).kick(reason);
 
   kickTaged.send(
-    `You had been kicked in **${msg.guild.name}**\ by **${msg.author.username}**, ${reason}`
+    `You had been kicked in **${msg.guild.name}**, ${reason}`
   );
 
 };

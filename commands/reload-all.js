@@ -5,7 +5,7 @@ const config = require("../config.json")
 module.exports.run = async (client, message, args) => {
 	if (message.author.id != process.env.OWNERID) return message.channel.send("Only my developer can use this command...");
 
-	message.channel.send(":warning: When all commands reloaded, all commands will be turned into latest changes! Type `confirm` to confirm! Or being cancelled in `20`` seconds.");
+	message.channel.send(":warning: When all commands reloaded, all commands will be turned into latest changes! Type `confirm` to confirm! Or being cancelled in `20` seconds.");
 	await message.channel.awaitMessages(m => (m.author.id === message.author.id) && (m.content === "confirm"), {
 		max: 1,
 		time: 20000,

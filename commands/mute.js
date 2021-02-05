@@ -108,7 +108,7 @@ module.exports.run = async (client, message, args) => {
   tomute.send(
     `You had been muted for **${ms(ms(mutetime))}** in **${
       message.guild.name
-    }** by **${message.author.username}**, Reason : **${reason}**`
+    }**, Reason : **${reason}**`
   );
 
   setTimeout(function() {

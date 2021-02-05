@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const settings = require("../settings.js")
+const settings = require("../settings.json")
 
 module.exports.run = async (client, message, args) => {
     if(!message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Missing Permission!");

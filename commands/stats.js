@@ -14,8 +14,6 @@ module.exports.run = async (client, message) => {
   hours = (hours < 10) ? "0" + hours : hours;
   minutes = (minutes < 10) ? "0" + minutes : minutes;
   seconds = (seconds < 10) ? "0" + seconds : seconds;
-  fs.readdir('./commands/', async (err, files) => {
-    if (err) console.error(err);
     // var totcmds = files.length;
 
     fetch(`https://api.hetrixtools.com/v1/f10ac71364c8b1aa149b4079fe8eafc9/uptime/report/483cfd9cb2dd306bf8c00917da1df827/`)
@@ -37,7 +35,7 @@ module.exports.run = async (client, message) => {
       })
 
 
-  })
+  
 }
 module.exports.help = {
     name: "stats",

@@ -79,10 +79,10 @@ module.exports.run = async (client, msg, args) => {
 
   msg.delete();
   msg.channel.send(bsuembed);
-  msg.guild.members.ban(banTaged.id, { days: 7, reason: reason });
+  msg.guild.members.ban(banTaged.id, { reason: reason });
 
   banTaged.send(
-    `You are banned **${msg.guild.name}** by **${msg.author.username}**, Reason : **${reason}**`
+    `You are banned in **${msg.guild.name}**, Reason : **${reason}**`
   );
 };
 

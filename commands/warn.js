@@ -96,7 +96,7 @@ module.exports.run = async (client, message, args) => {
   message.mentions.users
     .first()
     .send(
-      `You are warned by ${message.author.username}#${message.author.discriminator}, ${reason}`
+      `You are warned in **${message.guild.name}**, **${reason}**`
     )
     .catch(e => {
       if (e) return;
