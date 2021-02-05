@@ -3,7 +3,6 @@ module.exports = async client => {
 		type: 'LISTENING'
 	});
 	console.log('Ready!');
-
 	setInterval(() => {
 		client.user.setActivity(
 			`RealKoolisw | ${client.guilds.cache.size} Servers`,

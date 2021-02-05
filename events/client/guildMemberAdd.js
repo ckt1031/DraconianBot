@@ -1,4 +1,4 @@
-const settings = require('../../settings.js');
+const settings = require('../../settings.json');
 const fs = require('fs');
 
 module.exports = async (client, member) => {

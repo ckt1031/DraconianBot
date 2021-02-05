@@ -1,4 +1,4 @@
-const settings = require('../../settings.js');
+const settings = require('../../settings.json');
 const Discord = require('discord.js');
 const cooldowns = new Discord.Collection();
 
@@ -7,7 +7,7 @@ module.exports = async (client, message) => {
 
 	if (!client.settings.get(message.guild.id, 'prefix')) {
 		client.settings.set(message.guild.id, {
-			'prefix': 'd!'
+			prefix: settings.prefix
 		});
 	}
 
@@ -45,10 +45,10 @@ module.exports = async (client, message) => {
 	}
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+	// Statcord.ShardingClient.postCommand(command, message.author.id, client);
 	try {
 		let commandFile = require(`../../commands/${cmd}.js`);
 		commandFile.run(client, message, args);
-		
 	} catch (e) {
 		console.log(e.message);
 	} finally {
