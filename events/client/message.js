@@ -11,24 +11,16 @@ module.exports = async (client, message) => {
 		});
 	}
 
-	const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
-	const matchedPrefix = message.content.match(prefixMention)
-		? message.content.match(prefixMention)[0]
-		: prefixesdatabase.prefix;
-
-	if (!message.content.startsWith(matchedPrefix)) return;
-
-	let command = message.content.toLowerCase().split(' ')[0];
-	command = command.slice(matchedPrefix.length);
-	let args = message.content
-		.slice(matchedPrefix.length)
-		.trim()
-		.split(' ');
-	let cmd = args.shift().toLowerCase();
-
+	if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
+		message.channel.send(`Hi, my prefix: \`${prefixesdatabase.prefix}\``);
+	}
+	
+	if (!message.content.startsWith(prefixesdatabase.prefix)) return;
+	let command = message.content.split(' ')[0].slice(prefixesdatabase.prefix.length);
+	let args = message.content.split(' ').slice(1);
 	if (!cooldowns.has(command.name)) {
 		cooldowns.set(command.name, new Discord.Collection());
-	}
+	};
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
 	const cooldownAmount = (command.cooldown || 2) * 1000;
@@ -37,21 +29,25 @@ module.exports = async (client, message) => {
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 2000;
 			return message.reply(
-				`Please wait **${timeLeft.toFixed(
+				`Before using **${prefixesdatabase.prefix}${command}**, please wait for **${timeLeft.toFixed(
 					1
-				)} seconds** before reusing the **${matchedPrefix}${command}**!`
+				)} second for cooldowns!**`
 			);
-		}
-	}
+		};
+	};
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-	// Statcord.ShardingClient.postCommand(command, message.author.id, client);
+	let cmd;
+	if (client.commands.has(command)) {
+		cmd = client.commands.get(command);
+	} else if (client.aliases.has(command)) {
+		cmd = client.commands.get(client.aliases.get(command));
+	};
 	try {
-		let commandFile = require(`../../commands/${cmd}.js`);
-		commandFile.run(client, message, args);
+		cmd.run(client, message, args);
 	} catch (e) {
-		console.log(e.message);
+		return console.log(`Invalid command: ${command}`);
 	} finally {
-		console.log(`${message.author.username} using command ${cmd}`);
+		console.log(`${message.author.username} using command ${prefixesdatabase.prefix}${command}`);
 	}
 };
