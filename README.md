@@ -13,63 +13,42 @@
 </a>
     </p>
 
-## Draconian Discord Bot
+# Draconian Discord Bot
 
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
 Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)!
 
-## Our official Bot Specials:
-- Bot stays in 24/7 with 99.991% weekly uptime [check here](https://status.koolisw.tk)
-- Hosted in stable hosters with encrypted data(without down issues)
-- Daily updates on npn packages and codes
-- Open source
-- Easy to use
-
-## ☑ Best Features:
-- Full moderation commands (warn/mute/ban/kick/unmute.....)
-- Full server usefull admin commands (createchannel/createemoji/lockchannel.....)
-- Giveaways command
-- Being update with all discord bot list API
-- Stabe Discord Bot database based in `enmap`
-- Reload commands for Owners to refresh their new/current code's moderated commands without resatrting the bot
-- Full music system with queue/playlist support
-- Tons of useful commands (whois/serverinfo/channel/snipe...)
-- Custom Prefix support
-- Live 24/7 bot support with bug report/suggestions
-- Meme/Fun commands
-- NSFW commands(Only for NSFW-channel)
-- More and more/ Coming Soon!!
+## Our Bot Features:
+Draconian Discord Bot offers:
+* ⏱ 24/7 Full Uptime with high stability
+*  Easy to use
+* ⚙ Per-Server Settings
+*  Fast command responses
+*  Powerful Moderation Commands
+*  Giveaways Commands
+*  Persistent Database based in `Enmap`
+*  Support for different languages(Coming Soon)
 
 ##### ⚠Admin Permission needed for Moderation commands
 ##### ⚠Embed links needed for bot embed messages
 
-## ☑ Tips/Main Commands:
-| Commands    |Description|
-| ----------- | ----------- | 
-| d!help      | get the list of all coammnds       |
-| d!setprefix (value)   | Bot prefix currently is `d!`, you can change it yourself.       |
+## Featured Commands:
+We have more than 80 commands in this bot, and they are **featured** and having 8 main categories
+* ⚙ **Customization Functions:** `setprefix` and more **coming soon**!
+*  **Giveaways:** `gstart`, `gend`, `greroll`
+*  **Info:** `help`, `uptime`, `vote`, `channel`, `stats`, `whois`, and **5 more!**
+*  **Images:** `cat`, `changemymind`, `gay`, `trigger`, `circle`, and **7 more!**
+*  **Fun:** `8ball`, `reverse`, `snipe`, and **4 more!**
+*  **Music:** `play`, `loop`, `skip`, `stop`, `jumpto`, `volume`, and **4 more!**
+*  **Moderation:** `ban`, `kick`, `warn`, `mute`, `createchannel`, `createemoji`, and **9 more!**
+*  **Utility:** `weather`, `aes256`, `embed`, `enlarge`, and **4 more!**
 
-## ☑ Issue/Suggestions
+## Issue/Suggestions
 If met any issues, go [here](https://github.com/RealKoolisw/Draconian/issues) to report bug and create new issue for supporting
-
-## Changelogs:
-**v2.2 Current Stable Released Version: (2021-01-27)**
-- Fixed bot doesn't response in some servers
-- Added help and command info
-- Optimized Enmap database and starter prefixes
-- Optimized&Fixed some commands
-- Fixed known bugs
-- Optimized stats command for laggy response
-- Moved the bot to stabler hosting (currently from Pterodactyl Panel to repl.it paid)
-- Added 24/7 Bot monitoring from [here](https://status.koolisw.tk)
-
-**v2.1 Previous Released Version: (2021-01-25)**
-- Fixed app.js
-- Fixed ban/warn/mute/kick commands role positions errors and added its error message
-- Optimized Codes
 
 ## Github Repository
 Draconian Made by Koolisw, project [Here](https://github.com/RealKoolisw/Draconian)
+
 ## Self-Hosting & Development
 Requirement:
 - Node.js 12
