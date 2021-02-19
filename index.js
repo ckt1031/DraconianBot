@@ -25,9 +25,11 @@ client.mapss = new Map();
 client.mapss.set('uptimedate', nz_date_string);
 ["command", "event", "giveaway", "music"].forEach(x => require(`./handlers/${x}.js`)(client));
 // ["dbl-loader"].forEach(x => require(`./handlers/${x}.js`)(client));
-const keepAlive = require('./server');
+const httpOutPut = require('./server/http');
+const alwaysOn = require('./server/alwaysOn');
 
-keepAlive()
+httpOutPut()
+alwaysOn()
 
 // Delete this area of code if you don't use discord bot lists
 // const blapi = require('blapi');
