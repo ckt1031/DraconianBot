@@ -20,14 +20,14 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 
 ## Our Bot Features:
 Draconian Discord Bot offers:
-* ⏱ 24/7 Full Uptime with high stability
-* 朗 Easy to use
+* :battery: 24/7 Full Uptime with high stability
+* :smiley: Easy to use
 * ⚙ Per-Server Settings
-*  Fast command responses
-*  Powerful Moderation Commands
-*  Giveaways Commands
-*  Persistent Database based in `Enmap`
-*  Support for different languages(Coming Soon)
+* :+1: Fast command responses
+* :cop: Powerful Moderation Commands
+* :tada: Giveaways Commands
+* :file_folder: Persistent Database based in `Enmap`
+* :rocket: Support for different languages(Coming Soon)
 
 ##### ⚠Admin Permission needed for Moderation commands
 ##### ⚠Embed links needed for bot embed messages
@@ -35,13 +35,13 @@ Draconian Discord Bot offers:
 ## Featured Commands:
 We have more than 80 commands in this bot, and they are **featured** and having 8 main categories
 * ⚙ **Customization Functions:** `setprefix` and more **coming soon**!
-*  **Giveaways:** `gstart`, `gend`, `greroll`
-*  **Info:** `help`, `uptime`, `vote`, `channel`, `stats`, `whois`, and **5 more!**
-*  **Images:** `cat`, `changemymind`, `gay`, `trigger`, `circle`, and **7 more!**
-*  **Fun:** `8ball`, `reverse`, `snipe`, and **4 more!**
-*  **Music:** `play`, `loop`, `skip`, `stop`, `jumpto`, `volume`, and **4 more!**
-*  **Moderation:** `ban`, `kick`, `warn`, `mute`, `createchannel`, `createemoji`, and **9 more!**
-*  **Utility:** `weather`, `aes256`, `embed`, `enlarge`, and **4 more!**
+* :gift: **Giveaways:** `gstart`, `gend`, `greroll`
+* :file_folder: **Info:** `help`, `uptime`, `vote`, `channel`, `stats`, `whois`, and **5 more!**
+* :stars: **Images:** `cat`, `changemymind`, `gay`, `trigger`, `circle`, and **7 more!**
+* :soccer: **Fun:** `8ball`, `reverse`, `snipe`, and **4 more!**
+* :musical_note: **Music:** `play`, `loop`, `skip`, `stop`, `jumpto`, `volume`, and **4 more!**
+* :lock: **Moderation:** `ban`, `kick`, `warn`, `mute`, `createchannel`, `createemoji`, and **9 more!**
+* :electric_plug: **Utility:** `weather`, `aes256`, `embed`, `enlarge`, and **4 more!**
 
 ## Issue/Suggestions
 If met any issues, go [here](https://github.com/RealKoolisw/Draconian/issues) to report bug and create new issue for supporting
