@@ -43,6 +43,11 @@ We have more than 80 commands in this bot, and they are **featured** and having 
 * :lock: **Moderation:** `ban`, `kick`, `warn`, `mute`, `createchannel`, `createemoji`, and **9 more!**
 * :electric_plug: **Utility:** `weather`, `aes256`, `embed`, `enlarge`, and **4 more!**
 
+## Screenshots and Examples
+<img align="left" style="float: centrer; margin: 0 10px 0 0;" src="https://raw.githubusercontent.com/RealKoolisw/DraconianJSBot/main/assets/4AF90D44-492E-4650-800D-9624362C0126.jpeg" height="200" width="350"/>
+<img align="center" style="float: left; margin: 0 10px 0 0;" src="https://raw.githubusercontent.com/RealKoolisw/DraconianJSBot/main/assets/6AF85019-CF43-432B-A795-8791A3D97DE8.jpeg" height="200" width="350"/>
+<img align="center" style="float: centrer; margin: 0 10px 0 0;" src="https://raw.githubusercontent.com/RealKoolisw/DraconianJSBot/main/assets/ACFFF0C2-A684-4A90-890F-F2A6702259AC.jpeg" height="200" width="350"/>
+
 ## Issue/Suggestions
 If met any issues, go [here](https://github.com/RealKoolisw/Draconian/issues) to report bug and create new issue for supporting
 
