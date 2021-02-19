@@ -21,7 +21,7 @@ Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=71193
 ## Our Bot Features:
 Draconian Discord Bot offers:
 * ⏱ 24/7 Full Uptime with high stability
-*  Easy to use
+* 朗 Easy to use
 * ⚙ Per-Server Settings
 *  Fast command responses
 *  Powerful Moderation Commands
