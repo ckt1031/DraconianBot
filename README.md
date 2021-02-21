@@ -54,8 +54,8 @@ Draconian Made by Koolisw, project [Here](https://github.com/RealKoolisw/Draconi
 
 ## Self-Hosting & Development
 Requirement:
-- Node.js 12
-- Python(For Advanced Music feature)
+- Node.js v12.x or upper
+- Python (For Advanced Music feature)
 
 Reminders:
 - If you are not using Discord Bot lists and top.gg, delete files from `handlers/dbl-loader.js` / `events/dbl/all-files` and removes all codes from index.js with `//`
@@ -67,7 +67,4 @@ Reminders:
 3. Use NPM to install the dependencies from the project folder: `npm install`
 4. Edit/create the file `.env` (or your hoster's provided environment secret) and insert your bot token in `TOKEN` value.
 5. Start the bot from the project folder: `node shard.js`
-6. Open `http://localhost:3000/` or your project URL to view the http output.
-
-
-
+6. Open `http://localhost:8080/` or your project URL to view the http output.
