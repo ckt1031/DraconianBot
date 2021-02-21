@@ -16,7 +16,7 @@
 # Draconian Discord Bot
 
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
-Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)!\
+Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)!
 
 [點擊這裏](https://github.com/RealKoolisw/DraconianJSBot/blob/main/assets/README-cn.md)閱讀Discord機器人中文教程 :)
 ## Our Bot Features:
