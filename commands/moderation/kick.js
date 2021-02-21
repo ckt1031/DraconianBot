@@ -56,7 +56,7 @@ module.exports.run = async (client, msg, args) => {
     .setDescription(`<:cross1:747728200691482746> **An error occurred with banned that member!**`)
     .setColor("RED");
 
-  if (!msg.guild.member(user).kickable) {
+  if (!msg.guild.member(kickTaged).kickable) {
     return msg.channel.send(sdfdfsdfsdfdfs);
   }
   
