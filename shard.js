@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const { ShardingManager } = require('discord.js');
 
 
