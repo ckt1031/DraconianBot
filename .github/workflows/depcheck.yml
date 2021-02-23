@@ -1,4 +1,4 @@
-name: Unused Packages Check
+name: Draconian Packages Check
 
 on:
   push:
@@ -24,4 +24,4 @@ jobs:
     - name: Installing depcheck package
       run: npm install -g depcheck
     - name: Checking and listing unused packages
-      run: depcheck && exit 0
+      run: npm depcheck
