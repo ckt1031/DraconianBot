@@ -61,6 +61,7 @@
 		"ytdl-core-discord": "^1.2.5",
 		"ytpl": "^2.0.4",
 		"twemoji-parser": "^13.0.0",
+		"eslint": "^7.20.0",
 		"canvacord": "^5.0.8"
 	},
 	"devDependencies": {}
