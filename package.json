@@ -24,6 +24,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@discordjs/opus": "^0.3.3",
+		"depcheck": "^1.4.0",
 		"axios": "^0.21.1",
 		"blapi": "^2.0.1",
 		"cheerio": "^0.22.0",
