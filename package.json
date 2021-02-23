@@ -6,8 +6,7 @@
 	"author": "RealKoolisw",
 	"scripts": {
 		"start": "node shard.js",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"depcheck": "depcheck"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"email": "realkoolisw@gmail.com",
 	"url": "https://draconian.koolisw.tk/",
@@ -25,7 +24,6 @@
 	"license": "MIT",
 	"dependencies": {
 		"@discordjs/opus": "^0.3.3",
-		"depcheck": "^1.4.0",
 		"axios": "^0.21.1",
 		"blapi": "^2.0.1",
 		"cheerio": "^0.22.0",
