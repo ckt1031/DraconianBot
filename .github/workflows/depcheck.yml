@@ -1,4 +1,4 @@
-name: Draconian Bot Test
+name: Unused Packages Check
 
 on:
   push:
