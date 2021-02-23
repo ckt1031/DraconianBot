@@ -24,4 +24,4 @@ jobs:
     - name: Installing depcheck package
       run: npm install -g depcheck
     - name: Checking and listing unused packages
-      run: npm depcheck
+      run: npm packagecheck
