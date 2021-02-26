@@ -26,7 +26,7 @@
 		"@discordjs/opus": "^0.3.3",
 		"axios": "^0.21.1",
 		"blapi": "^2.0.1",
-		"canvacord": "^5.0.8",
+		"canvacord": "^5.1.0",
 		"cheerio": "^0.22.0",
 		"cryptr": "^6.0.2",
 		"dblapi.js": "^2.4.1",
