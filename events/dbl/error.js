@@ -1,3 +1,3 @@
-module.exports = async e => {
-	console.log(`Oops! ${e}`);
+module.exports = async (e) => {
+  console.log(`Oops! ${e}`);
 };

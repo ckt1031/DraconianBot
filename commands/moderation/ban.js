@@ -1,4 +1,3 @@
-
 const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("../../config.json");
@@ -10,7 +9,9 @@ module.exports.run = async (client, msg, args) => {
     )
     .setColor("RED");
   if (!msg.guild.member(client.user).hasPermission("BAN_MEMBERS"))
-    return msg.channel.send(notice3).then(msg => msg.delete({ timeout: 5000 }));
+    return msg.channel
+      .send(notice3)
+      .then((msg) => msg.delete({ timeout: 5000 }));
 
   let banTaged = msg.mentions.users.first();
   let reason = args.slice(1).join(" ");
@@ -21,7 +22,9 @@ module.exports.run = async (client, msg, args) => {
     )
     .setColor("#FFFF00");
   if (!msg.member.hasPermission("BAN_MEMBERS"))
-    return msg.channel.send(mmqembed).then(msg => msg.delete({ timeout: 5000 }));
+    return msg.channel
+      .send(mmqembed)
+      .then((msg) => msg.delete({ timeout: 5000 }));
   let kntlembed = new Discord.MessageEmbed()
     .setTitle("Command: d!ban")
     .setDescription(
@@ -30,12 +33,17 @@ module.exports.run = async (client, msg, args) => {
     .setColor("RED");
   if (!banTaged) {
     msg.delete();
-    return msg.channel.send(kntlembed).then(msg => msg.delete({ timeout: 10000 }));
+    return msg.channel
+      .send(kntlembed)
+      .then((msg) => msg.delete({ timeout: 10000 }));
   }
   let notice2 = new Discord.MessageEmbed()
     .setDescription(`<:cross1:747728200691482746> **You cannot ban yourself!**`)
     .setColor("RED");
-  if (msg.mentions.users.first().id === msg.author.id) return msg.channel.send(notice2).then(msg => msg.delete({ timeout: 10000 }));
+  if (msg.mentions.users.first().id === msg.author.id)
+    return msg.channel
+      .send(notice2)
+      .then((msg) => msg.delete({ timeout: 10000 }));
   let dsfdsfsdf = new Discord.MessageEmbed()
     .setDescription(
       `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**`
@@ -49,12 +57,13 @@ module.exports.run = async (client, msg, args) => {
   let botRolePossition = msg.guild.member(client.user).roles.highest.position;
   let rolePosition = msg.guild.member(banTaged).roles.highest.position;
   let userRolePossition = msg.member.roles.highest.position;
-  if (userRolePossition <= rolePosition) return msg.channel.send(dsfdsfsdf)
-  if (botRolePossition <= rolePosition) return msg.channel.send(sdfsdfsdfsd)
-
+  if (userRolePossition <= rolePosition) return msg.channel.send(dsfdsfsdf);
+  if (botRolePossition <= rolePosition) return msg.channel.send(sdfsdfsdfsd);
 
   let sdfdfsdfsdfdfs = new Discord.MessageEmbed()
-    .setDescription(`<:cross1:747728200691482746> **An error occurred with banned that member!**`)
+    .setDescription(
+      `<:cross1:747728200691482746> **An error occurred with banned that member!**`
+    )
     .setColor("RED");
 
   if (reason.length < 1) reason = "No reason given.";
@@ -87,9 +96,9 @@ module.exports.run = async (client, msg, args) => {
 };
 
 module.exports.help = {
-    name: "ban",
-    description: "This command is used for banning the members you dont like.",
-    usage: "d!ban <mentions> <reason>(optional)",
-    accessableby: "Ban Members",
-    aliases: []
-}
+  name: "ban",
+  description: "This command is used for banning the members you dont like.",
+  usage: "d!ban <mentions> <reason>(optional)",
+  accessableby: "Ban Members",
+  aliases: [],
+};

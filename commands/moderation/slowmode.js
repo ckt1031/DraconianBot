@@ -24,7 +24,7 @@ exports.run = (client, message, args) => {
   if (!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS"))
     return message.channel
       .send(notice3)
-      .then(msg => msg.delete({ timeout: 5000 }));
+      .then((msg) => msg.delete({ timeout: 5000 }));
   let duration = parseInt(args[0]);
   let mmsssqembed = new Discord.MessageEmbed()
     .setDescription(
@@ -34,7 +34,7 @@ exports.run = (client, message, args) => {
   if (!message.member.hasPermission("MANAGE_CHANNELS"))
     return message.channel
       .send(mmsssqembed)
-      .then(msg => msg.delete({ timeout: 5000 }));
+      .then((msg) => msg.delete({ timeout: 5000 }));
   if (isNaN(duration)) {
     return message.channel.send(notice1);
   } else if (duration < 0 || duration > 21601) {
@@ -53,9 +53,10 @@ exports.run = (client, message, args) => {
 };
 
 module.exports.help = {
-    name: "slowmode",
-    description: "This command is used for changing the slowmode as settings page cannot.",
-    usage: "d!slowmode <1-21600>",
-    accessableby: "Manage Channels",
-    aliases: []
-}
+  name: "slowmode",
+  description:
+    "This command is used for changing the slowmode as settings page cannot.",
+  usage: "d!slowmode <1-21600>",
+  accessableby: "Manage Channels",
+  aliases: [],
+};

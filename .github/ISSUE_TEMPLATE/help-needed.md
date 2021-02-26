@@ -1,10 +1,7 @@
 ---
 name: Help Needed
 about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
-
-
