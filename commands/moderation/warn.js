@@ -6,17 +6,17 @@ module.exports.run = async (client, message, args) => {
   let reason = args.slice(1).join(" ");
   const user = message.mentions.users.first();
   const warns = JSON.parse(
-    fs.readFileSync("./temp-datastore/warnings.json", "utf8"),
+    fs.readFileSync("./temp-datastore/warnings.json", "utf8")
   );
 
   const notice1 = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **${message.author.username}, Missing Permission**`,
+      `<:cross1:747728200691482746> **${message.author.username}, Missing Permission**`
     )
     .setColor("RED");
   const notice3 = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> **I don't have permission to warn people!**",
+      "<:cross1:747728200691482746> **I don't have permission to warn people!**"
     )
     .setColor("RED");
   if (
@@ -52,12 +52,12 @@ module.exports.run = async (client, message, args) => {
 
   const dsfdsfsdf = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**",
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**"
     )
     .setColor("RED");
   const sdfsdfsdfsd = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**",
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**"
     )
     .setColor("RED");
   const botRolePossition = message.guild.member(client.user).roles.highest
@@ -65,7 +65,8 @@ module.exports.run = async (client, message, args) => {
   const rolePosition = message.guild.member(user).roles.highest.position;
   const userRolePossition = message.member.roles.highest.position;
   if (userRolePossition <= rolePosition) return message.channel.send(dsfdsfsdf);
-  if (botRolePossition <= rolePosition) return message.channel.send(sdfsdfsdfsd);
+  if (botRolePossition <= rolePosition)
+    return message.channel.send(sdfsdfsdfsd);
 
   if (!warns[`${user.id}, ${message.guild.id}`]) {
     warns[`${user.id}, ${message.guild.id}`] = {
@@ -80,7 +81,7 @@ module.exports.run = async (client, message, args) => {
     JSON.stringify(warns),
     (err) => {
       if (err) throw err;
-    },
+    }
   );
 
   const embed = new Discord.MessageEmbed()
@@ -90,22 +91,22 @@ module.exports.run = async (client, message, args) => {
     .addField("User:", `${user.username}#${user.discriminator}`)
     .addField(
       "Warned by:",
-      `${message.author.username}#${message.author.discriminator}`,
+      `${message.author.username}#${message.author.discriminator}`
     )
     .addField(
       "Number of warnings:",
-      warns[`${user.id}, ${message.guild.id}`].warns,
+      warns[`${user.id}, ${message.guild.id}`].warns
     )
     .addField("Reason", reason);
 
   const test1 = new Discord.MessageEmbed()
     .setDescription(
-      `<:tick:702386031361523723> **Muted <@${user.id}> For 1 Hour** | **Reached Two Warnings**`,
+      `<:tick:702386031361523723> **Muted <@${user.id}> For 1 Hour** | **Reached Two Warnings**`
     )
     .setColor("GREEN");
   const bsuembed = new Discord.MessageEmbed()
     .setDescription(
-      `<:tick:702386031361523723> **Warned ${user.username}#${user.discriminator}** | **${reason}**`,
+      `<:tick:702386031361523723> **Warned ${user.username}#${user.discriminator}** | **${reason}**`
     )
     .setColor("GREEN");
   message.delete();
@@ -120,12 +121,12 @@ module.exports.run = async (client, message, args) => {
 
   const test2 = new Discord.MessageEmbed()
     .setDescription(
-      `<:tick:702386031361523723> **Kicked ${user.username}#${user.discriminator}** | **Reached Warnings 3**`,
+      `<:tick:702386031361523723> **Kicked ${user.username}#${user.discriminator}** | **Reached Warnings 3**`
     )
     .setColor("GREEN");
   const test3 = new Discord.MessageEmbed()
     .setDescription(
-      `<:tick:702386031361523723> **Banned ${user.username}#${user.discriminator}** | **Reached 5 Warnings**`,
+      `<:tick:702386031361523723> **Banned ${user.username}#${user.discriminator}** | **Reached 5 Warnings**`
     )
     .setColor("GREEN");
 

@@ -5,7 +5,7 @@ const config = require("../../config.json");
 module.exports.run = async (client, msg, args) => {
   const notice3 = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> **I don't have permission to ban people!**",
+      "<:cross1:747728200691482746> **I don't have permission to ban people!**"
     )
     .setColor("RED");
   if (!msg.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
@@ -19,7 +19,7 @@ module.exports.run = async (client, msg, args) => {
 
   const mmqembed = new Discord.MessageEmbed()
     .setDescription(
-      `:no_entry_sign: ${msg.author.username}, Missing Permission`,
+      `:no_entry_sign: ${msg.author.username}, Missing Permission`
     )
     .setColor("#FFFF00");
   if (!msg.member.hasPermission("BAN_MEMBERS")) {
@@ -30,7 +30,7 @@ module.exports.run = async (client, msg, args) => {
   const kntlembed = new Discord.MessageEmbed()
     .setTitle("Command: d!ban")
     .setDescription(
-      "Wrong Usage!。\n\n**Function:** Ban a member\n**Usage:** d!ban [User] [Reason]\n**Example:** d!ban @RealKoolisw Noob",
+      "Wrong Usage!。\n\n**Function:** Ban a member\n**Usage:** d!ban [User] [Reason]\n**Example:** d!ban @RealKoolisw Noob"
     )
     .setColor("RED");
   if (!banTaged) {
@@ -49,12 +49,12 @@ module.exports.run = async (client, msg, args) => {
   }
   const dsfdsfsdf = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**",
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**"
     )
     .setColor("RED");
   const sdfsdfsdfsd = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**",
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**"
     )
     .setColor("RED");
   const botRolePossition = msg.guild.member(client.user).roles.highest.position;
@@ -65,7 +65,7 @@ module.exports.run = async (client, msg, args) => {
 
   const sdfdfsdfsdfdfs = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> **An error occurred with banned that member!**",
+      "<:cross1:747728200691482746> **An error occurred with banned that member!**"
     )
     .setColor("RED");
 
@@ -85,7 +85,7 @@ module.exports.run = async (client, msg, args) => {
     .setFooter("• Ban User Information"); //
   const bsuembed = new Discord.MessageEmbed()
     .setDescription(
-      `<:tick:702386031361523723> **Banned ${banTaged.username}#${banTaged.discriminator}** | **${reason}**`,
+      `<:tick:702386031361523723> **Banned ${banTaged.username}#${banTaged.discriminator}** | **${reason}**`
     )
     .setColor("GREEN");
 
@@ -94,7 +94,7 @@ module.exports.run = async (client, msg, args) => {
   msg.guild.members.ban(banTaged.id, { reason });
 
   banTaged.send(
-    `You are banned in **${msg.guild.name}**, Reason : **${reason}**`,
+    `You are banned in **${msg.guild.name}**, Reason : **${reason}**`
   );
 };
 

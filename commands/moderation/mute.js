@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
   const tomute = message.mentions.users.first();
   const notice3 = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> **I don't have permission to mute people!**",
+      "<:cross1:747728200691482746> **I don't have permission to mute people!**"
     )
     .setColor("RED");
   if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) {
@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
   //! tempmute @user 1s/m/h/d
   const embed6 = new Discord.MessageEmbed()
     .setDescription(
-      `:no_entry_sign: ${message.author.username}, Missing Permission`,
+      `:no_entry_sign: ${message.author.username}, Missing Permission`
     )
     .setColor("RED");
   if (!message.member.hasPermission("MANAGE_MESSAGES")) {
@@ -35,29 +35,30 @@ module.exports.run = async (client, message, args) => {
   if (!tomute) return message.channel.send(embed50);
   const notice2 = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> **You cannot mute yourself!**",
+      "<:cross1:747728200691482746> **You cannot mute yourself!**"
     )
     .setColor("RED");
-  if (message.mentions.users.first().id === message.author.id) return message.channel.send(notice2);
+  if (message.mentions.users.first().id === message.author.id)
+    return message.channel.send(notice2);
 
   const dsfdsfsdf = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**",
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**"
     )
     .setColor("RED");
   const sdfsdfsdfsd = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**",
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**"
     )
     .setColor("RED");
   const sdfsdfsdfsssd = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> You can only maxium muting this user for 14 days!",
+      "<:cross1:747728200691482746> You can only maxium muting this user for 14 days!"
     )
     .setColor("RED");
   const dddfs = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> Please Type the muting period!",
+      "<:cross1:747728200691482746> Please Type the muting period!"
     )
     .setColor("RED");
   const botRolePossition = message.guild.member(client.user).roles.highest
@@ -65,7 +66,8 @@ module.exports.run = async (client, message, args) => {
   const rolePosition = message.guild.member(tomute).roles.highest.position;
   const userRolePossition = message.member.roles.highest.position;
   if (userRolePossition <= rolePosition) return message.channel.send(dsfdsfsdf);
-  if (botRolePossition <= rolePosition) return message.channel.send(sdfsdfsdfsd);
+  if (botRolePossition <= rolePosition)
+    return message.channel.send(sdfsdfsdfsd);
 
   let muterole = client.guilds.cache
     .get(message.guild.id)
@@ -97,7 +99,7 @@ module.exports.run = async (client, message, args) => {
   if (reason.length < 1) reason = "No reason given.";
 
   const logs = message.guild.channels.cache.find(
-    (x) => (x.name = config.logsChannel),
+    (x) => (x.name = config.logsChannel)
   );
 
   const embed = new Discord.MessageEmbed()
@@ -114,7 +116,7 @@ module.exports.run = async (client, message, args) => {
     .setDescription(
       `<:tick:702386031361523723> **Muted ${tomute.username}#${
         tomute.discriminator
-      } for ${ms(ms(mutetime))}** | **${reason}**`,
+      } for ${ms(ms(mutetime))}** | **${reason}**`
     )
     .setColor("GREEN");
 
@@ -124,7 +126,7 @@ module.exports.run = async (client, message, args) => {
   tomute.send(
     `You had been muted for **${ms(ms(mutetime))}** in **${
       message.guild.name
-    }**, Reason : **${reason}**`,
+    }**, Reason : **${reason}**`
   );
 
   setTimeout(() => {

@@ -5,17 +5,17 @@ const ms = require("ms");
 module.exports.run = (client, message, args) => {
   const notice1 = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **${message.author.username}, Missing Permission**`,
+      `<:cross1:747728200691482746> **${message.author.username}, Missing Permission**`
     )
     .setColor("RED");
   const notice3 = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> **I don't have permission to warn people!**",
+      "<:cross1:747728200691482746> **I don't have permission to warn people!**"
     )
     .setColor("RED");
   const noticEEEe2 = new Discord.MessageEmbed()
     .setDescription(
-      "<:cross1:747728200691482746> **You must mention someone to clear their warns**",
+      "<:cross1:747728200691482746> **You must mention someone to clear their warns**"
     )
     .setColor("RED");
   const noticEEREe2 = new Discord.MessageEmbed()
@@ -33,7 +33,7 @@ module.exports.run = (client, message, args) => {
   }
 
   const warns = JSON.parse(
-    fs.readFileSync("./temp-datastore/warnings.json", "utf8"),
+    fs.readFileSync("./temp-datastore/warnings.json", "utf8")
   );
   const user = message.mentions.users.first();
   if (message.mentions.users.size < 1) return message.channel.send(noticEEEe2);
@@ -59,7 +59,7 @@ module.exports.run = (client, message, args) => {
     JSON.stringify(warns),
     (err) => {
       if (err) throw err;
-    },
+    }
   );
 
   const embed = new Discord.MessageEmbed()

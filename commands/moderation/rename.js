@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
     if (!user) {
       return message
         .reply(
-          "You must Tag someone or give me a Valid userID for me to rename them.",
+          "You must Tag someone or give me a Valid userID for me to rename them."
         )
         .catch(console.error);
     }
@@ -23,12 +23,12 @@ exports.run = (client, message, args) => {
     user.setNickname(newname);
   } catch (e) {
     const embed = new Discord.MessageEmbed().setDescription(
-      "<:cross1:747728200691482746> **Failed to set user's nickname!**",
+      "<:cross1:747728200691482746> **Failed to set user's nickname!**"
     );
     message.channel.send(embed3);
   }
   const embed = new Discord.MessageEmbed().setDescription(
-    "<:tick:702386031361523723> **Nickname has been set!**",
+    "<:tick:702386031361523723> **Nickname has been set!**"
   );
   message.channel.send(embed);
 };

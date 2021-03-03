@@ -4,7 +4,7 @@ const ms = require("ms");
 
 module.exports.run = async (client, message, args) => {
   const warns = JSON.parse(
-    fs.readFileSync("./temp-datastore/warnings.json", "utf8"),
+    fs.readFileSync("./temp-datastore/warnings.json", "utf8")
   );
   const user = message.mentions.users.first();
   if (message.mentions.users.size < 1) {
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
     .addField("User:", `${user.username}#${user.discriminator}`)
     .addField(
       "Number of warnings:",
-      warns[`${user.id}, ${message.guild.id}`].warns,
+      warns[`${user.id}, ${message.guild.id}`].warns
     );
   message.channel.send({ embed });
 };
