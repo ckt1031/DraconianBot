@@ -37,8 +37,8 @@ module.exports = async (client, message) => {
         `Before using **${
           prefixesdatabase.prefix
         }${command}**, please wait for **${timeLeft.toFixed(
-          1,
-        )} second for cooldowns!**`,
+          1
+        )} second for cooldowns!**`
       );
     }
   }
@@ -57,7 +57,7 @@ module.exports = async (client, message) => {
     return console.log(`Invalid command: ${command}`);
   } finally {
     console.log(
-      `${message.author.username} using command ${prefixesdatabase.prefix}${command}`,
+      `${message.author.username} using command ${prefixesdatabase.prefix}${command}`
     );
   }
 };
