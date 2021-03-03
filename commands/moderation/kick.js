@@ -2,23 +2,21 @@ const Discord = require("discord.js");
 const config = require("../../config.json");
 
 module.exports.run = async (client, msg, args) => {
-  let notice3 = new Discord.MessageEmbed()
+  const notice3 = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **I don't have permission to kick people!**`
+      "<:cross1:747728200691482746> **I don't have permission to kick people!**",
     )
     .setColor("RED");
-  if (!msg.guild.member(client.user).hasPermission("KICK_MEMBERS"))
-    return msg.channel.send(notice3).then((m) => m.delete({ timeout: 5000 }));
-  let kickTaged = msg.mentions.users.first();
+  if (!msg.guild.member(client.user).hasPermission("KICK_MEMBERS")) return msg.channel.send(notice3).then((m) => m.delete({ timeout: 5000 }));
+  const kickTaged = msg.mentions.users.first();
   let reason = args.slice(1).join(" ");
-  let embed6 = new Discord.MessageEmbed()
+  const embed6 = new Discord.MessageEmbed()
     .setDescription(
-      `:no_entry_sign: ${msg.author.username}, Missing Permission`
+      `:no_entry_sign: ${msg.author.username}, Missing Permission`,
     )
     .setColor("RED");
-  if (!msg.member.hasPermission("KICK_MEMBERS"))
-    return msg.channel.send(embed6).then((m) => m.delete({ timeout: 5000 }));
-  let mmqembed = new Discord.MessageEmbed()
+  if (!msg.member.hasPermission("KICK_MEMBERS")) return msg.channel.send(embed6).then((m) => m.delete({ timeout: 5000 }));
+  const mmqembed = new Discord.MessageEmbed()
     .setTitle("Command: d!kick")
     .setDescription("Usage: d!kick @user reason")
     .setColor("RED");
@@ -27,33 +25,32 @@ module.exports.run = async (client, msg, args) => {
     return msg.channel.send(mmqembed).then((m) => m.delete({ timeout: 5000 }));
   }
 
-  let dsfdsfsdf = new Discord.MessageEmbed()
+  const dsfdsfsdf = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**`
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**",
     )
     .setColor("RED");
-  let sdfsdfsdfsd = new Discord.MessageEmbed()
+  const sdfsdfsdfsd = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**`
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**",
     )
     .setColor("RED");
-  let botRolePossition = msg.guild.member(client.user).roles.highest.position;
-  let rolePosition = msg.guild.member(kickTaged).roles.highest.position;
-  let userRolePossition = msg.member.roles.highest.position;
+  const botRolePossition = msg.guild.member(client.user).roles.highest.position;
+  const rolePosition = msg.guild.member(kickTaged).roles.highest.position;
+  const userRolePossition = msg.member.roles.highest.position;
   if (userRolePossition <= rolePosition) return msg.channel.send(dsfdsfsdf);
   if (botRolePossition <= rolePosition) return msg.channel.send(sdfsdfsdfsd);
 
-  let notice2 = new Discord.MessageEmbed()
+  const notice2 = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **You cannot kick yourself!**`
+      "<:cross1:747728200691482746> **You cannot kick yourself!**",
     )
     .setColor("RED");
-  if (msg.mentions.users.first().id === msg.author.id)
-    return msg.channel.send(notice2);
+  if (msg.mentions.users.first().id === msg.author.id) return msg.channel.send(notice2);
 
-  let sdfdfsdfsdfdfs = new Discord.MessageEmbed()
+  const sdfdfsdfsdfdfs = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **An error occurred with banned that member!**`
+      "<:cross1:747728200691482746> **An error occurred with banned that member!**",
     )
     .setColor("RED");
 
@@ -63,17 +60,17 @@ module.exports.run = async (client, msg, args) => {
 
   if (reason.length < 1) reason = "No reason given.";
 
-  let kickEmbed = new Discord.MessageEmbed()
+  const kickEmbed = new Discord.MessageEmbed()
     .setColor("RED")
-    .setTitle(`Action Kick`)
+    .setTitle("Action Kick")
     .addField("Target", `**<@${kickTaged.id}> **`)
     .addField("User", `<@${msg.author.id}>`)
     .addField("Reason", `\`\`\`${reason}\`\`\``)
     .setTimestamp();
 
-  let suembed = new Discord.MessageEmbed()
+  const suembed = new Discord.MessageEmbed()
     .setDescription(
-      `<:tick:702386031361523723> **Kicked ${kickTaged.username}#${kickTaged.discriminator}** | **${reason}**`
+      `<:tick:702386031361523723> **Kicked ${kickTaged.username}#${kickTaged.discriminator}** | **${reason}**`,
     )
     .setColor("GREEN");
   msg.delete();

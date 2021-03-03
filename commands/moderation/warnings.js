@@ -3,19 +3,21 @@ const fs = require("fs");
 const ms = require("ms");
 
 module.exports.run = async (client, message, args) => {
-  let warns = JSON.parse(
-    fs.readFileSync("./temp-datastore/warnings.json", "utf8")
+  const warns = JSON.parse(
+    fs.readFileSync("./temp-datastore/warnings.json", "utf8"),
   );
-  let user = message.mentions.users.first();
-  if (message.mentions.users.size < 1)
+  const user = message.mentions.users.first();
+  if (message.mentions.users.size < 1) {
     return message
       .reply("You must mention someone to check their warns.")
       .catch(console.error);
+  }
   if (!user) return message.reply("Couldn't find that user...");
-  if (!warns[user.id])
+  if (!warns[user.id]) {
     warns[user.id] = {
       warns: 0,
     };
+  }
 
   const embed = new Discord.MessageEmbed()
     .setColor("GREEN")
@@ -24,7 +26,7 @@ module.exports.run = async (client, message, args) => {
     .addField("User:", `${user.username}#${user.discriminator}`)
     .addField(
       "Number of warnings:",
-      warns[`${user.id}, ${message.guild.id}`].warns
+      warns[`${user.id}, ${message.guild.id}`].warns,
     );
   message.channel.send({ embed });
 };

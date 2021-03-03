@@ -1,71 +1,71 @@
 const Discord = require("discord.js");
 const ms = require("ms");
-const config = require("../../config.json");
 const fs = require("fs");
+const config = require("../../config.json");
 
 module.exports.run = async (client, message, args) => {
-  let tomute = message.mentions.users.first();
-  let notice3 = new Discord.MessageEmbed()
+  const tomute = message.mentions.users.first();
+  const notice3 = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **I don't have permission to mute people!**`
+      "<:cross1:747728200691482746> **I don't have permission to mute people!**",
     )
     .setColor("RED");
-  if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES"))
+  if (!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) {
     return message.channel
       .send(notice3)
       .then((m) => m.delete({ timeout: 5000 }));
+  }
 
-  //!tempmute @user 1s/m/h/d
-  let embed6 = new Discord.MessageEmbed()
+  //! tempmute @user 1s/m/h/d
+  const embed6 = new Discord.MessageEmbed()
     .setDescription(
-      `:no_entry_sign: ${message.author.username}, Missing Permission`
+      `:no_entry_sign: ${message.author.username}, Missing Permission`,
     )
     .setColor("RED");
-  if (!message.member.hasPermission("MANAGE_MESSAGES"))
+  if (!message.member.hasPermission("MANAGE_MESSAGES")) {
     return message.channel
       .send(embed6)
       .then((m) => m.delete({ timeout: 5000 }));
+  }
   const embed50 = new Discord.MessageEmbed()
-    .setTitle(`Command: d!mute`)
-    .setDescription(`Usage: d!mute @user length reason`)
+    .setTitle("Command: d!mute")
+    .setDescription("Usage: d!mute @user length reason")
     .setColor(0xff0000)
-    .setFooter(`Beta Feature`);
+    .setFooter("Beta Feature");
   if (!tomute) return message.channel.send(embed50);
-  let notice2 = new Discord.MessageEmbed()
+  const notice2 = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> **You cannot mute yourself!**`
+      "<:cross1:747728200691482746> **You cannot mute yourself!**",
     )
     .setColor("RED");
-  if (message.mentions.users.first().id === message.author.id)
-    return message.channel.send(notice2);
+  if (message.mentions.users.first().id === message.author.id) return message.channel.send(notice2);
 
-  let dsfdsfsdf = new Discord.MessageEmbed()
+  const dsfdsfsdf = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**`
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**",
     )
     .setColor("RED");
-  let sdfsdfsdfsd = new Discord.MessageEmbed()
+  const sdfsdfsdfsd = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**`
+      "<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**",
     )
     .setColor("RED");
-  let sdfsdfsdfsssd = new Discord.MessageEmbed()
+  const sdfsdfsdfsssd = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> You can only maxium muting this user for 14 days!`
+      "<:cross1:747728200691482746> You can only maxium muting this user for 14 days!",
     )
     .setColor("RED");
-  let dddfs = new Discord.MessageEmbed()
+  const dddfs = new Discord.MessageEmbed()
     .setDescription(
-      `<:cross1:747728200691482746> Please Type the muting period!`
+      "<:cross1:747728200691482746> Please Type the muting period!",
     )
     .setColor("RED");
-  let botRolePossition = message.guild.member(client.user).roles.highest
+  const botRolePossition = message.guild.member(client.user).roles.highest
     .position;
-  let rolePosition = message.guild.member(tomute).roles.highest.position;
-  let userRolePossition = message.member.roles.highest.position;
+  const rolePosition = message.guild.member(tomute).roles.highest.position;
+  const userRolePossition = message.member.roles.highest.position;
   if (userRolePossition <= rolePosition) return message.channel.send(dsfdsfsdf);
-  if (botRolePossition <= rolePosition)
-    return message.channel.send(sdfsdfsdfsd);
+  if (botRolePossition <= rolePosition) return message.channel.send(sdfsdfsdfsd);
 
   let muterole = client.guilds.cache
     .get(message.guild.id)
@@ -88,33 +88,33 @@ module.exports.run = async (client, message, args) => {
     }
   }
 
-  //end of create role
-  let mutetime = args[1];
+  // end of create role
+  const mutetime = args[1];
   if (!mutetime) return message.channel.send(embed50);
   if (isNaN(ms(mutetime))) return message.channel.send(sdfsdfsdfsssd);
   if (ms(mutetime) > 1209600000) return message.channel.send(dddfs);
   let reason = args.slice(2).join(" ");
   if (reason.length < 1) reason = "No reason given.";
 
-  let logs = message.guild.channels.cache.find(
-    (x) => (x.name = config.logsChannel)
+  const logs = message.guild.channels.cache.find(
+    (x) => (x.name = config.logsChannel),
   );
 
-  let embed = new Discord.MessageEmbed()
-    .setTitle(`Action Mute`)
+  const embed = new Discord.MessageEmbed()
+    .setTitle("Action Mute")
     .setColor("RED")
-    .addField(`Target`, `<@${tomute.id}>`)
-    .addField(`User`, `<@${message.author.id}>`)
-    .addField(`TempMute Length`, `${ms(ms(mutetime))}`)
-    .addField(`Reason`, `\`\`\`${reason}\`\`\``)
+    .addField("Target", `<@${tomute.id}>`)
+    .addField("User", `<@${message.author.id}>`)
+    .addField("TempMute Length", `${ms(ms(mutetime))}`)
+    .addField("Reason", `\`\`\`${reason}\`\`\``)
     .setTimestamp()
-    .setFooter(`• Mute User Information`);
+    .setFooter("• Mute User Information");
 
-  let embed10 = new Discord.MessageEmbed()
+  const embed10 = new Discord.MessageEmbed()
     .setDescription(
       `<:tick:702386031361523723> **Muted ${tomute.username}#${
         tomute.discriminator
-      } for ${ms(ms(mutetime))}** | **${reason}**`
+      } for ${ms(ms(mutetime))}** | **${reason}**`,
     )
     .setColor("GREEN");
 
@@ -124,10 +124,10 @@ module.exports.run = async (client, message, args) => {
   tomute.send(
     `You had been muted for **${ms(ms(mutetime))}** in **${
       message.guild.name
-    }**, Reason : **${reason}**`
+    }**, Reason : **${reason}**`,
   );
 
-  setTimeout(function () {
+  setTimeout(() => {
     message.guild.member(tomute).roles.remove(muterole.id);
   }, ms(mutetime));
 };

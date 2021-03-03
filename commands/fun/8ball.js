@@ -8,25 +8,21 @@ function doMagic8BallVoodoo() {
     "Maybe",
     "Never",
     "Yep",
-    "idk",
+    "idk"
   ];
 
   return rand[Math.floor(Math.random() * rand.length)];
 }
 
 module.exports.run = async (client, message, args) => {
-  if (!args[0])
-    return message.channel.send(
-      "Please ask me question first to access to this command."
-    );
+  if(!args[0]) return message.channel.send("Please ask me question first to access to this command.")
   message.channel.send("My anwser is: " + doMagic8BallVoodoo());
 };
 
 module.exports.help = {
-  name: "8ball",
-  description:
-    "This command is used for asking the bot what he wanted to answer as 8ball.",
-  usage: "d!8ball <questions>",
-  accessableby: "Member",
-  aliases: [],
-};
+    name: "8ball",
+    description: "This command is used for asking the bot what he wanted to answer as 8ball.",
+    usage: "d!8ball <questions>",
+    accessableby: "Member",
+		    aliases: []
+}
