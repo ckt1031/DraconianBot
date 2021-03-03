@@ -6,7 +6,8 @@
   "author": "RealKoolisw",
   "scripts": {
     "start": "node shard.js",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "lint": "eslint . --fix"
   },
   "email": "realkoolisw@gmail.com",
   "url": "https://draconian.koolisw.tk/",
@@ -27,7 +28,7 @@
     "axios": "^0.21.1",
     "blapi": "^2.0.1",
     "canvacord": "^5.1.0",
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0-rc.5",
     "cryptr": "^6.0.2",
     "dblapi.js": "^2.4.1",
     "discord-giveaways": "^4.4.3",
@@ -63,5 +64,10 @@
     "ytdl-core-discord": "^1.2.5",
     "ytpl": "^2.0.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "prettier": "2.2.1"
+  }
 }
