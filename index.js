@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 
 const Enmap = require("enmap");
 const Discord = require("discord.js");
@@ -26,7 +26,9 @@ const nz_date_string = new Date().toLocaleString("en-US", {
 });
 client.mapss = new Map();
 client.mapss.set("uptimedate", nz_date_string);
-["command", "dbl-loader", "event", "giveaway", "music"].forEach((x) => require(`./handlers/${x}.js`)(client));
+["command", "dbl-loader", "event", "giveaway", "music"].forEach((x) =>
+  require(`./handlers/${x}.js`)(client)
+);
 ["alwaysOn", "http"].forEach((x) => require(`./server/${x}`)());
 
 const blapi = require("blapi");
@@ -70,7 +72,7 @@ const GiveawayManagerWithOwnDatabase = class extends GiveawaysManager {
   async editGiveaway(messageID, giveawayData) {
     const giveaways = db.get("giveaways");
     const newGiveawaysArray = giveaways.filter(
-      (giveaway) => giveaway.messageID !== messageID,
+      (giveaway) => giveaway.messageID !== messageID
     );
     newGiveawaysArray.push(giveawayData);
     db.set("giveaways", newGiveawaysArray);
@@ -101,12 +103,13 @@ const manager = new GiveawayManagerWithOwnDatabase(client, {
 });
 client.giveawaysManager = manager;
 
-client.status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${
-  queue.filter || "Off"
-}\` | Loop: \`${
-  queue.repeatMode
-    ? queue.repeatMode == 2
-      ? "All Queue"
-      : "This Song"
-    : "Off"
-}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+client.status = (queue) =>
+  `Volume: \`${queue.volume}%\` | Filter: \`${
+    queue.filter || "Off"
+  }\` | Loop: \`${
+    queue.repeatMode
+      ? queue.repeatMode == 2
+        ? "All Queue"
+        : "This Song"
+      : "Off"
+  }\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;

@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const { ShardingManager } = require("discord.js");
 
@@ -11,7 +11,7 @@ manager.on("launch", (shard) => {
   console.log(
     `[${new Date().toString().split(" ", 5).join(" ")}] Launched shard #${
       shard.id
-    }`,
+    }`
   );
 });
 
@@ -19,7 +19,7 @@ manager.on("message", (shard, msg) => {
   console.log(
     `[${new Date().toString().split(" ", 5).join(" ")}] #${shard.id} | ${
       msg._eval
-    } | ${msg._result}`,
+    } | ${msg._result}`
   );
 });
 
