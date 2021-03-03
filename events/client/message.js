@@ -1,8 +1,11 @@
 const settings = require("../../settings.json");
 const Discord = require("discord.js");
+
 const cooldowns = new Discord.Collection();
+const Statcord = require("statcord.js");
 
 module.exports = async (client, message) => {
+  if (message.author.bot) return;
   const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
 
   if (!client.settings.get(message.guild.id, "prefix")) {
@@ -16,10 +19,10 @@ module.exports = async (client, message) => {
   }
 
   if (!message.content.startsWith(prefixesdatabase.prefix)) return;
-  let command = message.content
+  const command = message.content
     .split(" ")[0]
     .slice(prefixesdatabase.prefix.length);
-  let args = message.content.split(" ").slice(1);
+  const args = message.content.split(" ").slice(1);
   if (!cooldowns.has(command.name)) {
     cooldowns.set(command.name, new Discord.Collection());
   }
@@ -34,8 +37,8 @@ module.exports = async (client, message) => {
         `Before using **${
           prefixesdatabase.prefix
         }${command}**, please wait for **${timeLeft.toFixed(
-          1
-        )} second for cooldowns!**`
+          1,
+        )} second for cooldowns!**`,
       );
     }
   }
@@ -49,11 +52,12 @@ module.exports = async (client, message) => {
   }
   try {
     cmd.run(client, message, args);
+    Statcord.ShardingClient.postCommand(command, message.author.id, client);
   } catch (e) {
     return console.log(`Invalid command: ${command}`);
   } finally {
     console.log(
-      `${message.author.username} using command ${prefixesdatabase.prefix}${command}`
+      `${message.author.username} using command ${prefixesdatabase.prefix}${command}`,
     );
   }
 };

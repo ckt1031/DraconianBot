@@ -1,6 +1,7 @@
-const settings = require("../../settings.json");
-const fs = require("fs");
+const settings = require('../../settings.json');
+const fs = require('fs');
 
 module.exports = async (client, member) => {
-  client.settings.ensure(member.guild.id, settings);
+	client.settings.ensure(member.guild.id, settings);
+	
 };
