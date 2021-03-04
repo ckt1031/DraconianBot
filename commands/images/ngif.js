@@ -2,20 +2,20 @@ const Discord = require("discord.js");
 const superagent = require("superagent");
 
 module.exports.run = async (client, message, args) => {
-  const { body } = await superagent.get("https://nekos.life/api/v2/img/ngif");
+	const { body } = await superagent.get("https://nekos.life/api/v2/img/ngif");
 
-  const embed = new Discord.MessageEmbed()
-    .setColor("#ff9900")
-    .setTitle(`OwO, Heres your Neko Gif`)
-    .setImage(body.url)
-    .setFooter(`© Draconian Workshop`);
-  message.channel.send({ embed });
+	const embed = new Discord.MessageEmbed()
+		.setColor("#ff9900")
+		.setTitle(`OwO, Heres your Neko Gif`)
+		.setImage(body.url)
+		.setFooter(`© Draconian Workshop`);
+	message.channel.send({ embed });
 };
 
 module.exports.help = {
-  name: "ngif",
-  description: "This command is used for generating ngif.",
-  usage: "d!ngif",
-  accessableby: "Members",
-  aliases: [],
+	name: "ngif",
+	description: "This command is used for generating ngif.",
+	usage: "d!ngif",
+	accessableby: "Members",
+	aliases: [],
 };

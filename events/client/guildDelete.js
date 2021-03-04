@@ -1,4 +1,4 @@
 const settings = require("../../settings.json");
 module.exports = async (client, guild) => {
-  client.settings.delete(guild.id);
+	client.settings.delete(guild.id);
 };
