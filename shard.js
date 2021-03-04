@@ -1,3 +1,12 @@
+/************************************************
+ *  Heres Sharding Area, don't make any changes
+ *  without you are known what u are doing now.
+ *
+ *  - Main Bot Process File
+ *
+ *  © Copyright MIT License 2021 RealKoolisw
+ ************************************************/
+
 require("dotenv").config();
 
 const { ShardingManager } = require("discord.js");
