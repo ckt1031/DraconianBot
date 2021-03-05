@@ -1,5 +1,7 @@
 <p align="center">
+            
 <h1> Draconian Discord Bot</h1>
+
 <img src="https://img.shields.io/uptimerobot/ratio/m787007739-f881254df38f1a06bbd53346?style=flat-square"
             alt="Uptime">
     <img alt="Discord" src="https://img.shields.io/discord/687219262406131714?label=Discord">
