@@ -4,14 +4,14 @@
 
 <img src="https://img.shields.io/uptimerobot/ratio/m787007739-f881254df38f1a06bbd53346?style=flat-square"
             alt="Uptime">
-    <img alt="Discord" src="https://img.shields.io/discord/687219262406131714?label=Discord">
-    <a href="https://top.gg/bot/711937599975063584">
-    <img src="https://top.gg/api/widget/status/711937599975063584.svg" alt="Draconian" />
+<img alt="Discord" src="https://img.shields.io/discord/687219262406131714?label=Discord">
+<a href="https://top.gg/bot/711937599975063584">
+<img src="https://top.gg/api/widget/status/711937599975063584.svg" alt="Draconian" />
 </a>
-    <a href="https://top.gg/bot/711937599975063584">
-    <img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
+<a href="https://top.gg/bot/711937599975063584">
+<img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
 </a>
-    </p>
+</p>
 
 Draconian 是一個史詩多功能的機器人, 擁有相對豐富的功能以及眾多指令\
 [點擊這裏](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)邀請我進入你的伺服器!

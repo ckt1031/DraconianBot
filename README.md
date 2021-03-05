@@ -10,6 +10,7 @@
 <a href="https://top.gg/bot/711937599975063584">
 <img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
 </a>
+
 </p>
 
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
