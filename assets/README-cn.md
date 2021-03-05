@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://cdn.koolisw.tk/file/kooliswCDN/F996F49F-5771-452D-9FA4-2E6713D2E138.png" height="200">
+    <h1> Draconian Discord Bot</h1>
 </p>
 <p align="center">
 <img src="https://img.shields.io/uptimerobot/ratio/m787007739-f881254df38f1a06bbd53346?style=flat-square"
@@ -12,8 +12,6 @@
     <img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
 </a>
     </p>
-
-# Draconian Discord Bot
 
 Draconian 是一個史詩多功能的機器人, 擁有相對豐富的功能以及眾多指令\
 [點擊這裏](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)邀請我進入你的伺服器!
