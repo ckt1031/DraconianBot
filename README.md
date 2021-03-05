@@ -1,6 +1,5 @@
-﻿<p align="center">
-    <img src="https://cdn.koolisw.tk/file/kooliswCDN/F996F49F-5771-452D-9FA4-2E6713D2E138.png" height="200">
-</p>
+<center> <h1>Draconian Discord Bot</h1> </center>
+
 <p align="center">
 <img src="https://img.shields.io/uptimerobot/ratio/m787007739-f881254df38f1a06bbd53346?style=flat-square"
             alt="Uptime">
@@ -12,8 +11,6 @@
     <img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
 </a>
     </p>
-
-# Draconian Discord Bot
 
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
 Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)!
