@@ -3,14 +3,14 @@
 
 <img src="https://img.shields.io/uptimerobot/ratio/m787007739-f881254df38f1a06bbd53346?style=flat-square"
             alt="Uptime">
-    <img alt="Discord" src="https://img.shields.io/discord/687219262406131714?label=Discord">
-    <a href="https://top.gg/bot/711937599975063584">
-    <img src="https://top.gg/api/widget/status/711937599975063584.svg" alt="Draconian" />
+<img alt="Discord" src="https://img.shields.io/discord/687219262406131714?label=Discord">
+<a href="https://top.gg/bot/711937599975063584">
+<img src="https://top.gg/api/widget/status/711937599975063584.svg" alt="Draconian" />
 </a>
-    <a href="https://top.gg/bot/711937599975063584">
-    <img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
+<a href="https://top.gg/bot/711937599975063584">
+<img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
 </a>
-    </p>
+</p>
 
 Draconian Discord bot is an epic multi-purpose bot, which is very powerful and contains rich functions below.\
 Please invite me [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot)!
