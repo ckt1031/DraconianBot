@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
     <img src="https://cdn.koolisw.tk/file/kooliswCDN/F996F49F-5771-452D-9FA4-2E6713D2E138.png" height="200">
 </p>
 <p align="center">
@@ -49,10 +49,6 @@ We have more than 80 commands in this bot, and they are **featured** and having 
 - :musical_note: **Music:** `play`, `loop`, `skip`, `stop`, `jumpto`, `volume`, and **4 more!**
 - :lock: **Moderation:** `ban`, `kick`, `warn`, `mute`, `createchannel`, `createemoji`, and **9 more!**
 - :electric_plug: **Utility:** `weather`, `aes256`, `embed`, `enlarge`, and **4 more!**
-
-## Screenshots and Examples
-
-You can see those command examples and screenshots [here](https://github.com/RealKoolisw/DraconianJSBot/tree/main/assets)
 
 ## Issue/Suggestions
 
