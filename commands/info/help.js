@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+﻿const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 	let helpArray = message.content.split(" ");
@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
 			.setTitle("DraconianBot Help & Commands list")
 			.setColor("GREEN")
 			.setDescription(
-				"**prefix** `d!`\nMore Info please visit: [Here](https://top.gg/bot/711937599975063584) and invite me to your server.\n**Important reminder:** Follows to Discord official Terms of Service, we will no longer saving your data for a long term, if your server keep not using our bot for **2** months, we will delete all data from our bot databases, all data will be kept in default. **If wanted to delete all data from your server in our bot database**, just kick the bot and it will be removed automaticly\n\nTo get more info about a command send d!!help <command name>\n```d!help kick```"
+				"**prefix** `d!`\nMore Info please visit: [Here](https://top.gg/bot/711937599975063584) and invite me to your server."
 			)
 			.addField("**📱Basic**", "`help`, `ping`, `vote`, `uptime`")
 			.addField(
