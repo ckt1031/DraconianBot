@@ -11,6 +11,7 @@
 <a href="https://top.gg/bot/711937599975063584">
 <img src="https://top.gg/api/widget/servers/711937599975063584.svg" alt="Draconian" />
 </a>
+
 </p>
 
 Draconian 是一個史詩多功能的機器人, 擁有相對豐富的功能以及眾多指令\
