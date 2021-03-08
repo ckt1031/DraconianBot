@@ -1,4 +1,4 @@
 module.exports = async queue => {
 	queue.autoplay = false;
-  queue.volume = 100;
+	queue.volume = 100;
 };
