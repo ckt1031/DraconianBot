@@ -52,7 +52,6 @@ module.exports = async (client, message) => {
 	}
 	try {
 		cmd.run(client, message, args);
-		Statcord.ShardingClient.postCommand(command, message.author.id, client);
 	} catch (e) {
 		return console.log(`Invalid command: ${command}`);
 	} finally {
