@@ -11,12 +11,12 @@ require("dotenv").config();
 
 const { ShardingManager } = require("discord.js");
 
-const manager = new ShardingManager("./index.js", {
+const shard = new ShardingManager("./index.js", {
 	token: process.env.TOKEN,
 	totalShards: 1,
 });
 
-manager.on("launch", shard => {
+shard.on("launch", shard => {
 	console.log(
 		`[${new Date().toString().split(" ", 5).join(" ")}] Launched shard #${
 			shard.id
@@ -24,7 +24,7 @@ manager.on("launch", shard => {
 	);
 });
 
-manager.on("message", (shard, msg) => {
+shard.on("message", (shard, msg) => {
 	console.log(
 		`[${new Date().toString().split(" ", 5).join(" ")}] #${shard.id} | ${
 			msg._eval
@@ -32,4 +32,4 @@ manager.on("message", (shard, msg) => {
 	);
 });
 
-manager.spawn();
+shard.spawn();
