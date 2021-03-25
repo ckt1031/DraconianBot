@@ -2,7 +2,6 @@ const settings = require("../../settings.json");
 const Discord = require("discord.js");
 
 const cooldowns = new Discord.Collection();
-const Statcord = require("statcord.js");
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
