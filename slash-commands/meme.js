@@ -1,9 +1,9 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js");
 const request = require("request");
 
 module.exports = {
-	name: 'meme',
-	description: 'Generate Funny Memes!',
+	name: "meme",
+	description: "Generate Funny Memes!",
 	commandOptions: null,
 	execute(interaction) {
 		request("https://some-random-api.ml/meme", (error, _response, body) => {
@@ -14,9 +14,7 @@ module.exports = {
 			}
 
 			const json = JSON.parse(body);
-			const {
-				id, image, caption, category,
-			} = json;
+			const { id, image, caption, category } = json;
 
 			const emb = new Discord.MessageEmbed();
 			emb.setDescription(`${caption} - ${category} #${id}`);
@@ -27,11 +25,10 @@ module.exports = {
 				data: {
 					type: 4,
 					data: {
-						embeds: [emb]
-					}
-				}
-
+						embeds: [emb],
+					},
+				},
 			});
-		})
+		});
 	},
 };

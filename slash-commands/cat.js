@@ -1,13 +1,12 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js");
 const request = require("request");
 
 module.exports = {
-	name: 'cat',
-	description: 'Generate cute cat images!',
+	name: "cat",
+	description: "Generate cute cat images!",
 	commandOptions: null,
 	execute(interaction) {
 		request("https://some-random-api.ml/img/cat", (error, _response, body) => {
-
 			const json = JSON.parse(body);
 			const { link } = json;
 
@@ -20,11 +19,10 @@ module.exports = {
 				data: {
 					type: 4,
 					data: {
-						embeds: [emb]
-					}
-				}
-
+						embeds: [emb],
+					},
+				},
 			});
-		})
+		});
 	},
 };

@@ -1,16 +1,16 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js");
 const { parse } = require("twemoji-parser");
 
 module.exports = {
-	name: 'enlarge',
-	description: 'Enlarge any emoji!',
+	name: "enlarge",
+	description: "Enlarge any emoji!",
 	commandOptions: [
 		{
 			type: 3,
 			name: "Emoji",
 			description: "Type any emoji you want!",
-			required: true
-		}
+			required: true,
+		},
 	],
 	execute(interaction) {
 		const custom = Discord.Util.parseEmoji(interaction.data.options[0].value);
@@ -18,37 +18,39 @@ module.exports = {
 			.setTitle(`Enlarged version of ${interaction.data.options[0].value}`)
 			.setColor("#FFFF00");
 
-		const parsed = parse(interaction.data.options[0].value, { assetType: "png" });
+		const parsed = parse(interaction.data.options[0].value, {
+			assetType: "png",
+		});
 
 		if (custom.id) {
-    embed.setImage(
-      `https://cdn.discordapp.com/emojis/${custom.id}.${
-        custom.animated ? "gif" : "png"
-      }`,
-    );
-    return client.api.interactions(interaction.id, interaction.token).callback.post({
-			data: {
-				type: 4,
-				data: {
-					embeds: [embed]
-				}
-			}
-
-		});
-		
-  }
-
+			embed.setImage(
+				`https://cdn.discordapp.com/emojis/${custom.id}.${
+					custom.animated ? "gif" : "png"
+				}`
+			);
+			return client.api
+				.interactions(interaction.id, interaction.token)
+				.callback.post({
+					data: {
+						type: 4,
+						data: {
+							embeds: [embed],
+						},
+					},
+				});
+		}
 
 		if (!parsed[0]) {
-			return client.api.interactions(interaction.id, interaction.token).callback.post({
-				data: {
-					type: 4,
+			return client.api
+				.interactions(interaction.id, interaction.token)
+				.callback.post({
 					data: {
-						embeds: 'Invalid emoji!'
-					}
-				}
-
-			});
+						type: 4,
+						data: {
+							embeds: "Invalid emoji!",
+						},
+					},
+				});
 		}
 
 		embed.setImage(parsed[0].url);
@@ -57,11 +59,9 @@ module.exports = {
 			data: {
 				type: 4,
 				data: {
-					embeds: [embed]
-				}
-			}
-
+					embeds: [embed],
+				},
+			},
 		});
-
 	},
 };

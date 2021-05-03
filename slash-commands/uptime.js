@@ -5,11 +5,10 @@ const fetch = require("node-fetch");
 const os = require("os");
 
 module.exports = {
-	name: 'uptime',
-	description: 'Check bot uptime!',
+	name: "uptime",
+	description: "Check bot uptime!",
 	commandOptions: null,
 	execute(interaction) {
-
 		const nowtime = new Date().toLocaleString("en", {
 			timeZone: "Asia/Hong_Kong",
 		});
@@ -48,11 +47,11 @@ module.exports = {
 			.setColor("#ffbbbb")
 			.addField(
 				"Bot Uptime",
-				`${days} Day, ${hours} Hrs, ${minutes} Min, ${seconds} Sec`,
+				`${days} Day, ${hours} Hrs, ${minutes} Min, ${seconds} Sec`
 			)
 			.addField(
 				"Server/OS Uptime",
-				`${ut_day} Day, ${ut_hour} Hrs, ${ut_min} Min, ${ut_sec} Sec`,
+				`${ut_day} Day, ${ut_hour} Hrs, ${ut_min} Min, ${ut_sec} Sec`
 			)
 			//	.addField("Now Time", nowtime)
 			//	.addField('Bootup Time', derweSA);;
@@ -62,10 +61,9 @@ module.exports = {
 			data: {
 				type: 4,
 				data: {
-					embeds: [serverembedss]
-				}
-			}
-
+					embeds: [serverembedss],
+				},
+			},
 		});
 	},
 };
