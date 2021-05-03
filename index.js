@@ -13,6 +13,7 @@ const Enmap = require("enmap");
 const Discord = require("discord.js");
 
 const client = new Discord.Client({
+	partials: ['MESSAGE', 'USER', 'REACTION'],
 	disableMentions: "everyone",
 });
 const DisTube = require("distube");
@@ -29,6 +30,7 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.emotes = config.emoji;
 client.colors = client.config.colors;
+client.slcommands = new Discord.Collection();
 client.snipes = new Map();
 client.mapss = new Map();
 client.mapss.set("uptimedate", nz_date_string);
@@ -37,6 +39,10 @@ client.mapss.set("uptimedate", nz_date_string);
 	require(`./handlers/${x}.js`)(client)
 );
 ["alwaysOn", "http"].forEach(x => require(`./server/${x}`)());
+
+process.on('unhandledRejection', error => {
+    console.log(`UnhandledPromiseRejection : ${error}\n`)
+});
 
 client.settings = new Enmap({
 	name: "settings",
@@ -111,3 +117,20 @@ client.status = queue =>
 				: "This Song"
 			: "Off"
 	}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+
+client.ws.on('INTERACTION_CREATE', async interaction => {
+    if (!client.slcommands.has(interaction.data.name)) return;
+    try {
+        client.slcommands.get(interaction.data.name).execute(interaction);
+    } catch (error) {
+        console.log(`Error from command ${interaction.data.name} : ${error.message}`);
+        console.log(`${error.stack}\n`)
+        client.api.interactions(interaction.id, interaction.token).callback.post({data: {
+			type: 4,
+			data: {
+					content: `Sorry, error occurred when running this command!`
+				}
+			}
+		})
+    }
+})
