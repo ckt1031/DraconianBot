@@ -15,4 +15,23 @@ module.exports = async client => {
 			),
 		15000
 	);
+	
+	const commandFiles = fs.readdirSync('./slash-commands').filter(file => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const command = require(`../../slash-commands/${file}`);
+			client.api.applications(client.user.id).commands.post({
+				data: {
+					name: command.name,
+					description: command.description,
+					options: command.commandOptions
+				}
+			})
+		client.slcommands.set(command.name, command);
+		console.log(`Command POST : ${command.name} from ${file}`)
+
+	}
+	let cmdArrGlobal = await client.api.applications(client.user.id).commands.get()
+	cmdArrGlobal.forEach(element => {
+		console.log("Global command loaded : " + element.name + " (" + element.id + ")")
+	});
 };
