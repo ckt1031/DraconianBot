@@ -16,7 +16,7 @@ module.exports.run = (client, message, args) => {
 		const embed = new Discord.MessageEmbed()
 			.setColor("GREEN")
 			.setTitle(`Avatar for ${message.author.username}:`)
-			.setImage(`${`${avatar}?size=2048`}`);
+			.setImage(`${avatar}`}`);
 
 		message.channel.send({ embed });
 	}
