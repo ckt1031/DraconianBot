@@ -7,14 +7,16 @@ module.exports = {
 	execute(interaction) {
 		const msg = client.snipes.get(interaction.channel_id);
 		if (!msg) {
-			return client.api.interactions(interaction.id, interaction.token).callback.post({
-			data: {
-				type: 4,
-				data: {
-					content: `There is no any delete message here`,
-				},
-			},
-		});
+			return client.api
+				.interactions(interaction.id, interaction.token)
+				.callback.post({
+					data: {
+						type: 4,
+						data: {
+							content: `There is no any delete message here`,
+						},
+					},
+				});
 		}
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(msg.author)
@@ -29,6 +31,5 @@ module.exports = {
 				},
 			},
 		});
-
 	},
 };

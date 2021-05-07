@@ -25,8 +25,9 @@ module.exports = {
 
 			if (custom.id) {
 				embed.setImage(
-					`https://cdn.discordapp.com/emojis/${custom.id}.${custom.animated ? "gif" : "png"
-					}`,
+					`https://cdn.discordapp.com/emojis/${custom.id}.${
+						custom.animated ? "gif" : "png"
+					}`
 				);
 				return client.api
 					.interactions(interaction.id, interaction.token)
@@ -63,9 +64,7 @@ module.exports = {
 					},
 				},
 			});
-
 		} catch (e) {
-
 			client.api.interactions(interaction.id, interaction.token).callback.post({
 				data: {
 					type: 4,
@@ -75,7 +74,6 @@ module.exports = {
 					},
 				},
 			});
-
 		}
 	},
 };
