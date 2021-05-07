@@ -31,7 +31,7 @@
 		"discord-giveaways": "^4.5.1",
 		"discord.js": "^12.5.3",
 		"distube": "^2.8.13",
-		"dotenv": "^8.2.0",
+		"dotenv": "^9.0.0",
 		"enmap": "^5.8.5",
 		"express": "^4.17.1",
 		"ffmpeg-static": "^4.3.0",
