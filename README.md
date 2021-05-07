@@ -29,6 +29,7 @@ Draconian Discord Bot offers:
 - :cop: Powerful Moderation Commands
 - :tada: Giveaways Commands
 - :file_folder: Persistent Database based in `Enmap`
+- :soccer: Slash Commands
 - :rocket: Support for different languages(Coming Soon)
 
 ##### ⚠Admin Permission needed for Moderation commands
