@@ -25,6 +25,7 @@
 	"keywords": [],
 	"license": "MIT",
 	"dependencies": {
+		"better-sqlite3": "^7.3.1",
 		"@discordjs/opus": "^0.5.0",
 		"canvacord": "^5.2.0",
 		"cryptr": "^6.0.2",
