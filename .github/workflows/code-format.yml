@@ -2,10 +2,8 @@ name: Code Format
 
 # This action works with pull requests and pushes
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron: '1 0 * * *'
 
 jobs:
   Code-Format:
