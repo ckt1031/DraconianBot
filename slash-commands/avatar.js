@@ -1,13 +1,13 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 module.exports = {
-	name: 'avatar',
+	name: "avatar",
 	description: "Grab someone's avatar image!",
 	commandOptions: [
 		{
 			type: 6,
-			name: 'user',
-			description: 'Type any user you want!',
+			name: "user",
+			description: "Type any user you want!",
 			required: true,
 		},
 	],
@@ -16,14 +16,14 @@ module.exports = {
 		//	id.replace(/[\\<>@#&!]/g, "");
 		let userss = client.users.fetch(interaction.data.options[0].value);
 
-		userss.then(function(result) {
+		userss.then(function (result) {
 			const avatar = result.displayAvatarURL({
-				format: 'png',
+				format: "png",
 				dynamic: true,
 				size: 4096,
 			});
 			const embed = new Discord.MessageEmbed()
-				.setColor('GREEN')
+				.setColor("GREEN")
 				.setTitle(`Avatar for ${result.username}:`)
 				.setImage(`${avatar}`);
 

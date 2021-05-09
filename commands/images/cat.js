@@ -12,10 +12,8 @@ module.exports.run = async (bot, message, args) => {
 		emb.setImage(link);
 
 		message.channel.send(emb);
-	})
+	});
 };
-
-
 
 module.exports.help = {
 	name: "cat",
