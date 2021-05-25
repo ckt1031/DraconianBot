@@ -8,8 +8,8 @@ module.exports = async client => {
 			.filter(file => file.endsWith(".js"));
 		for (const commands of folder) {
 			const command = require(`../commands/${files}/${commands}`);
-			let commandName = commands.split(".")[0];
-			console.log("Command Loaded " + commands);
+			const commandName = commands.split(".")[0];
+			console.log(`Command Loaded ${commands}`);
 			client.commands.set(commandName, command);
 			command.help.aliases.forEach(alias => {
 				client.aliases.set(alias, commandName);

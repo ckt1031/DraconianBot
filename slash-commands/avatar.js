@@ -8,15 +8,20 @@ module.exports = {
 			type: 6,
 			name: "user",
 			description: "Type any user you want!",
-			required: true,
+			required: false,
 		},
 	],
 	execute(interaction) {
+		const checkuser = interaction.data.options; // .options[0].value;
+		if (checkuser) {
+			userid = interaction.data.options[0].value;
+		} else {
+			userid = interaction.member.user.id;
+		}
 		// let id = interaction.data.options[0].value
 		//	id.replace(/[\\<>@#&!]/g, "");
-		let userss = client.users.fetch(interaction.data.options[0].value);
-
-		userss.then(function (result) {
+		const userss = client.users.fetch(userid);
+		userss.then(result => {
 			const avatar = result.displayAvatarURL({
 				format: "png",
 				dynamic: true,

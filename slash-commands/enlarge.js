@@ -70,7 +70,7 @@ module.exports = {
 					type: 4,
 					flags: 1 << 6,
 					data: {
-						content: `Error occured when getting requested emoji`,
+						content: "Error occured when getting requested emoji",
 					},
 				},
 			});

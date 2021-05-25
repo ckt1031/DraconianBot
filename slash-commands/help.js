@@ -12,14 +12,18 @@ module.exports = {
 		},
 	],
 	execute(interaction) {
-		try {
+		const optioninvalid = interaction.data.options;
+		if (optioninvalid) {
 			let command = interaction.data.options[0].value;
 			if (client.commands.has(command)) {
 				command = client.commands.get(command);
 				let alia = command.help.aliases;
 				if (command.help.aliases < 1) alia = "No aliases";
 				const embed = new Discord.MessageEmbed()
-					.setTitle(`**Command: ${command.help.name}**`)
+					.setAuthor(
+						`Command: ${command.help.name}`,
+						client.user.displayAvatarURL()
+					)
 					.setDescription(
 						`
             **Description:**\n\`\`\`${
@@ -32,7 +36,7 @@ module.exports = {
 						}\`\`\`\n**Aliases:**\n\`\`\`${alia}\`\`\``
 					)
 					.setColor("#4a4b4d")
-					.setFooter(`©2021 Draconian Workshop`);
+					.setFooter(`© ${nowyear} ${client.user.username}`);
 				return client.api
 					.interactions(interaction.id, interaction.token)
 					.callback.post({
@@ -47,12 +51,7 @@ module.exports = {
 
 			if (!client.commands.has(command)) {
 				const embeds = new Discord.MessageEmbed()
-					.setTitle(`**Command: ${helpArgs[0]}**`)
-					.setDescription(
-						`
-            **Response:**
-						\`\`\`Error: 404 Not Found\`\`\``
-					)
+					.setDescription(`**Response:**\n\`\`\`Error: 404 Not Found\`\`\``)
 					.setColor("#ff0000");
 
 				return client.api
@@ -66,12 +65,16 @@ module.exports = {
 						},
 					});
 			}
-		} catch (e) {
+		} else {
 			const embed = new Discord.MessageEmbed()
+				.setAuthor(
+					`${client.user.username} Commands list`,
+					client.user.displayAvatarURL()
+				)
 				.setTitle("DraconianBot Help & Commands list")
 				.setColor("GREEN")
 				.setDescription(
-					"**prefix** `d!`\nMore Info please visit: [Here](https://top.gg/bot/711937599975063584) and invite me to your server."
+					"**My prefix:** `d!`\nClick [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot%20applications.commands) to invite me to your server."
 				)
 				.addField("**📱Basic**", "`help`, `ping`, `vote`, `uptime`")
 				.addField(
@@ -80,7 +83,7 @@ module.exports = {
 				)
 				.addField(
 					"**🎃Fun**",
-					"`8ball`, `cat`, `deaes256`, `kiss`, `meme`, `ngif`, `pat`, `poke`, `smug`, `spank`, `thigh`, `tickle`"
+					"`8ball`, `cat`, `deaes256`, `kiss`, `meme`, `ngif`, `pat`, `poke`, `smug`, `thigh`, `tickle`"
 				)
 				.addField(
 					"**:tada:Giveaways**",
@@ -88,7 +91,7 @@ module.exports = {
 				)
 				.addField(
 					"**:frame_photo:Image**",
-					"`circle`, `delete`, `gay`, `changemymind`, `trigger`, `clyde`, `petpet`"
+					"`captcha`, `circle`, `delete`, `gay`, `changemymind`, `trigger`, `clyde`, `petpet`, `magik`, `iphonex`"
 				)
 				.addField(
 					"**:musical_note:Music**",
@@ -100,10 +103,10 @@ module.exports = {
 				)
 				.addField(
 					"**:underage:NSFW**",
-					"`4knsfw`, `anal`, `ass`, `hentai`, `holo`, `pussy`, `porn`, `spank`, `urban`"
+					"`4knsfw`, `anal`, `ass`, `hentai`, `holo`, `pussy`, `porn`, `urban`"
 				)
 				.addField("**:gear:Custom Function**", "`setprefix`")
-				.setFooter(`©2021 Draconian Workshop`);
+				.setFooter(`© ${nowyear} ${client.user.username}`);
 
 			client.api.interactions(interaction.id, interaction.token).callback.post({
 				data: {
