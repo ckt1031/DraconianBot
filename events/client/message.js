@@ -1,5 +1,5 @@
-const settings = require("../../settings.json");
 const Discord = require("discord.js");
+const settings = require("../../settings.json");
 
 const cooldowns = new Discord.Collection();
 
@@ -14,7 +14,7 @@ module.exports = async (client, message) => {
 	}
 
 	if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
-		message.channel.send(`Hi, my prefix: \`${prefixesdatabase.prefix}\``);
+		message.reply(`my prefix is: \`${prefixesdatabase.prefix}\``);
 	}
 
 	if (!message.content.startsWith(prefixesdatabase.prefix)) return;
