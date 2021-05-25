@@ -2,20 +2,21 @@ const Discord = require("discord.js");
 const canvacord = require("canvacord");
 
 module.exports.run = async (client, message, args) => {
-	let notice3 = new Discord.MessageEmbed()
+	const notice3 = new Discord.MessageEmbed()
 		.setDescription(
-			`<:cross1:747728200691482746> **Please type the text you want to changemymind!**`
+			"<:cross1:747728200691482746> **Please type the text you want to changemymind!**"
 		)
 		.setColor("RED");
-	let mindtxt = args.slice(0).join(" ");
-	if (!mindtxt)
+	const mindtxt = args.slice(0).join(" ");
+	if (!mindtxt) {
 		return message.channel
 			.send(notice3)
 			.then(msg => msg.delete({ timeout: 10000 }));
+	}
 
-	let image = await canvacord.Canvas.changemymind(mindtxt);
+	const image = await canvacord.Canvas.changemymind(mindtxt);
 
-	let triggered = new Discord.MessageAttachment(image, "changemymind.png");
+	const triggered = new Discord.MessageAttachment(image, "changemymind.png");
 
 	message.channel.send(triggered);
 };

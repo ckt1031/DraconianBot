@@ -2,23 +2,48 @@ const Discord = require("discord.js");
 const petPetGif = require("pet-pet-gif");
 
 module.exports.run = async (client, message, args) => {
-	const target = message.mentions.users.first() || message.author;
+	const usernotfind = new Discord.MessageEmbed()
+		.setDescription(`${emojis.cross} User is not found!`)
+		.setColor("RED");
 
-	const avatar = message.attachments.array()[0];
-
-	if (avatar) {
-		if (avatar.url) {
-			const image = await petPetGif(avatar.url);
-			const rainbow = new Discord.MessageAttachment(image, "petpet.gif");
-			return message.channel.send(rainbow);
-		}
-	} else {
-		const image = await petPetGif(
-			target.displayAvatarURL({ dynamic: false, format: "png" })
-		);
-		const rainbow = new Discord.MessageAttachment(image, "petpet.gif");
-		return message.channel.send(rainbow);
+	const target = message.mentions.users.first();
+	const attachment = message.attachments.array()[0];
+	let imagetarget;
+	try {
+		imagetarget =
+			target ||
+			(attachment
+				? attachment.url
+				: args[0]
+				? args[0].length == 18
+					? message.guild.members.cache.get(args[0]).user.displayAvatarURL({
+							dynamic: false,
+							format: "png",
+							size: 4096,
+					  })
+					: message.guild.members.cache
+							.find(
+								r =>
+									r.user.username.toLowerCase() ===
+									args.join(" ").toLocaleLowerCase()
+							)
+							.user.displayAvatarURL({
+								dynamic: false,
+								format: "png",
+								size: 4096,
+							})
+				: message.author.displayAvatarURL({
+						dynamic: false,
+						format: "png",
+						size: 4096,
+				  }));
+	} catch (e) {
+		return message.channel.send(usernotfind);
 	}
+
+	const image = await petPetGif(imagetarget);
+	const rainbow = new Discord.MessageAttachment(image, "petpet.gif");
+	return message.channel.send(rainbow);
 };
 
 module.exports.help = {

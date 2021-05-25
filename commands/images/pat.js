@@ -3,17 +3,17 @@ const Discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
 	// eslint-disable-line no-unused-vars
 	try {
-		let member = message.mentions.members.first();
+		const member = message.mentions.members.first();
 
 		require("request")(
 			{ url: "https://nekos.life/api/pat", json: true },
 			(req, res, json) => {
 				if (member) {
-					let embed = new Discord.MessageEmbed()
-						.setTitle(message.author.username + " pats " + member.user.username)
+					const embed = new Discord.MessageEmbed()
+						.setTitle(`${message.author.username} pats ${member.user.username}`)
 						.setColor("#363942")
 						.setDescription(
-							message.author.username + " patted " + member.user.username + "!"
+							`${message.author.username} patted ${member.user.username}!`
 						)
 						.setImage(json.url);
 
@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
 			}
 		);
 	} catch (err) {
-		message.channel.send("There was an error!\n" + err).catch();
+		message.channel.send(`There was an error!\n${err}`).catch();
 	}
 };
 

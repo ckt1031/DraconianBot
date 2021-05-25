@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const canvacord = require("canvacord");
+const fetch = require("node-fetch");
 
 module.exports.run = async (client, message, args) => {
 	const usernotfind = new Discord.MessageEmbed()
@@ -7,6 +7,7 @@ module.exports.run = async (client, message, args) => {
 		.setColor("RED");
 	const target = message.mentions.users.first();
 	const attachment = message.attachments.array()[0];
+
 	let imagetarget;
 	try {
 		imagetarget =
@@ -40,16 +41,24 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(usernotfind);
 	}
 
-	const image = await canvacord.Canvas.delete(imagetarget);
-	const rainbow = new Discord.MessageAttachment(image, "delete.png");
-	return message.channel.send(rainbow);
+	const res = await fetch(
+		encodeURI(
+			`https://nekobot.xyz/api/imagegen?type=iphonex&url=${imagetarget}`
+		)
+	);
+
+	const json = await res.json();
+	const attachmentmsg = new Discord.MessageAttachment(
+		json.message,
+		"iphonex.png"
+	);
+	message.channel.send(attachmentmsg);
 };
 
 module.exports.help = {
-	name: "delete",
-	description:
-		"This command is used for delete someone u hates with windows trash bin",
-	usage: "d!delete [<mention> or <attachments>]",
-	accessableby: "Member",
+	name: "iphonex",
+	description: "This command is used for posting dog's images randomly.",
+	usage: "d!iphonex",
+	accessableby: "Members",
 	aliases: [],
 };

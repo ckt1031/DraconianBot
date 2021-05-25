@@ -6,9 +6,9 @@ module.exports.run = async (client, message, args) => {
 
 	const embed = new Discord.MessageEmbed()
 		.setColor("#ff9900")
-		.setTitle(`OwO, Heres your Neko Gif`)
+		.setTitle("OwO, Heres your Neko Gif")
 		.setImage(body.url)
-		.setFooter(`© Draconian Workshop`);
+		.setFooter("© Draconian Workshop");
 	message.channel.send({ embed });
 };
 
