@@ -1,29 +1,40 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-	let inline = true;
+	const missingargs = new Discord.MessageEmbed()
+		.setDescription(`${emojis.cross} Please mention or type the name of role!`)
+		.setColor("RED");
 
-	let role = args.join(` `);
-	if (!role) return message.reply("Specify a role!");
-	let gRole = message.guild.roles.cache.get(role);
-	if (!gRole) return message.reply("Couldn't find that role.");
+	const missingrole = new Discord.MessageEmbed()
+		.setDescription(`${emojis.cross} Cannot find that role`)
+		.setColor("RED");
+
+	const role = args.join(" ");
+	const gRole =
+		message.guild.roles.cache.get(role.replace(/[^0-9]/g, "")) ||
+		message.guild.roles.cache.get(role) ||
+		client.guilds.cache
+			.get(message.guild.id)
+			.roles.cache.find(val => val.name === role);
+
+	if (!role) return message.channel.send(missingargs);
+	if (!gRole) return message.channel.send(missingrole);
 
 	const status = {
 		false: "No",
 		true: "Yes",
 	};
 
-	let roleemebed = new Discord.MessageEmbed()
-		.setColor("#00ff00")
-		.addField("ID", gRole.id, inline)
-		.addField("Name", gRole.name, inline)
-		.addField("Mention", `<@&${gRole.id}>`, inline)
-		.addField("Hex", gRole.hexColor, inline)
-		.addField("Members", gRole.members.size, inline)
-		.addField("Position", gRole.position, inline)
-		.addField("Hoisted", status[gRole.hoist], inline)
-		.addField("Mentionable", status[gRole.mentionable], inline)
-		.addField("Managed", status[gRole.managed], inline);
+	const roleemebed = new Discord.MessageEmbed()
+		.setTitle(`Role Information: ${gRole.name}`)
+		.setColor("#000000")
+		.setDescription(
+			`ID: ${gRole.id}\nMembers: ${gRole.members.size}\nColour: ${
+				gRole.hexColor
+			}\nMentionable: ${status[gRole.mentionable]}\nPosition: ${gRole.position}`
+		);
+	//	.addField("Hoisted", status[gRole.hoist], inline)
+	//	.addField("Managed", status[gRole.managed], inline);
 
 	message.channel.send(roleemebed);
 };

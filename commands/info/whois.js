@@ -2,49 +2,72 @@ const Discord = require("discord.js");
 const moment = require("moment");
 
 module.exports.run = async (bot, message, args) => {
-	let trufal = {
+	const trufal = {
 		true: "Robot",
 		false: "Human",
 	};
 
-	let status = {
-		online: "<:online:734741273214320652> Online",
-		idle: "<:idle:734741276779479121> Idle",
-		dnd: "<:dnd:734741275139375104> Do Not Disturb",
-		invisible: "<:invisible:734741275294826606> Offline",
-	};
+	// let user;
 
+	const usernotfind = new Discord.MessageEmbed()
+		.setDescription(`${emojis.cross} User is not found!`)
+		.setColor("RED");
+
+	const rankuser = message.mentions.users.first();
 	let user;
-	if (message.mentions.users.first()) {
-		user = message.mentions.users.first();
-	} else {
-		user = message.author;
+	try {
+		user =
+			rankuser ||
+			(message.mentions.users.first()
+				? message.mentions.users.first()
+				: args[0]
+				? args[0].length == 18
+					? message.guild.members.cache.get(args[0]).user
+					: message.guild.members.cache.find(
+							r =>
+								r.user.username.toLowerCase() ===
+								args.join(" ").toLocaleLowerCase()
+					  ).user
+				: message.author);
+	} catch (e) {
+		return message.channel.send(usernotfind);
 	}
+
+	let userguild = message.guild.member(user);
 	const member = message.guild.member(user);
 	const roles = member.roles.cache.map(r => `${r}`).join(", ");
-	let serveddrembed = new Discord.MessageEmbed()
-		.setDescription("<a:loading:806686528549814344> Fetching Uptime...")
+	const serveddrembed = new Discord.MessageEmbed()
+		.setDescription("<a:loading:806686528549814344> Fetching Userinfo...")
 		.setColor("RED");
 
 	message.channel.send(serveddrembed).then(async message => {
 		const embed = new Discord.MessageEmbed()
-			.setColor("RANDOM")
-			.setAuthor(`${user.tag} Info`, message.author.displayAvatarURL)
+			.setColor(user.displayHexColor)
+			.setAuthor(
+				`${user.tag} User Information`,
+				user.displayAvatarURL({ dynamic: false, format: "png", size: 4096 })
+			)
 			.setDescription(
-				`**• Name: **${user.tag}\n**• ID: **${user.id}\n**• Account Type: **${
+				`**Name: **${user.tag}\n**ID: **${user.id}\n**Account Type: **${
 					trufal[user.bot]
-				}\n**• Status: **${user.presence.status.toUpperCase()}\n**• Game: **${
-					user.presence.game
-						? user.presence.game.name
-						: "I do not see him playing anything!"
-				}\n**• Created at: ** ${moment(user.joinedAt).format(
+				}\n**Joined At: **${moment(userguild.joinedAt).format(
 					"DD-MM-YYYY"
-				)}\n**• Joined At: **${moment(user.createdAt).format(
+				)}\n**Created at: ** ${moment(user.createdAt).format(
 					"DD-MM-YYYY"
-				)}\n**• Avatar**: [Click here](${user.avatarURL()})\n**• Roles: **${roles}`
+				)}\n**Avatar**: [Click here](${user.displayAvatarURL({
+					dynamic: false,
+					format: "png",
+					size: 4096,
+				})})\n**Roles: **${roles}`
 			)
 
-			.setThumbnail(`${user.avatarURL()}`)
+			.setThumbnail(
+				`${user.displayAvatarURL({
+					dynamic: false,
+					format: "png",
+					size: 4096,
+				})}`
+			)
 			.setTimestamp();
 
 		await message.edit(embed);

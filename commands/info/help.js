@@ -1,24 +1,30 @@
-﻿const Discord = require("discord.js");
+const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
-	let helpArray = message.content.split(" ");
-	let helpArgs = helpArray.slice(1);
+module.exports.run = async (client, message, args) => {
+	const settings = require("../../settings.json");
+	const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
+
+	const helpArray = message.content.split(" ");
+	const helpArgs = helpArray.slice(1);
 
 	if (!helpArgs[0]) {
 		const embed = new Discord.MessageEmbed()
-			.setTitle("DraconianBot Help & Commands list")
+			.setAuthor(
+				`${client.user.username} Commands list`,
+				client.user.displayAvatarURL()
+			)
 			.setColor("GREEN")
 			.setDescription(
-				"**prefix** `d!`\nMore Info please visit: [Here](https://top.gg/bot/711937599975063584) and invite me to your server."
+				`**My prefix:** \`${prefixesdatabase.prefix}\`\nClick [here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands) to invite me to your server.`
 			)
-			.addField("**📱Basic**", "`help`, `ping`, `vote`, `uptime`")
+			.addField("**📱Basic**", "`info`, `help`, `ping`, `vote`, `uptime`")
 			.addField(
 				"**⚙utility**",
 				"`aes256`, `avatar`, `channel`, `embed`, `roleinfo`, `reverse`, `setafk`, `snipe`, `stats`, `timer`, `translate`, `whois`, `weather`, `youtube`"
 			)
 			.addField(
 				"**🎃Fun**",
-				"`8ball`, `cat`, `deaes256`, `kiss`, `meme`, `ngif`, `pat`, `poke`, `smug`, `spank`, `thigh`, `tickle`"
+				"`8ball`, `cat`, `deaes256`, `kiss`, `meme`, `ngif`, `pat`, `poke`, `smug`, `thigh`, `tickle`"
 			)
 			.addField(
 				"**:tada:Giveaways**",
@@ -26,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
 			)
 			.addField(
 				"**:frame_photo:Image**",
-				"`circle`, `delete`, `gay`, `changemymind`, `trigger`, `clyde`"
+				"`captcha`, `circle`, `delete`, `gay`, `changemymind`, `trigger`, `clyde`, `petpet`, `magik`, `iphonex`"
 			)
 			.addField(
 				"**:musical_note:Music**",
@@ -38,11 +44,11 @@ module.exports.run = async (bot, message, args) => {
 			)
 			.addField(
 				"**:underage:NSFW**",
-				"`4knsfw`, `anal`, `ass`, `hentai`, `holo`, `pussy`, `porn`, `spank`, `urban`"
+				"`4knsfw`, `anal`, `ass`, `hentai`, `holo`, `pussy`, `porn`, `urban`"
 			)
 			.addField("**:gear:Custom Function**", "`setprefix`")
 			.setFooter(
-				`©2021 Draconian Workshop | This command requested by ${message.author.username}#${message.author.discriminator}`
+				`© ${nowyear} ${client.user.username} | This command requested by ${message.author.username}#${message.author.discriminator}`
 			);
 		message.channel.send({ embed });
 	}
@@ -50,13 +56,16 @@ module.exports.run = async (bot, message, args) => {
 	if (helpArgs[0]) {
 		let command = helpArgs[0];
 
-		if (bot.commands.has(command)) {
-			command = bot.commands.get(command);
+		if (client.commands.has(command)) {
+			command = client.commands.get(command);
 			let alia = command.help.aliases;
 			if (command.help.aliases < 1) alia = "No aliases";
 
-			var embed = new Discord.MessageEmbed()
-				.setTitle(`**Command: ${command.help.name}**`)
+			const embed = new Discord.MessageEmbed()
+				.setAuthor(
+					`Command: ${command.help.name}`,
+					client.user.displayAvatarURL()
+				)
 				.setDescription(
 					`
             **Description:**\n\`\`\`${
@@ -70,19 +79,14 @@ module.exports.run = async (bot, message, args) => {
 				)
 				.setColor("#4a4b4d")
 				.setFooter(
-					`©2021 Draconian Workshop | This command requested by ${message.author.username}#${message.author.discriminator}`
+					`© ${nowyear} ${client.user.username} | This command requested by ${message.author.username}#${message.author.discriminator}`
 				);
 
 			message.channel.send(embed);
 		} else {
-			var embeds = new Discord.MessageEmbed()
-				.setTitle(`**Command: ${helpArgs[0]}**`)
-				.setDescription(
-					`
-            **Response:**
-						\`\`\`Error: 404 Not Found\`\`\``
-				)
-				.setColor("#ff0000");
+			const embeds = new Discord.MessageEmbed()
+				.setDescription(`${emojis.cross} Command is not found!`)
+				.setColor("RED");
 
 			return message.channel.send(embeds);
 		}
