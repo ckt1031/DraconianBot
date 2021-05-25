@@ -4,8 +4,8 @@ const request = require("request");
 module.exports.run = (client, message, [args, ...words]) => {
 	const regex = /[!*();,:@&=+$.\/?%#[\]]/g;
 
-	//Commented langs just translate to english
-	let langs = {
+	// Commented langs just translate to english
+	const langs = {
 		af: "Afrikaans",
 		sq: "Albanian",
 		am: "Amharic",
@@ -115,14 +115,14 @@ module.exports.run = (client, message, [args, ...words]) => {
 	};
 
 	if (args == "list") {
-		let langEntries = Object.entries(langs);
-		let listOfDLangs = ``;
+		const langEntries = Object.entries(langs);
+		let listOfDLangs = "";
 
 		for (const [short, long] of langEntries) {
 			listOfDLangs += `${long} - ${short}\n`;
 		}
 
-		let embed1 = new Discord.MessageEmbed()
+		const embed1 = new Discord.MessageEmbed()
 			.setColor(client.config.embedColor)
 			.setTitle("List of languages yabe can translate:")
 			.setDescription(listOfDLangs)
@@ -133,10 +133,9 @@ module.exports.run = (client, message, [args, ...words]) => {
 			.setTimestamp();
 
 		message.channel.send(embed1);
-		return;
 	} else {
-		let sourceLang = args[0] + args[1];
-		let targetLang = args[3] + args[4];
+		const sourceLang = args[0] + args[1];
+		const targetLang = args[3] + args[4];
 
 		if (!langs.hasOwnProperty(sourceLang))
 			return message.channel.send(
@@ -155,8 +154,8 @@ module.exports.run = (client, message, [args, ...words]) => {
 				"Please provide a word or sentence to translate."
 			);
 
-		let words2translate = words.join(" ").toLowerCase().replace(regex, "");
-		let link = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&ie=UTF-8&oe=UTF-8&q=${encodeURI(
+		const words2translate = words.join(" ").toLowerCase().replace(regex, "");
+		const link = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&ie=UTF-8&oe=UTF-8&q=${encodeURI(
 			words2translate
 		)}`;
 
@@ -164,8 +163,8 @@ module.exports.run = (client, message, [args, ...words]) => {
 			if (error) console.log(error);
 
 			try {
-				let translation = JSON.parse(body);
-				let embed = new Discord.MessageEmbed()
+				const translation = JSON.parse(body);
+				const embed = new Discord.MessageEmbed()
 					.setDescription(translation[0][0][0])
 					.setColor(client.config.embedColor);
 				message.channel.send(

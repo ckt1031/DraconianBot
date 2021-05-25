@@ -1,25 +1,23 @@
 const Discord = require("discord.js");
 
 module.exports.run = (client, message, args) => {
-	// , dynamic: true, size: 2048
-	const avatar = message.mentions.users.size
-		? message.mentions.users.first().avatarURL({ format: "png" })
-		: message.author.avatarURL({ format: "png" });
-	if (message.mentions.users.size > 0) {
-		const embed = new Discord.MessageEmbed()
-			.setColor("GREEN")
-			.setTitle(`Avatar for ${message.mentions.users.first().username}:`)
-			.setImage(`${avatar}`);
+	const target = message.mentions.users.first();
+	const imageitem =
+		target ||
+		(args[0]
+			? args[0].length == 18
+				? message.guild.members.cache.get(args[0]).user
+				: message.author
+			: message.author);
 
-		message.channel.send({ embed });
-	} else {
-		const embed = new Discord.MessageEmbed()
-			.setColor("GREEN")
-			.setTitle(`Avatar for ${message.author.username}:`)
-			.setImage(`${avatar}`}`);
+	const embed = new Discord.MessageEmbed()
+		.setColor("GREEN")
+		.setTitle(`Avatar for ${message.author.username}:`)
+		.setImage(
+			imageitem.displayAvatarURL({ dynamic: false, format: "png", size: 4096 })
+		);
 
-		message.channel.send({ embed });
-	}
+	message.channel.send({ embed });
 };
 
 module.exports.help = {

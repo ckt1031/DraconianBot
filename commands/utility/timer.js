@@ -2,7 +2,7 @@ const Discord = module.require("discord.js");
 const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
-	let Timer = args[0];
+	const Timer = args[0];
 	if (isNaN(Timer))
 		return message.reply("heh, text time huh? How about **no**?");
 	if (ms(Timer) > 2147483647)
@@ -29,10 +29,12 @@ module.exports.run = async (bot, message, args) => {
 			`${ms(ms(Timer), { long: true })}`
 	);
 
-	setTimeout(function () {
+	setTimeout(() => {
 		message.channel.send(
-			message.author.toString() +
-				` The Timer Has FINISHED!, it lasted: ${ms(ms(Timer), { long: true })}`
+			`${message.author.toString()} The Timer Has FINISHED!, it lasted: ${ms(
+				ms(Timer),
+				{ long: true }
+			)}`
 		);
 	}, ms(Timer));
 };

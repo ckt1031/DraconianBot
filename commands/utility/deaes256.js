@@ -1,7 +1,7 @@
 const Cryptr = require("cryptr");
 
 const decrypt = (text, key) => {
-	let cryptr = new Cryptr(key);
+	const cryptr = new Cryptr(key);
 	return cryptr.decrypt(text);
 };
 
@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
 
 		message.channel.send(decrypt(args.slice(1).join(" "), args[0]));
 	} catch (err) {
-		message.channel.send("There was an error!\n" + err).catch();
+		message.channel.send(`There was an error!\n${err}`).catch();
 	}
 };
 

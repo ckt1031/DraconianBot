@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-	let shoutinfo = args.slice(1).join(" ");
-	let shouttitle = args[0];
+	const shoutinfo = args.slice(1).join(" ");
+	const shouttitle = args[0];
 
 	const noPerms = new Discord.MessageEmbed()
 		.setDescription(
