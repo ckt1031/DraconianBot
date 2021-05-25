@@ -4,7 +4,15 @@ const fs = require("fs");
 const config = require("../../config.json");
 
 module.exports.run = async (client, message, args) => {
-	const tomute = message.mentions.users.first();
+	const muteusermentioned = msg.mentions.users.first();
+	const tomute =
+		muteusermentioned ||
+		(args[0]
+			? args[0].length == 18
+				? msg.guild.members.cache.get(args[0]).user
+				: false
+			: false);
+
 	const notice3 = new Discord.MessageEmbed()
 		.setDescription(
 			"<:cross1:747728200691482746> **I don't have permission to mute people!**"
@@ -30,12 +38,9 @@ module.exports.run = async (client, message, args) => {
 		.setFooter("Beta Feature");
 	if (!tomute) return message.channel.send(embed50);
 	const notice2 = new Discord.MessageEmbed()
-		.setDescription(
-			"<:cross1:747728200691482746> **You cannot mute yourself!**"
-		)
+		.setDescription("<:cross1:747728200691482746> You cannot mute yourself!")
 		.setColor("RED");
-	if (message.mentions.users.first().id === message.author.id)
-		return message.channel.send(notice2);
+	if (user.id === message.author.id) return message.channel.send(notice2);
 
 	const dsfdsfsdf = new Discord.MessageEmbed()
 		.setDescription(
@@ -110,9 +115,7 @@ module.exports.run = async (client, message, args) => {
 
 	const embed10 = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> **Muted ${tomute.username}#${
-				tomute.discriminator
-			} for ${ms(ms(mutetime))}** | **${reason}**`
+			`<:tick:702386031361523723> Muted **${tomute.username}#${tomute.discriminator}** | **${reason}**`
 		)
 		.setColor("GREEN");
 

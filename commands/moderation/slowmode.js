@@ -6,21 +6,25 @@ exports.run = (client, message, args) => {
 			"<:cross1:747728200691482746> **Failed to set slowmode in this channel, check your slowmode number!**"
 		)
 		.setColor("RED");
+
 	const notice1 = new Discord.MessageEmbed()
 		.setDescription(
 			"<:cross1:747728200691482746> **Failed to set slowmode in this channel, please enter a valid number!**"
 		)
 		.setColor("RED");
+
 	const noticwsse1 = new Discord.MessageEmbed()
 		.setDescription(
 			"<:cross1:747728200691482746> **Failed to set slowmode in this channel, you can only type in 0 - 21600 second!**"
 		)
 		.setColor("RED");
+
 	const notice22 = new Discord.MessageEmbed()
 		.setDescription(
 			"<:cross1:747728200691482746> **I don't have permission to change channel slowmode!**"
 		)
 		.setColor("RED");
+
 	if (!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) {
 		return message.channel
 			.send(notice3)

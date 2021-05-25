@@ -9,7 +9,14 @@ module.exports.run = async (client, msg, args) => {
 		.setColor("RED");
 	if (!msg.guild.member(client.user).hasPermission("KICK_MEMBERS"))
 		return msg.channel.send(notice3).then(m => m.delete({ timeout: 5000 }));
-	const kickTaged = msg.mentions.users.first();
+	const kickusermentioned = msg.mentions.users.first();
+	const kickTaged =
+		kickusermentioned ||
+		(args[0]
+			? args[0].length == 18
+				? msg.guild.members.cache.get(args[0]).user
+				: false
+			: false);
 	let reason = args.slice(1).join(" ");
 	const embed6 = new Discord.MessageEmbed()
 		.setDescription(
@@ -23,7 +30,6 @@ module.exports.run = async (client, msg, args) => {
 		.setDescription("Usage: d!kick @user reason")
 		.setColor("RED");
 	if (!kickTaged) {
-		msg.delete();
 		return msg.channel.send(mmqembed).then(m => m.delete({ timeout: 5000 }));
 	}
 
@@ -37,23 +43,19 @@ module.exports.run = async (client, msg, args) => {
 			"<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**"
 		)
 		.setColor("RED");
+	const notice2 = new Discord.MessageEmbed()
+		.setDescription("<:cross1:747728200691482746> You cannot kick yourself!")
+		.setColor("RED");
+	if (msg.author.id === kickTaged.id) return msg.channel.send(notice2);
 	const botRolePossition = msg.guild.member(client.user).roles.highest.position;
 	const rolePosition = msg.guild.member(kickTaged).roles.highest.position;
 	const userRolePossition = msg.member.roles.highest.position;
 	if (userRolePossition <= rolePosition) return msg.channel.send(dsfdsfsdf);
 	if (botRolePossition <= rolePosition) return msg.channel.send(sdfsdfsdfsd);
 
-	const notice2 = new Discord.MessageEmbed()
-		.setDescription(
-			"<:cross1:747728200691482746> **You cannot kick yourself!**"
-		)
-		.setColor("RED");
-	if (msg.mentions.users.first().id === msg.author.id)
-		return msg.channel.send(notice2);
-
 	const sdfdfsdfsdfdfs = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> **An error occurred with banned that member!**"
+			"<:cross1:747728200691482746> An error occurred with banned that member!"
 		)
 		.setColor("RED");
 
@@ -73,9 +75,10 @@ module.exports.run = async (client, msg, args) => {
 
 	const suembed = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> **Kicked ${kickTaged.username}#${kickTaged.discriminator}** | **${reason}**`
+			`<:tick:702386031361523723> Kicked **${kickTaged.username}#${kickTaged.discriminator}** | **${reason}**`
 		)
 		.setColor("GREEN");
+
 	msg.delete();
 	msg.channel.send(suembed);
 	msg.guild.member(kickTaged).kick(reason);

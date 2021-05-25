@@ -26,24 +26,23 @@ module.exports.run = async (client, message, args) => {
 					.filter(file => file.endsWith(".js"));
 				for (const commands of folder) {
 					const command = require(`../../commands/${files}/${commands}`);
-
 					delete require.cache[require.resolve(`../${files}/${commands}`)];
 					client.aliases.delete(command.help.aliases);
-					let commandName = commands.split(".")[0];
-					console.log("Reloaded Command: " + commands);
+					const commandName = commands.split(".")[0];
+					console.log(`Reloaded Command: ${commands}`);
 					client.commands.set(commandName, command);
 					command.help.aliases.forEach(alias => {
 						client.aliases.set(alias, commandName);
 					});
 				}
 			}
-			return message.channel.send(`command reloaded`);
+			return message.channel.send("command reloaded");
 		})
-		.catch(collected => {
-			return message.channel.send(
+		.catch(collected =>
+			message.channel.send(
 				":x: | Time's up! Reload commands actions cancelled!"
-			);
-		});
+			)
+		);
 };
 
 module.exports.help = {

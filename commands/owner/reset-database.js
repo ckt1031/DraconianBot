@@ -23,9 +23,9 @@ exports.run = async (client, message, args) => {
 				console.log(`Reset ${guild.name}`);
 			});
 		})
-		.catch(collected => {
-			return message.channel.send(":x: | Time's up! Reset Database Failed!");
-		});
+		.catch(collected =>
+			message.channel.send(":x: | Time's up! Reset Database Failed!")
+		);
 };
 
 module.exports.help = {

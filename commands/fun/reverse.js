@@ -4,10 +4,10 @@ module.exports.run = async (client, message, args) => {
 			return message.reply("You need to input the text to reverse!");
 
 		const str = args.join(" ");
-		let msg = await message.reply(str.split("").reverse().join(""));
+		const msg = await message.reply(str.split("").reverse().join(""));
 		msg.react("🔁");
 	} catch (err) {
-		message.channel.send("Their was an error!\n" + err).catch();
+		message.channel.send(`Their was an error!\n${err}`).catch();
 	}
 };
 

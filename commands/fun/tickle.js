@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
 			}`
 		)
 		.setImage(body.url)
-		.setFooter(`© Draconian Workshop`);
+		.setFooter("© Draconian Workshop");
 	message.channel.send({ embed });
 };
 

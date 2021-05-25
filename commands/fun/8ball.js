@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
+
 function doMagic8BallVoodoo() {
-	var rand = [
+	const rand = [
 		"Yes",
 		"No",
 		"Why are you even trying?",
@@ -19,7 +20,7 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(
 			"Please ask me question first to access to this command."
 		);
-	message.channel.send("My anwser is: " + doMagic8BallVoodoo());
+	message.channel.send(`My anwser is: ${doMagic8BallVoodoo()}`);
 };
 
 module.exports.help = {
