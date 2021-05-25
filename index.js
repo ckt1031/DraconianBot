@@ -1,14 +1,5 @@
-/*********************************************
- *  This Bot is Made by RealKoolisw
- *
- *  Draconian Bot Code with Javascript
- *  Made with Discord.js
- *
- *  © Copyright MIT License 2021 RealKoolisw
- *********************************************/
-
 require("dotenv").config();
-
+const config = require("./config.json");
 const Enmap = require("enmap");
 const Discord = require("discord.js");
 
@@ -17,20 +8,29 @@ const client = new Discord.Client({
 	disableMentions: "everyone",
 });
 const DisTube = require("distube");
-const config = require("./config.json");
+
 client.config = config;
+global.client = client;
 client.login(process.env.TOKEN);
+global.nowyear = new Date().getFullYear();
+global.emojis = require("./config/emoji.json");
+
 const db = require("quick.db");
 const { GiveawaysManager } = require("discord-giveaways");
+
 const nz_date_string = new Date().toLocaleString("en-US", {
 	timeZone: "Asia/Hong_Kong",
 });
 
+process.on("unhandledRejection", error => {
+	console.log(`UnhandledPromiseRejection : ${error}\n`);
+});
+
 client.commands = new Discord.Collection();
+client.slcommands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.emotes = config.emoji;
 client.colors = client.config.colors;
-client.slcommands = new Discord.Collection();
 client.snipes = new Map();
 client.mapss = new Map();
 client.mapss.set("uptimedate", nz_date_string);
@@ -40,16 +40,13 @@ client.mapss.set("uptimedate", nz_date_string);
 );
 ["alwaysOn", "http"].forEach(x => require(`./server/${x}`)());
 
-process.on("unhandledRejection", error => {
-	console.log(`UnhandledPromiseRejection : ${error}\n`);
-});
-
 client.settings = new Enmap({
 	name: "settings",
 	fetchAll: false,
 	autoFetch: true,
 	cloneLevel: "deep",
 });
+client.moderationdb = new Enmap("moderation");
 
 client.distube = new DisTube(client, {
 	leaveOnFinish: true,
@@ -131,7 +128,7 @@ client.ws.on("INTERACTION_CREATE", async interaction => {
 			data: {
 				type: 4,
 				data: {
-					content: `Sorry, error occurred when running this command!`,
+					content: "Sorry, error occurred when running this command!",
 				},
 			},
 		});
