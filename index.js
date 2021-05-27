@@ -17,9 +17,7 @@ global.emojis = require("./config/emoji.json");
 
 const db = require("quick.db");
 const { GiveawaysManager } = require("discord-giveaways");
-const { AutoPoster } = require("topgg-autoposter");
 
-const ap = AutoPoster(process.env.DBLTOKEN, client);
 const nz_date_string = new Date().toLocaleString("en-US", {
 	timeZone: "Asia/Hong_Kong"
 });
@@ -30,7 +28,6 @@ client.aliases = new Discord.Collection();
 client.emotes = emojis;
 client.colors = client.config.colors;
 client.snipes = new Map();
-client.ap = ap;
 client.mapss = new Map();
 client.mapss.set("uptimedate", nz_date_string);
 
@@ -38,15 +35,6 @@ client.mapss.set("uptimedate", nz_date_string);
 	require(`./handlers/${x}.js`)(client)
 );
 ["alwaysOn", "http"].forEach(x => require(`./server/${x}`)());
-
-const blapi = require("blapi");
-
-const apiKeys = {
-	"botlist.space": process.env.BOTLIST_SPACE,
-	"discord.boats": process.env.DISCORD_BOATS,
-	"botsfordiscord.com": process.env.BOTFORDISCORD
-};
-blapi.handle(client, apiKeys, 60);
 
 client.settings = new Enmap({
 	name: "settings",
