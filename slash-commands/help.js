@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const settings = require("../config/settings.json");
 
 module.exports = {
 	name: "help",
