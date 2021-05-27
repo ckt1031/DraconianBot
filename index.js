@@ -1,11 +1,11 @@
 require("dotenv").config();
-const config = require("./config.json");
+const config = require("./config/config.json");
 const Enmap = require("enmap");
 const Discord = require("discord.js");
 
 const client = new Discord.Client({
 	partials: ["MESSAGE", "USER", "REACTION"],
-	disableMentions: "everyone",
+	disableMentions: "everyone"
 });
 const DisTube = require("distube");
 
@@ -17,35 +17,44 @@ global.emojis = require("./config/emoji.json");
 
 const db = require("quick.db");
 const { GiveawaysManager } = require("discord-giveaways");
+const { AutoPoster } = require("topgg-autoposter");
 
+const ap = AutoPoster(process.env.DBLTOKEN, client);
 const nz_date_string = new Date().toLocaleString("en-US", {
-	timeZone: "Asia/Hong_Kong",
-});
-
-process.on("unhandledRejection", error => {
-	console.log(`UnhandledPromiseRejection : ${error}\n`);
+	timeZone: "Asia/Hong_Kong"
 });
 
 client.commands = new Discord.Collection();
 client.slcommands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-client.emotes = config.emoji;
+client.emotes = emojis;
 client.colors = client.config.colors;
 client.snipes = new Map();
+client.ap = ap;
 client.mapss = new Map();
 client.mapss.set("uptimedate", nz_date_string);
 
-["command", "event", "giveaway", "music"].forEach(x =>
+["command", "dbl-loader", "event", "giveaway", "music"].forEach(x =>
 	require(`./handlers/${x}.js`)(client)
 );
 ["alwaysOn", "http"].forEach(x => require(`./server/${x}`)());
+
+const blapi = require("blapi");
+
+const apiKeys = {
+	"botlist.space": process.env.BOTLIST_SPACE,
+	"discord.boats": process.env.DISCORD_BOATS,
+	"botsfordiscord.com": process.env.BOTFORDISCORD
+};
+blapi.handle(client, apiKeys, 60);
 
 client.settings = new Enmap({
 	name: "settings",
 	fetchAll: false,
 	autoFetch: true,
-	cloneLevel: "deep",
+	cloneLevel: "deep"
 });
+
 client.moderationdb = new Enmap("moderation");
 
 client.distube = new DisTube(client, {
@@ -55,7 +64,7 @@ client.distube = new DisTube(client, {
 	youtubeDL: true,
 	updateYouTubeDL: true,
 	youtubeCookie:
-		"GPS=1; YSC=w5dGoHzqQRI; VISITOR_INFO1_LIVE=B4ElBqxSDv4; PREF=tz=Asia.Hong_Kong",
+		"GPS=1; YSC=w5dGoHzqQRI; VISITOR_INFO1_LIVE=B4ElBqxSDv4; PREF=tz=Asia.Hong_Kong"
 });
 
 if (!db.get("giveaways")) db.set("giveaways", []);
@@ -99,8 +108,8 @@ const manager = new GiveawayManagerWithOwnDatabase(client, {
 		exemptPermissions: ["MANAGE_MESSAGES", "ADMINISTRATOR"],
 		embedColor: "#ff6969",
 		embedColorEnd: "#505050",
-		reaction: "🎉",
-	},
+		reaction: "🎉"
+	}
 });
 client.giveawaysManager = manager;
 
@@ -128,9 +137,9 @@ client.ws.on("INTERACTION_CREATE", async interaction => {
 			data: {
 				type: 4,
 				data: {
-					content: "Sorry, error occurred when running this command!",
-				},
-			},
+					content: "Sorry, error occurred when running this command!"
+				}
+			}
 		});
 	}
 });

@@ -1,19 +1,10 @@
-/************************************************
- *  Heres Sharding Area, don't make any changes
- *  without you are known what u are doing now.
- *
- *  - Main Bot Process File
- *
- *  © Copyright MIT License 2021 RealKoolisw
- ************************************************/
-
 require("dotenv").config();
 
 const { ShardingManager } = require("discord.js");
 
 const shard = new ShardingManager("./index.js", {
 	token: process.env.TOKEN,
-	totalShards: 1,
+	totalShards: 1
 });
 
 shard.on("launch", shard => {
