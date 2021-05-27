@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const settings = require("../../settings.json");
+const settings = require("../../config/settings.json");
 
 const cooldowns = new Discord.Collection();
 
@@ -9,7 +9,7 @@ module.exports = async (client, message) => {
 
 	if (!client.settings.get(message.guild.id, "prefix")) {
 		client.settings.set(message.guild.id, {
-			prefix: settings.prefix,
+			prefix: settings.prefix
 		});
 	}
 
