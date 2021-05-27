@@ -4,7 +4,7 @@ const moment = require("moment");
 module.exports.run = async (bot, message, args) => {
 	const trufal = {
 		true: "Robot",
-		false: "Human",
+		false: "Human"
 	};
 
 	// let user;
@@ -48,16 +48,22 @@ module.exports.run = async (bot, message, args) => {
 				user.displayAvatarURL({ dynamic: false, format: "png", size: 4096 })
 			)
 			.setDescription(
-				`**Name: **${user.tag}\n**ID: **${user.id}\n**Account Type: **${
-					trufal[user.bot]
-				}\n**Joined At: **${moment(userguild.joinedAt).format(
-					"DD-MM-YYYY"
-				)}\n**Created at: ** ${moment(user.createdAt).format(
+				`**Name: **${user.tag}\n**ID: **${
+					user.id
+				}\n**Status: **${user.presence.status.toUpperCase()}\n**• Game: **${
+					user.presence.game
+						? user.presence.game.name
+						: "I do not see him playing anything!"
+				}\n**Account Type: **${trufal[user.bot]}\n**Joined At: **${moment(
+					userguild.joinedAt
+				).format("DD-MM-YYYY")}\n**Created at: ** ${moment(
+					user.createdAt
+				).format(
 					"DD-MM-YYYY"
 				)}\n**Avatar**: [Click here](${user.displayAvatarURL({
 					dynamic: false,
 					format: "png",
-					size: 4096,
+					size: 4096
 				})})\n**Roles: **${roles}`
 			)
 
@@ -65,7 +71,7 @@ module.exports.run = async (bot, message, args) => {
 				`${user.displayAvatarURL({
 					dynamic: false,
 					format: "png",
-					size: 4096,
+					size: 4096
 				})}`
 			)
 			.setTimestamp();
@@ -79,5 +85,5 @@ module.exports.help = {
 	description: "Check who is him/her",
 	usage: "d!whois <mention or keep blank>",
 	accessableby: "Members",
-	aliases: [],
+	aliases: []
 };

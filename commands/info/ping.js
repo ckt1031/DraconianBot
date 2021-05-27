@@ -15,5 +15,5 @@ module.exports.help = {
 	description: "This command is used for pinging the bot.",
 	usage: "d!ping",
 	accessableby: "Members",
-	aliases: [],
+	aliases: []
 };

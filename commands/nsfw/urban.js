@@ -5,12 +5,12 @@ module.exports.run = async (bot, message, args) => {
 	if (message.channel.nsfw == false)
 		return message.channel.send("This is not NSFW channel");
 	if (args.length < 1) return message.reply("Type something!");
-	let XD = args.join(" ");
+	const XD = args.join(" ");
 
 	urban(XD).first(json => {
 		if (!json) return message.reply("Cannot Search!");
 
-		let urbEmbed = new Discord.MessageEmbed()
+		const urbEmbed = new Discord.MessageEmbed()
 			.setColor("00ff00")
 			.setTitle(json.word)
 			.setDescription(json.definition)
@@ -27,5 +27,5 @@ module.exports.help = {
 	description: "This command is used for fetching urban stuff",
 	usage: "d!urban <search stuff>",
 	accessableby: "NSFW/Member",
-	aliases: [],
+	aliases: []
 };

@@ -3,25 +3,25 @@ const Discord = require("discord.js");
 exports.run = (client, message, args) => {
 	const notice3 = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> **Failed to set slowmode in this channel, check your slowmode number!**"
+			`${emojis.cross} Failed to set slowmode in this channel, check your slowmode number!`
 		)
 		.setColor("RED");
 
 	const notice1 = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> **Failed to set slowmode in this channel, please enter a valid number!**"
+			`${emojis.cross} Failed to set slowmode in this channel, please enter a valid number!`
 		)
 		.setColor("RED");
 
 	const noticwsse1 = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> **Failed to set slowmode in this channel, you can only type in 0 - 21600 second!**"
+			`${emojis.cross} Failed to set slowmode in this channel, you can only type in 0 - 21600 second!`
 		)
 		.setColor("RED");
 
 	const notice22 = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> **I don't have permission to change channel slowmode!**"
+			`${emojis.cross} I don't have permission to change channel slowmode!`
 		)
 		.setColor("RED");
 
@@ -33,7 +33,7 @@ exports.run = (client, message, args) => {
 	const duration = parseInt(args[0]);
 	const mmsssqembed = new Discord.MessageEmbed()
 		.setDescription(
-			`:no_entry_sign: ${message.author.username}, Missing Permission`
+			`${emojis.cross} ${message.author.username}, Missing Permission`
 		)
 		.setColor("#FFFF00");
 	if (!message.member.hasPermission("MANAGE_CHANNELS")) {
@@ -52,7 +52,7 @@ exports.run = (client, message, args) => {
 	});
 	const bsuembed = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> Set channel's slowmode to **${duration}s** `
+			`${emojis.tick} Set channel's slowmode to **${duration}s** `
 		)
 		.setColor("GREEN");
 
@@ -65,5 +65,5 @@ module.exports.help = {
 		"This command is used for changing the slowmode as settings page cannot.",
 	usage: "d!slowmode <1-21600>",
 	accessableby: "Manage Channels",
-	aliases: [],
+	aliases: []
 };

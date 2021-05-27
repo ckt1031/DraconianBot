@@ -7,7 +7,7 @@ module.exports.run = (client, msg, args) => {
 			.get("https://nekobot.xyz/api/image")
 			.query({ type: "4k" })
 			.end((err, response, body) => {
-				let emb = new discord.MessageEmbed()
+				const emb = new discord.MessageEmbed()
 					.setImage(response.body.message)
 					.setColor("#00ff00")
 					.setTitle("4K NSFW here")
@@ -27,5 +27,5 @@ module.exports.help = {
 	description: "This command is used for generating some 4knsfw images.",
 	usage: "d!4knsfw",
 	accessableby: "NSFW/Member",
-	aliases: [],
+	aliases: []
 };

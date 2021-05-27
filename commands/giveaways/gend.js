@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
 	}
 
 	// try to found the giveaway with prize then with ID
-	let giveaway =
+	const giveaway =
 		// Search with giveaway prize
 		client.giveawaysManager.giveaways.find(g => g.prize === args.join(" ")) ||
 		// Search with giveaway ID
@@ -26,22 +26,22 @@ module.exports.run = async (client, message, args) => {
 	// If no giveaway was found
 	if (!giveaway) {
 		return message.channel.send(
-			"Unable to find a giveaway for `" + args.join(" ") + "`."
+			`Unable to find a giveaway for \`${args.join(" ")}\`.`
 		);
 	}
 
 	// Edit the giveaway
 	client.giveawaysManager
 		.edit(giveaway.messageID, {
-			setEndTimestamp: Date.now(),
+			setEndTimestamp: Date.now()
 		})
 		// Success message
 		.then(() => {
 			// Success message
 			message.channel.send(
-				"Giveaway will end in less than " +
-					client.giveawaysManager.options.updateCountdownEvery / 1000 +
-					" seconds..."
+				`Giveaway will end in less than ${
+					client.giveawaysManager.options.updateCountdownEvery / 1000
+				} seconds...`
 			);
 		})
 		.catch(e => {
@@ -63,5 +63,5 @@ module.exports.help = {
 	description: "This command is used for endding the currents giveaway section",
 	usage: "d!gend <giveaway-message-id>",
 	accessableby: "Manage Messages",
-	aliases: [],
+	aliases: []
 };

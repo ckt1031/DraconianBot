@@ -26,5 +26,5 @@ module.exports.help = {
 	description: "Changemymind please.",
 	usage: "d!changemymind <text>(optional)",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

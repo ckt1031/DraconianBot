@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const fetch = require("node-fetch");
-const config = require("../../config.json");
+const config = require("../../config/config.json");
 
 module.exports.run = async (client, message) => {
 	const milliseconds = parseInt((client.uptime % 1000) / 100);
@@ -47,5 +47,5 @@ module.exports.help = {
 	description: "This command is used for monitoring stats of bot.",
 	usage: "d!stats",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

@@ -7,7 +7,7 @@ module.exports.run = (client, msg, args) => {
 			.get("https://nekobot.xyz/api/image")
 			.query({ type: "pussy" })
 			.end((err, response, body) => {
-				let emb = new discord.MessageEmbed()
+				const emb = new discord.MessageEmbed()
 					.setImage(response.body.message)
 					.setColor("#00ff00")
 					.setTitle("Pussy here");
@@ -25,5 +25,5 @@ module.exports.help = {
 		"This command is used for calling NSFW images API to send them, but NSFW channel needed.",
 	usage: "d!pussy <mention>",
 	accessableby: "NSFW/Members",
-	aliases: [],
+	aliases: []
 };

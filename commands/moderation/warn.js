@@ -15,13 +15,16 @@ module.exports.run = async (client, message, args) => {
 
 	const notice1 = new Discord.MessageEmbed()
 		.setDescription(
-			`<:cross1:747728200691482746> **${message.author.username}, Missing Permission**`
+			`${emojis.cross} ${message.author.username}, Missing Permission`
 		)
 		.setColor("RED");
+
 	const notice3 = new Discord.MessageEmbed()
-		.setDescription(
-			"<:cross1:747728200691482746> **I don't have permission to warn people!**"
-		)
+		.setDescription(`${emojis.cross} I don't have permission to warn people!`)
+		.setColor("RED");
+
+	const notice333 = new Discord.MessageEmbed()
+		.setDescription(`${emojis.cross} You must mention someone to warn him/her!`)
 		.setColor("RED");
 	if (
 		!message.guild
@@ -39,13 +42,11 @@ module.exports.run = async (client, message, args) => {
 	}
 
 	if (!user) {
-		return message
-			.reply("You must mention someone to warn them.")
-			.catch(console.error);
+		return message.channel.send(notice333).catch(console.error);
 	}
 
 	const notice2 = new Discord.MessageEmbed()
-		.setDescription("<:cross1:747728200691482746> You cannot warn yourself")
+		.setDescription(`${emojis.cross} You cannot warn yourself`)
 		.setColor("RED");
 
 	if (user.id === message.author.id) {
@@ -60,12 +61,12 @@ module.exports.run = async (client, message, args) => {
 
 	const dsfdsfsdf = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to you!**"
+			`${emojis.cross} Access Denied, that member has roles higher or equal to you!`
 		)
 		.setColor("RED");
 	const sdfsdfsdfsd = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> Access Denied, **that member has roles higher or equal to me!**"
+			`${emojis.cross} Access Denied, **that member has roles higher or equal to me!`
 		)
 		.setColor("RED");
 	const botRolePossition = message.guild.member(client.user).roles.highest
@@ -77,18 +78,22 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(sdfsdfsdfsd);
 
 	client.moderationdb.ensure(key, {
+		guildid: message.guild.id,
+		userid: user.id,
 		warns: 0,
+		isMuted: false,
+		timeMuteEnd: 0
 	});
 	client.moderationdb.inc(key, "warns");
 
 	const test1 = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> Muted **${user.username}#${user.discriminator}** For 1 Hour | **Reached Two Warnings**`
+			`${emojis.tick} Muted **${user.username}#${user.discriminator}** For 1 Hour | **Reached Two Warnings**`
 		)
 		.setColor("GREEN");
 	const bsuembed = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> Warned **${user.username}#${user.discriminator}** | **${reason}**`
+			`${emojis.tick} Warned **${user.username}#${user.discriminator}** | **${reason}**`
 		)
 		.setColor("GREEN");
 
@@ -105,13 +110,13 @@ module.exports.run = async (client, message, args) => {
 
 	const test2 = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> Kicked **${user.username}#${user.discriminator}** | **Reached Warnings 3**`
+			`${emojis.tick} Kicked **${user.username}#${user.discriminator}** | **Reached Warnings 3**`
 		)
 		.setColor("GREEN");
 
 	const test3 = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> Banned **${user.username}#${user.discriminator}** | **Reached 5 Warnings**`
+			`${emojis.tick} Banned **${user.username}#${user.discriminator}** | **Reached 5 Warnings**`
 		)
 		.setColor("GREEN");
 
@@ -146,5 +151,5 @@ module.exports.help = {
 		"Warn someone u hates/againsting rules, 2 warn for muting, 3 warns for kicking, 5 warns for banning",
 	usage: "d!warn <mention> <reason>",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

@@ -19,5 +19,5 @@ module.exports.help = {
 	description: "This command is used for setting yourself as afk.",
 	usage: "d!setafk",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

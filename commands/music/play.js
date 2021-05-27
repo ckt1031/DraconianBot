@@ -3,7 +3,7 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(
 			`${client.emotes.error} | You must be in a voice channel!`
 		);
-	let string = args.join(" ");
+	const string = args.join(" ");
 	if (!string)
 		return message.channel.send(
 			`${client.emotes.error} | Please enter a song url or query to search.`
@@ -20,5 +20,5 @@ module.exports.help = {
 	description: "This command is used for playing some music you like.",
 	usage: "d!play <song>",
 	accessableby: "Members",
-	aliases: ["p"],
+	aliases: ["p"]
 };

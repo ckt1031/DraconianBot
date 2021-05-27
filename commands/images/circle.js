@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
 					? message.guild.members.cache.get(args[0]).user.displayAvatarURL({
 							dynamic: false,
 							format: "png",
-							size: 4096,
+							size: 4096
 					  })
 					: message.guild.members.cache
 							.find(
@@ -30,12 +30,12 @@ module.exports.run = async (client, message, args) => {
 							.user.displayAvatarURL({
 								dynamic: false,
 								format: "png",
-								size: 4096,
+								size: 4096
 							})
 				: message.author.displayAvatarURL({
 						dynamic: false,
 						format: "png",
-						size: 4096,
+						size: 4096
 				  }));
 	} catch (e) {
 		return message.channel.send(usernotfind);
@@ -52,5 +52,5 @@ module.exports.help = {
 	description: "Circle the images or avatar",
 	usage: "d!circle <mentions>(optional)",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

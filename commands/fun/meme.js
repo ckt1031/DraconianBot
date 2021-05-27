@@ -31,5 +31,5 @@ module.exports.help = {
 	description: "This command is used for generating some cool memes.",
 	usage: "d!meme",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

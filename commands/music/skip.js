@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(
 			`${client.emotes.error} | There is nothing playing!`
 		);
-	let queue = client.distube.skip(message);
+	const queue = client.distube.skip(message);
 	message.channel.send(
 		`${client.emotes.success} | Skipped! Now playing:\n${queue.songs[0].name}`
 	);
@@ -18,5 +18,5 @@ module.exports.help = {
 	description: "This command is used for skiping songs.",
 	usage: "d!skip",
 	accessableby: "Manage Server",
-	aliases: [],
+	aliases: []
 };

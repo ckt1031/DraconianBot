@@ -1,10 +1,18 @@
 const Discord = require("discord.js");
-const config = require("../../config.json");
+const config = require("../../config/config.json");
+const settings = require("../../config/settings.json");
 
 module.exports.run = async (client, message, args) => {
+	const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
+
 	const embed6 = new Discord.MessageEmbed()
 		.setDescription(
-			`<:cross1:747728200691482746> ${message.author.username}, Missing Permission`
+			`${emojis.cross} ${message.author.username}, Missing Permission`
+		)
+		.setColor("RED");
+	const missingn = new Discord.MessageEmbed()
+		.setDescription(
+			`${emojis.cross} Use: **\`${prefixesdatabase.prefix}clear <1 - 100>\`**`
 		)
 		.setColor("RED");
 	if (!message.member.hasPermission("MANAGE_MESSAGES")) {
@@ -12,17 +20,18 @@ module.exports.run = async (client, message, args) => {
 	}
 	if (!args[0]) {
 		return message.channel
-			.send("<:no:565766936189861889> Use: **`?clear <1 - 100>`**")
+			.send(missingn)
 			.then(m => m.delete({ timeout: 7000 }));
 	}
 
 	const embedgg = new Discord.MessageEmbed()
 		.setColor("RED")
 		.setDescription(
-			`<:cross1:747728200691482746> You can only clear 1 - 100 message(s) each time!`
+			`${emojis.cross} You can only clear 1 - 100 message(s) each time!`
 		);
 
-	if (args[0] > 100 || args[0] <= 0) return message.channel.send(embedgg);
+	if (args[0] > 100 || args[0] <= 0)
+		return message.channel.send(embedgg).then(m => m.delete({ timeout: 5000 }));
 
 	const embed = new Discord.MessageEmbed()
 		.setColor("GREEN")
@@ -33,9 +42,7 @@ module.exports.run = async (client, message, args) => {
 
 	const kntlembed = new Discord.MessageEmbed()
 		.setColor("GREEN")
-		.setDescription(
-			`<:tick:702386031361523723> Cleared **${args[0]}** Message here`
-		);
+		.setDescription(`${emojis.tick} Cleared **${args[0]}** Message here`);
 
 	try {
 		message.delete();
@@ -60,5 +67,5 @@ module.exports.help = {
 	description: "Clear the message with amount",
 	usage: "d!clear <amount>(1-99)",
 	accessableby: "Manage Message",
-	aliases: [],
+	aliases: []
 };

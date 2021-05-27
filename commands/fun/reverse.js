@@ -16,5 +16,5 @@ module.exports.help = {
 	description: "This command is used for reversing words.",
 	usage: "d!reverse",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

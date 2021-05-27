@@ -9,9 +9,9 @@ module.exports.run = async (client, message, args) => {
 
 		const embed = new Discord.MessageEmbed()
 			.setColor("#ff9900")
-			.setTitle(`Heres your Hentai Image`)
+			.setTitle("Heres your Hentai Image")
 			.setImage(body.url)
-			.setFooter(`© Draconian Workshop`);
+			.setFooter("© Draconian Workshop");
 		message.channel.send({ embed });
 	} else {
 		message.channel.send("This isn't NSFW channel!");
@@ -25,5 +25,5 @@ module.exports.help = {
 	usage: "d!hentai",
 	accessablechannel: "NSFW Channel",
 	accessableby: "NSFW/Member",
-	aliases: [],
+	aliases: []
 };

@@ -8,8 +8,8 @@ module.exports = {
 			type: 3,
 			name: "command",
 			description: "Type any command you want to ask for!",
-			required: false,
-		},
+			required: false
+		}
 	],
 	execute(interaction) {
 		const optioninvalid = interaction.data.options;
@@ -43,9 +43,9 @@ module.exports = {
 						data: {
 							type: 4,
 							data: {
-								embeds: [embed],
-							},
-						},
+								embeds: [embed]
+							}
+						}
 					});
 			}
 
@@ -60,62 +60,33 @@ module.exports = {
 						data: {
 							type: 4,
 							data: {
-								embeds: [embeds],
-							},
-						},
+								embeds: [embeds]
+							}
+						}
 					});
 			}
 		} else {
+			const prefixesdatabase = client.settings.ensure(
+				interaction.guild_id,
+				settings
+			);
+
 			const embed = new Discord.MessageEmbed()
-				.setAuthor(
-					`${client.user.username} Commands list`,
-					client.user.displayAvatarURL()
-				)
-				.setTitle("DraconianBot Help & Commands list")
+				.setTitle(`${emoji.slash} DraconianBot Slash Commands List`)
 				.setColor("GREEN")
 				.setDescription(
-					"**My prefix:** `d!`\nClick [here](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot%20applications.commands) to invite me to your server."
+					`**My prefix:** \`${prefixesdatabase.prefix}\` , Traditional Command List for \`${prefixesdatabase.prefix}help\`\nClick [HERE](https://discord.com/api/oauth2/authorize?client_id=711937599975063584&permissions=8&scope=bot%20applications.commands) to invite me to your server.\n\n\`avatar\`, \`cat\`, \`dog\`, \`enlarge\`, \`help\`, \`meme\`, \`ping\`, \`snipe\`, \`uptime\`, \`weather\``
 				)
-				.addField("**📱Basic**", "`help`, `ping`, `vote`, `uptime`")
-				.addField(
-					"**⚙utility**",
-					"`aes256`, `avatar`, `channel`, `embed`, `roleinfo`, `reverse`, `setafk`, `snipe`, `stats`, `timer`, `translate`, `whois`, `weather`, `youtube`"
-				)
-				.addField(
-					"**🎃Fun**",
-					"`8ball`, `cat`, `deaes256`, `kiss`, `meme`, `ngif`, `pat`, `poke`, `smug`, `thigh`, `tickle`"
-				)
-				.addField(
-					"**:tada:Giveaways**",
-					"`start-giveaway`, `reroll`, `end-giveaway`"
-				)
-				.addField(
-					"**:frame_photo:Image**",
-					"`captcha`, `circle`, `delete`, `gay`, `changemymind`, `trigger`, `clyde`, `petpet`, `magik`, `iphonex`"
-				)
-				.addField(
-					"**:musical_note:Music**",
-					"`play`, `stop`, `skip`, `queue`, `autoplay`, `loop`, `volume`, `pause`, `resume`"
-				)
-				.addField(
-					"**🛠️Moderation**",
-					"`addrole`, `ban`, `clear`, `clearwarn`, `createchannel`, `createemoji`, `kick`, `lockchannel`, `mute`, `rename`, `slowmode`, `unban`, `unlockchannel`, `unmute`, `warn`, `warnings`"
-				)
-				.addField(
-					"**:underage:NSFW**",
-					"`4knsfw`, `anal`, `ass`, `hentai`, `holo`, `pussy`, `porn`, `urban`"
-				)
-				.addField("**:gear:Custom Function**", "`setprefix`")
 				.setFooter(`© ${nowyear} ${client.user.username}`);
 
 			client.api.interactions(interaction.id, interaction.token).callback.post({
 				data: {
 					type: 4,
 					data: {
-						embeds: [embed],
-					},
-				},
+						embeds: [embed]
+					}
+				}
 			});
 		}
-	},
+	}
 };

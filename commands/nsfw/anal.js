@@ -7,7 +7,7 @@ module.exports.run = (client, msg, args) => {
 			.get("https://nekobot.xyz/api/image")
 			.query({ type: "anal" })
 			.end((err, response, body) => {
-				let emb = new discord.MessageEmbed()
+				const emb = new discord.MessageEmbed()
 					.setImage(response.body.message)
 					.setColor("#00ff00")
 					.setTitle("Anal here")
@@ -29,5 +29,5 @@ module.exports.help = {
 	usage: "d!anal",
 	accessablechannel: "NSFW Channel",
 	accessableby: "NSFW/Member",
-	aliases: [],
+	aliases: []
 };

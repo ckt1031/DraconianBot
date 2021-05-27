@@ -3,11 +3,11 @@ const Discord = require("discord.js");
 exports.run = (client, message, args) => {
 	const notice3 = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> **I don't have permission to manage channel!**"
+			`${emojis.cross} I don't have permission to manage channel!`
 		)
 		.setColor("RED");
 	const dfgrdgdfgdf = new Discord.MessageEmbed()
-		.setDescription("<:tick:702386031361523723> **Lockdown lifted**")
+		.setDescription(`${emojis.tick} Unlocked this channel`)
 		.setColor("GREEN");
 
 	if (!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) {
@@ -17,7 +17,7 @@ exports.run = (client, message, args) => {
 	}
 	const mmqembed = new Discord.MessageEmbed()
 		.setDescription(
-			`:no_entry_sign: ${message.author.username}, Missing Permission`
+			`${emojis.cross} ${message.author.username}, Missing Permission`
 		)
 		.setColor("RED");
 	if (!message.member.hasPermission("MANAGE_CHANNELS")) {
@@ -27,11 +27,10 @@ exports.run = (client, message, args) => {
 	}
 
 	if (!client.lockit) client.lockit = [];
-	// if (!message.member.hasPermission("MANAGE_CHANNELS")) return msg.reply("❌**Error:** You don't have the permission to do that!");
 
 	message.channel
 		.createOverwrite(message.guild.id, {
-			SEND_MESSAGES: true,
+			SEND_MESSAGES: true
 		})
 		.then(() => {
 			message.channel.send(dfgrdgdfgdf);
@@ -47,5 +46,5 @@ module.exports.help = {
 	description: "This command is used for unlockchanneling",
 	usage: "d!unlockchannel",
 	accessableby: "Manage Channels",
-	aliases: [],
+	aliases: []
 };

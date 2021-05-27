@@ -12,21 +12,21 @@ module.exports.run = async (client, message, args) => {
 	}
 
 	// Giveaway channel
-	let giveawayChannel = message.mentions.channels.first();
+	const giveawayChannel = message.mentions.channels.first();
 	// If no channel is mentionned
 	if (!giveawayChannel) {
 		return message.channel.send(":x: You have to mention a valid channel!");
 	}
 
 	// Giveaway duration
-	let giveawayDuration = args[1];
+	const giveawayDuration = args[1];
 	// If the duration isn't valid
 	if (!giveawayDuration || isNaN(ms(giveawayDuration))) {
 		return message.channel.send(":x: You have to specify a valid duration!");
 	}
 
 	// Number of winners
-	let giveawayNumberWinners = args[2];
+	const giveawayNumberWinners = args[2];
 	// If the specified number of winners is not a number
 	if (isNaN(giveawayNumberWinners) || parseInt(giveawayNumberWinners) <= 0) {
 		return message.channel.send(
@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
 	}
 
 	// Giveaway prize
-	let giveawayPrize = args.slice(3).join(" ");
+	const giveawayPrize = args.slice(3).join(" ");
 	// If no prize is specified
 	if (!giveawayPrize) {
 		return message.channel.send(":x: You have to specify a valid prize!");
@@ -53,12 +53,12 @@ module.exports.run = async (client, message, args) => {
 		hostedBy: client.config.hostedBy ? message.author : null,
 		// Messages
 		messages: {
-			giveaway:
-				(client.config.everyoneMention ? "@everyone\n\n" : "") +
-				"🎉🎉 **GIVEAWAY** 🎉🎉",
-			giveawayEnded:
-				(client.config.everyoneMention ? "@everyone\n\n" : "") +
-				"🎉🎉 **GIVEAWAY ENDED** 🎉🎉",
+			giveaway: `${
+				client.config.everyoneMention ? "@everyone\n\n" : ""
+			}🎉🎉 **GIVEAWAY** 🎉🎉`,
+			giveawayEnded: `${
+				client.config.everyoneMention ? "@everyone\n\n" : ""
+			}🎉🎉 **GIVEAWAY ENDED** 🎉🎉`,
 			timeRemaining: "Time remaining: **{duration}**!",
 			inviteToParticipate: "React with 🎉 to participate!",
 			winMessage: "Congratulations, {winners}! You won **{prize}**!",
@@ -72,9 +72,9 @@ module.exports.run = async (client, message, args) => {
 				minutes: "minutes",
 				hours: "hours",
 				days: "days",
-				pluralS: false, // Not needed, because units end with a S so it will automatically removed if the unit value is lower than 2
-			},
-		},
+				pluralS: false // Not needed, because units end with a S so it will automatically removed if the unit value is lower than 2
+			}
+		}
 	});
 
 	message.channel.send(`Giveaway started in ${giveawayChannel}!`);
@@ -85,5 +85,5 @@ module.exports.help = {
 	description: "This command is used for creating a giveawya for events.",
 	usage: "d!gstart <channel> <duration> <winner> <prize>",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

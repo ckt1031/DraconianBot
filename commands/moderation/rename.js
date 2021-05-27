@@ -23,12 +23,12 @@ exports.run = (client, message, args) => {
 		user.setNickname(newname);
 	} catch (e) {
 		const embed = new Discord.MessageEmbed().setDescription(
-			"<:cross1:747728200691482746> **Failed to set user's nickname!**"
+			`${emojis.cross} **Failed to set user's nickname!`
 		);
 		message.channel.send(embed3);
 	}
 	const embed = new Discord.MessageEmbed().setDescription(
-		"<:tick:702386031361523723> **Nickname has been set!**"
+		`${emojis.tick} **Nickname has been set!`
 	);
 	message.channel.send(embed);
 };
@@ -38,5 +38,5 @@ module.exports.help = {
 	description: "This command is used for renaming someone's nickname.",
 	usage: "d!rename <mentions> <nickname>",
 	accessableby: "Manage Nicknames",
-	aliases: [],
+	aliases: []
 };

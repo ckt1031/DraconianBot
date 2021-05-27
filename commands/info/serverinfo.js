@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
 		"vip-us-east": "VIP U.S. East",
 		london: "London",
 		amsterdam: "Amsterdam",
-		hongkong: "Hong Kong",
+		hongkong: "Hong Kong"
 	};
 
 	let emojis;
@@ -71,5 +71,5 @@ module.exports.help = {
 	description: "This command is used for checking the server info.",
 	usage: "d!serverinfo",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

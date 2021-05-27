@@ -8,8 +8,8 @@ module.exports = {
 			type: 6,
 			name: "user",
 			description: "Type any user you want!",
-			required: false,
-		},
+			required: false
+		}
 	],
 	execute(interaction) {
 		const checkuser = interaction.data.options; // .options[0].value;
@@ -25,7 +25,7 @@ module.exports = {
 			const avatar = result.displayAvatarURL({
 				format: "png",
 				dynamic: true,
-				size: 4096,
+				size: 4096
 			});
 			const embed = new Discord.MessageEmbed()
 				.setColor("GREEN")
@@ -36,10 +36,10 @@ module.exports = {
 				data: {
 					type: 4,
 					data: {
-						embeds: [embed],
-					},
-				},
+						embeds: [embed]
+					}
+				}
 			});
 		});
-	},
+	}
 };

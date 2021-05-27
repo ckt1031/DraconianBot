@@ -34,5 +34,5 @@ module.exports.help = {
 	description: "This command is used for poke someone",
 	usage: "d!poke <mention>",
 	accessableby: "Members",
-	aliases: [],
+	aliases: []
 };

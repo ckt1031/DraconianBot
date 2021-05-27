@@ -13,5 +13,5 @@ module.exports.help = {
 	description: "N/A",
 	usage: "d!send-message [Message]",
 	accessableby: "Bot Owners",
-	aliases: [],
+	aliases: []
 };

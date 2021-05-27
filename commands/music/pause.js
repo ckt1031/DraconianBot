@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(
 			`${client.emotes.error} | There is nothing playing!`
 		);
-	let queue = client.distube.pause(message);
+	const queue = client.distube.pause(message);
 	message.channel.send(`${client.emotes.success} | Paused!`);
 };
 module.exports.help = {
@@ -16,5 +16,5 @@ module.exports.help = {
 		"This command is used for pausing music when inside music channel.",
 	usage: "d!pause",
 	accessableby: "Members",
-	aliases: [],
+	aliases: []
 };

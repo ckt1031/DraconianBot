@@ -7,8 +7,8 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(
 			`${client.emotes.error} | There is nothing playing!`
 		);
-	let mode = client.distube.toggleAutoplay(message);
-	message.channel.send("Set autoplay mode to `" + (mode ? "On" : "Off") + "`");
+	const mode = client.distube.toggleAutoplay(message);
+	message.channel.send(`Set autoplay mode to \`${mode ? "On" : "Off"}\``);
 };
 
 module.exports.help = {
@@ -17,5 +17,5 @@ module.exports.help = {
 		"This command is used for enabling or disabling autoplay features for music system.",
 	usage: "d!autoplay",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

@@ -13,9 +13,9 @@ module.exports = {
 					data: {
 						type: 4,
 						data: {
-							content: "There is no any delete message here",
-						},
-					},
+							content: "There is no any delete message here"
+						}
+					}
 				});
 		}
 		const embed = new Discord.MessageEmbed()
@@ -27,9 +27,9 @@ module.exports = {
 			data: {
 				type: 4,
 				data: {
-					embeds: [embed],
-				},
-			},
+					embeds: [embed]
+				}
+			}
 		});
-	},
+	}
 };

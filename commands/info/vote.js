@@ -13,5 +13,5 @@ module.exports.help = {
 		"Vote us in https://top.gg/bot/711937599975063584/vote every 12 hours",
 	usage: "d!vote",
 	accessableby: "Everyone",
-	aliases: [],
+	aliases: []
 };

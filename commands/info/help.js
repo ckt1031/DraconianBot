@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-	const settings = require("../../settings.json");
+	const settings = require("../../config/settings.json");
 	const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
 
 	const helpArray = message.content.split(" ");
@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
 			)
 			.setColor("GREEN")
 			.setDescription(
-				`**My prefix:** \`${prefixesdatabase.prefix}\`\nClick [here](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands) to invite me to your server.`
+				`**My prefix:** \`${prefixesdatabase.prefix}\` , ${emojis.slash} Slash Commands list for \`/help\`\nClick [HERE](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands) to invite me to your server.`
 			)
 			.addField("**📱Basic**", "`info`, `help`, `ping`, `vote`, `uptime`")
 			.addField(
@@ -98,5 +98,5 @@ module.exports.help = {
 	description: "This command is used for displaying all commands.",
 	usage: "d!help",
 	accessableby: "Members",
-	aliases: [],
+	aliases: []
 };

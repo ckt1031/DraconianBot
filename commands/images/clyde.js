@@ -25,5 +25,5 @@ module.exports.help = {
 	description: "Acts like clyde",
 	usage: "d!clyde <text>",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

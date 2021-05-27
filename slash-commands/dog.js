@@ -19,10 +19,10 @@ module.exports = {
 				data: {
 					type: 4,
 					data: {
-						embeds: [emb],
-					},
-				},
+						embeds: [emb]
+					}
+				}
 			});
 		});
-	},
+	}
 };

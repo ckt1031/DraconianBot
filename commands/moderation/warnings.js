@@ -4,7 +4,7 @@ const ms = require("ms");
 module.exports.run = async (client, message, args) => {
 	const emddd = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> You must mention someone to check their warns."
+			`${emojis.cross} You must mention someone to check their warns.`
 		)
 		.setColor("RED");
 	// const user = message.mentions.users.first();
@@ -20,8 +20,13 @@ module.exports.run = async (client, message, args) => {
 	// client.moderationdb
 	if (!user) return message.channel.send(emddd);
 	const key = `${message.guild.id}-${user.id}`;
+
 	client.moderationdb.ensure(key, {
+		guildid: message.guild.id,
+		userid: user.id,
 		warns: 0,
+		isMuted: false,
+		timeMuteEnd: 0
 	});
 	// if (!warns[user.id]) return message.channel.send(emddd)
 
@@ -40,5 +45,5 @@ module.exports.help = {
 	description: "Check the people you mentioned who has warnings or not",
 	usage: "d!warnings <mention>",
 	accessableby: "Members",
-	aliases: [],
+	aliases: []
 };

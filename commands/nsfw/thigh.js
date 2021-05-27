@@ -7,7 +7,7 @@ exports.run = (client, msg, args) => {
 			.get("https://nekobot.xyz/api/image")
 			.query({ type: "thigh" })
 			.end((err, response, body) => {
-				let emb = new discord.MessageEmbed()
+				const emb = new discord.MessageEmbed()
 					.setImage(response.body.message)
 					.setColor("#00ff00")
 					.setTitle("Thigh here")
@@ -27,5 +27,5 @@ module.exports.help = {
 	description: "This command is used for generating thigh image.",
 	usage: "d!thigh",
 	accessableby: "NSFW/Member",
-	aliases: [],
+	aliases: []
 };

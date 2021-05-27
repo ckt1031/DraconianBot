@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
 	}
 
 	// try to found the giveaway with prize then with ID
-	let giveaway =
+	const giveaway =
 		// Search with giveaway prize
 		client.giveawaysManager.giveaways.find(g => g.prize === args.join(" ")) ||
 		// Search with giveaway ID
@@ -26,7 +26,7 @@ exports.run = async (client, message, args) => {
 	// If no giveaway was found
 	if (!giveaway) {
 		return message.channel.send(
-			"Unable to find a giveaway for `" + args.join(" ") + "`."
+			`Unable to find a giveaway for \`${args.join(" ")}\`.`
 		);
 	}
 
@@ -56,5 +56,5 @@ module.exports.help = {
 	description: "This command is used for rerolling giveaways.",
 	usage: "d!greroll <giveaway-message-ID>",
 	accessableby: "Manage Messages",
-	aliases: [],
+	aliases: []
 };

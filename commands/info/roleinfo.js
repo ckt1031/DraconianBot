@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
 
 	const status = {
 		false: "No",
-		true: "Yes",
+		true: "Yes"
 	};
 
 	const roleemebed = new Discord.MessageEmbed()
@@ -44,5 +44,5 @@ module.exports.help = {
 	description: "This command is used for generating people IN RiP.",
 	usage: "d!roleinfo <roles-ID>",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

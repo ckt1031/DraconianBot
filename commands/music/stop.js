@@ -16,5 +16,5 @@ module.exports.help = {
 	description: "This command is used for stopping music.",
 	usage: "d!stop",
 	accessableby: "Member",
-	aliases: ["s", "dc", "fuckoff", "disconnect"],
+	aliases: ["s", "dc", "fuckoff", "disconnect"]
 };

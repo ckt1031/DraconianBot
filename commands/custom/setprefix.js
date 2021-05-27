@@ -1,24 +1,25 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const settings = require("../../settings.json");
+const settings = require("../../config/settings.json");
 
 module.exports.run = async (client, message, args) => {
 	const embedmissingperms = new Discord.MessageEmbed()
 		.setDescription(
-			`<:cross1:747728200691482746> ${message.author.username}, Missing Permission!`
+			`${emojis.cross} ${message.author.username}, Missing Permission!`
 		)
 		.setColor("RED");
 
 	const embedmissing = new Discord.MessageEmbed()
-		.setDescription(
-			`<:cross1:747728200691482746> Please type the prefix you want to set!`
-		)
+		.setDescription(`${emojis.cross} Please type the prefix you want to set!`)
 		.setColor("RED");
 
 	const embedtoolong = new Discord.MessageEmbed()
 		.setDescription(
-			`<:cross1:747728200691482746> Prefix's length shouldn't be longer than 3 letters`
+			`${emojis.cross} Prefix's length shouldn't be longer than 3 letters`
 		)
+		.setColor("RED");
+	const embedsame = new Discord.MessageEmbed()
+		.setDescription(`${emojis.cross} Prefix is same to current's`)
 		.setColor("RED");
 
 	if (!message.member.hasPermission("MANAGE_SERVER"))
@@ -29,12 +30,16 @@ module.exports.run = async (client, message, args) => {
 	if (!args[0]) return message.channel.send(embedmissing);
 
 	if (args[0].length > 3) return message.channel.send(embedtoolong);
+	if (args[0] == client.settings.get(message.guild.id, "prefix"))
+		return message.channel.send(embedsame);
 
 	// We can confirm everything's done to the client.
 
 	const warningsembed = new Discord.MessageEmbed()
 		.setDescription(
-			`:warning: When you change the default prefix, the current prefix \`${client.settings.get(
+			`${
+				emojis.warning
+			} When you change the default prefix, the current prefix \`${client.settings.get(
 				message.guild.id,
 				"prefix"
 			)}\` will not be woking anymore and it will be changed to new prefix you enter.\n\nPlease type \`confirm\` to confirm your action!`
@@ -43,7 +48,7 @@ module.exports.run = async (client, message, args) => {
 
 	const calcelembed = new Discord.MessageEmbed()
 		.setDescription(
-			`<:cross1:747728200691482746> Time's up! Setting prefix's action cancelled!`
+			`${emojis.cross} Time's up! Setting prefix's action cancelled!`
 		)
 		.setColor("RED");
 
@@ -54,17 +59,21 @@ module.exports.run = async (client, message, args) => {
 			{
 				max: 1,
 				time: 20000,
-				errors: ["time"],
+				errors: ["time"]
 			}
 		)
 		.then(async collected => {
 			await client.settings.set(message.guild.id, args[0], "prefix");
-			message.channel.send(
-				`My command prefix has been changed to: ${client.settings.get(
-					message.guild.id,
-					"prefix"
-				)}`
-			);
+			message.delete();
+			const doneembed = new Discord.MessageEmbed()
+				.setDescription(
+					`${emojis.tick} Prefix has been changed to: \`${client.settings.get(
+						message.guild.id,
+						"prefix"
+					)}\``
+				)
+				.setColor("GREEN");
+			message.channel.send(doneembed);
 		})
 		.catch(collected => message.channel.send(calcelembed));
 };
@@ -74,5 +83,5 @@ module.exports.help = {
 	description: "This command is used for changing the prefix.",
 	usage: "d!setprefix <value>",
 	accessableby: "Manage Server",
-	aliases: [],
+	aliases: []
 };

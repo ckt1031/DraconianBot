@@ -3,7 +3,7 @@ module.exports.run = async (client, message, args) => {
 		return message.channel.send(
 			`${client.emotes.error} | You must be in a voice channel!`
 		);
-	let queue = client.distube.resume(message);
+	const queue = client.distube.resume(message);
 	message.channel.send(
 		`${client.emotes.success} | Resumed! Now playing:\n${queue.songs[0].name}`
 	);
@@ -14,5 +14,5 @@ module.exports.help = {
 	description: "This command is used for resuming music.",
 	usage: "d!resume",
 	accessableby: "Member",
-	aliases: [],
+	aliases: []
 };

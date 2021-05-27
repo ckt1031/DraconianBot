@@ -1,12 +1,10 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const config = require("../../config.json");
+const config = require("../../config/config.json");
 
 module.exports.run = async (client, msg, args) => {
 	const notice3 = new Discord.MessageEmbed()
-		.setDescription(
-			"<:cross1:747728200691482746> I don't have permission to ban people!"
-		)
+		.setDescription(`${emojis.cross} I don't have permission to ban people!`)
 		.setColor("RED");
 	if (!msg.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
 		return msg.channel.send(notice3).then(msg => msg.delete({ timeout: 5000 }));
@@ -46,7 +44,7 @@ module.exports.run = async (client, msg, args) => {
 			.then(msg => msg.delete({ timeout: 10000 }));
 	}
 	const notice2 = new Discord.MessageEmbed()
-		.setDescription("<:cross1:747728200691482746> You cannot ban yourself!")
+		.setDescription(`${emojis.cross} You cannot ban yourself!`)
 		.setColor("RED");
 
 	if (banTaged.id === msg.author.id) {
@@ -57,12 +55,12 @@ module.exports.run = async (client, msg, args) => {
 
 	const dsfdsfsdf = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> That member has roles higher or equal to you!"
+			`${emojis.cross} That member has roles higher or equal to you!`
 		)
 		.setColor("RED");
 	const sdfsdfsdfsd = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> That member has roles higher or equal to me!"
+			`${emojis.cross} That member has roles higher or equal to me!`
 		)
 		.setColor("RED");
 	const botRolePossition = msg.guild.member(client.user).roles.highest.position;
@@ -73,7 +71,7 @@ module.exports.run = async (client, msg, args) => {
 
 	const sdfdfsdfsdfdfs = new Discord.MessageEmbed()
 		.setDescription(
-			"<:cross1:747728200691482746> An error occurred with banned that member!"
+			`${emojis.cross} An error occurred with banned that member!`
 		)
 		.setColor("RED");
 
@@ -93,7 +91,7 @@ module.exports.run = async (client, msg, args) => {
 		.setFooter("• Ban User Information"); //
 	const bsuembed = new Discord.MessageEmbed()
 		.setDescription(
-			`<:tick:702386031361523723> Banned **${banTaged.username}#${banTaged.discriminator}** | **${reason}**`
+			`${emojis.tick} Banned **${banTaged.username}#${banTaged.discriminator}** | **${reason}**`
 		)
 		.setColor("GREEN");
 
@@ -111,5 +109,5 @@ module.exports.help = {
 	description: "This command is used for banning the members you dont like.",
 	usage: "d!ban <mentions> <reason>(optional)",
 	accessableby: "Ban Members",
-	aliases: [],
+	aliases: []
 };
