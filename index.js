@@ -31,7 +31,7 @@ client.snipes = new Map();
 client.mapss = new Map();
 client.mapss.set("uptimedate", nz_date_string);
 
-["command", "dbl-loader", "event", "giveaway", "music"].forEach(x =>
+["command", "event", "giveaway", "music"].forEach(x =>
 	require(`./handlers/${x}.js`)(client)
 );
 ["alwaysOn", "http"].forEach(x => require(`./server/${x}`)());
