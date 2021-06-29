@@ -126,11 +126,11 @@ module.exports.run = async (client, message, args) => {
 			.roles.cache.find(val => val.name === "Muted");
 
 		const mutetime = "60s";
-		message.guild.members.cache.get(user.id).addRole(muteRole.id);
+		message.guild.members.cache.get(user.id).roles.add(muteRole.id);
 		message.channel.send(test1);
 
 		setTimeout(() => {
-			message.guild.members.cache.get(user.id).removeRole(muteRole.id);
+			message.guild.members.cache.get(user.id).roles.remove(muteRole.id);
 		}, ms(mutetime));
 	}
 
