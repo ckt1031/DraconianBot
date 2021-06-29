@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
 			.setDescription(
 				`**My prefix:** \`${prefixesdatabase.prefix}\` , ${emojis.slash} Slash Commands list for \`/help\`\nClick [HERE](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands) to invite me to your server.`
 			)
-			.addField("**📱Basic**", "`info`, `help`, `ping`, `vote`, `uptime`")
+			.addField("**📱Basic**", "`help`, `ping`, `vote`, `uptime`")
 			.addField(
 				"**⚙utility**",
 				"`aes256`, `avatar`, `channel`, `embed`, `roleinfo`, `reverse`, `setafk`, `snipe`, `stats`, `timer`, `translate`, `whois`, `weather`, `youtube`"
@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
 			)
 			.addField(
 				"**🛠️Moderation**",
-				"`addrole`, `ban`, `clear`, `clearwarn`, `createchannel`, `createemoji`, `kick`, `lockchannel`, `mute`, `rename`, `slowmode`, `unban`, `unlockchannel`, `unmute`, `warn`, `warnings`"
+				"`ban`, `clear`, `clearwarn`, `createchannel`, `createemoji`, `kick`, `lockchannel`, `mute`, `rename`, `slowmode`, `unban`, `unlockchannel`, `unmute`, `warn`, `warnings`"
 			)
 			.addField(
 				"**:underage:NSFW**",
