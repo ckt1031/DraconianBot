@@ -86,7 +86,7 @@ const GiveawayManagerWithOwnDatabase = class extends GiveawaysManager {
 	}
 };
 
-const manager = new GiveawayManagerWithOwnDatabase(client, {
+client.giveawaysManager = new GiveawayManagerWithOwnDatabase(client, {
 	storage: false,
 	updateCountdownEvery: 10000,
 	endedGiveawaysLifetime: 30000,
@@ -99,7 +99,6 @@ const manager = new GiveawayManagerWithOwnDatabase(client, {
 		reaction: "🎉"
 	}
 });
-client.giveawaysManager = manager;
 
 client.status = queue =>
 	`Volume: \`${queue.volume}%\` | Filter: \`${
