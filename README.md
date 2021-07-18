@@ -1,5 +1,6 @@
-# This bot has been END of updates in NEW FEATURES!
-# Only PROVIDE BUGS and SECURITY UPDATES **ONLY**!!
+## This bot has been END of updates in NEW FEATURES!
+## Only PROVIDE BUGS and SECURITY UPDATES **ONLY**!!
+
 <p align="center">
             <h1>Draconian Discord Bot</h1> </center>
 
