@@ -79,3 +79,11 @@ Reminders:
 4. Edit/create the file `.env` (or your hoster's provided environment secret) and insert your bot token in `TOKEN` value.
 5. Start the bot from the project folder: `node shard.js`
 6. Open `http://localhost:8080/` or your project URL to view the http output.
+
+Web Hosting : 
+
+You can easily deploy your own intance on Heroku via clicking the button below : 
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RealKoolisw/DraconianJSBot)
+
+Add `PREFIX` as a variable to run the bot :D 
