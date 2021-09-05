@@ -22,14 +22,13 @@ module.exports = async (client, message) => {
 		.split(" ")[0]
 		.slice(prefixesdatabase.prefix.length);
 	const args = message.content.split(" ").slice(1);
-	if (!cooldowns.has(command.name)) {
-		cooldowns.set(command.name, new Discord.Collection());
-	}
+	const cmd = client.commands.has(command) ? client.commands.get(command) : client.aliases.has(command) ? client.commands.get(client.aliases.get(command)) : null;
+	if (!cmd) return;
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
-	const cooldownAmount = (command.cooldown || 2) * 1000;
+	const cooldownAmount = cmd.cooldown || 2000;
 	if (timestamps.has(message.author.id)) {
-		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+		const expirationTime = timestamps.get(message.author.id);
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 2000;
 			return message.reply(
@@ -41,18 +40,12 @@ module.exports = async (client, message) => {
 			);
 		}
 	}
-	timestamps.set(message.author.id, now);
+	timestamps.set(message.author.id, now + cooldownAmount);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-	let cmd;
-	if (client.commands.has(command)) {
-		cmd = client.commands.get(command);
-	} else if (client.aliases.has(command)) {
-		cmd = client.commands.get(client.aliases.get(command));
-	}
 	try {
-		cmd.run(client, message, args);
+		return cmd.run(client, message, args);
 	} catch (e) {
-		return console.log(`Invalid command: ${command}`);
+		console.log(`Invalid command: ${command}`);
 	} finally {
 		console.log(
 			`${message.author.username} using command ${prefixesdatabase.prefix}${command}`
