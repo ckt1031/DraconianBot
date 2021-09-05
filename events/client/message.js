@@ -4,24 +4,20 @@ const settings = require("../../config/settings.json");
 const cooldowns = new Discord.Collection();
 
 module.exports = async (client, message) => {
-	if (message.author.bot) return;
+	if (message.author.bot || !message.guild) return;
 	const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
-
 	if (!client.settings.get(message.guild.id, "prefix")) {
 		client.settings.set(message.guild.id, {
 			prefix: settings.prefix
 		});
 	}
-
 	if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
-		message.reply(`my prefix is: \`${prefixesdatabase.prefix}\``);
+		return message.reply(`my prefix is: \`${prefixesdatabase.prefix}\``);
 	}
-
 	if (!message.content.startsWith(prefixesdatabase.prefix)) return;
 	const command = message.content
 		.split(" ")[0]
 		.slice(prefixesdatabase.prefix.length);
-	const args = message.content.split(" ").slice(1);
 	const cmd = client.commands.has(command) ? client.commands.get(command) : client.aliases.has(command) ? client.commands.get(client.aliases.get(command)) : null;
 	if (!cmd) return;
 	const now = Date.now();
@@ -43,12 +39,10 @@ module.exports = async (client, message) => {
 	timestamps.set(message.author.id, now + cooldownAmount);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 	try {
-		return cmd.run(client, message, args);
+		return cmd.run(client, message, message.content.split(" ").slice(1));
 	} catch (e) {
 		console.log(`Invalid command: ${command}`);
 	} finally {
-		console.log(
-			`${message.author.username} using command ${prefixesdatabase.prefix}${command}`
-		);
+		console.log(`${message.author.username} using command ${prefixesdatabase.prefix}${command}`);
 	}
 };
