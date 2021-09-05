@@ -1,14 +1,13 @@
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 	const settings = require("../../config/settings.json");
 	const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
 
-	const helpArray = message.content.split(" ");
-	const helpArgs = helpArray.slice(1);
+	const helpArgs = args[0];
 
-	if (!helpArgs[0]) {
-		const embed = new Discord.MessageEmbed()
+	if (!helpArgs) {
+		const embed = new MessageEmbed()
 			.setAuthor(
 				`${client.user.username} Commands list`,
 				client.user.displayAvatarURL()
@@ -50,18 +49,20 @@ module.exports.run = async (client, message, args) => {
 			.setFooter(
 				`© ${nowyear} ${client.user.username} | This command requested by ${message.author.username}#${message.author.discriminator}`
 			);
-		message.channel.send({ embed });
-	}
+		return message.channel.send({ embed });
+	};
 
-	if (helpArgs[0]) {
-		let command = helpArgs[0];
-
-		if (client.commands.has(command)) {
-			command = client.commands.get(command);
-			let alia = command.help.aliases;
+	if (helpArgs) {
+		//let command = helpArgs
+			const command = client.commands.has(helpArgs) ? client.commands.get(helpArgs) : client.aliases.has(helpArgs) ? client.commands.get(client.aliases.get(helpArgs)) : null;
+            if(!command) {
+				const embeds = new MessageEmbed()
+				.setDescription(`${emojis.cross} Command is not found!`)
+				.setColor("RED");
+			   return message.channel.send(embeds);
+			};
 			if (command.help.aliases < 1) alia = "No aliases";
-
-			const embed = new Discord.MessageEmbed()
+			const embed = new MessageEmbed()
 				.setAuthor(
 					`Command: ${command.help.name}`,
 					client.user.displayAvatarURL()
@@ -81,15 +82,7 @@ module.exports.run = async (client, message, args) => {
 				.setFooter(
 					`© ${nowyear} ${client.user.username} | This command requested by ${message.author.username}#${message.author.discriminator}`
 				);
-
-			message.channel.send(embed);
-		} else {
-			const embeds = new Discord.MessageEmbed()
-				.setDescription(`${emojis.cross} Command is not found!`)
-				.setColor("RED");
-
-			return message.channel.send(embeds);
-		}
+			return message.channel.send(embed);
 	}
 };
 

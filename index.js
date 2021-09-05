@@ -11,7 +11,6 @@ const DisTube = require("distube");
 
 client.config = config;
 global.client = client;
-client.login(process.env.TOKEN);
 global.nowyear = new Date().getFullYear();
 global.emojis = require("./config/emoji.json");
 
@@ -129,3 +128,5 @@ client.ws.on("INTERACTION_CREATE", async interaction => {
 		});
 	}
 });
+
+client.login(process.env.TOKEN);
