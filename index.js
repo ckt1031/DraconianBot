@@ -1,9 +1,9 @@
 require("dotenv").config();
 const config = require("./config/config.json");
 const Enmap = require("enmap");
-const Discord = require("discord.js");
+const {Collection, Client} = require("discord.js");
 
-const client = new Discord.Client({
+const client = new Client({
 	partials: ["MESSAGE", "USER", "REACTION"],
 	disableMentions: "everyone"
 });
@@ -22,13 +22,13 @@ const nz_date_string = new Date().toLocaleString("en-US", {
 	timeZone: "Asia/Hong_Kong"
 });
 
-client.commands = new Discord.Collection();
-client.slcommands = new Discord.Collection();
-client.aliases = new Discord.Collection();
+client.commands = new Collection();
+client.slcommands = new Collection();
+client.aliases = new Collection();
 client.emotes = emojis;
 client.colors = client.config.colors;
-client.snipes = new Map();
-client.mapss = new Map();
+client.snipes = new Collection();
+client.mapss = new Collection();
 client.mapss.set("uptimedate", nz_date_string);
 
 ["command", "event", "music"].forEach(x =>
@@ -44,7 +44,6 @@ client.settings = new Enmap({
 });
 
 client.moderationdb = new Enmap("moderation");
-
 client.distube = new DisTube(client, {
 	leaveOnFinish: true,
 	leaveOnEmpty: true,

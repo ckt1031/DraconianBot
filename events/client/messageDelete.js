@@ -1,7 +1,6 @@
 module.exports = function (client, message, channel) {
-	if (!message.author) return;
-	if (!message.content) return;
-	client.snipes.set(message.channel.id, {
+	if (!message.author || !message.content) return;
+	return client.snipes.set(message.channel.id, {
 		content: message.content,
 		author: `${message.author.username}#${message.author.discriminator}`,
 		image: message.attachments.first()

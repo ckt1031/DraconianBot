@@ -1,11 +1,11 @@
 {
 	"name": "Koolisw-Draconian",
 	"version": "1.0.0",
-	"main": "shard.js",
+	"main": "index.js",
 	"description": "Discord-Multi-Purpose Bot",
 	"author": "RealKoolisw",
 	"scripts": {
-		"start": "node shard.js",
+		"start": "node index.js",
 		"code-format": "npx prettier --write . && exit 0"
 	},
 	"email": "realkoolisw@gmail.com",
