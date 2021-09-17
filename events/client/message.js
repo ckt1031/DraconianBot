@@ -6,7 +6,7 @@ const cooldowns = new Discord.Collection();
 module.exports = async (client, message) => {
 	if (message.author.bot || !message.guild) return;
 	const prefixesdatabase = client.settings.ensure(message.guild.id, settings);
-	if (!client.settings.get(message.guild.id, "prefix")) {
+	if (!client.settings.has(message.guild.id, "prefix")) {
 		client.settings.set(message.guild.id, {
 			prefix: settings.prefix
 		});
