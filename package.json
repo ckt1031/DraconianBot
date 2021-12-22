@@ -1,54 +1,53 @@
 {
-	"name": "Koolisw-Draconian",
-	"version": "1.0.0",
-	"main": "index.js",
-	"description": "Discord-Multi-Purpose Bot",
-	"author": "RealKoolisw",
-	"scripts": {
-		"start": "node index.js",
-		"code-format": "npx prettier --write . && exit 0"
-	},
-	"email": "realkoolisw@gmail.com",
-	"url": "https://draconian.koolisw.tk/",
-	"engines": {
-		"node": ">=14.0.0"
-	},
-	"repository": {
-		"url": "git+https://github.com/RealKoolisw/Draconian.git"
-	},
-	"bugs": {
-		"url": "https://github.com/RealKoolisw/Draconian/issues"
-	},
-	"homepage": "https://github.com/RealKoolisw/Draconian#readme",
-	"keywords": [],
-	"license": "MIT",
-	"dependencies": {
-		"@discordjs/opus": "^0.5.3",
-		"canvacord": "^5.2.1",
-		"cryptr": "^6.0.2",
-		"discord-giveaways": "^4.5.1",
-		"discord.js": "^12.5.3",
-		"distube": "^2.8.15",
-		"dotenv": "^10.0.0",
-		"enmap": "^5.8.6",
-		"express": "^4.17.1",
-		"ffmpeg-static": "^4.4.0",
-		"fs": "^0.0.1-security",
-		"moment": "^2.29.1",
-		"ms": "^2.1.3",
-		"node-fetch": "^2.6.1",
-		"opusscript": "^0.0.8",
-		"os": "^0.1.1",
-		"pet-pet-gif": "^1.0.8",
-		"quick.db": "^7.1.3",
-		"request": "^2.88.2",
-		"superagent": "^6.1.0",
-		"twemoji-parser": "^13.1.0",
-		"urban": "^0.3.2",
-		"weather-js": "^2.0.0",
-		"ytdl-core": "^4.8.3"
-	},
-	"devDependencies": {
-		"prettier": "2.3.2"
-	}
+  "name": "draconian",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "Discord-Multi-Purpose Bot",
+  "author": "RealKoolisw",
+  "scripts": {
+    "start": "node index.js",
+    "code-format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "url": "git+https://github.com/RealKoolisw/Draconian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RealKoolisw/Draconian/issues"
+  },
+  "homepage": "https://github.com/RealKoolisw/Draconian#readme",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "^0.7.0",
+    "blapi": "^2.2.1",
+    "canvacord": "^5.2.3",
+    "cryptr": "^6.0.2",
+    "discord-giveaways": "^4.5.1",
+    "discord.js": "^12.5.3",
+    "distube": "^2.8.18",
+    "dotenv": "^10.0.0",
+    "enmap": "^5.8.7",
+    "express": "^4.17.2",
+    "ffmpeg-static": "^4.4.0",
+    "fs": "^0.0.1-security",
+    "moment": "^2.29.1",
+    "ms": "^2.1.3",
+    "node-fetch": "^2.6.1",
+    "opusscript": "^0.0.8",
+    "os": "^0.1.2",
+    "pet-pet-gif": "^1.0.9",
+    "quick.db": "^7.1.3",
+    "request": "^2.88.2",
+    "superagent": "^6.1.0",
+    "topgg-autoposter": "^2.0.1",
+    "twemoji-parser": "^13.1.0",
+    "urban": "^0.3.4",
+    "weather-js": "^2.0.0",
+    "ytdl-core": "^4.9.2"
+  },
+  "devDependencies": {
+    "prettier": "2.5.1"
+  }
 }
