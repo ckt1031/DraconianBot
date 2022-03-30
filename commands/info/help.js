@@ -50,39 +50,43 @@ module.exports.run = async (client, message, args) => {
 				`© ${nowyear} ${client.user.username} | This command requested by ${message.author.username}#${message.author.discriminator}`
 			);
 		return message.channel.send({ embed });
-	};
+	}
 
 	if (helpArgs) {
 		//let command = helpArgs
-			const command = client.commands.has(helpArgs) ? client.commands.get(helpArgs) : client.aliases.has(helpArgs) ? client.commands.get(client.aliases.get(helpArgs)) : null;
-            if(!command) {
-				const embeds = new MessageEmbed()
+		const command = client.commands.has(helpArgs)
+			? client.commands.get(helpArgs)
+			: client.aliases.has(helpArgs)
+			? client.commands.get(client.aliases.get(helpArgs))
+			: null;
+		if (!command) {
+			const embeds = new MessageEmbed()
 				.setDescription(`${emojis.cross} Command is not found!`)
 				.setColor("RED");
-			   return message.channel.send(embeds);
-			};
-			if (command.help.aliases < 1) alia = "No aliases";
-			const embed = new MessageEmbed()
-				.setAuthor(
-					`Command: ${command.help.name}`,
-					client.user.displayAvatarURL()
-				)
-				.setDescription(
-					`
+			return message.channel.send(embeds);
+		}
+		if (command.help.aliases < 1) alia = "No aliases";
+		const embed = new MessageEmbed()
+			.setAuthor(
+				`Command: ${command.help.name}`,
+				client.user.displayAvatarURL()
+			)
+			.setDescription(
+				`
             **Description:**\n\`\`\`${
 							command.help.description ||
 							"There is no Description for this command."
 						}\`\`\`\n**Usage:**\n\`\`\`${
-						command.help.usage || "No Usage"
-					}\`\`\`\n**Permissions:**\n\`\`\`${
-						command.help.accessableby || "Members"
-					}\`\`\`\n**Aliases:**\n\`\`\`${alia}\`\`\``
-				)
-				.setColor("#4a4b4d")
-				.setFooter(
-					`© ${nowyear} ${client.user.username} | This command requested by ${message.author.username}#${message.author.discriminator}`
-				);
-			return message.channel.send(embed);
+					command.help.usage || "No Usage"
+				}\`\`\`\n**Permissions:**\n\`\`\`${
+					command.help.accessableby || "Members"
+				}\`\`\`\n**Aliases:**\n\`\`\`${alia}\`\`\``
+			)
+			.setColor("#4a4b4d")
+			.setFooter(
+				`© ${nowyear} ${client.user.username} | This command requested by ${message.author.username}#${message.author.discriminator}`
+			);
+		return message.channel.send(embed);
 	}
 };
 
@@ -91,5 +95,5 @@ module.exports.help = {
 	description: "This command is used for displaying all commands.",
 	usage: "d!help",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

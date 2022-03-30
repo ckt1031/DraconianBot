@@ -16,5 +16,5 @@ module.exports.help = {
 	description: "This command is used for generating smug.",
 	usage: "d!smug",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

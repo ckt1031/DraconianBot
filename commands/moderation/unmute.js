@@ -70,7 +70,7 @@ module.exports.run = async (client, message, args) => {
 		userid: member.id,
 		warns: 0,
 		isMuted: false,
-		timeMuteEnd: 0
+		timeMuteEnd: 0,
 	});
 
 	message.delete();
@@ -93,5 +93,5 @@ module.exports.help = {
 	description: "This command is used for unmuting someone",
 	usage: "d!unmute <mention>",
 	accessableby: "Manage Roles",
-	aliases: []
+	aliases: [],
 };

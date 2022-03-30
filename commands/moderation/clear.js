@@ -67,5 +67,5 @@ module.exports.help = {
 	description: "Clear the message with amount",
 	usage: "d!clear <amount>(1-99)",
 	accessableby: "Manage Message",
-	aliases: []
+	aliases: [],
 };

@@ -9,8 +9,8 @@ module.exports = {
 			type: 3,
 			name: "command",
 			description: "Type any command you want to ask for!",
-			required: false
-		}
+			required: false,
+		},
 	],
 	execute(interaction) {
 		const optioninvalid = interaction.data.options;
@@ -44,9 +44,9 @@ module.exports = {
 						data: {
 							type: 4,
 							data: {
-								embeds: [embed]
-							}
-						}
+								embeds: [embed],
+							},
+						},
 					});
 			}
 
@@ -61,9 +61,9 @@ module.exports = {
 						data: {
 							type: 4,
 							data: {
-								embeds: [embeds]
-							}
-						}
+								embeds: [embeds],
+							},
+						},
 					});
 			}
 		} else {
@@ -84,10 +84,10 @@ module.exports = {
 				data: {
 					type: 4,
 					data: {
-						embeds: [embed]
-					}
-				}
+						embeds: [embed],
+					},
+				},
 			});
 		}
-	}
+	},
 };

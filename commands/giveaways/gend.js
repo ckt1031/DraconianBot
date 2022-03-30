@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
 	// Edit the giveaway
 	client.giveawaysManager
 		.edit(giveaway.messageID, {
-			setEndTimestamp: Date.now()
+			setEndTimestamp: Date.now(),
 		})
 		// Success message
 		.then(() => {
@@ -63,5 +63,5 @@ module.exports.help = {
 	description: "This command is used for endding the currents giveaway section",
 	usage: "d!gend <giveaway-message-id>",
 	accessableby: "Manage Messages",
-	aliases: []
+	aliases: [],
 };

@@ -14,9 +14,9 @@ module.exports = {
 			data: {
 				type: 4,
 				data: {
-					embeds: [bbb]
-				}
-			}
+					embeds: [bbb],
+				},
+			},
 		});
-	}
+	},
 };

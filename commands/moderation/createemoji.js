@@ -51,5 +51,5 @@ module.exports.help = {
 	description: "Create emoji easily with commands",
 	usage: "d!createemoji <name> <attachments>",
 	accessableby: "Manage Emojis",
-	aliases: []
+	aliases: [],
 };

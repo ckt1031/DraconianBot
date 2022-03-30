@@ -111,7 +111,7 @@ module.exports.run = (client, message, [args, ...words]) => {
 		yi: "Yiddish",
 		ji: "Yiddish",
 		yo: "Yoruba",
-		zu: "Zulu"
+		zu: "Zulu",
 	};
 
 	if (args == "list") {
@@ -187,5 +187,5 @@ module.exports.help = {
 		"This command is used for translating stuff. Example: d!translate zh-en 你好, response: hello here",
 	usage: "d!translate <language>-<to-translate-language> <text>",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

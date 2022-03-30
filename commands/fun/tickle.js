@@ -27,5 +27,5 @@ module.exports.help = {
 	description: "This command is used for generating tickle image.",
 	usage: "d!tickle <mention>",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

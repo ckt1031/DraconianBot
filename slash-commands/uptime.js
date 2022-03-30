@@ -10,7 +10,7 @@ module.exports = {
 	commandOptions: null,
 	execute(interaction) {
 		const nowtime = new Date().toLocaleString("en", {
-			timeZone: "Asia/Hong_Kong"
+			timeZone: "Asia/Hong_Kong",
 		});
 		const milliseconds = parseInt((client.uptime % 1000) / 100);
 		let seconds = parseInt((client.uptime / 1000) % 60);
@@ -61,9 +61,9 @@ module.exports = {
 			data: {
 				type: 4,
 				data: {
-					embeds: [serverembedss]
-				}
-			}
+					embeds: [serverembedss],
+				},
+			},
 		});
-	}
+	},
 };

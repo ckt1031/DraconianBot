@@ -9,7 +9,7 @@ function doMagic8BallVoodoo() {
 		"Maybe",
 		"Never",
 		"Yep",
-		"idk"
+		"idk",
 	];
 
 	return rand[Math.floor(Math.random() * rand.length)];
@@ -29,5 +29,5 @@ module.exports.help = {
 		"This command is used for asking the bot what he wanted to answer as 8ball.",
 	usage: "d!8ball <questions>",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

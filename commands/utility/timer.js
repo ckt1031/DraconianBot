@@ -44,5 +44,5 @@ module.exports.help = {
 	description: "This command is used for timing.",
 	usage: "d!timer <duration in ms>",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

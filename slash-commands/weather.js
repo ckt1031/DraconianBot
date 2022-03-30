@@ -10,8 +10,8 @@ module.exports = {
 			type: 3,
 			name: "location",
 			description: "Location for you to search it's weather",
-			required: true
-		}
+			required: true,
+		},
 	],
 	execute(interaction) {
 		weather.find(
@@ -41,11 +41,11 @@ module.exports = {
 						data: {
 							type: 4,
 							data: {
-								embeds: [embed]
-							}
-						}
+								embeds: [embed],
+							},
+						},
 					});
 			}
 		);
-	}
+	},
 };

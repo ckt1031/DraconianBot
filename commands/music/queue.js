@@ -20,5 +20,5 @@ module.exports.help = {
 	description: "This command is used for fetching queue from music system.",
 	usage: "d!queue",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

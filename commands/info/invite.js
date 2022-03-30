@@ -17,5 +17,5 @@ module.exports.help = {
 	description: "This command is used for creating invite links.",
 	usage: "d!invite",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

@@ -82,7 +82,7 @@ module.exports.run = async (client, message, args) => {
 		userid: user.id,
 		warns: 0,
 		isMuted: false,
-		timeMuteEnd: 0
+		timeMuteEnd: 0,
 	});
 	client.moderationdb.inc(key, "warns");
 
@@ -151,5 +151,5 @@ module.exports.help = {
 		"Warn someone u hates/againsting rules, 2 warn for muting, 3 warns for kicking, 5 warns for banning",
 	usage: "d!warn <mention> <reason>",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

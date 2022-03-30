@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
 		userid: user.id,
 		warns: 0,
 		isMuted: false,
-		timeMuteEnd: 0
+		timeMuteEnd: 0,
 	});
 	// if (!warns[user.id]) return message.channel.send(emddd)
 
@@ -45,5 +45,5 @@ module.exports.help = {
 	description: "Check the people you mentioned who has warnings or not",
 	usage: "d!warnings <mention>",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

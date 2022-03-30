@@ -20,5 +20,5 @@ module.exports.help = {
 		"This command is used for sniping latest message been deleted by members.",
 	usage: "d!snipe",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

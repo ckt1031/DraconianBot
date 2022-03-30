@@ -5,7 +5,7 @@ module.exports = async client => {
 	const activities = [
 		`${client.guilds.cache.size} Servers`,
 		`${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} Users`,
-		"By Koolisw"
+		"By Koolisw",
 	];
 	const commandFiles = fs
 		.readdirSync("./slash-commands")
@@ -16,8 +16,8 @@ module.exports = async client => {
 			data: {
 				name: command.name,
 				description: command.description,
-				options: command.commandOptions
-			}
+				options: command.commandOptions,
+			},
 		});
 		client.slcommands.set(command.name, command);
 		console.log(`Command POST : ${command.name} from ${file}`);

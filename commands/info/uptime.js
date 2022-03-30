@@ -6,7 +6,7 @@ const os = require("os");
 
 module.exports.run = async (client, message, args) => {
 	const nowtime = new Date().toLocaleString("en", {
-		timeZone: "Asia/Hong_Kong"
+		timeZone: "Asia/Hong_Kong",
 	});
 	const milliseconds = parseInt((client.uptime % 1000) / 100);
 	let seconds = parseInt((client.uptime / 1000) % 60);
@@ -75,5 +75,5 @@ module.exports.help = {
 	description: "This command is used for reporting bot's uptime",
 	usage: "d!uptime",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

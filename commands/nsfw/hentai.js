@@ -25,5 +25,5 @@ module.exports.help = {
 	usage: "d!hentai",
 	accessablechannel: "NSFW Channel",
 	accessableby: "NSFW/Member",
-	aliases: []
+	aliases: [],
 };

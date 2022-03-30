@@ -20,5 +20,5 @@ module.exports.help = {
 	description: "This command is used for playing some music you like.",
 	usage: "d!play <song>",
 	accessableby: "Members",
-	aliases: ["p"]
+	aliases: ["p"],
 };

@@ -109,5 +109,5 @@ module.exports.help = {
 	description: "This command is used for banning the members you dont like.",
 	usage: "d!ban <mentions> <reason>(optional)",
 	accessableby: "Ban Members",
-	aliases: []
+	aliases: [],
 };

@@ -59,7 +59,7 @@ module.exports.run = async (client, message, args) => {
 			{
 				max: 1,
 				time: 20000,
-				errors: ["time"]
+				errors: ["time"],
 			}
 		)
 		.then(async collected => {
@@ -83,5 +83,5 @@ module.exports.help = {
 	description: "This command is used for changing the prefix.",
 	usage: "d!setprefix <value>",
 	accessableby: "Manage Server",
-	aliases: []
+	aliases: [],
 };

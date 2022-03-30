@@ -30,7 +30,7 @@ exports.run = (client, message, args) => {
 
 	message.channel
 		.createOverwrite(message.guild.id, {
-			SEND_MESSAGES: true
+			SEND_MESSAGES: true,
 		})
 		.then(() => {
 			message.channel.send(dfgrdgdfgdf);
@@ -46,5 +46,5 @@ module.exports.help = {
 	description: "This command is used for unlockchanneling",
 	usage: "d!unlockchannel",
 	accessableby: "Manage Channels",
-	aliases: []
+	aliases: [],
 };

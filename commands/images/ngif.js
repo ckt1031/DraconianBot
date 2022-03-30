@@ -17,5 +17,5 @@ module.exports.help = {
 	description: "This command is used for generating ngif.",
 	usage: "d!ngif",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

@@ -9,8 +9,8 @@ module.exports = {
 			type: 3,
 			name: "emoji",
 			description: "Type any emoji you want!",
-			required: true
-		}
+			required: true,
+		},
 	],
 	execute(interaction) {
 		try {
@@ -20,7 +20,7 @@ module.exports = {
 				.setColor("#FFFF00");
 
 			const parsed = parse(interaction.data.options[0].value, {
-				assetType: "png"
+				assetType: "png",
 			});
 
 			if (custom.id) {
@@ -35,9 +35,9 @@ module.exports = {
 						data: {
 							type: 4,
 							data: {
-								embeds: [embed]
-							}
-						}
+								embeds: [embed],
+							},
+						},
 					});
 			}
 
@@ -48,9 +48,9 @@ module.exports = {
 						data: {
 							type: 4,
 							data: {
-								embeds: "Invalid emoji!"
-							}
-						}
+								embeds: "Invalid emoji!",
+							},
+						},
 					});
 			}
 
@@ -60,9 +60,9 @@ module.exports = {
 				data: {
 					type: 4,
 					data: {
-						embeds: [embed]
-					}
-				}
+						embeds: [embed],
+					},
+				},
 			});
 		} catch (e) {
 			client.api.interactions(interaction.id, interaction.token).callback.post({
@@ -70,10 +70,10 @@ module.exports = {
 					type: 4,
 					flags: 1 << 6,
 					data: {
-						content: "Error occured when getting requested emoji"
-					}
-				}
+						content: "Error occured when getting requested emoji",
+					},
+				},
 			});
 		}
-	}
+	},
 };

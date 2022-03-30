@@ -65,5 +65,5 @@ module.exports.help = {
 		"This command is used for changing the slowmode as settings page cannot.",
 	usage: "d!slowmode <1-21600>",
 	accessableby: "Manage Channels",
-	aliases: []
+	aliases: [],
 };

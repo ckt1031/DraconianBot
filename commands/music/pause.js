@@ -16,5 +16,5 @@ module.exports.help = {
 		"This command is used for pausing music when inside music channel.",
 	usage: "d!pause",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

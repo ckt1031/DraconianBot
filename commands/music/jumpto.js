@@ -13,5 +13,5 @@ module.exports.help = {
 	description: "This command is used for jumping to song into specify queue.",
 	usage: "d!jumpto <queue number>",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

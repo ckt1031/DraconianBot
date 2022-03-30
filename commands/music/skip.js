@@ -18,5 +18,5 @@ module.exports.help = {
 	description: "This command is used for skiping songs.",
 	usage: "d!skip",
 	accessableby: "Manage Server",
-	aliases: []
+	aliases: [],
 };

@@ -72,9 +72,9 @@ module.exports.run = async (client, message, args) => {
 				minutes: "minutes",
 				hours: "hours",
 				days: "days",
-				pluralS: false // Not needed, because units end with a S so it will automatically removed if the unit value is lower than 2
-			}
-		}
+				pluralS: false, // Not needed, because units end with a S so it will automatically removed if the unit value is lower than 2
+			},
+		},
 	});
 
 	message.channel.send(`Giveaway started in ${giveawayChannel}!`);
@@ -85,5 +85,5 @@ module.exports.help = {
 	description: "This command is used for creating a giveawya for events.",
 	usage: "d!gstart <channel> <duration> <winner> <prize>",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

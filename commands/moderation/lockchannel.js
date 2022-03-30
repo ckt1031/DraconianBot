@@ -38,7 +38,7 @@ module.exports.run = (client, message, args) => {
 	if (validUnlocks.includes(time)) {
 		message.channel
 			.createOverwrite(message.guild.id, {
-				SEND_MESSAGES: null
+				SEND_MESSAGES: null,
 			})
 			.then(() => {
 				message.channel.send(dfgrdgdfgdf);
@@ -51,13 +51,13 @@ module.exports.run = (client, message, args) => {
 	} else {
 		message.channel
 			.createOverwrite(message.guild.id, {
-				SEND_MESSAGES: false
+				SEND_MESSAGES: false,
 			})
 			.then(() => {
 				const bsuembed = new Discord.MessageEmbed()
 					.setDescription(
 						`${emojis.tick} Locked the channel down for **${ms(ms(time), {
-							long: true
+							long: true,
 						})}**`
 					)
 					.setColor("GREEN");
@@ -68,7 +68,7 @@ module.exports.run = (client, message, args) => {
 						client.lockit[message.channel.id] = setTimeout(() => {
 							message.channel
 								.createOverwrite(message.guild.id, {
-									SEND_MESSAGES: true
+									SEND_MESSAGES: true,
 								})
 								.then(message.channel.send(dfgrdgdfgdf))
 								.catch(console.error);
@@ -87,5 +87,5 @@ module.exports.help = {
 	description: "This command is used for locking the channels.",
 	usage: "d!lockchannel <duration>",
 	accessableby: "Manage Channels",
-	aliases: []
+	aliases: [],
 };

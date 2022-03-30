@@ -48,5 +48,5 @@ module.exports.help = {
 	description: "This command is used for unbanning someone",
 	usage: "d!unban <USER ID>",
 	accessableby: "Ban Members",
-	aliases: []
+	aliases: [],
 };

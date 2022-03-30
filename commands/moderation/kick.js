@@ -90,5 +90,5 @@ module.exports.help = {
 		"This command is used for kicking people u hates or againsting your server rules.",
 	usage: "d!kick <mentions> <reason>",
 	accessableby: "Kick Members",
-	aliases: []
+	aliases: [],
 };

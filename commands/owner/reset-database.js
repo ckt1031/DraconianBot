@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
 			{
 				max: 1,
 				time: 20000,
-				errors: ["time"]
+				errors: ["time"],
 			}
 		)
 		.then(collected => {
@@ -33,5 +33,5 @@ module.exports.help = {
 	description: "This command is used for resetting data.",
 	usage: "d!reset-data",
 	accessableby: "Bot Owners/Database Manager",
-	aliases: []
+	aliases: [],
 };

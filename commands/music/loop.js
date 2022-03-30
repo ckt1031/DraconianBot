@@ -31,5 +31,5 @@ module.exports.help = {
 	description: "This command is used for lopping the songs in music system.",
 	usage: "d!loop <off/song/queue>",
 	accessableby: "Connecting to Voice channel",
-	aliases: []
+	aliases: [],
 };

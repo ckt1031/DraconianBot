@@ -25,5 +25,5 @@ module.exports.help = {
 	description: "Checking channel status.",
 	usage: "d!channel <channel-mentions>(optional)",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

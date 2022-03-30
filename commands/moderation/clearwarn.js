@@ -46,7 +46,7 @@ module.exports.run = async (client, message, args) => {
 		userid: user.id,
 		warns: 0,
 		isMuted: false,
-		timeMuteEnd: 0
+		timeMuteEnd: 0,
 	});
 	if (client.moderationdb.get(key, "warns") == 0)
 		return message.channel.send(noticEffEEe2);
@@ -62,7 +62,7 @@ module.exports.run = async (client, message, args) => {
 			}`
 		);
 	await client.moderationdb.set(key, {
-		warns: 0
+		warns: 0,
 	});
 	message.channel.send({ embed });
 };
@@ -72,5 +72,5 @@ module.exports.help = {
 	description: "Clear the warnings",
 	usage: "d!clearwarn <mention>",
 	accessableby: "Manage Roles",
-	aliases: []
+	aliases: [],
 };

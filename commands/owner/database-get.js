@@ -20,5 +20,5 @@ module.exports.help = {
 	description: "N/A",
 	usage: "d!database-get",
 	accessableby: "Bot Owners",
-	aliases: []
+	aliases: [],
 };

@@ -47,5 +47,5 @@ module.exports.help = {
 	description: "This command is used for monitoring stats of bot.",
 	usage: "d!stats",
 	accessableby: "Member",
-	aliases: []
+	aliases: [],
 };

@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
 			{
 				max: 1,
 				time: 20000,
-				errors: ["time"]
+				errors: ["time"],
 			}
 		)
 		.then(collected => {
@@ -51,5 +51,5 @@ module.exports.help = {
 		"This command is used for reload all commands without rebooting/restart the bot.",
 	usage: "d!reload-all",
 	accessableby: "Bot Owners",
-	aliases: []
+	aliases: [],
 };

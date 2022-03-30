@@ -20,5 +20,5 @@ module.exports.help = {
 	description: "This command is used for posting dog's images randomly.",
 	usage: "d!dog",
 	accessableby: "Members",
-	aliases: []
+	aliases: [],
 };

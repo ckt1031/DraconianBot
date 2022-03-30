@@ -76,13 +76,13 @@ module.exports.run = async (client, message, args) => {
 				data: {
 					name: "Muted",
 					color: "#000000",
-					permissions: []
-				}
+					permissions: [],
+				},
 			});
 			message.guild.channels.cache.forEach(async channel => {
 				await channel.overwritePermissions(muterole, {
 					SEND_MESSAGES: false,
-					ADD_REACTIONS: false
+					ADD_REACTIONS: false,
 				});
 			});
 		} catch (e) {
@@ -111,7 +111,7 @@ module.exports.run = async (client, message, args) => {
 		userid: tomute.id,
 		warns: 0,
 		isMuted: false,
-		timeMuteEnd: 0
+		timeMuteEnd: 0,
 	});
 	// if (tomute.roles.cache.has(muterole)) return message.channel.send(bruhembed);
 
@@ -157,5 +157,5 @@ module.exports.help = {
 	description: "This command is used for muting some people really annoying.",
 	usage: "d!mute <mention> <duration> <reason>",
 	accessableby: "Manage Roles",
-	aliases: []
+	aliases: [],
 };

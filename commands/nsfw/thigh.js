@@ -27,5 +27,5 @@ module.exports.help = {
 	description: "This command is used for generating thigh image.",
 	usage: "d!thigh",
 	accessableby: "NSFW/Member",
-	aliases: []
+	aliases: [],
 };
