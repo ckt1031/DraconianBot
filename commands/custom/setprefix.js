@@ -62,7 +62,7 @@ module.exports.run = async (client, message, args) => {
 				errors: ["time"],
 			}
 		)
-		.then(async collected => {
+		.then(async () => {
 			await client.settings.set(message.guild.id, args[0], "prefix");
 			message.delete();
 			const doneembed = new Discord.MessageEmbed()

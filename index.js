@@ -1,21 +1,22 @@
 require("dotenv").config();
-const config = require("./config/config.json");
+const db = require("quick.db");
 const Enmap = require("enmap");
+const DisTube = require("distube");
 const { Collection, Client } = require("discord.js");
+const { GiveawaysManager } = require("discord-giveaways");
+
+const emojis = require("./config/emoji.json");
+const config = require("./config/config.json");
 
 const client = new Client({
 	partials: ["MESSAGE", "USER", "REACTION"],
 	disableMentions: "everyone",
 });
-const DisTube = require("distube");
 
 client.config = config;
 global.client = client;
 global.nowyear = new Date().getFullYear();
-global.emojis = require("./config/emoji.json");
-
-const db = require("quick.db");
-const { GiveawaysManager } = require("discord-giveaways");
+global.emojis = emojis;
 
 const nz_date_string = new Date().toLocaleString("en-US", {
 	timeZone: "Asia/Hong_Kong",
