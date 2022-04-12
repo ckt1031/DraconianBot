@@ -9,7 +9,7 @@
 		"format": "prettier --write ."
 	},
 	"engines": {
-		"node": ">=12.x || >=14.x || >=16.x"
+		"node": ">=14.x || >=16.x"
 	},
 	"repository": {
 		"url": "git+https://github.com/RealKoolisw/Draconian.git"

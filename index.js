@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 const db = require("quick.db");
 const Enmap = require("enmap");
 const DisTube = require("distube");
