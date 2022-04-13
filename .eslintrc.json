@@ -1,0 +1,42 @@
+{
+	"env": {
+		"commonjs": true,
+		"es2021": true,
+		"node": true,
+		"es6": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint",
+		"prettier"
+	],
+	"extends": [
+		"prettier",
+		"eslint:recommended",
+		"plugin:sonarjs/recommended",
+		"plugin:unicorn/recommended",
+		"plugin:promise/recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"rules": {
+		"semi": [
+			2,
+			"always"
+		],
+		"import/extensions": "off"
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [
+					".js",
+					".jsx",
+					".ts",
+					".tsx"
+				]
+			}
+		}
+	}
+}
