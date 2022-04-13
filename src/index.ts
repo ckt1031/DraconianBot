@@ -1,10 +1,12 @@
 // Discord.js
 import { Collection, Client, Intents } from 'discord.js';
 
-import dotenv from 'dotenv';
 import Enmap from 'enmap';
+import dotenv from 'dotenv';
 import { DisTube } from 'distube';
 import { GiveawaysManager } from 'discord-giveaways';
+
+import httpServer from './http/server';
 
 dotenv.config();
 
@@ -23,8 +25,9 @@ const client = new Client({
 export default client;
 
 client.commands = new Collection();
-client.slcommands = new Collection();
+client.slashcommands = new Collection();
 client.aliases = new Collection();
+client.cooldown = new Collection();
 client.distube = new DisTube(client, {
   leaveOnStop: false,
   leaveOnEmpty: true,
@@ -86,9 +89,12 @@ client.login(process.env.TOKEN);
 declare module 'discord.js' {
   export interface Client {
     commands: Collection<unknown, any>;
-    slcommands: Collection<unknown, any>;
+    slashcommands: Collection<unknown, any>;
     aliases: Collection<unknown, any>;
+    cooldown: Collection<unknown, any>;
     distube: DisTube;
     giveawaysManager: GiveawaysManager;
   }
 }
+
+httpServer();

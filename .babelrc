@@ -1,0 +1,25 @@
+{
+    "comments": false,
+    "ignore": [
+        "node_modules/**/*"
+    ],
+    "presets": [
+        "@babel/typescript",
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "entry"
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/proposal-class-properties",
+        "@babel/proposal-object-rest-spread",
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "regenerator": true
+            }
+        ]
+    ]
+}
