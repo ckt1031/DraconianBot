@@ -1,5 +1,9 @@
-export const once = true;
+import type { Event } from '../../sturctures/event';
 
-export default async () => {
-  console.log('Bot is in ready status!');
+export const event: Event = {
+  once: true,
+  name: 'ready',
+  run: async () => {
+    console.log('Bot is in ready status!');
+  },
 };

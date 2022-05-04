@@ -1,23 +1,24 @@
-import { MessageEmbed, BaseCommandInteraction } from 'discord.js';
+import { MessageEmbed } from 'discord.js';
 
-type commandArguments = {
-  interaction: BaseCommandInteraction;
-};
+import type { SlashCommand } from '../../sturctures/command';
 
-export default {
-  name: 'ping',
-  description: 'Check network delay.',
-  type: 1,
-  async({ interaction }: commandArguments) {
+const slash: SlashCommand = {
+  data: {
+    name: 'ping',
+    description: 'Check network delay.',
+  },
+  run: async ({ interaction }) => {
     const ms = Math.round(interaction.client.ws.ping);
     const delay = Date.now() - interaction.createdTimestamp;
 
     const embed = new MessageEmbed().setDescription(
-      `動作延遲: \`${delay}ms\`\nAPI延遲: \`${ms}ms\``,
+      `Action Delay: \`${delay}ms\`\nAPI Delay: \`${ms}ms\``,
     );
 
-    return interaction.reply({
+    interaction.reply({
       embeds: [embed],
     });
   },
 };
+
+export default slash;

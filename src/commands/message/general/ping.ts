@@ -1,17 +1,21 @@
 import { MessageEmbed } from 'discord.js';
 
-export default {
-  name: 'ping',
-  desc: 'Check network delay.',
-  directMessageAllowed: true,
-  async({ msg }): void {
+import type { TextCommand } from '../../../sturctures/command';
+
+export const command: TextCommand = {
+  data: {
+    name: 'ping',
+    description: "Check Bot's network delay.",
+    directMessageAllowed: true,
+  },
+  run: async ({ message }) => {
     const embed = new MessageEmbed().setDescription(
-      `動作延遲: \`${
-        Date.now() - msg.createdTimestamp
-      }ms\`\nAPI延遲: \`${Math.round(msg.client.ws.ping)}ms\``,
+      `Action Delay: \`${
+        Date.now() - message.createdTimestamp
+      }ms\`\nAPI Delay: \`${Math.round(message.client.ws.ping)}ms\``,
     );
 
-    return msg.reply({
+    message.reply({
       embeds: [embed],
     });
   },

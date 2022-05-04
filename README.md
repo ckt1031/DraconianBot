@@ -10,7 +10,7 @@ New features and Enhancements are introduced:
 - Supporting the latest/LTS nodejs versions
 - Improving speed and memory usage
 - Better multi-server supports
-- Expected stable release: early June 
+- Expected stable release: early June
 
 Expected extra features:
 
