@@ -19,3 +19,10 @@ Expected extra features:
 3. Level system
 4. Anti spam
 5. Interaction features like **member counting channel**, **User cpatcha verification** and so forth
+
+Unfortunately, these features will be removed in next main release:
+
+1. NSFW commands
+2. Music system (will be conserved in project but not the Hosting Bot)
+3. Giveaway commands
+4. Imaging commands
