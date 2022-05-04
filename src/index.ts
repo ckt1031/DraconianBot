@@ -19,7 +19,7 @@ declare module 'discord.js' {
     commands: Collection<string, TextCommand>;
     slashcommands: Collection<string, SlashCommand>;
     aliases: Collection<string, string>;
-    cooldown: Collection<unknown, any>;
+    cooldown: Collection<string, number>;
     distube: DisTube;
   }
 }
