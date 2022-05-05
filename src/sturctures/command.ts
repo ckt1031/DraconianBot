@@ -49,12 +49,15 @@ type slashCommandArugments = {
 export interface SlashCommand {
   // SlashCommand Data
   readonly data: {
+    // Info
     name: string;
     description: string;
+    // Config
     type: ApplicationCommandType;
     options?: ApplicationCommandOptionData[];
-    requiredPermissions?: Permissions[];
+    // Access
     cooldownInterval?: number;
+    requiredPermissions?: Permissions[];
   };
   // eslint-disable-next-line no-unused-vars
   run: ({ interaction, args }: slashCommandArugments) => Promise<void>;

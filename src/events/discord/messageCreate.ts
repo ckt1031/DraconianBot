@@ -8,12 +8,12 @@ import type { TextCommand } from '../../sturctures/command';
 export const event: Event = {
   name: 'messageCreate',
   run: async (client, message: Message) => {
-    const { content, channel, author, webhookId, partial, member, guild } =
-      message;
+    if (message.partial) await message.fetch();
+
+    const { content, channel, author, webhookId, member, guild } = message;
 
     if (author.bot) return;
     if (webhookId || author.id === client.user?.id) return;
-    if (partial) await message.fetch();
 
     const mentionReg = new RegExp(`^(<@!?${client.user?.id}>)`);
     const mentionTest = mentionReg.test(content);
@@ -26,7 +26,7 @@ export const event: Event = {
 
     if (guild) {
       if (!guildConfiguration.has(guild.id)) {
-        await ensureServerData(guild.id);
+        ensureServerData(guild.id);
       }
 
       const guildDatabase = guildConfiguration.get(guild.id);
@@ -62,6 +62,10 @@ export const event: Event = {
       // callback if no.
       if (!cmd) return;
 
+      if (!cmd.data.directMessageAllowed) {
+        if (!guild) return;
+      }
+
       // Cooldown Check
       const now = Date.now();
       const keyName = `CMD_${author.id}_${cmd.data.name}`;
@@ -71,9 +75,9 @@ export const event: Event = {
       if (cooldowns.has(keyName)) {
         const expectedEnd = cooldowns.get(keyName);
         if (expectedEnd && now < expectedEnd) {
-          const tL = parseMsToVisibleText(expectedEnd - now);
+          const timeleft = parseMsToVisibleText(expectedEnd - now);
           const postMessage = await message.reply({
-            content: `Before using this command, please wait for **${tL}**.`,
+            content: `Before using this command, please wait for **${timeleft}**.`,
             allowedMentions: { repliedUser: true },
           });
           setTimeout(() => {

@@ -1,11 +1,18 @@
+import { ensureServerData } from '../../utils/database';
 import { loadSlashCommand } from '../../loaders/command';
+
 import type { Event } from '../../sturctures/event';
 
 export const event: Event = {
   once: true,
   name: 'ready',
   run: async client => {
-    console.log('Bot is in ready status!');
+    // Load slash command.
     loadSlashCommand(client);
+    // Ensure all server data is synced and unified.
+    const guilds = client.guilds.cache.map(guild => guild.id);
+    for (const guild of guilds) ensureServerData(guild);
+
+    console.log('Bot is in ready status!');
   },
 };

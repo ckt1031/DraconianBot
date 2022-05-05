@@ -34,9 +34,9 @@ export const event: Event = {
       if (cooldowns.has(keyName)) {
         const expectedEnd = cooldowns.get(keyName);
         if (expectedEnd && now < expectedEnd) {
-          const tL = parseMsToVisibleText(expectedEnd - now);
+          const timeleft = parseMsToVisibleText(expectedEnd - now);
           return returnOfInter(
-            `Before using this command, please wait for **${tL}**.`,
+            `Before using this command, please wait for **${timeleft}**.`,
           );
         }
       }

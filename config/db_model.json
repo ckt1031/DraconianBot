@@ -10,6 +10,9 @@
       "userDisabled": [],
       "roleDisabled": [],
       "channelDisabled": []
+    },
+    "snipe": {
+      "channelDisabled": []
     }
   },
   "snipeConfig": {

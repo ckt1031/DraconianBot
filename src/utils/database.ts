@@ -2,7 +2,7 @@ import Enmap from 'enmap';
 
 import { guildConfig, snipeConfig } from '../../config/db_model.json';
 
-interface guildConfigType {
+export interface GuildConfig {
   prefix: string;
   commands: {
     global: {
@@ -25,9 +25,12 @@ interface guildConfigType {
     roleDisabled: { id: string; cmds: string[] }[];
     channelDisabled: { id: string; cmds: string[] }[];
   };
+  snipe: {
+    channelDisabled: string[];
+  };
 }
 
-interface snipeType {
+export interface SnipeConfig {
   author: {
     id: string;
     name: string;
@@ -35,18 +38,18 @@ interface snipeType {
   content: {
     text: string;
     date: number;
-    imageURL: string;
+    imageURL: string | undefined | null;
   };
 }
 
-export const guildConfiguration: Enmap<string, guildConfigType> = new Enmap({
+export const guildConfiguration: Enmap<string, GuildConfig> = new Enmap({
   name: 'guildConfiguration',
   autoFetch: true,
   fetchAll: false,
   cloneLevel: 'deep',
 });
 
-export const snipeDatabase: Enmap<string, snipeType> = new Enmap({
+export const snipeDatabase: Enmap<string, SnipeConfig> = new Enmap({
   name: 'snipeDatabase',
   autoFetch: true,
   fetchAll: false,
