@@ -1,4 +1,10 @@
-import { Message, Permissions, CommandInteraction } from 'discord.js';
+import type {
+  Message,
+  Permissions,
+  CommandInteraction,
+  ApplicationCommandType,
+  ApplicationCommandOptionData,
+} from 'discord.js';
 
 type textCommandArugments = {
   message: Message;
@@ -45,8 +51,10 @@ export interface SlashCommand {
   readonly data: {
     name: string;
     description: string;
-    // directMessageAllowed?: boolean;
+    type: ApplicationCommandType;
+    options?: ApplicationCommandOptionData[];
     requiredPermissions?: Permissions[];
+    cooldownInterval?: number;
   };
   // eslint-disable-next-line no-unused-vars
   run: ({ interaction, args }: slashCommandArugments) => Promise<void>;

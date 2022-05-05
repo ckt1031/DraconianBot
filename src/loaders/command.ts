@@ -2,10 +2,10 @@ import glob from 'glob';
 import chalk from 'chalk';
 import { join, sep, dirname } from 'node:path';
 
-import type { Client } from 'discord.js';
-import type { TextCommand } from '../sturctures/command';
+import type { Client, ApplicationCommandDataResolvable } from 'discord.js';
+import type { TextCommand, SlashCommand } from '../sturctures/command';
 
-export default async (client: Client) => {
+export async function loadTextCommand(client: Client) {
   let folderPath = join(__dirname, '../commands/message/**/*.js');
 
   // Parse path in windows
@@ -17,7 +17,7 @@ export default async (client: Client) => {
     if (error) throw error;
     if (allFiles.length === 0) {
       console.log(
-        chalk.bold('\nWARNING: Cannot find any possible command target.\n'),
+        chalk.blueBright.bold('\nWARNING: Cannot find any possible command target.\n'),
       );
     }
     for (let index = 0, l = allFiles.length; index < l; index++) {
@@ -43,4 +43,56 @@ export default async (client: Client) => {
       delete require.cache[require.resolve(filePath)];
     }
   });
-};
+}
+
+export async function loadSlashCommand(client: Client) {
+  let folderPath = join(__dirname, '../commands/slash/*.js');
+
+  // Parse path in windows
+  if (process.platform === 'win32') {
+    folderPath = folderPath.replaceAll('\\', '/');
+  }
+
+  glob(folderPath, (error, allFiles) => {
+    if (error) throw error;
+    for (let index = 0, l = allFiles.length; index < l; index++) {
+      const filePath = allFiles[index];
+      const commandFile = require(filePath);
+      const slashCommand: SlashCommand = commandFile.command;
+
+      const slashCommandCollection = client.slashcommands;
+      const name = slashCommand.data.name;
+
+      if (slashCommandCollection.has(name)) {
+        throw 'Duplicated slash command is found!';
+      }
+
+      client.slashcommands.set(slashCommand.data.name, slashCommand);
+
+      const commandInfo: ApplicationCommandDataResolvable = {
+        name: name,
+        description: slashCommand.data.description,
+        options: slashCommand.data.options,
+        type: slashCommand.data.type,
+      };
+
+      const isProd = process.env.NODE_ENV === 'production';
+      if (isProd) {
+        const application = client.application;
+        if (application !== null) {
+          application.commands.create(commandInfo);
+        }
+      } else {
+        const guildId = process.env.DEV_GUILD_ID;
+        if (guildId) {
+          const guilds = client.guilds.cache.get(guildId);
+          if (guilds !== undefined) {
+            guilds.commands.create(commandInfo);
+            console.log(`Created slash command for guild (${guildId})`);
+          }
+        }
+      }
+      delete require.cache[require.resolve(allFiles[index])];
+    }
+  });
+}

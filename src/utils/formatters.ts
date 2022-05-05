@@ -1,5 +1,5 @@
 export function parseMsToVisibleText(ms: number): string {
-  if (ms < 1000) return 'less than 1 second';
+  if (ms < 1000) return 'less than 1s';
   let seconds: number | string = Math.trunc((ms / 1000) % 60);
   let minutes: number | string = Math.trunc((ms / (1000 * 60)) % 60);
   let hours: number | string = Math.trunc((ms / (1000 * 60 * 60)) % 24);

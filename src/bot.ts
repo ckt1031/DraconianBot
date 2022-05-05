@@ -1,8 +1,9 @@
-import { Collection, Client, Intents } from 'discord.js';
 import { DisTube } from 'distube';
+import { Collection, Client, Intents } from 'discord.js';
 
 import eventHandler from './loaders/event';
-import commandHandler from './loaders/command';
+
+import { loadTextCommand } from './loaders/command';
 
 import type { TextCommand, SlashCommand } from './sturctures/command';
 
@@ -33,7 +34,7 @@ client.distube = new DisTube(client, {
 });
 
 eventHandler(client);
-commandHandler(client);
+loadTextCommand(client);
 
 declare module 'discord.js' {
   export interface Client {

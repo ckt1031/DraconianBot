@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "draconianbot",
-  "version": "2.0.05-Alpha",
+  "version": "2.0.06-Alpha",
   "description": "Discord-Multi-Purpose Bot",
   "license": "MIT",
   "author": "RealKoolisw",
@@ -16,7 +16,9 @@
   "scripts": {
     "prebuild": "rimraf ./dist && npm run lint:type",
     "build": "babel --extensions .ts ./src -d ./dist",
-    "dev": "nodemon src/index.ts",
+    "dev": "concurrently npm:tsc:watch npm:start:watch",
+    "tsc:watch": "tsc -w",
+    "start:watch": "nodemon dist/src/index.js",
     "lint": "npm-run-all lint:style lint:fix lint:type",
     "lint:fix": "eslint --ext .ts src --fix",
     "lint:style": "prettier --write .",
@@ -58,6 +60,7 @@
     "@typescript-eslint/parser": "^5.22.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-minify": "^0.5.1",
+    "concurrently": "^7.1.0",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",

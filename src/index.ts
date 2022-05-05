@@ -36,5 +36,5 @@ if (useShards) {
 
   manager.spawn();
 } else {
-  require('./bot.js');
+  require('./bot');
 }

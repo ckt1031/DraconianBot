@@ -1,3 +1,4 @@
+import { guildConfiguration, ensureServerData } from '../../utils/database';
 import { parseMsToVisibleText } from '../../utils/formatters';
 
 import type { Message } from 'discord.js';
@@ -14,11 +15,6 @@ export const event: Event = {
     if (webhookId || author.id === client.user?.id) return;
     if (partial) await message.fetch();
 
-    if (guild) {
-      // Fetch Member
-      if (!member) await guild.members.fetch(author.id);
-    }
-
     const mentionReg = new RegExp(`^(<@!?${client.user?.id}>)`);
     const mentionTest = mentionReg.test(content);
     if (mentionTest) {
@@ -26,7 +22,24 @@ export const event: Event = {
       return;
     }
 
-    const prefixReg = new RegExp('^d!|D!');
+    let prefix = 'd!';
+
+    if (guild) {
+      if (!guildConfiguration.has(guild.id)) {
+        await ensureServerData(guild.id);
+      }
+
+      const guildDatabase = guildConfiguration.get(guild.id);
+
+      if (guildDatabase) {
+        prefix = guildDatabase.prefix;
+      }
+
+      // Fetch Member
+      if (!member) await guild.members.fetch(author.id);
+    }
+
+    const prefixReg = new RegExp(`^${prefix}`);
     const prefixTest = content.match(prefixReg);
     if (prefixTest) {
       const [prefix] = prefixTest;

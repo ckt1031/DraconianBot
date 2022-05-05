@@ -2,9 +2,10 @@ import { MessageEmbed } from 'discord.js';
 
 import type { SlashCommand } from '../../sturctures/command';
 
-const slash: SlashCommand = {
+export const command: SlashCommand = {
   data: {
     name: 'ping',
+    type: 'CHAT_INPUT',
     description: 'Check network delay.',
   },
   run: async ({ interaction }) => {
@@ -20,5 +21,3 @@ const slash: SlashCommand = {
     });
   },
 };
-
-export default slash;
