@@ -14,8 +14,8 @@
   },
   "main": "src/index.ts",
   "scripts": {
-    "build": "babel --extensions .ts ./src -d ./dist",
     "prebuild": "rimraf ./dist && npm run lint:fix",
+    "build": "babel --extensions .ts ./src -d ./dist",
     "dev": "cross-env NODE_ENV=development npm run build && node dist/index.js",
     "lint": "eslint --ext .ts src",
     "lint:all": "npm-run-all lint:style lint:fix lint:type",
