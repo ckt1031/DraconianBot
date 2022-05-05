@@ -8,7 +8,7 @@ import { useShards } from '../config/bot.json';
 
 // Init
 const nodeVersions = process.versions.node.split('.');
-if (Number(nodeVersions[0]) < 16 || Number(nodeVersions[1]) < 6) {
+if (Number(nodeVersions[0]) <= 16 && Number(nodeVersions[1]) < 6) {
   throw "Local Nodejs version doesn't match the requirement (16.6.0)";
 }
 if (!process.env.PORT) {
