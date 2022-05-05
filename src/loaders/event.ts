@@ -17,7 +17,9 @@ export default async (client: Client) => {
     if (error) throw error;
     if (allFiles.length === 0) {
       console.log(
-        chalk.blueBright.bold('\nWARNING: Cannot find any possible event target.\n'),
+        chalk.blueBright.bold(
+          '\nWARNING: Cannot find any possible event target.\n',
+        ),
       );
     }
     for (let index = 0, l = allFiles.length; index < l; index++) {

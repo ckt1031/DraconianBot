@@ -17,14 +17,14 @@
     "prebuild": "rimraf ./dist && npm run lint:type",
     "build": "babel --extensions .ts ./src -d ./dist",
     "dev": "concurrently npm:tsc:watch npm:start:watch",
-    "tsc:watch": "tsc -w",
-    "start:watch": "nodemon dist/src/index.js",
     "lint": "npm-run-all lint:style lint:fix lint:type",
     "lint:fix": "eslint --ext .ts src --fix",
     "lint:style": "prettier --write .",
     "lint:type": "tsc --noemit",
     "start": "cross-env NODE_ENV=production pm2 start .pm2.config.js --no-daemon --env production",
     "start:node": "cross-env NODE_ENV=production node dist/index.js",
+    "start:watch": "nodemon dist/src/index.js",
+    "tsc:watch": "tsc -w",
     "update": "ncu"
   },
   "dependencies": {
