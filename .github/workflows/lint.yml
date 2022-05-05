@@ -32,7 +32,7 @@ jobs:
         run: npx prettier-package-json --write **/*.json *.json
 
       - name: Lint Project
-        run: npm run lint:all
+        run: npm run lint
 
       - name: Verify Changed files
         uses: tj-actions/verify-changed-files@v9
