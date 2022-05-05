@@ -19,7 +19,9 @@ export const command: TextCommand = {
 
     const embed = new MessageEmbed()
       .setTitle("Bot's Information")
-      .setDescription(``)
+      .setDescription(
+        'Hello! I am Draconian Bot, honored to see you here. Information below is my body analysis :)',
+      )
       .addFields({
         name: 'Version',
         value: `\`${packageVersion}\``,

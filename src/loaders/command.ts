@@ -1,6 +1,6 @@
 import glob from 'glob';
 import chalk from 'chalk';
-import { join } from 'node:path';
+import { join, sep, dirname } from 'node:path';
 
 import type { Client } from 'discord.js';
 import type { TextCommand } from '../sturctures/command';
@@ -29,7 +29,7 @@ export default async (client: Client) => {
       if (client.commands.has(cmdName)) {
         throw 'Duplicated command is found!';
       }
-      // command.data.catagory = '';
+      command.data.catagory = dirname(filePath).split(sep).pop();
       client.commands.set(cmdName, command);
       if (command.data.aliases) {
         for (const alias of command.data.aliases) {

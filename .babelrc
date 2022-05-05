@@ -1,7 +1,18 @@
 {
   "comments": false,
   "ignore": ["node_modules/**/*"],
-  "presets": ["@babel/typescript", "@babel/preset-env"],
+  "presets": [
+    "@babel/typescript",
+    "@babel/preset-env",
+    [
+      "minify",
+      {
+        "builtIns": false,
+        "evaluate": true,
+        "mangle": true
+      }
+    ]
+  ],
   "plugins": [
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread",

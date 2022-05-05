@@ -1,15 +1,15 @@
 import { Collection, Client, Intents } from 'discord.js';
 import { DisTube } from 'distube';
 
-import eventHandler from './handlers/event';
-import commandHandler from './handlers/command';
+import eventHandler from './loaders/event';
+import commandHandler from './loaders/command';
 
 import type { TextCommand, SlashCommand } from './sturctures/command';
 
 const client = new Client({
-  partials: ['GUILD_MEMBER', 'USER', 'MESSAGE', 'CHANNEL', 'REACTION'],
-  allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
   intents: new Intents(32767),
+  allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
+  partials: ['GUILD_MEMBER', 'USER', 'MESSAGE', 'CHANNEL', 'REACTION'],
 });
 
 client.login(process.env.TOKEN);

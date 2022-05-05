@@ -5,3 +5,7 @@ node_modules/
 .gitpod.yml
 dist
 .env
+
+.breakpoints
+.replit
+replix.nix
