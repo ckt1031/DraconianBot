@@ -8,7 +8,7 @@ export const command: TextCommand = {
   data: {
     name: 'snipe',
     aliases: ['s'],
-    description: 'Snipe deleted message in channel.',
+    description: 'Snipe deleted message in current channel.',
   },
   run: async ({ message }) => {
     const channelId = message.channelId;
