@@ -26,6 +26,7 @@ client.distube = new DisTube(client, {
   leaveOnStop: false,
   leaveOnEmpty: true,
   leaveOnFinish: true,
+  // Emits
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,

@@ -1,3 +1,26 @@
 {
-  "prefix": "d!"
+  "guildConfig": {
+    "prefix": "d!",
+    "commands": {
+      "global": {
+        "disabled": [],
+        "disabledCatagories": [],
+        "customCooldown": []
+      },
+      "userDisabled": [],
+      "roleDisabled": [],
+      "channelDisabled": []
+    }
+  },
+  "snipeConfig": {
+    "author": {
+      "id": "",
+      "name": ""
+    },
+    "content": {
+      "text": "",
+      "date": 0,
+      "imageURL": ""
+    }
+  }
 }

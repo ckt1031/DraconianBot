@@ -1,18 +1,18 @@
 # Draconian Bot
 
 This is a **Dev Branch**, about unstable releases.\
-This also will be pushed to main release at variable intervals.
+
+Current: **2.0.07-Alpha**\
+Expected Version to release: **2.0.0-Stable**
 
 ### New features and Enhancements are introduced:
 
 - Concentrating to **PRODUCTIVITY**
 - Mostly written by **_typescript_**
 - Redesigning bot handling logic
-- Discord.js v13 or the up-coming v14
-- Supporting the latest/LTS nodejs versions
+- Discord.js v13
 - Improving speed and memory usage
 - Better multi-server supports
-- Expected stable release: early June
 
 ### Checklist
 
