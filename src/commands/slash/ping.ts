@@ -8,11 +8,11 @@ const slash: SlashCommand = {
     description: 'Check network delay.',
   },
   run: async ({ interaction }) => {
-    const ms = Math.round(interaction.client.ws.ping);
-    const delay = Date.now() - interaction.createdTimestamp;
+    const apiDelayMS = Math.round(interaction.client.ws.ping);
+    const messageDelayMS = Date.now() - interaction.createdTimestamp;
 
     const embed = new MessageEmbed().setDescription(
-      `Action Delay: \`${delay}ms\`\nAPI Delay: \`${ms}ms\``,
+      `Action Delay: \`${messageDelayMS}ms\`\nAPI Delay: \`${apiDelayMS}ms\``,
     );
 
     interaction.reply({

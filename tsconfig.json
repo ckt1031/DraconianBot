@@ -37,5 +37,5 @@
     "noPropertyAccessFromIndexSignature": false
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src"]
+  "include": ["src", "config/bot.json", "package.json"]
 }

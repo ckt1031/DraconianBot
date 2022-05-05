@@ -1,16 +1,5 @@
 {
+  "useShards": false,
   "defaultPrefix": "d!",
-  "ownerId": "611804698856521728",
-  "giveawaySettingd": {
-    "everyoneMention": false,
-    "hostedBy": true
-  },
-  "emojis": {
-    "play": "▶️",
-    "stop": "⏹️",
-    "queue": "📄",
-    "success": "☑️",
-    "repeat": "🔁",
-    "error": "❌"
-  }
+  "ownerId": "611804698856521728"
 }

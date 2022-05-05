@@ -38,7 +38,7 @@ export const event: Event = {
       let cmd: TextCommand | undefined;
       const commandMatching = client.commands.get(command);
       const aliasesMatching = client.aliases.get(command);
-
+      // Fetch command destination.
       if (commandMatching) {
         cmd = commandMatching;
       } else if (aliasesMatching) {
@@ -46,7 +46,7 @@ export const event: Event = {
       } else {
         return;
       }
-
+      // callback if no.
       if (!cmd) return;
 
       // Cooldown Check
@@ -57,7 +57,7 @@ export const event: Event = {
       const cooldownInterval = cmd.data.cooldownInterval ?? 3000;
       if (cooldowns.has(keyName)) {
         const expectedEnd = cooldowns.get(keyName);
-        if (now < expectedEnd) {
+        if (expectedEnd && now < expectedEnd) {
           const tL = parseMsToVisibleText(expectedEnd - now);
           const postMessage = await message.reply({
             content: `Before using this command, please wait for **${tL}**.`,

@@ -8,15 +8,28 @@ type textCommandArugments = {
 export interface TextCommand {
   // Command Data
   readonly data: {
+    // Access
+    enabled?: boolean;
+    publicLevel?: 'All' | 'Permission' | 'None';
+    requiredPermissions?: Permissions[];
     // Info
-    readonly name: string;
-    readonly description: string;
-    readonly aliases?: string[];
+    name: string;
+    description: string;
+    catagory?: string;
+    usage?: string;
+    aliases?: string[];
+    intervalLimit?: {
+      minute?: number;
+      hour?: number;
+      day?: number;
+    };
+    // Environment & Scenes
+    ownerOnly?: boolean;
+    developmentOnly?: boolean;
+    threadChannelAllowed?: boolean;
+    directMessageAllowed?: boolean;
     // Specified Configurations
-    readonly ownerOnly?: boolean;
-    readonly cooldownInterval?: number;
-    readonly directMessageAllowed?: boolean;
-    readonly requiredPermissions?: Permissions[];
+    cooldownInterval?: number;
   };
   // eslint-disable-next-line no-unused-vars
   run: ({ message, args }: textCommandArugments) => Promise<void>;
@@ -29,7 +42,7 @@ type slashCommandArugments = {
 
 export interface SlashCommand {
   // SlashCommand Data
-  data: {
+  readonly data: {
     name: string;
     description: string;
     // directMessageAllowed?: boolean;

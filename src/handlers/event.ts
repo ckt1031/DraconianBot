@@ -1,15 +1,25 @@
 import glob from 'glob';
+import chalk from 'chalk';
 import { join } from 'node:path';
 
 import type { Client } from 'discord.js';
 import type { Event } from '../sturctures/event';
 
 export default async (client: Client) => {
-  const eventsFolder = join(__dirname, '../events/discord/*.js');
-  const folderPath = eventsFolder.replaceAll('\\', '/');
+  let folderPath = join(__dirname, '../events/discord/**/*.js');
+
+  // Parse path in windows
+  if (process.platform === 'win32') {
+    folderPath = folderPath.replaceAll('\\', '/');
+  }
 
   glob(folderPath, (error, allFiles) => {
     if (error) throw error;
+    if (allFiles.length === 0) {
+      console.log(
+        chalk.bold('\nWARNING: Cannot find any possible event target.\n'),
+      );
+    }
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
       // Get event content.

@@ -7,4 +7,3 @@ export interface Event {
   // eslint-disable-next-line no-unused-vars
   run: (client: Client, ...args: any[]) => Promise<void>;
 }
-

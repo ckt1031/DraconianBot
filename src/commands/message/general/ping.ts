@@ -9,10 +9,11 @@ export const command: TextCommand = {
     directMessageAllowed: true,
   },
   run: async ({ message }) => {
+    const apiDelayMS = Math.round(message.client.ws.ping);
+    const messageDelayMS = Date.now() - message.createdTimestamp;
+
     const embed = new MessageEmbed().setDescription(
-      `Action Delay: \`${
-        Date.now() - message.createdTimestamp
-      }ms\`\nAPI Delay: \`${Math.round(message.client.ws.ping)}ms\``,
+      `Action Delay: \`${messageDelayMS}ms\`\nAPI Delay: \`${apiDelayMS}ms\``,
     );
 
     message.reply({
