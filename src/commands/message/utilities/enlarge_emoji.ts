@@ -8,6 +8,7 @@ import type { TextCommand } from '../../../sturctures/command';
 export const command: TextCommand = {
   data: {
     name: 'enlarge_emoji',
+    aliases: ['eem'],
     description: 'Enlarge emoji to BIG picture file in message',
     directMessageAllowed: true,
   },

@@ -1,9 +1,11 @@
-import { guildConfiguration, ensureServerData } from '../../utils/database';
+import { getCommandHelpInfo } from '../../utils/cmds';
 import { parseMsToVisibleText } from '../../utils/formatters';
+import { guildConfiguration, ensureServerData } from '../../utils/database';
 
 import type { Message } from 'discord.js';
 import type { Event } from '../../sturctures/event';
 import type { TextCommand } from '../../sturctures/command';
+import type { GuildConfig } from '../../utils/database';
 
 export const event: Event = {
   name: 'messageCreate',
@@ -24,16 +26,16 @@ export const event: Event = {
 
     let prefix = 'd!';
 
+    let guildDatabase: GuildConfig | undefined;
+
     if (guild) {
       if (!guildConfiguration.has(guild.id)) {
         ensureServerData(guild.id);
       }
 
-      const guildDatabase = guildConfiguration.get(guild.id);
+      guildDatabase = guildConfiguration.get(guild.id);
 
-      if (guildDatabase) {
-        prefix = guildDatabase.prefix;
-      }
+      if (guildDatabase) prefix = guildDatabase.prefix;
 
       // Fetch Member
       if (!member) await guild.members.fetch(author.id);
@@ -66,6 +68,15 @@ export const event: Event = {
         if (!guild) return;
       }
 
+      if (cmd.enabled === false) return;
+
+      // Intercept when disabled.
+      if (guild) {
+        if (guildDatabase?.commands.global.disabled.includes(cmd.data.name)) {
+          return;
+        }
+      }
+
       // Cooldown Check
       const now = Date.now();
       const keyName = `CMD_${author.id}_${cmd.data.name}`;
@@ -86,21 +97,23 @@ export const event: Event = {
           return;
         }
       }
+      // Set cooldown.
       cooldowns.set(keyName, now + cooldownInterval);
       setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
 
       // Permission Check
       const reqPerms = cmd.data.requiredPermissions;
       if (guild && reqPerms) {
-        let missingPermissionIndex = -1;
+        const permissionMissing = [];
         for (const perm of reqPerms) {
           const isOwned = member?.permissions.has(perm);
-          if (!isOwned) missingPermissionIndex = reqPerms.indexOf(perm);
+          if (!isOwned) permissionMissing.push(perm);
         }
 
-        if (missingPermissionIndex > -1) {
+        if (permissionMissing.length > 0) {
+          const perms = permissionMissing.map(i => `\`${i}\``).join(', ');
           message.reply({
-            content: `Missing Permission: \`${reqPerms[missingPermissionIndex]}\``,
+            content: `Missing Permission: \`${perms}\``,
           });
           return;
         }
@@ -108,6 +121,10 @@ export const event: Event = {
 
       // Pass args
       const args = parsedContent.split(' ').slice(1);
+
+      if (args[0] === 'help') {
+        return getCommandHelpInfo(message, cmd);
+      }
 
       try {
         cmd.run({ message, args });

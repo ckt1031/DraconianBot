@@ -1,19 +1,21 @@
 import { callbackEmbed } from '../../../utils/messages';
-
+import { guildConfiguration } from '../../../utils/database';
 import { confirmInformationButtons } from '../../../utils/messages';
-import { guildConfiguration, ensureServerData } from '../../../utils/database';
 
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
+  enabled: true,
   data: {
-    name: 'setprefix',
-    description: 'Configurate custom preifx.',
+    name: 'commandDisable',
+    description: 'Disable command in local server.',
     directMessageAllowed: false,
     requiredPermissions: ['MANAGE_GUILD'],
   },
   run: async ({ message, args }) => {
     const { guild, member } = message;
+
+    const targetCommand: string = args[0];
 
     if (!guild) {
       return callbackEmbed({
@@ -23,36 +25,35 @@ export const command: TextCommand = {
       });
     }
 
-    const targetPrefix: string = args[0];
-    const originalPrefix = guildConfiguration.get(guild.id)?.prefix;
+    const originalPrefix = guildConfiguration.get(guild.id)?.commands.global
+      .disabled;
 
-    if (!targetPrefix || targetPrefix.length > 3) {
+    if (!originalPrefix || originalPrefix?.includes(targetCommand)) {
       return callbackEmbed({
         message,
-        text: 'Missing prefix or prefix does not match the requirement.',
+        text: 'This command had not been enabled!',
         color: 'RED',
       });
     }
 
-    if (targetPrefix === originalPrefix) {
+    const commandMatching = message.client.commands.get(targetCommand);
+
+    if (!commandMatching || commandMatching.enabled === false) {
       return callbackEmbed({
         message,
-        text: `You cannot set the same prefix: \`${targetPrefix}\``,
+        text: 'Requested command is not valid!',
         color: 'RED',
       });
     }
-
-    ensureServerData(guild.id);
 
     const fields = [
       {
-        name: 'Original',
-        value: `\`${originalPrefix}\``,
-        inline: true,
+        name: 'Action',
+        value: `\`\`\`Disable command that's enabled in this server.\`\`\``,
       },
       {
-        name: 'Destination',
-        value: `\`${targetPrefix}\``,
+        name: 'Command',
+        value: `\`${commandMatching.data.name}\``,
         inline: true,
       },
       {
@@ -69,10 +70,15 @@ export const command: TextCommand = {
     });
 
     if (status) {
-      guildConfiguration.set(guild.id, targetPrefix, 'prefix');
+      guildConfiguration.push(
+        guild.id,
+        commandMatching.data.name,
+        'commands.global.disabled',
+      );
+
       callbackEmbed({
         message,
-        text: `Bot's prefix successfully configurated: \`${targetPrefix}\``,
+        text: `Successfully disabled command: \`${commandMatching.data.name}\``,
         color: 'GREEN',
       });
     }

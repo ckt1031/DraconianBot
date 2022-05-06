@@ -34,9 +34,12 @@ export async function loadTextCommand(client: Client) {
       const commandFile = require(filePath);
       const command: TextCommand = commandFile.command;
 
+      if (command?.enabled === false) continue;
+
       if (!command?.data) {
         throw `Error: ${filePath}`;
       }
+      
       // Store command to memory.
       const cmdName = command.data.name;
       if (client.commands.has(cmdName)) {
@@ -47,7 +50,7 @@ export async function loadTextCommand(client: Client) {
 
       if (catagory) {
         command.data.catagory = catagory;
-        if (command.data.publicLevel === 'None') {
+        if (command.data.publicLevel !== 'None') {
           if (!catagories[catagory]) {
             catagories[catagory] = [];
           }
@@ -96,7 +99,7 @@ export async function loadSlashCommand(client: Client) {
         throw 'Duplicated slash command is found!';
       }
 
-      client.slashcommands.set(slashCommand.data.name, slashCommand);
+      client.slashcommands.set(name, slashCommand);
 
       const commandInfo: ApplicationCommandDataResolvable = {
         name: name,
@@ -117,10 +120,10 @@ export async function loadSlashCommand(client: Client) {
           const guilds = client.guilds.cache.get(guildId);
           if (guilds !== undefined) {
             guilds.commands.create(commandInfo);
-            console.log(`Created slash command for dev guild (${guildId})`);
           }
         }
       }
+      
       delete require.cache[require.resolve(allFiles[index])];
     }
   });

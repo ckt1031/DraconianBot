@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import type { Client } from 'discord.js';
 import type { Event } from '../sturctures/event';
 
-export default async (client: Client) => {
+export async function loadEvent(client: Client) {
   let folderPath = join(__dirname, '../events/discord/**/*.js');
 
   // Parse path in windows
@@ -37,4 +37,4 @@ export default async (client: Client) => {
       delete require.cache[require.resolve(filePath)];
     }
   });
-};
+}

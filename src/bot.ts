@@ -1,7 +1,9 @@
+import './http/server';
+
 import { DisTube } from 'distube';
 import { Collection, Client, Intents } from 'discord.js';
 
-import eventHandler from './loaders/event';
+import { loadEvent } from './loaders/event';
 
 import { loadTextCommand } from './loaders/command';
 
@@ -35,11 +37,10 @@ client.distube = new DisTube(client, {
   youtubeDL: false,
 });
 
-eventHandler(client);
+loadEvent(client);
 loadTextCommand(client);
 
 // declare types.
-
 declare module 'discord.js' {
   export interface Client {
     commands: Collection<string, TextCommand>;

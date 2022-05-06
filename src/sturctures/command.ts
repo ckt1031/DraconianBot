@@ -13,10 +13,10 @@ type textCommandArugments = {
 };
 
 export interface TextCommand {
+  enabled?: boolean;
   // Command Data
   readonly data: {
     // Access
-    enabled?: boolean;
     publicLevel?: 'All' | 'Permission' | 'None';
     requiredPermissions?: PermissionResolvable[];
     // Info
