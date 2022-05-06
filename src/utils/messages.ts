@@ -1,12 +1,11 @@
 import { MessageEmbed, MessageButton, MessageActionRow } from 'discord.js';
 
-import { ColorResolvable } from 'discord.js';
-
 import type {
   EmbedFieldData,
   Message,
   MessageComponentInteraction,
   CollectorFilter,
+  ColorResolvable,
 } from 'discord.js';
 
 type ConfirmInformationButtons = {
