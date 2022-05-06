@@ -52,7 +52,7 @@ export const command: TextCommand = {
           color: 'RED',
         });
       }
-      
+
       if (cmd) getCommandHelpInfo(message, cmd);
     }
   },

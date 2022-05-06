@@ -11,7 +11,7 @@ Expected Version to release: **2.0.1-Stable**
 2. Minimum RAM: 512 MB
 3. Minimum Free Space: 5 GB
 4. Minimum core of CPU: 1
-   
+
 ### New features and Enhancements are introduced:
 
 - Process **SAFE**

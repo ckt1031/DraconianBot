@@ -39,7 +39,7 @@ export async function loadTextCommand(client: Client) {
       if (!command?.data) {
         throw `Error: ${filePath}`;
       }
-      
+
       // Store command to memory.
       const cmdName = command.data.name;
       if (client.commands.has(cmdName)) {
@@ -123,7 +123,7 @@ export async function loadSlashCommand(client: Client) {
           }
         }
       }
-      
+
       delete require.cache[require.resolve(allFiles[index])];
     }
   });
