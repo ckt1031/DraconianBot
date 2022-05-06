@@ -18,7 +18,7 @@ export const command: TextCommand = {
     const statsOS = await pidusage(process.pid);
 
     const embed = new MessageEmbed()
-      .setTitle('Bot\'s Information')
+      .setTitle("Bot's Information")
       .setDescription(
         'Hello! I am Draconian Bot, honored to see you here. Information below is my body analysis :)',
       )
