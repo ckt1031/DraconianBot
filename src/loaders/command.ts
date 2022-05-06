@@ -1,6 +1,6 @@
 import glob from 'glob';
 import chalk from 'chalk';
-import { join, sep, dirname } from 'node:path';
+import { join, dirname, basename } from 'node:path';
 
 import type { Client, ApplicationCommandDataResolvable } from 'discord.js';
 import type { TextCommand, SlashCommand } from '../sturctures/command';
@@ -22,16 +22,39 @@ export async function loadTextCommand(client: Client) {
         ),
       );
     }
+
+    type Catagories = {
+      [key: string]: string[];
+    };
+
+    let catagories: Catagories = {};
+
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
       const commandFile = require(filePath);
       const command: TextCommand = commandFile.command;
+
+      if (!command?.data) {
+        throw `Error: ${filePath}`;
+      }
       // Store command to memory.
       const cmdName = command.data.name;
       if (client.commands.has(cmdName)) {
         throw 'Duplicated command is found!';
       }
-      command.data.catagory = dirname(filePath).split(sep).pop();
+
+      const catagory = basename(dirname(filePath));
+
+      if (catagory) {
+        command.data.catagory = catagory;
+        if (command.data.publicLevel === 'None') {
+          if (!catagories[catagory]) {
+            catagories[catagory] = [];
+          }
+          catagories[catagory].push(cmdName);
+        }
+      }
+
       client.commands.set(cmdName, command);
       if (command.data.aliases) {
         for (const alias of command.data.aliases) {
@@ -44,6 +67,10 @@ export async function loadTextCommand(client: Client) {
       }
       delete require.cache[require.resolve(filePath)];
     }
+
+    Object.entries(catagories).forEach(val => {
+      client.commandsCatagories.set(val[0], val[1]);
+    });
   });
 }
 
@@ -90,7 +117,7 @@ export async function loadSlashCommand(client: Client) {
           const guilds = client.guilds.cache.get(guildId);
           if (guilds !== undefined) {
             guilds.commands.create(commandInfo);
-            console.log(`Created slash command for guild (${guildId})`);
+            console.log(`Created slash command for dev guild (${guildId})`);
           }
         }
       }

@@ -5,7 +5,7 @@ import type { TextCommand } from '../../../sturctures/command';
 export const command: TextCommand = {
   data: {
     name: 'ping',
-    description: "Check Bot's network delay.",
+    description: 'Check Bot\'s network delay.',
     directMessageAllowed: true,
   },
   run: async ({ message }) => {

@@ -18,6 +18,7 @@ client.login(process.env.TOKEN);
 export default client;
 
 client.commands = new Collection();
+client.commandsCatagories = new Collection();
 client.aliases = new Collection();
 client.slashcommands = new Collection();
 client.cooldown = new Collection();
@@ -37,9 +38,12 @@ client.distube = new DisTube(client, {
 eventHandler(client);
 loadTextCommand(client);
 
+// declare types.
+
 declare module 'discord.js' {
   export interface Client {
     commands: Collection<string, TextCommand>;
+    commandsCatagories: Collection<string, string[]>;
     slashcommands: Collection<string, SlashCommand>;
     aliases: Collection<string, string>;
     cooldown: Collection<string, number>;

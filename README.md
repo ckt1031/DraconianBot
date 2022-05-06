@@ -2,7 +2,7 @@
 
 This is a **Dev Branch**, about unstable releases.\
 
-Current: **2.0.07-Alpha**\
+Current: **2.0.08-Alpha**\
 Expected Version to release: **2.0.0-Stable**
 
 ### New features and Enhancements are introduced:
@@ -12,7 +12,7 @@ Expected Version to release: **2.0.0-Stable**
 - Redesigning bot handling logic
 - Discord.js v13
 - Improving speed and memory usage
-- Better multi-server supports
+- Better multiserver supports
 
 ### Checklist
 
@@ -28,7 +28,7 @@ Expected Version to release: **2.0.0-Stable**
 2. Unifying bot command layout and content
 3. Level system
 4. Anti spam
-5. Interaction features like **member counting channel**, **User cpatcha verification** and so forth
+5. Interaction features like **member counting channel**, **User captcha verification** and so forth
 6. Web Dashboard (Late August)
 
 Unfortunately, these features will be removed in next main release:

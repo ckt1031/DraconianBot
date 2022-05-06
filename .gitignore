@@ -9,3 +9,4 @@ dist
 .breakpoints
 .replit
 replix.nix
+/.vscode/

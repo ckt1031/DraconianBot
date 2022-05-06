@@ -17,7 +17,7 @@ export const command: TextCommand = {
 
     if (!snipeDatabase.has(channelId) || !database) {
       message.reply({
-        content: "This channel doesn't contain any **deleted** messages.",
+        content: 'This channel doesn\'t contain any **deleted** messages.',
       });
       return;
     }

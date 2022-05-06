@@ -97,10 +97,12 @@ export const event: Event = {
           const isOwned = member?.permissions.has(perm);
           if (!isOwned) missingPermissionIndex = reqPerms.indexOf(perm);
         }
+
         if (missingPermissionIndex > -1) {
           message.reply({
             content: `Missing Permission: \`${reqPerms[missingPermissionIndex]}\``,
           });
+          return;
         }
       }
 

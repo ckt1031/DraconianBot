@@ -1,6 +1,7 @@
 import type {
   Message,
   Permissions,
+  PermissionResolvable,
   CommandInteraction,
   ApplicationCommandType,
   ApplicationCommandOptionData,
@@ -17,7 +18,7 @@ export interface TextCommand {
     // Access
     enabled?: boolean;
     publicLevel?: 'All' | 'Permission' | 'None';
-    requiredPermissions?: Permissions[];
+    requiredPermissions?: PermissionResolvable[];
     // Info
     name: string;
     description: string;
