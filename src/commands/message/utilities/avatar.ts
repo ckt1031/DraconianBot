@@ -12,9 +12,9 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const embed = new MessageEmbed();
 
-    const { guild } = message;
+    const { guild, mentions, author } = message;
 
-    let targetUser = message.mentions.users.first();
+    let targetUser = mentions.users.first();
 
     if (!targetUser) {
       if (guild && args[0]) {
@@ -33,7 +33,7 @@ export const command: TextCommand = {
           }
         }
       } else {
-        targetUser = message.author;
+        targetUser = author;
       }
     }
 

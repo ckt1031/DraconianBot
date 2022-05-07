@@ -1,19 +1,20 @@
 import { callbackEmbed } from '../../../utils/messages';
-import { guildConfiguration } from '../../../utils/database';
+
 import { confirmInformationButtons } from '../../../utils/messages';
+import { guildConfiguration } from '../../../utils/database';
 
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
   enabled: true,
   data: {
-    name: 'commandDisable',
-    description: 'Disable command in local server.',
+    name: 'commandEnable',
+    description: 'Enable command in local server.',
     directMessageAllowed: false,
     requiredPermissions: ['MANAGE_GUILD'],
   },
   run: async ({ message, args }) => {
-    const { guild, member } = message;
+    const { guild, member, client } = message;
 
     const targetCommand: string = args[0];
 
@@ -29,16 +30,16 @@ export const command: TextCommand = {
     const originalPrefix = guildConfiguration.get(guild.id)?.commands.global
       .disabled;
 
-    if (!originalPrefix || originalPrefix?.includes(targetCommand)) {
+    if (!originalPrefix?.includes(targetCommand)) {
       return callbackEmbed({
         message,
-        text: 'This command had not been enabled!',
+        text: 'This command had not been disabled!',
         color: 'RED',
         mode: 'error',
       });
     }
 
-    const commandMatching = message.client.commands.get(targetCommand);
+    const commandMatching = client.commands.get(targetCommand);
 
     if (!commandMatching || commandMatching.enabled === false) {
       return callbackEmbed({
@@ -52,7 +53,7 @@ export const command: TextCommand = {
     const fields = [
       {
         name: 'Action',
-        value: `\`\`\`Disable command that's enabled in this server.\`\`\``,
+        value: `\`\`\`Enable command that's disabled in this server.\`\`\``,
       },
       {
         name: 'Command',
@@ -73,15 +74,21 @@ export const command: TextCommand = {
     });
 
     if (status) {
-      guildConfiguration.push(
+      const index = originalPrefix.indexOf(targetCommand);
+
+      if (index > -1) {
+        originalPrefix.splice(index, 1);
+      }
+
+      guildConfiguration.set(
         guild.id,
-        commandMatching.data.name,
+        originalPrefix,
         'commands.global.disabled',
       );
 
       callbackEmbed({
         message,
-        text: `Successfully disabled command: \`${commandMatching.data.name}\``,
+        text: `Successfully enabled command: \`${commandMatching.data.name}\``,
         color: 'GREEN',
         mode: 'success',
       });

@@ -3,7 +3,7 @@ import { MessageEmbed } from 'discord.js';
 import { callbackEmbed } from '../../../utils/messages';
 import { getCommandHelpInfo } from '../../../utils/cmds';
 
-import { name as botname } from '../../../../config/bot.json';
+import { name as botname, githubLink } from '../../../../config/bot.json';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -19,8 +19,12 @@ export const command: TextCommand = {
     if (!args[0]) {
       const commandsCatagories = message.client.commandsCatagories;
 
+      embed.setDescription(
+        `Hello🙋‍♂️!\nOur source code: [Here](${githubLink})\nTurely appreciate that yuo are supporting us.`,
+      );
+
       for (const catagory of commandsCatagories) {
-        const text = catagory[1].map(i => `\`${i}\``).join(', ');
+        const text = catagory[1].map(index => `\`${index}\``).join(', ');
         embed.addField(catagory[0], text);
       }
 

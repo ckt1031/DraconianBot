@@ -8,6 +8,8 @@ import type { DiscordEvent } from '../../sturctures/event';
 import type { TextCommand } from '../../sturctures/command';
 import type { GuildConfig } from '../../utils/database';
 
+import { ownerId } from '../../../config/bot.json';
+
 export const event: DiscordEvent = {
   name: 'messageCreate',
   run: async (client, message: Message) => {
@@ -65,28 +67,27 @@ export const event: DiscordEvent = {
       // callback if no.
       if (!cmd) return;
 
-      if (!cmd.data.directMessageAllowed) {
-        if (!guild) return;
-      }
+      if (cmd.data?.ownerOnly === true && author.id !== ownerId) return;
+
+      if (!cmd.data?.directMessageAllowed && !guild) return;
 
       if (cmd.enabled === false) return;
 
       // Intermit when disabled.
-      if (guild) {
-        if (guildDatabase?.commands.global.disabled.includes(cmd.data.name)) {
-          return;
-        }
+      if (
+        guild &&
+        guildDatabase?.commands.global.disabled.includes(cmd.data.name)
+      ) {
+        return;
       }
 
-      if (cmd.data?.inVoiceChannelRequired === true) {
-        if (!member?.voice.channel) {
-          return callbackEmbed({
-            message,
-            text: `You must be in voice channel before executing this commmand.`,
-            color: 'RED',
-            mode: 'error',
-          });
-        }
+      if (cmd.data?.inVoiceChannelRequired === true && !member?.voice.channel) {
+        return callbackEmbed({
+          message,
+          text: `You must be in voice channel before executing this commmand.`,
+          color: 'RED',
+          mode: 'error',
+        });
       }
 
       // Cooldown Check
@@ -114,16 +115,18 @@ export const event: DiscordEvent = {
       setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
 
       // Permission Check
-      const reqPerms = cmd.data.requiredPermissions;
-      if (guild && reqPerms) {
+      const requestPerms = cmd.data.requiredPermissions;
+      if (guild && requestPerms) {
         const permissionMissing = [];
-        for (const perm of reqPerms) {
+        for (const perm of requestPerms) {
           const isOwned = member?.permissions.has(perm);
           if (!isOwned) permissionMissing.push(perm);
         }
 
         if (permissionMissing.length > 0) {
-          const perms = permissionMissing.map(i => `\`${i}\``).join(', ');
+          const perms = permissionMissing
+            .map(index => `\`${index}\``)
+            .join(', ');
           message.reply({
             content: `Missing Permission: \`${perms}\``,
           });
@@ -132,14 +135,14 @@ export const event: DiscordEvent = {
       }
 
       // Pass args
-      const args = parsedContent.split(' ').slice(1);
+      const arguments_ = parsedContent.split(' ').slice(1);
 
-      if (args[0] === 'help') {
+      if (arguments_[0] === 'help') {
         return getCommandHelpInfo(message, cmd);
       }
 
       try {
-        cmd.run({ message, args });
+        cmd.run({ message, args: arguments_ });
       } catch (error) {
         if (error instanceof Error) console.error(error); // eslint-disable-line no-console
       }

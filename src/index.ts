@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 import chalk from 'chalk';
-import { basename } from 'path';
+import { basename } from 'node:path';
 import { ShardingManager } from 'discord.js';
 
 import { useShards } from '../config/bot.json';
@@ -27,6 +27,8 @@ if (process.env.NODE_ENV !== 'production') {
   );
 }
 if (!process.env.TOKEN) throw 'ERROR: TOKEN is missing!';
+
+
 
 if (useShards && useShards === true) {
   const directoryName = basename(__dirname);

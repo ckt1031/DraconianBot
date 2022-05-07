@@ -46,6 +46,7 @@ export async function loadTextCommand(client: Client) {
       // Store command to memory.
       const cmdName = command.data.name;
       if (client.commands.has(cmdName)) {
+        console.error(filePath);
         throw 'Duplicated command is found!';
       }
 
@@ -78,9 +79,9 @@ export async function loadTextCommand(client: Client) {
       }
     }
 
-    Object.entries(catagories).forEach(val => {
-      client.commandsCatagories.set(val[0], val[1]);
-    });
+    for (const value of Object.entries(catagories)) {
+      client.commandsCatagories.set(value[0], value[1]);
+    }
   });
 }
 
@@ -115,8 +116,8 @@ export async function loadSlashCommand(client: Client) {
         type: slashCommand.data.type,
       };
 
-      const isProd = process.env.NODE_ENV === 'production';
-      if (isProd) {
+      const isProduction = process.env.NODE_ENV === 'production';
+      if (isProduction) {
         const application = client.application;
         if (application !== null) {
           application.commands.create(commandInfo);

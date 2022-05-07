@@ -15,7 +15,7 @@ import { loadTextCommand } from './loaders/command';
 import type { TextCommand, SlashCommand } from './sturctures/command';
 
 const client = new Client({
-  intents: new Intents(32767),
+  intents: new Intents(32_767),
   allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
   partials: ['GUILD_MEMBER', 'USER', 'MESSAGE', 'CHANNEL', 'REACTION'],
 });

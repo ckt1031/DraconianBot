@@ -9,7 +9,7 @@ export const command: TextCommand = {
     inVoiceChannelRequired: true,
   },
   run: async ({ message }) => {
-    const { member } = message;
+    const { member, client } = message;
 
     if (!member) return;
 
@@ -17,7 +17,7 @@ export const command: TextCommand = {
 
     if (!vc) return;
 
-    const queue = message.client.distube.getQueue(message);
+    const queue = client.distube.getQueue(message);
 
     if (!queue) {
       return callbackEmbed({

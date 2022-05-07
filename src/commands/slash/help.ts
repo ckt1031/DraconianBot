@@ -17,7 +17,7 @@ export const command: SlashCommand = {
     const commandsCatagories = interaction.client.commandsCatagories;
 
     for (const catagory of commandsCatagories) {
-      const text = catagory[1].map(i => `\`${i}\``).join(', ');
+      const text = catagory[1].map(index => `\`${index}\``).join(', ');
       embed.addField(catagory[0], text);
     }
 

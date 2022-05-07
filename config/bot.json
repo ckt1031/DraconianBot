@@ -2,6 +2,7 @@
   "name": "DraconianBot",
   "defaultPrefix": "d!",
   "disabledCommandCatagories": [],
-  "ownerId": "611804698856521728",
-  "useShards": false
+  "ownerId": "926686424865058876",
+  "useShards": false,
+  "githubLink": "https://github.com/RealKoolisw/DraconianBot/tree/dev-ts"
 }

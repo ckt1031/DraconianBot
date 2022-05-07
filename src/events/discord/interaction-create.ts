@@ -44,24 +44,24 @@ export const event: DiscordEvent = {
       cooldowns.set(keyName, now + cooldownInterval);
       setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
 
-      const args: any[] = [];
+      const arguments_: any[] = [];
 
       for (let index = 0, l = options.data.length; index < l; index++) {
         const data = options.data[index];
         if (data.type === 'SUB_COMMAND') {
           if (data.name) {
-            args.push(data.name);
+            arguments_.push(data.name);
           }
           if (data.options) {
             for (const options of data.options) {
-              if (options.value) args.push(options.value);
+              if (options.value) arguments_.push(options.value);
             }
           }
-        } else if (data.value) args.push(data.value);
+        } else if (data.value) arguments_.push(data.value);
       }
 
       try {
-        return slash.run({ interaction, args });
+        return slash.run({ interaction, args: arguments_ });
       } catch (error) {
         if (error instanceof Error) console.error(error);
       }

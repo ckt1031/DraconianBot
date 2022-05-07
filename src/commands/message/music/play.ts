@@ -10,7 +10,7 @@ export const command: TextCommand = {
     inVoiceChannelRequired: true,
   },
   run: async ({ message, args }) => {
-    const { member } = message;
+    const { member, client } = message;
 
     const string = args.join(' ');
 
@@ -29,6 +29,6 @@ export const command: TextCommand = {
       });
     }
 
-    message.client.distube.play(vc, string);
+    client.distube.play(vc, string);
   },
 };
