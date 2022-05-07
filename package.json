@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "draconianbot",
-  "version": "2.0.00.10-Alpha",
+  "version": "2.0-Alpha",
   "description": "Multi-Purpose & Productivity concentrated Discord BOT.",
   "license": "MIT",
   "author": "CKTSUN31",
@@ -21,7 +21,8 @@
     "lint:fix": "eslint --ext .ts src --fix",
     "lint:style": "prettier --write .",
     "lint:type": "tsc --noemit",
-    "start": "cross-env NODE_ENV=production pm2 start .pm2.config.js --no-daemon --env production",
+    "start": "npm-run-all build start:pm2",
+    "start:pm2": "cross-env NODE_ENV=production pm2 start .pm2.config.js --no-daemon --env production",
     "start:node": "cross-env NODE_ENV=production node dist/index.js",
     "start:watch": "node -e \"setTimeout(()=>{},5000)\" && nodemon ./dist/src/index.js",
     "tsc:watch": "tsc -w",

@@ -18,6 +18,8 @@ if (!process.env.PORT) {
   console.log('Considered to change default HTTP port to 8080');
 }
 
+if (!process.env.TOKEN) throw 'ERROR: TOKEN is missing!';
+
 // If instacne is not production mode.
 if (process.env.NODE_ENV !== 'production') {
   const log = console.log;
@@ -25,8 +27,10 @@ if (process.env.NODE_ENV !== 'production') {
   log(
     chalk.red.bold('Some production features will be disrupted or terminated.'),
   );
+} else {
+  process.on('uncaughtException', console.error);
+  process.on('unhandledRejection', console.error);
 }
-if (!process.env.TOKEN) throw 'ERROR: TOKEN is missing!';
 
 if (useShards && useShards === true) {
   const directoryName = basename(__dirname);

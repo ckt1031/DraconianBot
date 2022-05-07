@@ -48,6 +48,10 @@ client.distube = new DisTube(client, {
   ],
 });
 
+process.on('SIGTERM', client.destroy);
+process.on('exit', client.destroy);
+process.on('SIGINT', client.destroy);
+
 export default client;
 
 loadDiscordEvent(client);
