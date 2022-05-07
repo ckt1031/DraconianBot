@@ -6,9 +6,9 @@ import {
 } from '../../utils/database';
 
 import type { Message } from 'discord.js';
-import type { Event } from '../../sturctures/event';
+import type { DiscordEvent } from '../../sturctures/event';
 
-export const event: Event = {
+export const event: DiscordEvent = {
   name: 'messageCreate',
   run: async (_, message: Message) => {
     if (message.partial) {

@@ -23,6 +23,7 @@ export const command: TextCommand = {
         message,
         text: 'This command can only be executed in SERVER!',
         color: 'RED',
+        mode: 'error',
       });
     }
 
@@ -34,6 +35,7 @@ export const command: TextCommand = {
         message,
         text: 'This command had not been disabled!',
         color: 'RED',
+        mode: 'error',
       });
     }
 
@@ -44,6 +46,7 @@ export const command: TextCommand = {
         message,
         text: 'Requested command is not valid!',
         color: 'RED',
+        mode: 'error',
       });
     }
 
@@ -87,6 +90,7 @@ export const command: TextCommand = {
         message,
         text: `Successfully enabled command: \`${commandMatching.data.name}\``,
         color: 'GREEN',
+        mode: 'success',
       });
     }
   },

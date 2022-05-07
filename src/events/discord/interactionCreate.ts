@@ -1,9 +1,9 @@
 import { parseMsToVisibleText } from '../../utils/formatters';
 
 import type { CommandInteraction } from 'discord.js';
-import type { Event } from '../../sturctures/event';
+import type { DiscordEvent } from '../../sturctures/event';
 
-export const event: Event = {
+export const event: DiscordEvent = {
   name: 'interactionCreate',
   run: async (client, interaction: CommandInteraction) => {
     if (interaction.guild && !interaction.member) {

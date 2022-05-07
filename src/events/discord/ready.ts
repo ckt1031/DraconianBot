@@ -1,9 +1,9 @@
 import { ensureServerData } from '../../utils/database';
 import { loadSlashCommand } from '../../loaders/command';
 
-import type { Event } from '../../sturctures/event';
+import type { DiscordEvent } from '../../sturctures/event';
 
-export const event: Event = {
+export const event: DiscordEvent = {
   once: true,
   name: 'ready',
   run: async client => {

@@ -2,5 +2,6 @@
   "name": "DraconianBot",
   "defaultPrefix": "d!",
   "ownerId": "611804698856521728",
-  "useShards": false
+  "useShards": false,
+  "disabledCommandCatagories": []
 }

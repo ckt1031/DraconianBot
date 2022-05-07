@@ -19,6 +19,7 @@ export interface TextCommand {
     // Access
     publicLevel?: 'All' | 'Permission' | 'None';
     requiredPermissions?: PermissionResolvable[];
+    inVoiceChannelRequired?: boolean;
     // Info
     name: string;
     description: string;

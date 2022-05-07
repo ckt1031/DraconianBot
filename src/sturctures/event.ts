@@ -1,9 +1,16 @@
-import { Client } from 'discord.js';
+import type { Client } from 'discord.js';
+import type { DisTubeEvents } from 'distube';
 
-export interface Event {
+export interface DiscordEvent {
   // Event Data
   name: string;
   once?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  run: (client: Client, ...args: any[]) => Promise<void>;
+}
+
+export interface DistubeEvent {
+  name: keyof DisTubeEvents;
   // eslint-disable-next-line no-unused-vars
   run: (client: Client, ...args: any[]) => Promise<void>;
 }

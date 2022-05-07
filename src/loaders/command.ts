@@ -3,7 +3,10 @@ import chalk from 'chalk';
 import { join, dirname, basename } from 'node:path';
 
 import type { Client, ApplicationCommandDataResolvable } from 'discord.js';
+
 import type { TextCommand, SlashCommand } from '../sturctures/command';
+
+import { disabledCommandCatagories } from '../../config/bot.json';
 
 export async function loadTextCommand(client: Client) {
   let folderPath = join(__dirname, '../commands/message/**/*.js');
@@ -48,27 +51,31 @@ export async function loadTextCommand(client: Client) {
 
       const catagory = basename(dirname(filePath));
 
-      if (catagory) {
-        command.data.catagory = catagory;
-        if (command.data.publicLevel !== 'None') {
-          if (!catagories[catagory]) {
-            catagories[catagory] = [];
-          }
-          catagories[catagory].push(cmdName);
-        }
-      }
+      const disabledCatagories: string[] = disabledCommandCatagories;
 
-      client.commands.set(cmdName, command);
-      if (command.data.aliases) {
-        for (const alias of command.data.aliases) {
-          if (client.aliases.has(alias)) {
-            throw 'Duplicated command alias is found!';
+      if (!disabledCatagories.includes(catagory)) {
+        if (catagory) {
+          command.data.catagory = catagory;
+          if (command.data.publicLevel !== 'None') {
+            if (!catagories[catagory]) {
+              catagories[catagory] = [];
+            }
+            catagories[catagory].push(cmdName);
           }
-          // Store aliase(s) to memory if exists.
-          client.aliases.set(alias, command.data.name);
         }
+
+        client.commands.set(cmdName, command);
+        if (command.data.aliases) {
+          for (const alias of command.data.aliases) {
+            if (client.aliases.has(alias)) {
+              throw 'Duplicated command alias is found!';
+            }
+            // Store aliase(s) to memory if exists.
+            client.aliases.set(alias, command.data.name);
+          }
+        }
+        delete require.cache[require.resolve(filePath)];
       }
-      delete require.cache[require.resolve(filePath)];
     }
 
     Object.entries(catagories).forEach(val => {

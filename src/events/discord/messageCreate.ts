@@ -1,13 +1,14 @@
+import { callbackEmbed } from '../../utils/messages';
 import { getCommandHelpInfo } from '../../utils/cmds';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { guildConfiguration, ensureServerData } from '../../utils/database';
 
 import type { Message } from 'discord.js';
-import type { Event } from '../../sturctures/event';
+import type { DiscordEvent } from '../../sturctures/event';
 import type { TextCommand } from '../../sturctures/command';
 import type { GuildConfig } from '../../utils/database';
 
-export const event: Event = {
+export const event: DiscordEvent = {
   name: 'messageCreate',
   run: async (client, message: Message) => {
     if (message.partial) await message.fetch();
@@ -70,10 +71,21 @@ export const event: Event = {
 
       if (cmd.enabled === false) return;
 
-      // Intercept when disabled.
+      // Intermit when disabled.
       if (guild) {
         if (guildDatabase?.commands.global.disabled.includes(cmd.data.name)) {
           return;
+        }
+      }
+
+      if (cmd.data?.inVoiceChannelRequired === true) {
+        if (!member?.voice.channel) {
+          return callbackEmbed({
+            message,
+            text: `You must be in voice channel before executing this commmand.`,
+            color: 'RED',
+            mode: 'error',
+          });
         }
       }
 

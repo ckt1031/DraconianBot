@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "draconianbot",
-  "version": "2.0.00.9-Alpha",
+  "version": "2.0.00.10-Alpha",
   "description": "Multi-Purpose & Productivity concentrated Discord BOT.",
   "license": "MIT",
   "author": "CKTSUN31",
@@ -23,11 +23,14 @@
     "lint:type": "tsc --noemit",
     "start": "cross-env NODE_ENV=production pm2 start .pm2.config.js --no-daemon --env production",
     "start:node": "cross-env NODE_ENV=production node dist/index.js",
-    "start:watch": "nodemon ./dist/src/index.js",
+    "start:watch": "node -e \"setTimeout(()=>{},5000)\" && nodemon ./dist/src/index.js",
     "tsc:watch": "tsc -w",
     "update": "ncu"
   },
   "dependencies": {
+    "@distube/soundcloud": "^1.1.0",
+    "@distube/spotify": "^1.2.1",
+    "@distube/yt-dlp": "^1.0.2",
     "@fastify/rate-limit": "^6.0.0",
     "axios": "^0.27.2",
     "better-sqlite3": "^7.5.1",
@@ -39,6 +42,7 @@
     "enmap": "^5.9.0",
     "fastify": "^3.29.0",
     "glob": "^8.0.1",
+    "libsodium-wrappers": "^0.7.10",
     "ms": "^2.1.3",
     "pidusage": "^3.0.0",
     "twemoji-parser": "^14.0.0"
@@ -46,6 +50,7 @@
   "devDependencies": {
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.177",
+    "@types/express-status-monitor": "^1.2.4",
     "@types/fastify-rate-limit": "^2.1.0",
     "@types/glob": "^7.2.0",
     "@types/pidusage": "^2.0.2",
@@ -53,7 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "concurrently": "^7.1.0",
-    "eslint": "^8.14.0",
+    "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",

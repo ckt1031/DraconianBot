@@ -20,6 +20,7 @@ export const command: TextCommand = {
         message,
         text: 'This command can only be executed in SERVER!',
         color: 'RED',
+        mode: 'error',
       });
     }
 
@@ -31,6 +32,7 @@ export const command: TextCommand = {
         message,
         text: 'Missing prefix or prefix does not match the requirement.',
         color: 'RED',
+        mode: 'error',
       });
     }
 
@@ -39,6 +41,7 @@ export const command: TextCommand = {
         message,
         text: `You cannot set the same prefix: \`${targetPrefix}\``,
         color: 'RED',
+        mode: 'error',
       });
     }
 

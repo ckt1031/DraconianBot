@@ -3,9 +3,9 @@ import chalk from 'chalk';
 import { join } from 'node:path';
 
 import type { Client } from 'discord.js';
-import type { Event } from '../sturctures/event';
+import type { DiscordEvent, DistubeEvent } from '../sturctures/event';
 
-export async function loadEvent(client: Client) {
+export async function loadDiscordEvent(client: Client) {
   let folderPath = join(__dirname, '../events/discord/**/*.js');
 
   // Parse path in windows
@@ -22,17 +22,49 @@ export async function loadEvent(client: Client) {
         ),
       );
     }
+    
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
       // Get event content.
       const eventFile = require(filePath);
-      const event: Event = eventFile.event;
+      const event: DiscordEvent = eventFile.event;
       // Check triggering mode.
       if (event.once === true) {
         client.once(event.name, event.run.bind(undefined, client));
       } else {
         client.on(event.name, event.run.bind(undefined, client));
       }
+      // Remove cache.
+      delete require.cache[require.resolve(filePath)];
+    }
+  });
+}
+
+export async function loadMusicEvent(client: Client) {
+  let folderPath = join(__dirname, '../events/distube/**/*.js');
+
+  // Parse path in windows
+  if (process.platform === 'win32') {
+    folderPath = folderPath.replaceAll('\\', '/');
+  }
+
+  glob(folderPath, (error, allFiles) => {
+    if (error) throw error;
+    if (allFiles.length === 0) {
+      console.log(
+        chalk.blueBright.bold(
+          '\nWARNING: Cannot find any possible music event target.\n',
+        ),
+      );
+    }
+    
+    for (let index = 0, l = allFiles.length; index < l; index++) {
+      const filePath = allFiles[index];
+      // Get event content.
+      const eventFile = require(filePath);
+      const event: DistubeEvent = eventFile.event;
+      // Check triggering mode.
+      client.distube.on(event.name, event.run.bind(undefined, client));
       // Remove cache.
       delete require.cache[require.resolve(filePath)];
     }

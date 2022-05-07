@@ -1,5 +1,7 @@
 import { MessageEmbed, MessageButton, MessageActionRow } from 'discord.js';
 
+import emojis from '../../config/emojis.json';
+
 import type {
   EmbedFieldData,
   Message,
@@ -61,11 +63,26 @@ export async function confirmInformationButtons({
 type CallbackEmbed = {
   text: string;
   message: Message;
-  color: ColorResolvable;
+  color?: ColorResolvable;
+  mode?: 'error' | 'success' | 'warning';
 };
 
-export function callbackEmbed({ text, message, color }: CallbackEmbed): void {
-  const embed = new MessageEmbed().setDescription(text).setColor(color);
+export function callbackEmbed({
+  text,
+  message,
+  color,
+  mode,
+}: CallbackEmbed): void {
+  let emoji = '';
+
+  if (mode && typeof mode === 'string') {
+    emoji = emojis[mode] + " ";
+  }
+
+  const embed = new MessageEmbed()
+    .setDescription(`${emoji}${text}`)
+    .setColor(color!);
+
   if (message.channel.isText()) {
     message.reply({
       embeds: [embed],

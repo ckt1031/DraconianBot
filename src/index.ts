@@ -14,7 +14,7 @@ if (Number(nodeVersions[0]) <= 16 && Number(nodeVersions[1]) < 6) {
 
 // Define PORT when it's doesn't exist
 if (!process.env.PORT) {
-  process.env.PORT = '8080';
+  process.env.PORT = '3000';
   console.log('Considered to change default HTTP port to 8080');
 }
 

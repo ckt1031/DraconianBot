@@ -38,6 +38,9 @@ jobs:
       - name: Formate All JSON File
         run: npx prettier-package-json --write **/*.json *.json
 
+      - name: Check NPM Peer Dependencies
+        run: npx check-peer-dependencies
+
       - name: Lint Project
         run: npm run lint
 

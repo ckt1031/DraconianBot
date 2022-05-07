@@ -50,6 +50,7 @@ export const command: TextCommand = {
           message,
           text: 'Command requested does not exist!',
           color: 'RED',
+          mode: 'error',
         });
       }
 
