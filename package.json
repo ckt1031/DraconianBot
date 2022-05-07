@@ -22,8 +22,8 @@
     "lint:style": "prettier --write .",
     "lint:type": "tsc --noemit",
     "start": "npm-run-all build start:pm2",
-    "start:pm2": "cross-env NODE_ENV=production pm2 start .pm2.config.js --no-daemon --env production",
     "start:node": "cross-env NODE_ENV=production node dist/index.js",
+    "start:pm2": "cross-env NODE_ENV=production pm2 start .pm2.config.js --no-daemon --env production",
     "start:watch": "node -e \"setTimeout(()=>{},5000)\" && nodemon ./dist/src/index.js",
     "tsc:watch": "tsc -w",
     "update": "ncu"
