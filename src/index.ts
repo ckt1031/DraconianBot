@@ -28,8 +28,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 if (!process.env.TOKEN) throw 'ERROR: TOKEN is missing!';
 
-
-
 if (useShards && useShards === true) {
   const directoryName = basename(__dirname);
   const manager = new ShardingManager(`./${directoryName}/bot.js`, {
