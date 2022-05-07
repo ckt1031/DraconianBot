@@ -76,10 +76,9 @@ export const command: TextCommand = {
     if (status) {
       const index = originalPrefix.indexOf(targetCommand);
 
-      if (index > -1) {
-        originalPrefix.splice(index, 1);
-      }
+      if (index > -1) originalPrefix.splice(index, 1);
 
+      // Set to Database
       guildConfiguration.set(
         guild.id,
         originalPrefix,

@@ -72,7 +72,9 @@ export const command: TextCommand = {
     });
 
     if (status) {
+      // Set to database.
       guildConfiguration.set(guild.id, targetPrefix, 'prefix');
+
       callbackEmbed({
         message,
         text: `Bot's prefix successfully configurated: \`${targetPrefix}\``,

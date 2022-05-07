@@ -22,8 +22,6 @@ const client = new Client({
 
 client.login(process.env.TOKEN);
 
-export default client;
-
 client.commands = new Collection();
 client.commandsCatagories = new Collection();
 client.aliases = new Collection();
@@ -38,8 +36,9 @@ client.distube = new DisTube(client, {
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
-  // Plugins
+
   youtubeDL: false,
+  // Plugins
   plugins: [
     new SpotifyPlugin({
       emitEventsAfterFetching: true,
@@ -48,6 +47,8 @@ client.distube = new DisTube(client, {
     new YtDlpPlugin(),
   ],
 });
+
+export default client;
 
 loadDiscordEvent(client);
 loadMusicEvent(client);
