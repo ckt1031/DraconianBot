@@ -22,7 +22,7 @@ export async function loadDiscordEvent(client: Client) {
         ),
       );
     }
-    
+
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
       // Get event content.
@@ -57,7 +57,7 @@ export async function loadMusicEvent(client: Client) {
         ),
       );
     }
-    
+
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
       // Get event content.

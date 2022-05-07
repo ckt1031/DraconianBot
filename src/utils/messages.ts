@@ -76,7 +76,7 @@ export function callbackEmbed({
   let emoji = '';
 
   if (mode && typeof mode === 'string') {
-    emoji = emojis[mode] + " ";
+    emoji = emojis[mode] + ' ';
   }
 
   const embed = new MessageEmbed()
