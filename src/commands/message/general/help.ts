@@ -20,7 +20,7 @@ export const command: TextCommand = {
       const commandsCatagories = message.client.commandsCatagories;
 
       embed.setDescription(
-        `Hello🙋‍♂️!\nOur source code: [Here](${githubLink})\nTurely appreciate that yuo are supporting us.`,
+        `Hello🙋‍♂️!\nOur source code: [Here](${githubLink})\nTurely appreciate that you are supporting us.`,
       );
 
       for (const catagory of commandsCatagories) {

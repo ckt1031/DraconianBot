@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: '13 21 * * *'
   push:
+    branches:
+      - main
     paths:
       - '**.js'
       - '**.jsx'

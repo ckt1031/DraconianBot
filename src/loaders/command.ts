@@ -26,9 +26,9 @@ export async function loadTextCommand(client: Client) {
       );
     }
 
-    type Catagories = {
+    interface Catagories {
       [key: string]: string[];
-    };
+    }
 
     let catagories: Catagories = {};
 

@@ -7,10 +7,10 @@ import type {
   ApplicationCommandOptionData,
 } from 'discord.js';
 
-type textCommandArugments = {
+interface textCommandArugments {
   message: Message;
   args: any[];
-};
+}
 
 export interface TextCommand {
   enabled?: boolean;
@@ -43,10 +43,10 @@ export interface TextCommand {
   run: ({ message, args }: textCommandArugments) => Promise<void>;
 }
 
-type slashCommandArugments = {
+interface slashCommandArugments {
   interaction: CommandInteraction;
   args: any[];
-};
+}
 
 export interface SlashCommand {
   // SlashCommand Data

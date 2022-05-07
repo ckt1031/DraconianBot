@@ -10,11 +10,11 @@ import type {
   ColorResolvable,
 } from 'discord.js';
 
-type ConfirmInformationButtons = {
+interface ConfirmInformationButtons {
   title: string;
   fields: EmbedFieldData[];
   message: Message;
-};
+}
 
 export async function confirmInformationButtons({
   title,
@@ -60,12 +60,12 @@ export async function confirmInformationButtons({
   return interaction.customId === confirmId;
 }
 
-type CallbackEmbed = {
+interface CallbackEmbed {
   text: string;
   message: Message;
   color?: ColorResolvable;
   mode?: 'error' | 'success' | 'warning';
-};
+}
 
 export function callbackEmbed({
   text,
