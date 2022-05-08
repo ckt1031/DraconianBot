@@ -43,6 +43,9 @@ jobs:
       - name: Check NPM Peer Dependencies
         run: npx check-peer-dependencies
 
+      - name: Init Project
+        run: npx ts-node ./tools/copy-config.ts
+
       - name: Lint Project
         run: npm run lint
 
