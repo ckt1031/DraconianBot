@@ -13,14 +13,17 @@ export const command: TextCommand = {
   data: {
     name: 'eval',
     publicLevel: 'None',
+    description: 'Eval javascript code in Nodejs runtime.',
     ownerOnly: true,
     developmentOnly: true,
-    description: 'Eval javascript code in Nodejs runtime.',
     directMessageAllowed: true,
   },
   run: async ({ message, args }) => {
+    const code = args.join(' ');
+
+    if (!code) return;
+
     try {
-      const code = args.join(' ');
       let evaled = eval(code);
       if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
       if (evaled.length > 1999) return console.log(evaled);

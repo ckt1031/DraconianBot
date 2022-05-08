@@ -23,6 +23,8 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const code = args.join(' ');
 
+    if (!code) return;
+
     exec(code, (error, stdout, stderr) => {
       if (error) {
         message.channel.send({

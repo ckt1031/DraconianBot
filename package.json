@@ -16,7 +16,7 @@
   "scripts": {
     "prebuild": "rimraf ./dist && npm run lint:type",
     "build": "swc src -d dist",
-    "dev": "concurrently npm:tsc:watch npm:start:watch",
+    "dev": "cross-env NODE_ENV=development concurrently npm:tsc:watch npm:start:watch",
     "lint": "npm-run-all lint:style lint:fix lint:type",
     "lint:fix": "eslint --ext .ts src --fix",
     "lint:style": "prettier --write .",
@@ -25,7 +25,7 @@
     "start:node": "cross-env NODE_ENV=production node dist/index.js",
     "start:pm2": "cross-env NODE_ENV=production pm2 start .pm2.config.js --no-daemon --env production",
     "start:watch": "node -e \"setTimeout(()=>{},5000)\" && nodemon ./dist/src/index.js",
-    "tsc:watch": "tsc -w",
+    "tsc:watch": "rimraf ./dist && tsc -w",
     "update": "ncu"
   },
   "dependencies": {
