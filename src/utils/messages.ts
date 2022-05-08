@@ -1,6 +1,6 @@
 import { MessageEmbed, MessageButton, MessageActionRow } from 'discord.js';
 
-import emojis from '../../config/emojis.json';
+import emoji from '../../config/emojis.json';
 
 import type {
   EmbedFieldData,
@@ -73,14 +73,14 @@ export function callbackEmbed({
   color,
   mode,
 }: CallbackEmbed): void {
-  let emoji = '';
+  let emojiText = '';
 
   if (mode && typeof mode === 'string') {
-    emoji = emojis[mode] + ' ';
+    emojiText = emoji[mode] + ' ';
   }
 
   const embed = new MessageEmbed()
-    .setDescription(`${emoji}${text}`)
+    .setDescription(`${emojiText}${text}`)
     .setColor(color!);
 
   if (message.channel.isText()) {
