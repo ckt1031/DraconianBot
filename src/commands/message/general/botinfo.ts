@@ -15,7 +15,7 @@ export const command: TextCommand = {
   },
   run: async ({ message }) => {
     const apiDelayMS = Math.round(message.client.ws.ping);
-    const statsOS = await pidusage(process.pid);
+    const osStats = await pidusage(process.pid);
 
     const embed = new MessageEmbed()
       .setTitle("Bot's Information")
@@ -39,12 +39,12 @@ export const command: TextCommand = {
       })
       .addFields({
         name: 'CPU',
-        value: `\`${Math.round(Number(statsOS.cpu.toFixed(2)))}%\``,
+        value: `\`${Math.round(Number(osStats.cpu.toFixed(2)))}%\``,
         inline: true,
       })
       .addFields({
         name: 'Memory',
-        value: `\`${Math.round(statsOS.memory / (1024 * 1024))}MB\``,
+        value: `\`${Math.round(osStats.memory / (1024 * 1024))}MB\``,
         inline: true,
       })
       .addFields({

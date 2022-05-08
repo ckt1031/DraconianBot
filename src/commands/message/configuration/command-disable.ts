@@ -5,12 +5,11 @@ import { confirmInformationButtons } from '../../../utils/messages';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
-  enabled: true,
   data: {
     name: 'commandDisable',
     description: 'Disable command in local server.',
     directMessageAllowed: false,
-    requiredPermissions: ['MANAGE_GUILD'],
+    authorRequiredPermissions: ['MANAGE_GUILD'],
   },
   run: async ({ message, args }) => {
     const { guild, member, client } = message;

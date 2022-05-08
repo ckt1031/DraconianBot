@@ -36,9 +36,7 @@ export const event: DiscordEvent = {
           content: {
             text: content,
             date: Date.now(),
-            imageURL: attachments.first()
-              ? attachments.first()?.proxyURL
-              : undefined,
+            imageURL: attachments.first()?.proxyURL,
           },
         });
       }

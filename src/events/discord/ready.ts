@@ -9,6 +9,7 @@ export const event: DiscordEvent = {
   run: async client => {
     // Load slash command.
     loadSlashCommand(client);
+
     // Ensure all server data is synced and unified.
     const guilds = client.guilds.cache.map(guild => guild.id);
     for (const guildId of guilds) ensureServerData(guildId);

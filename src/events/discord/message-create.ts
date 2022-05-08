@@ -1,5 +1,5 @@
 import { callbackEmbed } from '../../utils/messages';
-import { getCommandHelpInfo } from '../../utils/cmds';
+import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { guildConfiguration, ensureServerData } from '../../utils/database';
 
@@ -52,26 +52,56 @@ export const event: DiscordEvent = {
       if (!parsedContent) return;
 
       const command = parsedContent.split(' ')[0];
+
       // Command Content Parsing.
       let cmd: TextCommand | undefined;
-      const commandMatching = client.commands.get(command);
-      const aliasesMatching = client.aliases.get(command);
+
+      let cmdName = command;
+
       // Fetch command destination.
-      if (commandMatching) {
-        cmd = commandMatching;
-      } else if (aliasesMatching) {
-        cmd = client.commands.get(aliasesMatching);
-      } else {
-        return;
+      for (let index = 0; index < 2; index++) {
+        const commandMatching = client.commands.get(cmdName);
+        const aliasesMatching = client.aliases.get(cmdName);
+
+        if (commandMatching) {
+          cmd = commandMatching;
+          break;
+        } else if (aliasesMatching) {
+          cmd = client.commands.get(aliasesMatching);
+          break;
+        } else {
+          if (index === 0) {
+            const expectedCommandName = await resembleCommandCheck(
+              message,
+              cmdName,
+            );
+            if (expectedCommandName) {
+              cmdName = expectedCommandName.name;
+              message.createdTimestamp += expectedCommandName.timeTaken;
+              continue;
+            }
+          }
+          return;
+        }
       }
+
       // callback if no.
       if (!cmd) return;
 
+      if (cmd.enabled === false) return;
+
+      // If not in development mode
+      if (
+        cmd.data?.developmentOnly === true &&
+        process.env.NODE_ENV !== 'development'
+      ) {
+        return;
+      }
+
       if (cmd.data?.ownerOnly === true && author.id !== ownerId) return;
 
+      // Return if dm mode while configurated to guildOnly.
       if (!cmd.data?.directMessageAllowed && !guild) return;
-
-      if (cmd.enabled === false) return;
 
       // Intermit when disabled.
       if (
@@ -110,15 +140,41 @@ export const event: DiscordEvent = {
           return;
         }
       }
+
       // Set cooldown.
       cooldowns.set(keyName, now + cooldownInterval);
       setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
 
-      // Permission Check
-      const requestPerms = cmd.data.requiredPermissions;
-      if (guild && requestPerms) {
+      // Permission Check (BOT)
+      const requestPermsClient = cmd.data.clientRequiredPermissions;
+      if (guild && requestPermsClient) {
         const permissionMissing = [];
-        for (const perm of requestPerms) {
+        for (const perm of requestPermsClient) {
+          const botId = client.user?.id;
+          if (botId) {
+            const isOwned = guild.members.cache
+              .get(botId)
+              ?.permissions.has(perm);
+            if (!isOwned) permissionMissing.push(perm);
+          }
+        }
+
+        if (permissionMissing.length > 0) {
+          const perms = permissionMissing
+            .map(index => `\`${index}\``)
+            .join(', ');
+          message.reply({
+            content: `I don't have permission: \`${perms}\``,
+          });
+          return;
+        }
+      }
+
+      // Permission Check (AUTHOR)
+      const requestPermsAuthor = cmd.data.authorRequiredPermissions;
+      if (guild && requestPermsAuthor) {
+        const permissionMissing = [];
+        for (const perm of requestPermsAuthor) {
           const isOwned = member?.permissions.has(perm);
           if (!isOwned) permissionMissing.push(perm);
         }
@@ -142,9 +198,9 @@ export const event: DiscordEvent = {
       }
 
       try {
-        cmd.run({ message, args: arguments_ });
+        return cmd.run({ message, args: arguments_ });
       } catch (error) {
-        if (error instanceof Error) console.error(error); // eslint-disable-line no-console
+        if (error instanceof Error) console.error(error);
       }
     }
   },

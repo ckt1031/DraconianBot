@@ -7,6 +7,7 @@ export const event: DistubeEvent = {
   run: async (_, queue: Queue, song: Song) => {
     if (queue.textChannel) {
       const { name, formattedDuration, user } = song;
+
       queue.textChannel.send({
         content: `Playing \`${name}\` - \`${formattedDuration}\`\nRequested by: ${user}`,
       });

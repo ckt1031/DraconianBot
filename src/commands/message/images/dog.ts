@@ -15,8 +15,8 @@ export const command: TextCommand = {
 
     try {
       interface MemeResponse {
-        message: string;
         status: string;
+        message: string;
       }
 
       const url1 = 'https://dog.ceo/api/breeds/image/random';
@@ -24,7 +24,7 @@ export const command: TextCommand = {
       const response = await axios.get(url1);
       const responseData: MemeResponse = response.data;
 
-      if (responseData.status !== 'success') throw '';
+      if (responseData.status !== 'success') throw 0;
 
       embed.setTitle('Dog here').setImage(responseData.message);
 

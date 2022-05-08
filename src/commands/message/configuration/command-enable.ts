@@ -6,12 +6,11 @@ import { guildConfiguration } from '../../../utils/database';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
-  enabled: true,
   data: {
     name: 'commandEnable',
     description: 'Enable command in local server.',
     directMessageAllowed: false,
-    requiredPermissions: ['MANAGE_GUILD'],
+    authorRequiredPermissions: ['MANAGE_GUILD'],
   },
   run: async ({ message, args }) => {
     const { guild, member, client } = message;

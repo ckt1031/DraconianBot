@@ -30,6 +30,7 @@ export const event: DiscordEvent = {
       const keyName = `CMD_${user.id}_${slash.data.name}`;
       const cooldowns = client.cooldown;
       const cooldownInterval = slash.data.cooldownInterval ?? 3000;
+
       // Callback if exists in cooldown.
       if (cooldowns.has(keyName)) {
         const expectedEnd = cooldowns.get(keyName);
@@ -41,6 +42,7 @@ export const event: DiscordEvent = {
         }
       }
 
+      // Set cooldown
       cooldowns.set(keyName, now + cooldownInterval);
       setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
 
@@ -48,10 +50,11 @@ export const event: DiscordEvent = {
 
       for (let index = 0, l = options.data.length; index < l; index++) {
         const data = options.data[index];
+
         if (data.type === 'SUB_COMMAND') {
-          if (data.name) {
-            arguments_.push(data.name);
-          }
+          if (data.name) arguments_.push(data.name);
+
+          // If option(s) exist(s)
           if (data.options) {
             for (const options of data.options) {
               if (options.value) arguments_.push(options.value);

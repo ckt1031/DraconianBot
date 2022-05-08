@@ -8,6 +8,13 @@ export const command: TextCommand = {
     aliases: ['p'],
     description: 'Play song.',
     inVoiceChannelRequired: true,
+
+    clientRequiredPermissions: [
+      'CONNECT',
+      'PRIORITY_SPEAKER',
+      'SPEAK',
+      'REQUEST_TO_SPEAK',
+    ],
   },
   run: async ({ message, args }) => {
     const { member, client } = message;

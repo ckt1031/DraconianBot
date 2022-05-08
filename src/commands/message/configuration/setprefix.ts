@@ -10,7 +10,7 @@ export const command: TextCommand = {
     name: 'setprefix',
     description: 'Configurate custom preifx.',
     directMessageAllowed: false,
-    requiredPermissions: ['MANAGE_GUILD'],
+    authorRequiredPermissions: ['MANAGE_GUILD'],
   },
   run: async ({ message, args }) => {
     const { guild, member } = message;

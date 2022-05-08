@@ -7,19 +7,25 @@ import type {
   ApplicationCommandOptionData,
 } from 'discord.js';
 
-interface textCommandArugments {
-  message: Message;
-  args: any[];
-}
-
+/**
+ * As default, command can only be accessed in guild.
+ *
+ * Everyone can access wihtout any permission limitations.
+ *
+ * Cooldown Interval is 3 seconds (3000 milliseconds)
+ */
 export interface TextCommand {
   enabled?: boolean;
   // Command Data
   readonly data: {
+    // Oneself Requirements
+    clientRequiredPermissions?: PermissionResolvable[];
+
     // Access
     publicLevel?: 'All' | 'Permission' | 'None';
-    requiredPermissions?: PermissionResolvable[];
+    authorRequiredPermissions?: PermissionResolvable[];
     inVoiceChannelRequired?: boolean;
+
     // Info
     name: string;
     description: string;
@@ -31,21 +37,18 @@ export interface TextCommand {
       hour?: number;
       day?: number;
     };
+
     // Environment & Scenes
     ownerOnly?: boolean;
     developmentOnly?: boolean;
     threadChannelAllowed?: boolean;
     directMessageAllowed?: boolean;
+
     // Specified Configurations
     cooldownInterval?: number;
   };
   // eslint-disable-next-line no-unused-vars
-  run: ({ message, args }: textCommandArugments) => Promise<void>;
-}
-
-interface slashCommandArugments {
-  interaction: CommandInteraction;
-  args: any[];
+  run: ({ message, args }: { message: Message; args: any[] }) => Promise<void>;
 }
 
 export interface SlashCommand {
@@ -54,13 +57,23 @@ export interface SlashCommand {
     // Info
     name: string;
     description: string;
+
     // Config
     type: ApplicationCommandType;
     options?: ApplicationCommandOptionData[];
+
     // Access
     cooldownInterval?: number;
     requiredPermissions?: Permissions[];
   };
-  // eslint-disable-next-line no-unused-vars
-  run: ({ interaction, args }: slashCommandArugments) => Promise<void>;
+
+  run: ({
+    // eslint-disable-next-line no-unused-vars
+    interaction,
+    // eslint-disable-next-line no-unused-vars
+    args,
+  }: {
+    interaction: CommandInteraction;
+    args: any[];
+  }) => Promise<void>;
 }

@@ -7,6 +7,13 @@ export const command: TextCommand = {
     name: 'stop',
     description: 'Srop song.',
     inVoiceChannelRequired: true,
+
+    clientRequiredPermissions: [
+      'CONNECT',
+      'PRIORITY_SPEAKER',
+      'SPEAK',
+      'REQUEST_TO_SPEAK',
+    ],
   },
   run: async ({ message }) => {
     const { member, client } = message;

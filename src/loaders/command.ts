@@ -18,6 +18,7 @@ export async function loadTextCommand(client: Client) {
 
   glob(folderPath, (error, allFiles) => {
     if (error) throw error;
+
     if (allFiles.length === 0) {
       console.log(
         chalk.blueBright.bold(

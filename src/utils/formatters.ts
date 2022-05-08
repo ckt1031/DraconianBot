@@ -1,3 +1,8 @@
+/**
+ * Transfer milliseconds to visible duration
+ *
+ * 1000 -> 0h 0m 1s
+ * */
 export function parseMsToVisibleText(ms: number): string {
   if (ms < 1000) return 'less than 1s';
   let seconds: number | string = Math.trunc((ms / 1000) % 60);

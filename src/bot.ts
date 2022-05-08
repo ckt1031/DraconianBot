@@ -1,16 +1,15 @@
 import './http/server';
 
+// Distube
 import { DisTube } from 'distube';
-
 import { YtDlpPlugin } from '@distube/yt-dlp';
 import { SpotifyPlugin } from '@distube/spotify';
 import { SoundCloudPlugin } from '@distube/soundcloud';
 
 import { Collection, Client, Intents } from 'discord.js';
 
-import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
-
 import { loadTextCommand } from './loaders/command';
+import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
 
 import type { TextCommand, SlashCommand } from './sturctures/command';
 
@@ -37,7 +36,9 @@ client.distube = new DisTube(client, {
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
 
+  // Misc
   youtubeDL: false,
+
   // Plugins
   plugins: [
     new SpotifyPlugin({

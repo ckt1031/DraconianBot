@@ -15,6 +15,7 @@ export async function loadDiscordEvent(client: Client) {
 
   glob(folderPath, (error, allFiles) => {
     if (error) throw error;
+
     if (allFiles.length === 0) {
       console.log(
         chalk.blueBright.bold(
@@ -25,9 +26,11 @@ export async function loadDiscordEvent(client: Client) {
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
+
       // Get event content.
       const eventFile = require(filePath);
       const event: DiscordEvent = eventFile.event;
+
       // Check triggering mode.
       if (event.once === true) {
         client.once(event.name, event.run.bind(undefined, client));
@@ -60,11 +63,14 @@ export async function loadMusicEvent(client: Client) {
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
+
       // Get event content.
       const eventFile = require(filePath);
       const event: DistubeEvent = eventFile.event;
+
       // Check triggering mode.
       client.distube.on(event.name, event.run.bind(undefined, client));
+
       // Remove cache.
       delete require.cache[require.resolve(filePath)];
     }

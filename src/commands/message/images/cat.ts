@@ -20,8 +20,8 @@ export const command: TextCommand = {
       const responseData = response.data;
 
       interface MemeResponse {
-        url: string;
         id: string;
+        url: string;
       }
 
       const data: MemeResponse = responseData[0];
