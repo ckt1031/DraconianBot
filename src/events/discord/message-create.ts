@@ -20,13 +20,6 @@ export const event: DiscordEvent = {
     if (author.bot) return;
     if (webhookId || author.id === client.user?.id) return;
 
-    const mentionReg = new RegExp(`^(<@!?${client.user?.id}>)`);
-    const mentionTest = mentionReg.test(content);
-    if (mentionTest) {
-      channel.send('Hey! My prefix is `d!`');
-      return;
-    }
-
     let prefix = 'd!';
 
     let guildDatabase: GuildConfig | undefined;
@@ -42,6 +35,13 @@ export const event: DiscordEvent = {
 
       // Fetch Member
       if (!member) await guild.members.fetch(author.id);
+    }
+
+    const mentionReg = new RegExp(`^(<@!?${client.user?.id}>)`);
+    const mentionTest = mentionReg.test(content);
+    if (mentionTest) {
+      channel.send(`Hey! My prefix is \`${prefix}\``);
+      return;
     }
 
     const prefixReg = new RegExp(`^${prefix}`);
