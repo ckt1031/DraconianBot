@@ -10,3 +10,6 @@ dist
 .replit
 replix.nix
 /.vscode/
+
+/config/*.json
+!/config/*.example.json
