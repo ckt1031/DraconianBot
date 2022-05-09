@@ -1,7 +1,8 @@
-import fs from 'node:fs';
 import glob from 'glob';
+import chalk from 'chalk';
 
 import { join } from 'node:path';
+import { copyFileSync, existsSync } from 'node:fs';
 
 let folderPath = join(__dirname, '../config/*.example.json');
 
@@ -15,6 +16,14 @@ glob(folderPath, (error, allFiles) => {
 
   for (let index = 0, l = allFiles.length; index < l; index++) {
     const filePath = allFiles[index];
-    fs.copyFileSync(filePath, filePath.replace('.example', ''));
+    if (!existsSync(filePath)) {
+      copyFileSync(filePath, filePath.replace('.example', ''));
+      console.log(chalk.green('COPY SUCCEED:') + ` ${filePath}`);
+    } else {
+      console.log(
+        chalk.red('COPY FAILED:') +
+          ` ${filePath} - Consider manually copy new updated option to old one.`,
+      );
+    }
   }
 });

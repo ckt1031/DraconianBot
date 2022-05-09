@@ -8,7 +8,7 @@ dist
 
 .breakpoints
 .replit
-replix.nix
+replit.nix
 /.vscode/
 
 /config/*.json
