@@ -1,3 +1,5 @@
+import { inspect } from 'node:util';
+
 import type { TextCommand } from '../../../sturctures/command';
 
 function clean(text: string) {
@@ -25,7 +27,7 @@ export const command: TextCommand = {
 
     try {
       let evaled = eval(code);
-      if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
+      if (typeof evaled !== 'string') evaled = inspect(evaled);
       if (evaled.length > 1999) return console.log(evaled);
       message.channel.send({ content: `\`\`\`${clean(evaled)}\`\`\`` });
     } catch (error) {
