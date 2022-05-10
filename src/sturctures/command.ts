@@ -1,11 +1,10 @@
 import type {
   Message,
-  Permissions,
   PermissionResolvable,
   CommandInteraction,
-  ApplicationCommandType,
-  ApplicationCommandOptionData,
 } from 'discord.js';
+
+import type { SlashCommandBuilder } from '@discordjs/builders';
 
 /**
  * As default, command can only be accessed in guild.
@@ -54,28 +53,13 @@ export interface TextCommand {
 }
 
 export interface SlashCommand {
-  // SlashCommand Data
-  readonly data: {
-    // Info
-    name: string;
-    description: string;
+  // Slash Data
+  data: SlashCommandBuilder;
 
-    // Config
-    type: ApplicationCommandType;
-    options?: ApplicationCommandOptionData[];
-
-    // Access
+  readonly config?: {
     cooldownInterval?: number;
-    requiredPermissions?: Permissions[];
   };
 
-  run: ({
-    // eslint-disable-next-line no-unused-vars
-    interaction,
-    // eslint-disable-next-line no-unused-vars
-    args,
-  }: {
-    interaction: CommandInteraction;
-    args: any[];
-  }) => Promise<void>;
+  // eslint-disable-next-line no-unused-vars
+  run: ({ interaction }: { interaction: CommandInteraction }) => Promise<void>;
 }

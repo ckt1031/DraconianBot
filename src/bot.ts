@@ -8,7 +8,7 @@ import { SoundCloudPlugin } from '@distube/soundcloud';
 
 import { Collection, Client, Intents } from 'discord.js';
 
-import { loadTextCommand } from './loaders/command';
+import { loadTextCommand, loadSlashCommand } from './loaders/command';
 import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
 
 import type { TextCommand, SlashCommand } from './sturctures/command';
@@ -58,6 +58,7 @@ export default client;
 loadDiscordEvent(client);
 loadMusicEvent(client);
 loadTextCommand(client);
+loadSlashCommand(client, process.env.CLIENT_ID!, process.env.TOKEN!);
 
 // declare types.
 declare module 'discord.js' {

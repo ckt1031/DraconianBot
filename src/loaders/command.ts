@@ -3,13 +3,17 @@ import { join, dirname, basename } from 'node:path';
 import glob from 'glob';
 import chalk from 'chalk';
 
+import { REST } from '@discordjs/rest';
+import { Routes } from 'discord-api-types/v9';
+
 import type { Client, ApplicationCommandDataResolvable } from 'discord.js';
 
 import type { TextCommand, SlashCommand } from '../sturctures/command';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
 
-export async function loadTextCommand(client: Client) {
+/** Text Command Loaders */
+export async function loadTextCommand(client: Client): Promise<void> {
   let folderPath = join(__dirname, '../commands/message/**/*.js');
 
   // Parse path in windows
@@ -87,7 +91,12 @@ export async function loadTextCommand(client: Client) {
   });
 }
 
-export async function loadSlashCommand(client: Client) {
+/** Load Slash commands to API & Collection */
+export async function loadSlashCommand(
+  client: Client,
+  clientId: string,
+  token: string,
+): Promise<void> {
   let folderPath = join(__dirname, '../commands/slash/*.js');
 
   // Parse path in windows
@@ -95,8 +104,11 @@ export async function loadSlashCommand(client: Client) {
     folderPath = folderPath.replaceAll('\\', '/');
   }
 
-  glob(folderPath, (error, allFiles) => {
+  const slashCommandData: ApplicationCommandDataResolvable[] = [];
+
+  glob(folderPath, async (error, allFiles) => {
     if (error) throw error;
+
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
       const commandFile = require(filePath);
@@ -111,30 +123,30 @@ export async function loadSlashCommand(client: Client) {
 
       client.slashcommands.set(name, slashCommand);
 
-      const commandInfo: ApplicationCommandDataResolvable = {
-        name: name,
-        description: slashCommand.data.description,
-        options: slashCommand.data.options,
-        type: slashCommand.data.type,
-      };
-
-      const isProduction = process.env.NODE_ENV === 'production';
-      if (isProduction) {
-        const application = client.application;
-        if (application !== null) {
-          application.commands.create(commandInfo);
-        }
-      } else {
-        const guildId = process.env.DEV_GUILD_ID;
-        if (guildId) {
-          const guilds = client.guilds.cache.get(guildId);
-          if (guilds !== undefined) {
-            guilds.commands.create(commandInfo);
-          }
-        }
-      }
+      slashCommandData.push(slashCommand.data.toJSON());
 
       delete require.cache[require.resolve(allFiles[index])];
+    }
+
+    const rest = new REST({ version: '9' }).setToken(token);
+
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    if (isProduction) {
+      // Global Commands
+      await rest.put(Routes.applicationCommands(clientId), {
+        body: slashCommandData,
+      });
+    } else {
+      // Guild Only & Development Only Commands.
+      const guildId = process.env.DEV_GUILD_ID;
+      if (guildId) {
+        const { applicationGuildCommands } = Routes;
+
+        await rest.put(applicationGuildCommands(clientId, guildId), {
+          body: slashCommandData,
+        });
+      }
     }
   });
 }
