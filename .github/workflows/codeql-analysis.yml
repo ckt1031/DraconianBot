@@ -33,6 +33,9 @@ jobs:
       - name: Complie to javascript
         run: npm run build
 
+      - name: Init Project
+        run: npx ts-node ./tools/copy-config.ts
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
