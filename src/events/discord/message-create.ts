@@ -3,7 +3,7 @@ import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { guildConfiguration, ensureServerData } from '../../utils/database';
 
-import type { Message } from 'discord.js';
+import type { Message, TextChannel } from 'discord.js';
 import type { DiscordEvent } from '../../sturctures/event';
 import type { TextCommand } from '../../sturctures/command';
 import type { GuildConfig } from '../../utils/database';
@@ -99,6 +99,19 @@ export const event: DiscordEvent = {
       }
 
       if (cmd.data?.ownerOnly === true && author.id !== ownerId) return;
+
+      // Return if command can only be executed NSFW channel when it's not in.
+      if (cmd.data?.nsfwChannelRequired) {
+        if (!guild || !channel.isText()) return;
+        if (!(channel as TextChannel).nsfw) {
+          return callbackEmbed({
+            message,
+            text: `You must be in **NSFW** channel before executing this commmand.`,
+            color: 'RED',
+            mode: 'error',
+          });
+        }
+      }
 
       // Return if dm mode while configurated to guildOnly.
       if (!cmd.data?.directMessageAllowed && !guild) return;

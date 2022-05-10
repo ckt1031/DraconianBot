@@ -5,6 +5,7 @@ import { getCommandHelpInfo } from '../../../utils/cmds';
 
 import { name as botname, githubLink } from '../../../../config/bot.json';
 
+import type { TextChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -16,19 +17,27 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const embed = new MessageEmbed();
 
+    const { client, channel } = message;
+
     if (!args[0]) {
-      const commandsCatagories = message.client.commandsCatagories;
+      const commandsCatagories = client.commandsCatagories;
 
       embed.setDescription(
         `Hello🙋‍♂️!\nOur source code: [Here](${githubLink})\nTurely appreciate that you are supporting us.`,
       );
 
       for (const catagory of commandsCatagories) {
+        if (catagory[0].toLocaleLowerCase() === 'nsfw') {
+          if (!(channel as TextChannel).nsfw) continue;
+          else {
+            catagory[0] += ' THIS CHANNEL ONLY';
+          }
+        }
         const text = catagory[1].map(index => `\`${index}\``).join(', ');
         embed.addField(catagory[0], text);
       }
 
-      const avatarURL = message.client.user?.defaultAvatarURL;
+      const avatarURL = client.user?.defaultAvatarURL;
 
       if (avatarURL) {
         embed.setTitle('Bot Assistance Centre').setFooter({
@@ -42,13 +51,13 @@ export const command: TextCommand = {
       });
     } else {
       let cmd: TextCommand | undefined;
-      const commandMatching = message.client.commands.get(args[0]);
-      const aliasesMatching = message.client.aliases.get(args[0]);
+      const commandMatching = client.commands.get(args[0]);
+      const aliasesMatching = client.aliases.get(args[0]);
       // Fetch command destination.
       if (commandMatching) {
         cmd = commandMatching;
       } else if (aliasesMatching) {
-        cmd = message.client.commands.get(aliasesMatching);
+        cmd = client.commands.get(aliasesMatching);
       } else {
         return callbackEmbed({
           message,
