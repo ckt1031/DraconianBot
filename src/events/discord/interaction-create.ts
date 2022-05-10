@@ -15,7 +15,7 @@ export const event: DiscordEvent = {
     };
 
     if (interaction.isCommand()) {
-      const { commandName, options, user } = interaction;
+      const { commandName, user } = interaction;
 
       const slashCollection = client.slashcommands;
 
@@ -29,7 +29,7 @@ export const event: DiscordEvent = {
       const now = Date.now();
       const keyName = `CMD_${user.id}_${slash.data.name}`;
       const cooldowns = client.cooldown;
-      const cooldownInterval = slash.data.cooldownInterval ?? 3000;
+      const cooldownInterval = slash.config?.cooldownInterval ?? 3000;
 
       // Callback if exists in cooldown.
       if (cooldowns.has(keyName)) {
@@ -46,25 +46,8 @@ export const event: DiscordEvent = {
       cooldowns.set(keyName, now + cooldownInterval);
       setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
 
-      const arguments_: any[] = [];
-
-      for (let index = 0, l = options.data.length; index < l; index++) {
-        const data = options.data[index];
-
-        if (data.type === 'SUB_COMMAND') {
-          if (data.name) arguments_.push(data.name);
-
-          // If option(s) exist(s)
-          if (data.options) {
-            for (const options of data.options) {
-              if (options.value) arguments_.push(options.value);
-            }
-          }
-        } else if (data.value) arguments_.push(data.value);
-      }
-
       try {
-        return slash.run({ interaction, args: arguments_ });
+        return slash.run({ interaction });
       } catch (error) {
         if (error instanceof Error) console.error(error);
       }

@@ -1,13 +1,14 @@
 import { MessageEmbed } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+
+import { command as TextCommand } from '../message/general/ping';
 
 import type { SlashCommand } from '../../sturctures/command';
 
 export const command: SlashCommand = {
-  data: {
-    name: 'ping',
-    type: 'CHAT_INPUT',
-    description: 'Check network delay.',
-  },
+  data: new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription(TextCommand.data.description),
   run: async ({ interaction }) => {
     const apiDelayMS = Math.round(interaction.client.ws.ping);
     const messageDelayMS = Date.now() - interaction.createdTimestamp;
