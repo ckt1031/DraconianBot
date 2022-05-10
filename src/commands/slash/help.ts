@@ -22,12 +22,10 @@ export const command: SlashCommand = {
 
     const avatarURL = interaction.client.user?.defaultAvatarURL;
 
-    if (avatarURL) {
-      embed.setTitle('Bot Assistance Centre').setFooter({
-        text: `© ${new Date().getFullYear()} ${botname}`,
-        iconURL: avatarURL,
-      });
-    }
+    embed.setTitle('Bot Assistance Centre').setFooter({
+      text: `© ${new Date().getFullYear()} ${botname}`,
+      iconURL: avatarURL!,
+    });
 
     interaction.reply({
       embeds: [embed],

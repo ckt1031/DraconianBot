@@ -39,12 +39,10 @@ export const command: TextCommand = {
 
       const avatarURL = client.user?.defaultAvatarURL;
 
-      if (avatarURL) {
-        embed.setTitle('Bot Assistance Centre').setFooter({
-          text: `© ${new Date().getFullYear()} ${botname}`,
-          iconURL: avatarURL,
-        });
-      }
+      embed.setTitle('Bot Assistance Centre').setFooter({
+        text: `© ${new Date().getFullYear()} ${botname}`,
+        iconURL: avatarURL!,
+      });
 
       message.reply({
         embeds: [embed],
