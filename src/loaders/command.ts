@@ -1,6 +1,7 @@
+import { join, dirname, basename } from 'node:path';
+
 import glob from 'glob';
 import chalk from 'chalk';
-import { join, dirname, basename } from 'node:path';
 
 import type { Client, ApplicationCommandDataResolvable } from 'discord.js';
 

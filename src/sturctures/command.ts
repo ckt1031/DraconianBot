@@ -21,10 +21,18 @@ export interface TextCommand {
     // Oneself Requirements
     clientRequiredPermissions?: PermissionResolvable[];
 
-    // Access
+    // Access, Environment & Scenes
+    ownerOnly?: boolean;
+    developmentOnly?: boolean;
+
+    nsfwChannelRequired?: boolean;
+    inVoiceChannelRequired?: boolean;
+
+    threadChannelAllowed?: boolean;
+    directMessageAllowed?: boolean;
+
     publicLevel?: 'All' | 'Permission' | 'None';
     authorRequiredPermissions?: PermissionResolvable[];
-    inVoiceChannelRequired?: boolean;
 
     // Info
     name: string;
@@ -32,19 +40,13 @@ export interface TextCommand {
     catagory?: string;
     usage?: string;
     aliases?: string[];
+
+    // Specified Configurations
     intervalLimit?: {
       minute?: number;
       hour?: number;
       day?: number;
     };
-
-    // Environment & Scenes
-    ownerOnly?: boolean;
-    developmentOnly?: boolean;
-    threadChannelAllowed?: boolean;
-    directMessageAllowed?: boolean;
-
-    // Specified Configurations
     cooldownInterval?: number;
   };
   // eslint-disable-next-line no-unused-vars

@@ -1,8 +1,8 @@
-import glob from 'glob';
-import chalk from 'chalk';
-
 import { join } from 'node:path';
 import { copyFileSync, existsSync } from 'node:fs';
+
+import glob from 'glob';
+import chalk from 'chalk';
 
 let folderPath = join(__dirname, '../config/*.example.json');
 
