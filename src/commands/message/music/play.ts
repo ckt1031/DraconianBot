@@ -28,12 +28,15 @@ export const command: TextCommand = {
     if (!vc) return;
 
     if (!string) {
-      callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: `Please enter a song url or query to search.`,
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     client.distube.play(vc, string);

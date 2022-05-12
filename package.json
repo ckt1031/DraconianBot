@@ -42,7 +42,7 @@
     "discord-api-types": "^0.32.1",
     "discord.js": "^13.6.0",
     "distube": "^3.3.4",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "enmap": "^5.9.0",
     "eslint-plugin-sonarjs": "^0.13.0",
     "fastify": "^3.29.0",
@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
-    "@swc/core": "^1.2.181",
+    "@swc/core": "^1.2.182",
     "@types/express-status-monitor": "^1.2.4",
     "@types/fastify-rate-limit": "^2.1.0",
     "@types/glob": "^7.2.0",

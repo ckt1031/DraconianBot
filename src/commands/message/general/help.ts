@@ -57,15 +57,24 @@ export const command: TextCommand = {
       } else if (aliasesMatching) {
         cmd = client.commands.get(aliasesMatching);
       } else {
-        return callbackEmbed({
-          message,
+        const cEmbed = callbackEmbed({
           text: 'Command requested does not exist!',
           color: 'RED',
           mode: 'error',
         });
+        message.reply({
+          embeds: [cEmbed],
+        });
+
+        return;
       }
 
-      if (cmd) getCommandHelpInfo(message, cmd);
+      if (cmd) {
+        const helpInfo = getCommandHelpInfo(cmd);
+        message.reply({
+          embeds: [helpInfo],
+        });
+      }
     }
   },
 };

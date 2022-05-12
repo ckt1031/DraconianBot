@@ -11,7 +11,7 @@ import type {
 import type { TextCommand } from '../sturctures/command';
 
 /** Send command information message embed. */
-export function getCommandHelpInfo(message: Message, cmd: TextCommand): void {
+export function getCommandHelpInfo(cmd: TextCommand): MessageEmbed {
   const embed = new MessageEmbed()
     .setTitle(`Command: ${cmd.data.name}`)
     .addField('Description', cmd.data.description);
@@ -22,7 +22,7 @@ export function getCommandHelpInfo(message: Message, cmd: TextCommand): void {
       'Cooldown',
       `${cmd.data.cooldownInterval! / 1000 || '3'} seconds`,
     );
-  message.reply({ embeds: [embed] });
+  return embed;
 }
 
 interface ExpectedWord {

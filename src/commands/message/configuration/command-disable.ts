@@ -17,35 +17,44 @@ export const command: TextCommand = {
     const targetCommand: string = args[0];
 
     if (!guild) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'This command can only be executed in SERVER!',
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     const originalPrefix = guildConfiguration.get(guild.id)?.commands.global
       .disabled;
 
     if (!originalPrefix || originalPrefix?.includes(targetCommand)) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'This command had not been enabled!',
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     const commandMatching = client.commands.get(targetCommand);
 
     if (!commandMatching || commandMatching.enabled === false) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'Requested command is not valid!',
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     const fields = [
@@ -78,11 +87,13 @@ export const command: TextCommand = {
         'commands.global.disabled',
       );
 
-      callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: `Successfully disabled command: \`${commandMatching.data.name}\``,
         color: 'GREEN',
         mode: 'success',
+      });
+      message.reply({
+        embeds: [cEmbed],
       });
     }
   },

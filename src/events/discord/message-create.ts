@@ -104,12 +104,15 @@ export const event: DiscordEvent = {
       if (cmd.data?.nsfwChannelRequired) {
         if (!guild || !channel.isText()) return;
         if (!(channel as TextChannel).nsfw) {
-          return callbackEmbed({
-            message,
+          const cEmbed = callbackEmbed({
             text: `You must be in **NSFW** channel before executing this commmand.`,
             color: 'RED',
             mode: 'error',
           });
+          message.reply({
+            embeds: [cEmbed],
+          });
+          return;
         }
       }
 
@@ -125,12 +128,15 @@ export const event: DiscordEvent = {
       }
 
       if (cmd.data?.inVoiceChannelRequired === true && !member?.voice.channel) {
-        return callbackEmbed({
-          message,
+        const cEmbed = callbackEmbed({
           text: `You must be in voice channel before executing this commmand.`,
           color: 'RED',
           mode: 'error',
         });
+        message.reply({
+          embeds: [cEmbed],
+        });
+        return;
       }
 
       // Cooldown Check
@@ -207,7 +213,11 @@ export const event: DiscordEvent = {
       const arguments_ = parsedContent.split(' ').slice(1);
 
       if (arguments_[0] === 'help') {
-        return getCommandHelpInfo(message, cmd);
+        const helpInfo = getCommandHelpInfo(cmd);
+        message.reply({
+          embeds: [helpInfo],
+        });
+        return;
       }
 
       try {

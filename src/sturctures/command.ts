@@ -54,7 +54,7 @@ export interface TextCommand {
 
 export interface SlashCommand {
   // Slash Data
-  data: SlashCommandBuilder;
+  data: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
 
   readonly config?: {
     cooldownInterval?: number;

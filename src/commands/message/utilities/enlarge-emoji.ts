@@ -18,21 +18,27 @@ export const command: TextCommand = {
     const emoji = args[0];
 
     if (!emoji) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'Missing Emoji',
         color: 'RED',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     const emojiParsed = Util.parseEmoji(emoji);
 
     if (!emojiParsed) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'Error when parsing emoji',
         color: 'RED',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     embed.setTitle(`Enlarged version of ${emojiParsed?.name}`);
@@ -54,11 +60,14 @@ export const command: TextCommand = {
     const parsed = parse(emoji, { assetType: 'png' });
 
     if (!parsed[0]) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'Invalid emoji!',
         color: 'RED',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     embed.setImage(parsed[0].url);

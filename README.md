@@ -12,8 +12,12 @@
 ### New features and Enhancements are introduced:
 
 - Concentrating to **PRODUCTIVITY**
-- Mostly written by **_typescript_**
+- Mostly written by **_typescript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
 - Redesigning bot handling logic
 - Discord.js Latest (v13)
 - Improving speed and memory usage
 - Better multiserver supports
+
+#### Legacy Version
+
+v1.0 (Depreciated & Outdated) - [HERE](https://github.com/RealKoolisw/DraconianBot/tree/v1.0-deprecated)

@@ -35,22 +35,20 @@ client.distube = new DisTube(client, {
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
-
   // Misc
   youtubeDL: false,
-
   // Plugins
   plugins: [
+    new YtDlpPlugin(),
+    new SoundCloudPlugin(),
     new SpotifyPlugin({
       emitEventsAfterFetching: true,
     }),
-    new SoundCloudPlugin(),
-    new YtDlpPlugin(),
   ],
 });
 
-process.on('SIGTERM', client.destroy);
 process.on('exit', client.destroy);
+process.on('SIGTERM', client.destroy);
 process.on('SIGINT', client.destroy);
 
 export default client;

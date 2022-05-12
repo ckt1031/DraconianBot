@@ -27,21 +27,26 @@ export const command: TextCommand = {
     const queue = client.distube.getQueue(message);
 
     if (!queue) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: `There is **NOTHING** in the queue right now!`,
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     queue.stop();
 
-    callbackEmbed({
-      message,
+    const cEmbed = callbackEmbed({
       text: `Music **STOPPED**!`,
       color: 'GREEN',
       mode: 'success',
+    });
+    message.reply({
+      embeds: [cEmbed],
     });
   },
 };

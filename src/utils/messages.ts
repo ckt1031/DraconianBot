@@ -62,30 +62,22 @@ export async function confirmInformationButtons({
 
 interface CallbackEmbed {
   text: string;
-  message: Message;
   color?: ColorResolvable;
   mode?: 'error' | 'success' | 'warning';
 }
 
 export function callbackEmbed({
   text,
-  message,
   color,
   mode,
-}: CallbackEmbed): void {
+}: CallbackEmbed): MessageEmbed {
   let emojiText = '';
 
   if (mode && typeof mode === 'string') {
-    emojiText = emoji[mode] + ' ';
+    emojiText = emoji[mode];
   }
 
-  const embed = new MessageEmbed()
-    .setDescription(`${emojiText}${text}`)
+  return new MessageEmbed()
+    .setDescription(`${emojiText} ${text}`)
     .setColor(color!);
-
-  if (message.channel.isText()) {
-    message.reply({
-      embeds: [embed],
-    });
-  }
 }

@@ -16,33 +16,42 @@ export const command: TextCommand = {
     const { guild, member } = message;
 
     if (!guild) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'This command can only be executed in SERVER!',
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     const targetPrefix: string = args[0];
     const originalPrefix = guildConfiguration.get(guild.id)?.prefix;
 
     if (!targetPrefix || targetPrefix.length > 3) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: 'Missing prefix or prefix does not match the requirement.',
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     if (targetPrefix === originalPrefix) {
-      return callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: `You cannot set the same prefix: \`${targetPrefix}\``,
         color: 'RED',
         mode: 'error',
       });
+      message.reply({
+        embeds: [cEmbed],
+      });
+      return;
     }
 
     ensureServerData(guild.id);
@@ -75,10 +84,12 @@ export const command: TextCommand = {
       // Set to database.
       guildConfiguration.set(guild.id, targetPrefix, 'prefix');
 
-      callbackEmbed({
-        message,
+      const cEmbed = callbackEmbed({
         text: `Bot's prefix successfully configurated: \`${targetPrefix}\``,
         color: 'GREEN',
+      });
+      message.reply({
+        embeds: [cEmbed],
       });
     }
   },
