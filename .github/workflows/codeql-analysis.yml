@@ -30,11 +30,11 @@ jobs:
       - name: Install Dependencies
         run: npm i
 
-      - name: Complie to javascript
-        run: npm run build
-
       - name: Init Project
         run: npx ts-node ./tools/copy-config.ts
+
+      - name: Complie to javascript
+        run: npm run build
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
