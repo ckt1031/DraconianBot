@@ -154,7 +154,7 @@ export async function loadSlashCommand(
           )}/${command.id}`;
           await rest.delete(`/${deleteUrl}`);
         }
-
+        
         await rest.put(applicationGuildCommands(clientId, guildId), {
           body: slashCommandData,
         });
