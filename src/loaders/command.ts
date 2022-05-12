@@ -146,7 +146,7 @@ export async function loadSlashCommand(
         const guildCommands = await rest.get(
           Routes.applicationGuildCommands(clientId, guildId),
         );
-        
+
         for (const command of guildCommands as any) {
           const deleteUrl = `${Routes.applicationGuildCommands(
             clientId,
@@ -154,7 +154,7 @@ export async function loadSlashCommand(
           )}/${command.id}`;
           await rest.delete(`/${deleteUrl}`);
         }
-        
+
         await rest.put(applicationGuildCommands(clientId, guildId), {
           body: slashCommandData,
         });
