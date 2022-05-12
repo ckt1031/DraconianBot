@@ -16,7 +16,7 @@ glob(folderPath, (error, allFiles) => {
 
   for (let index = 0, l = allFiles.length; index < l; index++) {
     const filePath = allFiles[index];
-    if (!existsSync(filePath)) {
+    if (!existsSync(filePath.replace('.example', ''))) {
       copyFileSync(filePath, filePath.replace('.example', ''));
       console.log(chalk.green('COPY SUCCEED:') + ` ${filePath}`);
     } else {
