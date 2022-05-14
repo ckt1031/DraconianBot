@@ -8,8 +8,8 @@ import { SoundCloudPlugin } from '@distube/soundcloud';
 
 import { Collection, Client, Intents } from 'discord.js';
 
-import { loadTextCommand, loadSlashCommand } from './loaders/command';
 import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
+import { loadTextCommand, loadSlashCommand } from './loaders/command';
 
 import type { TextCommand, SlashCommand } from './sturctures/command';
 

@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== 'production') {
   process.on('unhandledRejection', console.error);
 }
 
-if (useShards && useShards === true) {
+if (useShards === true) {
   const directoryName = basename(__dirname);
   const manager = new ShardingManager(`./${directoryName}/bot.js`, {
     token: process.env.TOKEN,

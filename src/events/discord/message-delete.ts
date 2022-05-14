@@ -22,12 +22,14 @@ export const event: DiscordEvent = {
 
       ensureServerData(guild.id);
 
+      // Validate whether it can be stored into Sniping system.
       if (
         !config?.snipe.channelDisabled.includes(channelId) &&
         client.user?.id !== author.id
       ) {
         ensureSnipeChannel(channelId);
 
+        // Set to database.
         snipeDatabase.set(channelId, {
           author: {
             id: author.id,

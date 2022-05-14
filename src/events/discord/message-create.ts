@@ -178,6 +178,7 @@ export const event: DiscordEvent = {
           }
         }
 
+        // Reject if BOT doesn't own permission(s).
         if (permissionMissing.length > 0) {
           const perms = permissionMissing
             .map(index => `\`${index}\``)
@@ -198,6 +199,7 @@ export const event: DiscordEvent = {
           if (!isOwned) permissionMissing.push(perm);
         }
 
+        // Reject if AUTHOR doesn't own permission(s).
         if (permissionMissing.length > 0) {
           const perms = permissionMissing
             .map(index => `\`${index}\``)
