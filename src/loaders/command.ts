@@ -4,9 +4,12 @@ import glob from 'glob';
 import chalk from 'chalk';
 
 import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v9';
+import {
+  Routes,
+  RESTPostAPIApplicationCommandsJSONBody,
+} from 'discord-api-types/v9';
 
-import type { Client, ApplicationCommandDataResolvable } from 'discord.js';
+import type { Client } from 'discord.js';
 
 import type { TextCommand, SlashCommand } from '../sturctures/command';
 
@@ -104,7 +107,7 @@ export async function loadSlashCommand(
     folderPath = folderPath.replaceAll('\\', '/');
   }
 
-  const slashCommandData: ApplicationCommandDataResolvable[] = [];
+  const slashCommandData: RESTPostAPIApplicationCommandsJSONBody[] = [];
 
   glob(folderPath, async (error, allFiles) => {
     if (error) throw error;
@@ -146,7 +149,7 @@ export async function loadSlashCommand(
         const guildCommands = await rest.get(
           Routes.applicationGuildCommands(clientId, guildId),
         );
-        
+
         for (const command of guildCommands as any) {
           const deleteUrl = `${Routes.applicationGuildCommands(
             clientId,
@@ -154,7 +157,7 @@ export async function loadSlashCommand(
           )}/${command.id}`;
           await rest.delete(`/${deleteUrl}`);
         }
-        
+
         await rest.put(applicationGuildCommands(clientId, guildId), {
           body: slashCommandData,
         });
