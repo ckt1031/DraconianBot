@@ -55,7 +55,7 @@ export async function confirmInformationButtons({
     time: 30_000,
   });
 
-  if (respondAwaiting.deletable) respondAwaiting.delete();
+  if (respondAwaiting.deletable) await respondAwaiting.delete();
 
   return interaction.customId === confirmId;
 }

@@ -23,24 +23,24 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const code = args.join(' ');
 
-    if (!code) return;
+    if (code) {
+      exec(code, (error, stdout, stderr) => {
+        if (error) {
+          message.channel.send({
+            content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
+          });
+          return;
+        }
 
-    exec(code, (error, stdout, stderr) => {
-      if (error) {
-        message.channel.send({
-          content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
-        });
-        return;
-      }
+        if (stderr) {
+          message.channel.send({
+            content: `\`ERROR\` \`\`\`xl\n${clean(stderr)}\n\`\`\``,
+          });
+          return;
+        }
 
-      if (stderr) {
-        message.channel.send({
-          content: `\`ERROR\` \`\`\`xl\n${clean(stderr)}\n\`\`\``,
-        });
-        return;
-      }
-
-      message.channel.send({ content: `\`\`\`${clean(stdout)}\`\`\`` });
-    });
+        message.channel.send({ content: `\`\`\`${clean(stdout)}\`\`\`` });
+      });
+    }
   },
 };

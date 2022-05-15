@@ -23,18 +23,18 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const code = args.join(' ');
 
-    if (!code) return;
-
-    try {
-      let evaled = eval(code);
-      if (typeof evaled !== 'string') evaled = inspect(evaled);
-      if (evaled.length > 1999) return console.log(evaled);
-      message.channel.send({ content: `\`\`\`${clean(evaled)}\`\`\`` });
-    } catch (error) {
-      if (error instanceof Error && error.message.length > 1999) {
-        message.channel.send({
-          content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
-        });
+    if (code) {
+      try {
+        let evaled = eval(code);
+        if (typeof evaled !== 'string') evaled = inspect(evaled);
+        if (evaled.length > 1999) return console.log(evaled);
+        message.channel.send({ content: `\`\`\`${clean(evaled)}\`\`\`` });
+      } catch (error) {
+        if (error instanceof Error && error.message.length > 1999) {
+          message.channel.send({
+            content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
+          });
+        }
       }
     }
   },

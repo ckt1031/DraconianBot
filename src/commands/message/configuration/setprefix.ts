@@ -11,6 +11,9 @@ export const command: TextCommand = {
     description: 'Configurate custom preifx.',
     directMessageAllowed: false,
     authorRequiredPermissions: ['MANAGE_GUILD'],
+    intervalLimit: {
+      hour: 2,
+    },
   },
   run: async ({ message, args }) => {
     const { guild, member } = message;
