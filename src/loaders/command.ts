@@ -46,6 +46,7 @@ export async function loadTextCommand(client: Client): Promise<void> {
       const commandFile = require(filePath);
       const command: TextCommand = commandFile.command;
 
+      // Neglect if disabled.
       if (command?.enabled === false) continue;
 
       if (!command?.data) {
@@ -55,7 +56,6 @@ export async function loadTextCommand(client: Client): Promise<void> {
       // Store command to memory.
       const cmdName = command.data.name;
       if (client.commands.has(cmdName)) {
-        console.error(filePath);
         throw 'Duplicated command is found!';
       }
 

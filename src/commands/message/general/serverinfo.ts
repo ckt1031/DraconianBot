@@ -7,7 +7,7 @@ export const command: TextCommand = {
   data: {
     name: 'serverinfo',
     description: "Check server's stats and information.",
-    directMessageAllowed: true,
+    directMessageAllowed: false,
   },
   run: async ({ message }) => {
     const { guild } = message;

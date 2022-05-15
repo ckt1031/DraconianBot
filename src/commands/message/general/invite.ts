@@ -11,7 +11,7 @@ export const command: TextCommand = {
   run: async ({ message }) => {
     const { client } = message;
 
-    if (client.application) {
+    if (client.application?.botPublic) {
       const link = `https://discord.com/api/oauth2/authorize?client_id=${client.application.id}&permissions=1636381879799&scope=applications.commands%20bot`;
 
       const embed = new MessageEmbed().setDescription(

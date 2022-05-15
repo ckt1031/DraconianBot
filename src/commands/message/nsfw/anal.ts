@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { MessageEmbed } from 'discord.js';
 
+import type { TextChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -10,6 +11,8 @@ export const command: TextCommand = {
     nsfwChannelRequired: true,
   },
   run: async ({ message }) => {
+    if (!(message.channel as TextChannel).nsfw) return;
+
     const embed = new MessageEmbed();
 
     try {

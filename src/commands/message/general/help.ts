@@ -51,6 +51,7 @@ export const command: TextCommand = {
       let cmd: TextCommand | undefined;
       const commandMatching = client.commands.get(args[0]);
       const aliasesMatching = client.aliases.get(args[0]);
+      
       // Fetch command destination.
       if (commandMatching) {
         cmd = commandMatching;

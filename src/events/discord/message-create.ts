@@ -1,12 +1,12 @@
 import { callbackEmbed } from '../../utils/messages';
-import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { guildConfiguration, ensureServerData } from '../../utils/database';
+import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
 
 import type { Message, TextChannel } from 'discord.js';
 import type { DiscordEvent } from '../../sturctures/event';
 import type { TextCommand } from '../../sturctures/command';
-import type { GuildConfig } from '../../utils/database';
+import type { GuildConfig } from '../../sturctures/database';
 
 import { ownerId } from '../../../config/bot.json';
 
@@ -65,9 +65,11 @@ export const event: DiscordEvent = {
 
         if (commandMatching) {
           cmd = commandMatching;
+          cmdName = cmd?.data.name!;
           break;
         } else if (aliasesMatching) {
           cmd = client.commands.get(aliasesMatching);
+          cmdName = cmd?.data.name!;
           break;
         } else {
           if (index === 0) {
@@ -85,27 +87,95 @@ export const event: DiscordEvent = {
         }
       }
 
-      // callback if no.
+      const cmdData = cmd!.data;
+
+      // Reject if no.
       if (!cmd) return;
 
       if (cmd.enabled === false) return;
 
-      // If not in development mode
+      // Reject if not in development mode
       if (
-        cmd.data?.developmentOnly === true &&
+        cmdData?.developmentOnly === true &&
         process.env.NODE_ENV !== 'development'
       ) {
         return;
       }
 
-      if (cmd.data?.ownerOnly === true && author.id !== ownerId) return;
+      if (cmdData?.ownerOnly === true && author.id !== ownerId) return;
 
-      // Return if command can only be executed NSFW channel when it's not in.
-      if (cmd.data?.nsfwChannelRequired) {
-        if (!guild || !channel.isText()) return;
-        if (!(channel as TextChannel).nsfw) {
+      // Reject if command can only be executed NSFW channel when it's not in.
+      if (
+        cmdData?.nsfwChannelRequired &&
+        (!guild || !channel.isText()) &&
+        !(channel as TextChannel).nsfw
+      ) {
+        const cEmbed = callbackEmbed({
+          text: `You must be in **NSFW** channel before executing this commmand.`,
+          color: 'RED',
+          mode: 'error',
+        });
+        message.reply({
+          embeds: [cEmbed],
+        });
+        return;
+      }
+
+      // Reject if dm mode while configurated to guildOnly.
+      if (!guild && !cmdData?.directMessageAllowed) return;
+
+      // Reject when Target disabled or didn't reach the requirement.
+      if (guild) {
+        const commandDatasbase = guildDatabase?.commands!;
+        // GUILD specifies disabled command.
+        if (commandDatasbase.global.disabled.includes(cmdName)) {
+          return;
+        }
+
+        // Specified CATAGORIES
+        if (
+          commandDatasbase.global.disabledCatagories.includes(
+            cmd.data.catagory!,
+          )
+        ) {
+          return;
+        }
+
+        // Specified CHANNEL
+        if (
+          commandDatasbase.channelDisabled
+            .find(x => x.id === channel.id)
+            ?.cmds.includes(cmdName)
+        ) {
+          return;
+        }
+
+        // Specified ROLE
+        if (member?.roles.cache) {
+          // eslint-disable-next-line no-unsafe-optional-chaining
+          for (const role of member?.roles.cache) {
+            const hasRole = commandDatasbase.roleDisabled
+              .find(x => x.id === role[1].id)
+              ?.cmds.includes(cmdName);
+            if (hasRole) return;
+          }
+        }
+
+        // Specified USER
+        if (
+          commandDatasbase.userDisabled
+            .find(x => x.id === author.id)
+            ?.cmds.includes(cmdName)
+        ) {
+          return;
+        }
+
+        if (
+          cmd.data?.inVoiceChannelRequired === true &&
+          !member?.voice.channel
+        ) {
           const cEmbed = callbackEmbed({
-            text: `You must be in **NSFW** channel before executing this commmand.`,
+            text: `You must be in voice channel before executing this commmand.`,
             color: 'RED',
             mode: 'error',
           });
@@ -116,32 +186,9 @@ export const event: DiscordEvent = {
         }
       }
 
-      // Return if dm mode while configurated to guildOnly.
-      if (!cmd.data?.directMessageAllowed && !guild) return;
-
-      // Intermit when disabled.
-      if (
-        guild &&
-        guildDatabase?.commands.global.disabled.includes(cmd.data.name)
-      ) {
-        return;
-      }
-
-      if (cmd.data?.inVoiceChannelRequired === true && !member?.voice.channel) {
-        const cEmbed = callbackEmbed({
-          text: `You must be in voice channel before executing this commmand.`,
-          color: 'RED',
-          mode: 'error',
-        });
-        message.reply({
-          embeds: [cEmbed],
-        });
-        return;
-      }
-
       // Cooldown Check
       const now = Date.now();
-      const keyName = `CMD_${author.id}_${cmd.data.name}`;
+      const keyName = `CMD_${author.id}_${cmdName}`;
 
       const cooldowns = client.cooldown;
       const cooldownInterval = cmd.data.cooldownInterval ?? 3000;
@@ -167,22 +214,20 @@ export const event: DiscordEvent = {
       // Permission Check (BOT)
       const requestPermsClient = cmd.data.clientRequiredPermissions;
       if (guild && requestPermsClient) {
-        const permissionMissing = [];
+        const permMissing = [];
         for (const perm of requestPermsClient) {
           const botId = client.user?.id;
           if (botId) {
             const isOwned = guild.members.cache
               .get(botId)
               ?.permissions.has(perm);
-            if (!isOwned) permissionMissing.push(perm);
+            if (!isOwned) permMissing.push(perm);
           }
         }
 
         // Reject if BOT doesn't own permission(s).
-        if (permissionMissing.length > 0) {
-          const perms = permissionMissing
-            .map(index => `\`${index}\``)
-            .join(', ');
+        if (permMissing.length > 0) {
+          const perms = permMissing.map(index => `\`${index}\``).join(', ');
           message.reply({
             content: `I don't have permission: \`${perms}\``,
           });
@@ -193,17 +238,15 @@ export const event: DiscordEvent = {
       // Permission Check (AUTHOR)
       const requestPermsAuthor = cmd.data.authorRequiredPermissions;
       if (guild && requestPermsAuthor) {
-        const permissionMissing = [];
+        const permMissing = [];
         for (const perm of requestPermsAuthor) {
           const isOwned = member?.permissions.has(perm);
-          if (!isOwned) permissionMissing.push(perm);
+          if (!isOwned) permMissing.push(perm);
         }
 
         // Reject if AUTHOR doesn't own permission(s).
-        if (permissionMissing.length > 0) {
-          const perms = permissionMissing
-            .map(index => `\`${index}\``)
-            .join(', ');
+        if (permMissing.length > 0) {
+          const perms = permMissing.map(index => `\`${index}\``).join(', ');
           message.reply({
             content: `Missing Permission: \`${perms}\``,
           });

@@ -10,6 +10,9 @@ export const command: TextCommand = {
     description: 'Disable command in local server.',
     directMessageAllowed: false,
     authorRequiredPermissions: ['MANAGE_GUILD'],
+    intervalLimit: {
+      hour: 2,
+    },
   },
   run: async ({ message, args }) => {
     const { guild, member, client } = message;
