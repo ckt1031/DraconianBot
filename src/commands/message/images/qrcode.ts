@@ -5,7 +5,7 @@ import type { TextCommand } from '../../../sturctures/command';
 export const command: TextCommand = {
   data: {
     name: 'qrcode',
-    description: "Generate QR Code by one click.",
+    description: 'Generate QR Code by one click.',
     directMessageAllowed: true,
     cooldownInterval: 5 * 1000,
   },
