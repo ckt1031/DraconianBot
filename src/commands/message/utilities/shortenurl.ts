@@ -25,7 +25,9 @@ export const command: TextCommand = {
 
       embed
         .setTitle('Converted!')
-        .setDescription(`URL: ${responseData}\nDestination: \`${destination}\``);
+        .setDescription(
+          `URL: ${responseData}\nDestination: \`${destination}\``,
+        );
 
       message.reply({
         embeds: [embed],
