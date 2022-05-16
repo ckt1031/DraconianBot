@@ -9,6 +9,23 @@
 3. Minimum Free Space: 5 GB
 4. Minimum core of CPU: 1
 
+### Initiation
+
+- Install Required Dependencies
+```
+npm install
+```
+
+- Build & Compile to JavaScript
+```
+npm run build
+```
+
+- Start
+```
+npm run start
+```
+
 ### New features and Enhancements are introduced:
 
 - Concentrating to **PRODUCTIVITY**
