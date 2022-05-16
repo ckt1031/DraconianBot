@@ -3,17 +3,17 @@ import { MessageEmbed, MessageButton, MessageActionRow } from 'discord.js';
 import emoji from '../../config/emojis.json';
 
 import type {
-  EmbedFieldData,
   Message,
-  MessageComponentInteraction,
+  EmbedFieldData,
   CollectorFilter,
   ColorResolvable,
+  MessageComponentInteraction,
 } from 'discord.js';
 
 interface ConfirmInformationButtons {
   title: string;
-  fields: EmbedFieldData[];
   message: Message;
+  fields: EmbedFieldData[];
 }
 
 export async function confirmInformationButtons({

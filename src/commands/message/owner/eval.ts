@@ -12,6 +12,7 @@ function clean(text: string) {
 }
 
 export const command: TextCommand = {
+  enabled: process.env.NODE_ENV === 'development',
   data: {
     name: 'eval',
     publicLevel: 'None',
@@ -30,7 +31,7 @@ export const command: TextCommand = {
         if (evaled.length > 1999) return console.log(evaled);
         message.channel.send({ content: `\`\`\`${clean(evaled)}\`\`\`` });
       } catch (error) {
-        if (error instanceof Error && error.message.length > 1999) {
+        if (error instanceof Error && error.message.length < 1999) {
           message.channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
           });
