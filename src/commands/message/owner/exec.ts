@@ -12,6 +12,7 @@ function clean(text: string) {
 }
 
 export const command: TextCommand = {
+  enabled: process.env.NODE_ENV === 'development',
   data: {
     name: 'exec',
     publicLevel: 'None',

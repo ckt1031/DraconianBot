@@ -1,0 +1,41 @@
+import axios from 'axios';
+import { MessageEmbed } from 'discord.js';
+
+import type { TextCommand } from '../../../sturctures/command';
+
+export const command: TextCommand = {
+  data: {
+    name: 'shortenurl',
+    description: "Fetch meme's image.",
+    directMessageAllowed: true,
+    cooldownInterval: 6 * 1000,
+  },
+  run: async ({ message, args }) => {
+    const embed = new MessageEmbed();
+
+    const destination = args[0];
+
+    try {
+      const url = `https://is.gd/create.php?format=simple&url=${encodeURI(
+        destination,
+      )}`;
+
+      const response = await axios.get(url);
+      const responseData = response.data;
+
+      embed
+        .setTitle('Converted!')
+        .setDescription(`URL: ${responseData}\nDestination: \`${destination}\``);
+
+      message.reply({
+        embeds: [embed],
+      });
+    } catch {
+      embed.setDescription('Error occured when fetching the content.');
+
+      message.reply({
+        embeds: [embed],
+      });
+    }
+  },
+};

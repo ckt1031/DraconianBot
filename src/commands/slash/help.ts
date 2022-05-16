@@ -55,33 +55,33 @@ export const command: SlashCommand = {
       interaction.reply({
         embeds: [embed],
       });
+      return;
+    }
+    let cmd: TextCommand | undefined;
+    const commandMatching = client.commands.get(commandInput);
+    const aliasesMatching = client.aliases.get(commandInput);
+    // Fetch command destination.
+    if (commandMatching) {
+      cmd = commandMatching;
+    } else if (aliasesMatching) {
+      cmd = client.commands.get(aliasesMatching);
     } else {
-      let cmd: TextCommand | undefined;
-      const commandMatching = client.commands.get(commandInput);
-      const aliasesMatching = client.aliases.get(commandInput);
-      // Fetch command destination.
-      if (commandMatching) {
-        cmd = commandMatching;
-      } else if (aliasesMatching) {
-        cmd = client.commands.get(aliasesMatching);
-      } else {
-        const cEmbed = callbackEmbed({
-          text: 'Command requested does not exist!',
-          color: 'RED',
-          mode: 'error',
-        });
-        interaction.reply({
-          embeds: [cEmbed],
-        });
-        return;
-      }
+      const cEmbed = callbackEmbed({
+        text: 'Command requested does not exist!',
+        color: 'RED',
+        mode: 'error',
+      });
+      interaction.reply({
+        embeds: [cEmbed],
+      });
+      return;
+    }
 
-      if (cmd) {
-        const helpInfo = getCommandHelpInfo(cmd);
-        interaction.reply({
-          embeds: [helpInfo],
-        });
-      }
+    if (cmd) {
+      const helpInfo = getCommandHelpInfo(cmd);
+      interaction.reply({
+        embeds: [helpInfo],
+      });
     }
   },
 };

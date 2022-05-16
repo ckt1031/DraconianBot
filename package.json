@@ -1,10 +1,10 @@
 {
   "private": true,
   "name": "draconianbot",
-  "version": "2.0.1-Alpha",
+  "version": "2.0.2-Alpha",
   "description": "Multi-Purpose & Productivity concentrated Discord BOT.",
   "license": "MIT",
-  "author": "CKTSUN31",
+  "author": "CKTSUN",
   "homepage": "https://github.com/RealKoolisw/DraconianBot#readme",
   "repository": {
     "url": "git+https://github.com/RealKoolisw/DraconianBot.git"
@@ -25,8 +25,7 @@
     "start:node": "cross-env NODE_ENV=production node dist/index.js",
     "start:pm2": "pm2 start .pm2.config.js --no-daemon --env production",
     "start:watch": "node -e \"setTimeout(()=>{},5000)\" && nodemon ./dist/src/index.js",
-    "tsc:watch": "rimraf ./dist && tsc -w",
-    "update": "ncu"
+    "tsc:watch": "rimraf ./dist && tsc -w"
   },
   "dependencies": {
     "@discordjs/rest": "^0.4.1",
@@ -35,7 +34,7 @@
     "@distube/yt-dlp": "^1.0.2",
     "@fastify/rate-limit": "^6.0.0",
     "axios": "^0.27.2",
-    "better-sqlite3": "^7.5.1",
+    "better-sqlite3": "^7.5.2",
     "chalk": "^4.1.2",
     "cross-env": "^7.0.3",
     "dayjs": "^1.11.2",
@@ -55,7 +54,7 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
-    "@swc/core": "^1.2.183",
+    "@swc/core": "^1.2.185",
     "@types/express-status-monitor": "^1.2.4",
     "@types/fastify-rate-limit": "^2.1.0",
     "@types/glob": "^7.2.0",
@@ -73,7 +72,6 @@
     "eslint-plugin-spellcheck": "^0.0.19",
     "eslint-plugin-unicorn": "^42.0.0",
     "nodemon": "^2.0.16",
-    "npm-check-updates": "^12.5.11",
     "npm-run-all": "^4.1.5",
     "pm2": "^5.2.0",
     "prettier": "^2.6.2",
