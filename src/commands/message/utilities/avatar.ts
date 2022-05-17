@@ -1,5 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 
+import type { GuildMember } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -25,7 +26,7 @@ export const command: TextCommand = {
           }
         } else {
           const username = String(args[0]).toLowerCase();
-          const target = guild.members.cache.find(ur =>
+          const target = guild.members.cache.find((ur: GuildMember) =>
             ur.user.username.toLowerCase().includes(username),
           );
           if (target) targetUser = target.user;

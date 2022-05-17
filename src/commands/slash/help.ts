@@ -41,7 +41,9 @@ export const command: SlashCommand = {
             catagory[0] += ' THIS CHANNEL ONLY';
           }
         }
-        const text = catagory[1].map(index => `\`${index}\``).join(', ');
+        const text = catagory[1]
+          .map((index: string) => `\`${index}\``)
+          .join(', ');
         embed.addField(catagory[0], text);
       }
 

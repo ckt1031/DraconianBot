@@ -12,16 +12,19 @@
 ### Initiation
 
 - Install Required Dependencies
+
 ```
 npm install
 ```
 
 - Build & Compile to JavaScript
+
 ```
 npm run build
 ```
 
 - Start
+
 ```
 npm run start
 ```

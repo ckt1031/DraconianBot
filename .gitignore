@@ -13,3 +13,5 @@ replit.nix
 
 /config/*.json
 !/config/*.example.json
+
+pnpm-lock.yaml

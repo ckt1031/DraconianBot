@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { MessageEmbed } from 'discord.js';
 
+import type { GuildMember } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -28,7 +29,9 @@ export const command: TextCommand = {
       .addField('User Count', guild.memberCount.toString(), true)
       .addField(
         'Bot Count',
-        guild.members.cache.filter(m => m.user.bot).size.toString(),
+        guild.members.cache
+          .filter((m: GuildMember) => m.user.bot)
+          .size.toString(),
         true,
       )
       .addField('Roles', guild.roles.cache.size.toString(), true)
