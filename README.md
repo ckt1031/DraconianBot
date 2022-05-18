@@ -1,3 +1,5 @@
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine)
+
 # Draconian Bot
 
 **PRODUCTIVITY** Concentrated with the latest redesigned bot system.
@@ -29,7 +31,7 @@ npm run build
 npm run start
 ```
 
-### New features and Enhancements are introduced:
+### New features and Enhancement are introduced
 
 - Concentrating to **PRODUCTIVITY**
 - Mostly written by **_typescript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))

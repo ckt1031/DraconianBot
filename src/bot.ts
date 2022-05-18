@@ -1,17 +1,15 @@
 import './http/server';
 
+import { Client, Collection, Intents } from 'discord.js';
+import type { SlashCommand, TextCommand } from './sturctures/command';
+import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
+import { loadSlashCommand, loadTextCommand } from './loaders/command';
+
 // Distube
 import { DisTube } from 'distube';
-import { YtDlpPlugin } from '@distube/yt-dlp';
-import { SpotifyPlugin } from '@distube/spotify';
 import { SoundCloudPlugin } from '@distube/soundcloud';
-
-import { Collection, Client, Intents } from 'discord.js';
-
-import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
-import { loadTextCommand, loadSlashCommand } from './loaders/command';
-
-import type { TextCommand, SlashCommand } from './sturctures/command';
+import { SpotifyPlugin } from '@distube/spotify';
+import { YtDlpPlugin } from '@distube/yt-dlp';
 
 const client = new Client({
   intents: new Intents(32_767),

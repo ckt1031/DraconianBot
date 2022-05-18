@@ -1,14 +1,12 @@
-import { MessageEmbed, MessageButton, MessageActionRow } from 'discord.js';
-
-import { findBestMatch } from 'string-similarity';
-
 import type {
+  CollectorFilter,
   Message,
   MessageComponentInteraction,
-  CollectorFilter,
 } from 'discord.js';
+import { MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
 
 import type { TextCommand } from '../sturctures/command';
+import { findBestMatch } from 'string-similarity';
 
 /** Send command information message embed. */
 export function getCommandHelpInfo(cmd: TextCommand): MessageEmbed {
