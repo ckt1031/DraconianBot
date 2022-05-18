@@ -11,7 +11,7 @@ import type { TextChannel } from 'discord.js';
 import type { TextCommand, SlashCommand } from '../../sturctures/command';
 
 export const command: SlashCommand = {
-  data: new SlashCommandBuilder()
+  slashData: new SlashCommandBuilder()
     .setName('help')
     .setDescription(helpTextCommand.data.description)
     .addStringOption(option =>

@@ -118,7 +118,7 @@ export async function loadSlashCommand(
       const slashCommand: SlashCommand = commandFile.command;
 
       const slashCommandCollection = client.slashcommands;
-      const name = slashCommand.data.name;
+      const name = slashCommand.slashData.name;
 
       if (slashCommandCollection.has(name)) {
         throw 'Duplicated slash command is found!';
@@ -126,7 +126,7 @@ export async function loadSlashCommand(
 
       client.slashcommands.set(name, slashCommand);
 
-      slashCommandData.push(slashCommand.data.toJSON());
+      slashCommandData.push(slashCommand.slashData.toJSON());
 
       delete require.cache[require.resolve(allFiles[index])];
     }

@@ -55,7 +55,7 @@ export const event: DiscordEvent = {
       if (cooldowns.has(keyName)) {
         const expectedEnd = cooldowns.get(keyName);
         if (expectedEnd && now < expectedEnd) {
-          const timeleft = parseMsToVisibleText(expectedEnd - now);
+          const timeleft = parseMsToVisibleText(Number(expectedEnd) - now);
           return returnOfInter(
             `Before using this command, please wait for **${timeleft}**.`,
           );

@@ -6,7 +6,7 @@ import { command as TextCommand } from '../message/general/ping';
 import type { SlashCommand } from '../../sturctures/command';
 
 export const command: SlashCommand = {
-  data: new SlashCommandBuilder()
+  slashData: new SlashCommandBuilder()
     .setName('ping')
     .setDescription(TextCommand.data.description),
   run: async ({ interaction }) => {
