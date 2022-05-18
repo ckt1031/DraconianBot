@@ -34,6 +34,6 @@ export interface SnipeConfig {
   content: {
     text: string;
     date: number;
-    imageURL: string | undefined | null;
+    imageURL: string | undefined;
   };
 }

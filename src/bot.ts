@@ -63,7 +63,7 @@ declare module 'discord.js' {
     commandsCatagories: Collection<string, string[]>;
     slashcommands: Collection<string, SlashCommand>;
     aliases: Collection<string, string>;
-    cooldown: Collection<string, number>;
+    cooldown: Collection<string, number | string>;
     distube: DisTube;
   }
 }

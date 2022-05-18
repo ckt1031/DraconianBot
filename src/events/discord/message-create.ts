@@ -3,7 +3,7 @@ import { parseMsToVisibleText } from '../../utils/formatters';
 import { guildConfiguration, ensureServerData } from '../../utils/database';
 import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
 
-import type { Message, TextChannel } from 'discord.js';
+import type { Message, TextChannel, PermissionResolvable } from 'discord.js';
 import type { DiscordEvent } from '../../sturctures/event';
 import type { TextCommand } from '../../sturctures/command';
 import type { GuildConfig } from '../../sturctures/database';
@@ -88,6 +88,10 @@ export const event: DiscordEvent = {
       }
 
       const cmdData = cmd!.data;
+
+      /**
+       * Command's eligibility vaildation.
+       */
 
       // Reject if no.
       if (!cmd) return;
@@ -186,16 +190,22 @@ export const event: DiscordEvent = {
         }
       }
 
-      // Cooldown Check
+      /**
+       * END of Command's eligibility vaildation.
+       */
+
+      // Cooldown Validation
       const now = Date.now();
       const keyName = `CMD_${author.id}_${cmdName}`;
 
       const cooldowns = client.cooldown;
       const cooldownInterval = cmd.data.cooldownInterval ?? 3000;
+
+      // Reject if user exists in cooldown.
       if (cooldowns.has(keyName)) {
         const expectedEnd = cooldowns.get(keyName);
         if (expectedEnd && now < expectedEnd) {
-          const timeleft = parseMsToVisibleText(expectedEnd - now);
+          const timeleft = parseMsToVisibleText(Number(expectedEnd) - now);
           const postMessage = await message.reply({
             content: `Before using this command, please wait for **${timeleft}**.`,
             allowedMentions: { repliedUser: true },
@@ -214,7 +224,7 @@ export const event: DiscordEvent = {
       // Permission Check (BOT)
       const requestPermsClient = cmd.data.clientRequiredPermissions;
       if (guild && requestPermsClient) {
-        const permMissing = [];
+        const permMissing: PermissionResolvable[] = [];
         for (const perm of requestPermsClient) {
           const botId = client.user?.id;
           if (botId) {
@@ -238,7 +248,7 @@ export const event: DiscordEvent = {
       // Permission Check (AUTHOR)
       const requestPermsAuthor = cmd.data.authorRequiredPermissions;
       if (guild && requestPermsAuthor) {
-        const permMissing = [];
+        const permMissing: PermissionResolvable[] = [];
         for (const perm of requestPermsAuthor) {
           const isOwned = member?.permissions.has(perm);
           if (!isOwned) permMissing.push(perm);

@@ -3,6 +3,8 @@ import { parseMsToVisibleText } from '../../utils/formatters';
 import type { CommandInteraction } from 'discord.js';
 import type { DiscordEvent } from '../../sturctures/event';
 
+import { ownerId } from '../../../config/bot.json';
+
 export const event: DiscordEvent = {
   name: 'interactionCreate',
   run: async (client, interaction: CommandInteraction) => {
@@ -25,13 +27,31 @@ export const event: DiscordEvent = {
         return returnOfInter('Error Occured!');
       }
 
-      // Cooldown Check
-      const now = Date.now();
-      const keyName = `CMD_${user.id}_${slash.data.name}`;
-      const cooldowns = client.cooldown;
-      const cooldownInterval = slash.config?.cooldownInterval ?? 3000;
+      // Eligibility Validations
+      if (slash?.enabled === false) {
+        return returnOfInter('This command is not enabled to execute.');
+      }
 
-      // Callback if exists in cooldown.
+      if (slash?.data?.ownerOnly === true && user.id !== ownerId) {
+        return returnOfInter('This command is not enabled to execute.');
+      }
+
+      if (
+        slash?.data?.developmentOnly === true &&
+        process.env.NODE_ENV !== 'development'
+      ) {
+        return returnOfInter(
+          'This command is not enabled to execute in current state.',
+        );
+      }
+
+      // Cooldown Validation
+      const now = Date.now();
+      const keyName = `CMD_${user.id}_${slash.slashData.name}`;
+      const cooldowns = client.cooldown;
+      const cooldownInterval = slash?.data?.cooldownInterval ?? 3000;
+
+      // Reject if user exists in cooldown.
       if (cooldowns.has(keyName)) {
         const expectedEnd = cooldowns.get(keyName);
         if (expectedEnd && now < expectedEnd) {

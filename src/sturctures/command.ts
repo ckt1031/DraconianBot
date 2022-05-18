@@ -6,6 +6,15 @@ import type {
 
 import type { SlashCommandBuilder } from '@discordjs/builders';
 
+interface TextCommandExecution {
+  message: Message;
+  args: string[];
+}
+
+interface SlashCommandExecution {
+  interaction: CommandInteraction;
+}
+
 /**
  * As default, command can only be accessed in guild.
  *
@@ -15,23 +24,21 @@ import type { SlashCommandBuilder } from '@discordjs/builders';
  */
 export interface TextCommand {
   enabled?: boolean;
+
   // Command Data
   readonly data: {
-    // Oneself Requirements
+    // Permissions
     clientRequiredPermissions?: PermissionResolvable[];
+    authorRequiredPermissions?: PermissionResolvable[];
 
     // Access, Environment & Scenes
     ownerOnly?: boolean;
     developmentOnly?: boolean;
-
     nsfwChannelRequired?: boolean;
     inVoiceChannelRequired?: boolean;
-
     threadChannelAllowed?: boolean;
     directMessageAllowed?: boolean;
-
     publicLevel?: 'All' | 'Permission' | 'None';
-    authorRequiredPermissions?: PermissionResolvable[];
 
     // Info
     name: string;
@@ -41,25 +48,32 @@ export interface TextCommand {
     aliases?: string[];
 
     // Specified Configurations
+    cooldownInterval?: number;
     intervalLimit?: {
       minute?: number;
       hour?: number;
       day?: number;
     };
-    cooldownInterval?: number;
   };
   // eslint-disable-next-line no-unused-vars
-  run: ({ message, args }: { message: Message; args: any[] }) => Promise<void>;
+  run: ({ message, args }: TextCommandExecution) => Promise<void>;
 }
 
 export interface SlashCommand {
-  // Slash Data
-  data: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
+  enabled?: boolean;
 
-  readonly config?: {
+  // Slash Data
+  slashData: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
+
+  readonly data?: {
+    clientRequiredPermissions?: PermissionResolvable[];
+
+    ownerOnly?: boolean;
+    developmentOnly?: boolean;
+
     cooldownInterval?: number;
   };
 
   // eslint-disable-next-line no-unused-vars
-  run: ({ interaction }: { interaction: CommandInteraction }) => Promise<void>;
+  run: ({ interaction }: SlashCommandExecution) => Promise<void>;
 }

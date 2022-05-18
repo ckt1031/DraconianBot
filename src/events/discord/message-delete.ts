@@ -15,22 +15,22 @@ export const event: DiscordEvent = {
       await message.fetch();
     }
 
-    const { guild, channelId, content, attachments, author, client } = message;
+    const { guild, channel, content, attachments, author, client } = message;
 
-    if (guild) {
+    if (guild && channel.isText()) {
       const config = guildConfiguration.get(guild.id);
 
       ensureServerData(guild.id);
 
       // Validate whether it can be stored into Sniping system.
       if (
-        !config?.snipe.channelDisabled.includes(channelId) &&
+        !config?.snipe.channelDisabled.includes(channel.id) &&
         client.user?.id !== author.id
       ) {
-        ensureSnipeChannel(channelId);
+        ensureSnipeChannel(channel.id);
 
         // Set to database.
-        snipeDatabase.set(channelId, {
+        snipeDatabase.set(channel.id, {
           author: {
             id: author.id,
             name: author.tag,
