@@ -13,6 +13,13 @@
 
 ### Initiation
 
+- Environmental Variables (.env)
+
+```
+TOKEN=XXXXX.ABCDEFG
+CLIENT_ID=XXXXXXXXXXXXXXXXXX
+```
+
 - Install Required Dependencies
 
 ```
