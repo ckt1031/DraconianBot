@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import { parseMsToVisibleText } from '../../../utils/formatters';
 
@@ -14,7 +14,7 @@ export const command: TextCommand = {
     const instanceBoot = message.client.uptime!;
     const bootTimeMS = Math.round((Date.now() - instanceBoot) / 1000);
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle("Bot's Uptime")
       .setDescription(
         `\`${parseMsToVisibleText(

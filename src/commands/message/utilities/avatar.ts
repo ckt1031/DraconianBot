@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -10,7 +10,7 @@ export const command: TextCommand = {
     directMessageAllowed: true,
   },
   run: async ({ message, args }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
     const { guild, mentions, author } = message;
 
@@ -38,8 +38,6 @@ export const command: TextCommand = {
     if (!targetUser) targetUser = author;
 
     const avatarURL = targetUser.displayAvatarURL({
-      dynamic: false,
-      format: 'png',
       size: 4096,
     });
 

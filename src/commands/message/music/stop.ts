@@ -7,12 +7,11 @@ export const command: TextCommand = {
     name: 'stop',
     description: 'Srop song.',
     inVoiceChannelRequired: true,
-
     clientRequiredPermissions: [
-      'CONNECT',
-      'PRIORITY_SPEAKER',
-      'SPEAK',
-      'REQUEST_TO_SPEAK',
+      'Connect',
+      'PrioritySpeaker',
+      'Speak',
+      'RequestToSpeak',
     ],
   },
   run: async ({ message }) => {
@@ -29,7 +28,7 @@ export const command: TextCommand = {
     if (!queue) {
       const cEmbed = callbackEmbed({
         text: `There is **NOTHING** in the queue right now!`,
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -42,7 +41,7 @@ export const command: TextCommand = {
 
     const cEmbed = callbackEmbed({
       text: `Music **STOPPED**!`,
-      color: 'GREEN',
+      color: 'Green',
       mode: 'success',
     });
     message.reply({

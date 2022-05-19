@@ -10,7 +10,7 @@ export const command: TextCommand = {
     name: 'commandEnable',
     description: 'Enable command in local server.',
     directMessageAllowed: false,
-    authorRequiredPermissions: ['MANAGE_GUILD'],
+    authorRequiredPermissions: ['ManageGuild'],
     intervalLimit: {
       hour: 2,
     },
@@ -23,7 +23,7 @@ export const command: TextCommand = {
     if (!guild) {
       const cEmbed = callbackEmbed({
         text: 'This command can only be executed in SERVER!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -38,7 +38,7 @@ export const command: TextCommand = {
     if (!originalPrefix?.includes(targetCommand)) {
       const cEmbed = callbackEmbed({
         text: 'This command had not been disabled!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -52,7 +52,7 @@ export const command: TextCommand = {
     if (!commandMatching || commandMatching.enabled === false) {
       const cEmbed = callbackEmbed({
         text: 'Requested command is not valid!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -98,7 +98,7 @@ export const command: TextCommand = {
 
       const cEmbed = callbackEmbed({
         text: `Successfully enabled command: \`${commandMatching.data.name}\``,
-        color: 'GREEN',
+        color: 'Green',
         mode: 'success',
       });
       message.reply({

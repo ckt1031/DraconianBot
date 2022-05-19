@@ -1,4 +1,4 @@
-import { MessageEmbed, Util } from 'discord.js';
+import { EmbedBuilder, Util } from 'discord.js';
 import { parse } from 'twemoji-parser';
 
 import { callbackEmbed } from '../../../utils/messages';
@@ -13,14 +13,14 @@ export const command: TextCommand = {
     directMessageAllowed: true,
   },
   run: async ({ message, args }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
     const emoji = args[0];
 
     if (!emoji) {
       const cEmbed = callbackEmbed({
         text: 'Missing Emoji',
-        color: 'RED',
+        color: 'Red',
       });
       message.reply({
         embeds: [cEmbed],
@@ -33,7 +33,7 @@ export const command: TextCommand = {
     if (!emojiParsed) {
       const cEmbed = callbackEmbed({
         text: 'Error when parsing emoji',
-        color: 'RED',
+        color: 'Red',
       });
       message.reply({
         embeds: [cEmbed],
@@ -62,7 +62,7 @@ export const command: TextCommand = {
     if (!parsed[0]) {
       const cEmbed = callbackEmbed({
         text: 'Invalid emoji!',
-        color: 'RED',
+        color: 'Red',
       });
       message.reply({
         embeds: [cEmbed],

@@ -10,7 +10,7 @@ export const command: TextCommand = {
     name: 'setprefix',
     description: 'Configurate custom preifx.',
     directMessageAllowed: false,
-    authorRequiredPermissions: ['MANAGE_GUILD'],
+    authorRequiredPermissions: ['ManageGuild'],
     intervalLimit: {
       hour: 2,
     },
@@ -21,7 +21,7 @@ export const command: TextCommand = {
     if (!guild) {
       const cEmbed = callbackEmbed({
         text: 'This command can only be executed in SERVER!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -36,7 +36,7 @@ export const command: TextCommand = {
     if (!targetPrefix || targetPrefix.length > 3) {
       const cEmbed = callbackEmbed({
         text: 'Missing prefix or prefix does not match the requirement.',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -48,7 +48,7 @@ export const command: TextCommand = {
     if (targetPrefix === originalPrefix) {
       const cEmbed = callbackEmbed({
         text: `You cannot set the same prefix: \`${targetPrefix}\``,
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -89,7 +89,7 @@ export const command: TextCommand = {
 
       const cEmbed = callbackEmbed({
         text: `Bot's prefix successfully configurated: \`${targetPrefix}\``,
-        color: 'GREEN',
+        color: 'Green',
       });
       message.reply({
         embeds: [cEmbed],

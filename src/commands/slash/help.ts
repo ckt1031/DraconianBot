@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 
 import { getCommandHelpInfo } from '../../utils/cmds';
@@ -21,13 +21,13 @@ export const command: SlashCommand = {
         .setRequired(false),
     ),
   run: async ({ interaction }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
     const { client, channel, options } = interaction;
 
-    const commandInput = options.getString('command');
+    const commandInput = options.get('command')?.value;
 
-    if (!commandInput) {
+    if (!commandInput || typeof commandInput !== 'string') {
       const commandsCatagories = client.commandsCatagories;
 
       embed.setDescription(
@@ -44,7 +44,7 @@ export const command: SlashCommand = {
         const text = catagory[1]
           .map((index: string) => `\`${index}\``)
           .join(', ');
-        embed.addField(catagory[0], text);
+        embed.addFields([{ name: catagory[0], value: text }]);
       }
 
       const avatarURL = client.user?.defaultAvatarURL;
@@ -70,7 +70,7 @@ export const command: SlashCommand = {
     } else {
       const cEmbed = callbackEmbed({
         text: 'Command requested does not exist!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       interaction.reply({

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextChannel, VoiceChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
@@ -33,29 +33,47 @@ export const command: TextCommand = {
 
     if (!targetChannel) targetChannel = channel;
 
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
     if (targetChannel.isText()) {
       const textChannel = targetChannel as TextChannel;
 
-      embed
-        .setTitle(`${textChannel.name}'s information:`)
-        .addField('ID', textChannel.id)
-        .addField(
-          'Created on',
-          dayjs(textChannel.createdAt.getTime()).format('DD/MM/YYYY'),
-          true,
-        );
+      embed.setTitle(`${textChannel.name}'s information:`).addFields([
+        { name: 'ID', value: textChannel.id },
+        {
+          name: 'Created on',
+          value: dayjs(textChannel.createdAt.getTime()).format('DD/MM/YYYY'),
+          inline: true,
+        },
+      ]);
 
       if (textChannel.parent?.name) {
-        embed.addField('Parent', textChannel.parent?.name, true);
+        embed.addFields([
+          {
+            name: 'Parent',
+            value: textChannel.parent?.name,
+            inline: true,
+          },
+        ]);
       }
 
-      embed.addField('Position', textChannel.rawPosition.toString(), true);
-
-      embed.addField('NSFW', textChannel.nsfw ? 'YES' : 'NO', true);
-
-      embed.addField('Viewable', textChannel.viewable ? 'YES' : 'NO', true);
+      embed.addFields([
+        {
+          name: 'Position',
+          value: textChannel.rawPosition.toString(),
+          inline: true,
+        },
+        {
+          name: 'NSFW',
+          value: textChannel.nsfw ? 'YES' : 'NO',
+          inline: true,
+        },
+        {
+          name: 'Viewable',
+          value: textChannel.viewable ? 'YES' : 'NO',
+          inline: true,
+        },
+      ]);
 
       embed.setFooter({
         iconURL: guild.iconURL()!,
@@ -71,24 +89,43 @@ export const command: TextCommand = {
 
     if (targetChannel.isVoice()) {
       const voiceChannel = targetChannel as VoiceChannel;
-      embed
-        .setTitle(`${voiceChannel.name}'s information:`)
-        .addField('ID', voiceChannel.id)
-        .addField(
-          'Created on',
-          dayjs(voiceChannel.createdAt.getTime()).format('DD/MM/YYYY'),
-          true,
-        );
+
+      embed.setTitle(`${voiceChannel.name}'s information:`).addFields([
+        { name: 'ID', value: voiceChannel.id },
+        {
+          name: 'Created on',
+          value: dayjs(voiceChannel.createdAt.getTime()).format('DD/MM/YYYY'),
+          inline: true,
+        },
+      ]);
 
       if (voiceChannel.parent?.name) {
-        embed.addField('Parent', voiceChannel.parent?.name, true);
+        embed.addFields([
+          {
+            name: 'Parent',
+            value: voiceChannel.parent?.name,
+            inline: true,
+          },
+        ]);
       }
 
-      embed.addField('Position', voiceChannel.rawPosition.toString(), true);
-
-      embed.addField('Joinable', voiceChannel.joinable ? 'YES' : 'NO', true);
-
-      embed.addField('Speakable', voiceChannel.speakable ? 'YES' : 'NO', true);
+      embed.addFields([
+        {
+          name: 'Position',
+          value: voiceChannel.rawPosition.toString(),
+          inline: true,
+        },
+        {
+          name: 'Joinable',
+          value: voiceChannel.joinable ? 'YES' : 'NO',
+          inline: true,
+        },
+        {
+          name: 'Speakable',
+          value: voiceChannel.speakable ? 'YES' : 'NO',
+          inline: true,
+        },
+      ]);
 
       embed.setFooter({
         iconURL: guild.iconURL()!,

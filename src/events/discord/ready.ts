@@ -1,3 +1,5 @@
+import { ActivityType } from 'discord.js';
+
 import { ensureServerData } from '../../utils/database';
 
 import type { Guild } from 'discord.js';
@@ -24,7 +26,7 @@ export const event: DiscordEvent = {
       const _status = status[index++ % status.length];
       const text = `${defaultPrefix}help | ${_status}`;
       client.user?.setActivity(text, {
-        type: 'WATCHING',
+        type: ActivityType.Watching,
       });
     }, 15 * 1000);
 

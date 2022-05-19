@@ -1,6 +1,6 @@
 import './http/server';
 
-import { Client, Collection, Intents } from 'discord.js';
+import { Client, Collection, Partials, GatewayIntentBits } from 'discord.js';
 import type { SlashCommand, TextCommand } from './sturctures/command';
 import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
 import { loadSlashCommand, loadTextCommand } from './loaders/command';
@@ -12,9 +12,21 @@ import { SpotifyPlugin } from '@distube/spotify';
 import { YtDlpPlugin } from '@distube/yt-dlp';
 
 const client = new Client({
-  intents: new Intents(32_767),
+  intents: [
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildVoiceStates,
+  ],
   allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
-  partials: ['GUILD_MEMBER', 'USER', 'MESSAGE', 'CHANNEL', 'REACTION'],
+  partials: [
+    Partials.GuildMember,
+    Partials.User,
+    Partials.Message,
+    Partials.Channel,
+  ],
 });
 
 client.login(process.env.TOKEN);
@@ -33,8 +45,6 @@ client.distube = new DisTube(client, {
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
-  // Misc
-  youtubeDL: false,
   // Plugins
   plugins: [
     new YtDlpPlugin(),

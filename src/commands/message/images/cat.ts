@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -11,7 +11,7 @@ export const command: TextCommand = {
     cooldownInterval: 6 * 1000,
   },
   run: async ({ message }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
     try {
       const url1 = 'https://api.thecatapi.com/v1/images/search?format=json';

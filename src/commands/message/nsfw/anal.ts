@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
@@ -13,7 +13,7 @@ export const command: TextCommand = {
   run: async ({ message }) => {
     if (!(message.channel as TextChannel).nsfw) return;
 
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
     try {
       const url1 = 'https://nekobot.xyz/api/image';

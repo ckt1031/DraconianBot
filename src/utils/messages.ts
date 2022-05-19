@@ -1,4 +1,9 @@
-import { MessageEmbed, MessageButton, MessageActionRow } from 'discord.js';
+import {
+  EmbedBuilder,
+  ButtonBuilder,
+  ActionRowBuilder,
+  ButtonStyle,
+} from 'discord.js';
 
 import emoji from '../../config/emojis.json';
 
@@ -22,21 +27,24 @@ export async function confirmInformationButtons({
   message,
 }: ConfirmInformationButtons): Promise<boolean> {
   const now = Date.now();
-  const embed = new MessageEmbed().setTitle(title).addFields(fields);
+  const embed = new EmbedBuilder().setTitle(title).addFields(fields);
 
   const confirmId = `CONFIRM_${now}`;
   const cancelId = `CANCEL_${now}`;
 
-  const buttonSuccess = new MessageButton()
-    .setStyle('SUCCESS')
+  const buttonSuccess = new ButtonBuilder()
+    .setStyle(ButtonStyle.Success)
     .setLabel('Confirm')
     .setCustomId(confirmId);
-  const buttonCancel = new MessageButton()
-    .setStyle('DANGER')
+  const buttonCancel = new ButtonBuilder()
+    .setStyle(ButtonStyle.Danger)
     .setLabel('Cancel')
     .setCustomId(cancelId);
 
-  const row = new MessageActionRow().addComponents(buttonSuccess, buttonCancel);
+  const row: ActionRowBuilder<any> = new ActionRowBuilder().addComponents([
+    buttonSuccess,
+    buttonCancel,
+  ]);
 
   const respondAwaiting = await message.channel.send({
     embeds: [embed],
@@ -70,14 +78,14 @@ export function callbackEmbed({
   text,
   color,
   mode,
-}: CallbackEmbed): MessageEmbed {
+}: CallbackEmbed): EmbedBuilder {
   let emojiText = '';
 
   if (mode && typeof mode === 'string') {
     emojiText = emoji[mode];
   }
 
-  return new MessageEmbed()
+  return new EmbedBuilder()
     .setDescription(`${emojiText} ${text}`)
     .setColor(color!);
 }

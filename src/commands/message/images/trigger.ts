@@ -21,8 +21,6 @@ export const command: TextCommand = {
 
       if (index === 1) {
         image = author.displayAvatarURL({
-          dynamic: false,
-          format: 'png',
           size: 256,
         });
         break;
@@ -33,8 +31,6 @@ export const command: TextCommand = {
           const idMember = guild.members.cache.get(args[0]);
           if (idMember) {
             image = idMember.user.displayAvatarURL({
-              dynamic: false,
-              format: 'png',
               size: 256,
             });
           }
@@ -45,8 +41,6 @@ export const command: TextCommand = {
           );
           if (target) {
             image = target.user.displayAvatarURL({
-              dynamic: false,
-              format: 'png',
               size: 256,
             });
           }

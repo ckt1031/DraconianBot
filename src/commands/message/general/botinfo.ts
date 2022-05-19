@@ -1,5 +1,5 @@
 import pidusage from 'pidusage';
-import { MessageEmbed, version as discordJsVersion } from 'discord.js';
+import { EmbedBuilder, version as discordJsVersion } from 'discord.js';
 
 import { parseMsToVisibleText } from '../../../utils/formatters';
 
@@ -17,46 +17,48 @@ export const command: TextCommand = {
     const apiDelayMS = Math.round(message.client.ws.ping);
     const osStats = await pidusage(process.pid);
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle("Bot's Information")
       .setDescription(
         'Hello! I am Draconian Bot, honored to see you here. Information below is my body analysis :)',
       )
-      .addFields({
-        name: 'Version',
-        value: `\`${packageVersion}\``,
-        inline: true,
-      })
-      .addFields({
-        name: 'Discord.js',
-        value: `\`${discordJsVersion}\``,
-        inline: true,
-      })
-      .addFields({
-        name: 'Node',
-        value: `\`${process.version}\``,
-        inline: true,
-      })
-      .addFields({
-        name: 'CPU',
-        value: `\`${Math.round(Number(osStats.cpu.toFixed(2)))}%\``,
-        inline: true,
-      })
-      .addFields({
-        name: 'Memory',
-        value: `\`${Math.round(osStats.memory / (1024 * 1024))}MB\``,
-        inline: true,
-      })
-      .addFields({
-        name: 'Uptime',
-        value: `\`${parseMsToVisibleText(message.client.uptime ?? 0)}\``,
-        inline: true,
-      })
-      .addFields({
-        name: 'Network Delay',
-        value: `\`${apiDelayMS} ms\``,
-        inline: true,
-      });
+      .addFields([
+        {
+          name: 'Version',
+          value: `\`${packageVersion}\``,
+          inline: true,
+        },
+        {
+          name: 'Discord.js',
+          value: `\`${discordJsVersion}\``,
+          inline: true,
+        },
+        {
+          name: 'Node',
+          value: `\`${process.version}\``,
+          inline: true,
+        },
+        {
+          name: 'CPU',
+          value: `\`${Math.round(Number(osStats.cpu.toFixed(2)))}%\``,
+          inline: true,
+        },
+        {
+          name: 'Memory',
+          value: `\`${Math.round(osStats.memory / (1024 * 1024))}MB\``,
+          inline: true,
+        },
+        {
+          name: 'Uptime',
+          value: `\`${parseMsToVisibleText(message.client.uptime ?? 0)}\``,
+          inline: true,
+        },
+        {
+          name: 'Network Delay',
+          value: `\`${apiDelayMS} ms\``,
+          inline: true,
+        },
+      ]);
 
     message.reply({
       embeds: [embed],

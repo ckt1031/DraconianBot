@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import { snipeDatabase } from '../../../utils/database';
 
@@ -22,7 +22,7 @@ export const command: TextCommand = {
       return;
     }
 
-    const embed = new MessageEmbed().setAuthor({
+    const embed = new EmbedBuilder().setAuthor({
       name: database.author.name ?? 'N/A',
     });
 
