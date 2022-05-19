@@ -12,6 +12,7 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const { attachments, author, guild, channel } = message;
 
+    // Image fetching
     let image = attachments.first()?.proxyURL;
 
     for (let index = 0; index < 2; index++) {
