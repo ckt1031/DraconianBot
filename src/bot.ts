@@ -45,16 +45,19 @@ client.distube = new DisTube(client, {
   ],
 });
 
-process.on('exit', client.destroy);
-process.on('SIGTERM', client.destroy);
-process.on('SIGINT', client.destroy);
-
-export default client;
+if (process.env.NODE_ENV === 'production') {
+  process.on('exit', client.destroy);
+  process.on('SIGTERM', client.destroy);
+  process.on('SIGINT', client.destroy);
+}
 
 loadDiscordEvent(client);
 loadMusicEvent(client);
 loadTextCommand(client);
-loadSlashCommand(client, process.env.CLIENT_ID!, process.env.TOKEN!);
+
+if (process.env.CLIENT_ID) {
+  loadSlashCommand(client, process.env.CLIENT_ID!, process.env.TOKEN!);
+}
 
 // declare types.
 declare module 'discord.js' {
@@ -67,3 +70,5 @@ declare module 'discord.js' {
     distube: DisTube;
   }
 }
+
+export default client;

@@ -239,7 +239,7 @@ export const event: DiscordEvent = {
         if (permMissing.length > 0) {
           const perms = permMissing.map(index => `\`${index}\``).join(', ');
           message.reply({
-            content: `I don't have permission: \`${perms}\``,
+            content: `I don't have permission: ${perms}`,
           });
           return;
         }
