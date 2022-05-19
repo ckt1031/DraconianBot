@@ -89,13 +89,10 @@ export const event: DiscordEvent = {
 
       const cmdData = cmd!.data;
 
-<<<<<<< HEAD
       /**
        * Command's eligibility vaildation.
        */
 
-=======
->>>>>>> main
       // Reject if no.
       if (!cmd) return;
 
@@ -128,11 +125,7 @@ export const event: DiscordEvent = {
         return;
       }
 
-<<<<<<< HEAD
       // Reject if dm mode while configurated to guild only.
-=======
-      // Reject if dm mode while configurated to guildOnly.
->>>>>>> main
       if (!guild && !cmdData?.directMessageAllowed) return;
 
       // Reject when Target disabled or didn't reach the requirement.
@@ -197,15 +190,11 @@ export const event: DiscordEvent = {
         }
       }
 
-<<<<<<< HEAD
       /**
        * END of Command's eligibility vaildation.
        */
 
       // Cooldown Validation
-=======
-      // Cooldown Check
->>>>>>> main
       const now = Date.now();
       const keyName = `CMD_${author.id}_${cmdName}`;
 
@@ -235,11 +224,7 @@ export const event: DiscordEvent = {
       // Permission Check (BOT)
       const requestPermsClient = cmd.data.clientRequiredPermissions;
       if (guild && requestPermsClient) {
-<<<<<<< HEAD
         const permMissing: PermissionResolvable[] = [];
-=======
-        const permMissing = [];
->>>>>>> main
         for (const perm of requestPermsClient) {
           const botId = client.user?.id;
           if (botId) {
@@ -263,11 +248,7 @@ export const event: DiscordEvent = {
       // Permission Check (AUTHOR)
       const requestPermsAuthor = cmd.data.authorRequiredPermissions;
       if (guild && requestPermsAuthor) {
-<<<<<<< HEAD
         const permMissing: PermissionResolvable[] = [];
-=======
-        const permMissing = [];
->>>>>>> main
         for (const perm of requestPermsAuthor) {
           const isOwned = member?.permissions.has(perm);
           if (!isOwned) permMissing.push(perm);
