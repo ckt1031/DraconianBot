@@ -4,6 +4,15 @@
 
 **PRODUCTIVITY** Concentrated with the latest redesigned bot system.
 
+### Features
+
+- :rocket: **STABLE**, **PERFORMANT**, **PRODUCTIVE**
+- 🧰 Mostly written by **_TypeScript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
+- 🧠 Explicit and Clarity Bot's Processional LOGIC
+- :fire: Latest Discord.js Framework (**v14**)
+- 🏛️ Multi-Server Ready
+- ⛏ Farthest Customizable
+
 ### Requirements:
 
 1. NodeJS v16.6.0 or later (LTS/Latest)
@@ -37,15 +46,6 @@ npm run build
 ```
 npm run start
 ```
-
-### New features and Enhancement are introduced
-
-- Concentrating to **PRODUCTIVITY**
-- Mostly written by **_typescript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
-- Redesigning bot handling logic
-- Discord.js Latest (v13)
-- Improving speed and memory usage
-- Better multiserver supports
 
 #### Legacy Version
 
