@@ -35,6 +35,7 @@
     "@distube/spotify": "^1.2.1",
     "@distube/yt-dlp": "^1.0.2",
     "@fastify/rate-limit": "^6.0.1",
+    "@vitalets/google-translate-api": "^8.0.0",
     "axios": "^0.27.2",
     "better-sqlite3": "^7.5.3",
     "bufferutil": "^4.0.6",
@@ -58,7 +59,8 @@
     "pidusage": "^3.0.0",
     "string-similarity": "^4.0.4",
     "twemoji-parser": "^14.0.0",
-    "utf-8-validate": "^5.0.9"
+    "utf-8-validate": "^5.0.9",
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
