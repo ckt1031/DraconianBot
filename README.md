@@ -4,11 +4,15 @@
 
 **PRODUCTIVITY** Concentrated with the latest redesigned bot system.
 
+## STATUS
+
+This branch will be bumped to SATBLE & MAIN channel after discord.js v14 is completely released.
+
 ### Features
 
 - :rocket: **STABLE**, **PERFORMANT**, **PRODUCTIVE**
 - 🧰 Mostly written by **_TypeScript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
-- 🧠 Explicit and Clarity Bot's Processional LOGIC
+- 🧠 Explicit Bot's Processional LOGIC
 - :fire: Latest Discord.js Framework (**v14**)
 - 🏛️ Multi-Server Ready
 - ⛏ Farthest Customizable
