@@ -74,7 +74,15 @@ export async function loadTextCommand(client: Client): Promise<void> {
           }
         }
 
+        if (command.data.intervalLimit) {
+          const list = command.data.intervalLimit;
+          if (list.minute! > list.hour! || list.hour! > list.day!) {
+            throw `Impolitic Custom Interval style!`;
+          }
+        }
+
         client.commands.set(cmdName, command);
+
         if (command.data.aliases) {
           for (const alias of command.data.aliases) {
             if (client.aliases.has(alias)) {

@@ -22,6 +22,14 @@ export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
     embed.addFields([{ name: 'Usage', value: cmd.data.usage }]);
   }
 
+  cmd.data.intervalLimit!;
+
+  Object.entries(cmd.data.intervalLimit!)
+    .map(value => {
+      return `${value[0]} - \`${value[1]}\``;
+    })
+    .join('\n');
+
   embed.addFields([
     { name: 'Catagory', value: cmd.data.catagory!, inline: true },
     {
@@ -29,14 +37,21 @@ export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
       value: `${cmd.data.cooldownInterval! / 1000 || '3'} seconds`,
       inline: true,
     },
-    {
-      name: 'Allowed Intervals',
-      value: `${cmd.data.cooldownInterval! / 1000 || '3'} seconds
-      cmd.data.cooldownInterval
-      `,
-      inline: true,
-    },
   ]);
+
+  if (cmd.data.intervalLimit) {
+    embed.addFields([
+      {
+        name: 'Allowed Intervals',
+        value: Object.entries(cmd.data.intervalLimit)
+          .map(value => {
+            return `${value[0]} - \`${value[1]}\``;
+          })
+          .join('\n'),
+        inline: false,
+      },
+    ]);
+  }
   return embed;
 }
 
