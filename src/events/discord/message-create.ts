@@ -1,3 +1,4 @@
+import { cooldownCache } from '../../utils/cache';
 import { callbackEmbed } from '../../utils/messages';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { guildConfiguration, ensureServerData } from '../../utils/database';
@@ -198,13 +199,12 @@ export const event: DiscordEvent = {
       const now = Date.now();
       const keyName = `CMD_${author.id}_${cmdName}`;
 
-      const cooldowns = client.cooldown;
       const cooldownInterval = cmd.data.cooldownInterval ?? 3000;
 
       // Reject if user exists in cooldown.
-      if (cooldowns.has(keyName)) {
-        const expectedEnd = cooldowns.get(keyName);
-        if (expectedEnd && now < expectedEnd) {
+      if (cooldownCache.has(keyName)) {
+        const expectedEnd = cooldownCache.get(keyName);
+        if (expectedEnd && now < Number(expectedEnd)) {
           const timeleft = parseMsToVisibleText(Number(expectedEnd) - now);
           const postMessage = await message.reply({
             content: `Before using this command, please wait for **${timeleft}**.`,
@@ -218,8 +218,52 @@ export const event: DiscordEvent = {
       }
 
       // Set cooldown.
-      cooldowns.set(keyName, now + cooldownInterval);
-      setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
+      cooldownCache.set(
+        keyName,
+        now + cooldownInterval,
+        cooldownInterval / 1000,
+      );
+
+      // Reject if excess usage.
+      if (cmd.data.intervalLimit) {
+        const key1 = 'INTERVAL' + keyName;
+
+        let doRejection = { is: false, which: '' };
+        const customTTL = {
+          minute: 60 * 1000,
+          hour: 60 * 60 * 1000,
+          day: 24 * 60 * 60 * 1000,
+        };
+        const intervalList = cmd.data.intervalLimit;
+        for (const [key, ms] of Object.entries(intervalList)) {
+          if (!ms) continue;
+          const keyTyped = key as keyof typeof intervalList;
+          if (!intervalList[keyTyped]) continue;
+          const userFeq = cooldownCache.get(keyTyped + key1) ?? '0';
+
+          if (Number(userFeq) === intervalList[keyTyped]) {
+            doRejection = { is: true, which: keyTyped };
+            break;
+          }
+
+          // Set to Database with TTL.
+          cooldownCache.set(
+            keyTyped + key1,
+            (Number(userFeq) + 1).toString(),
+            customTTL[keyTyped],
+          );
+        }
+        if (doRejection.is) {
+          const postMessage = await message.reply({
+            content: `You have reached the maxmium usage in 1 **${doRejection.which}**!`,
+            allowedMentions: { repliedUser: true },
+          });
+          setTimeout(() => {
+            if (postMessage.deletable) postMessage.delete();
+          }, 6000);
+          return;
+        }
+      }
 
       // Permission Check (BOT)
       const requestPermsClient = cmd.data.clientRequiredPermissions;

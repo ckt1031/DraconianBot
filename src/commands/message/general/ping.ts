@@ -7,6 +7,10 @@ export const command: TextCommand = {
     name: 'ping',
     description: "Check Bot's network delay.",
     directMessageAllowed: true,
+    intervalLimit: {
+      minute: 2,
+      hour: 3,
+    },
   },
   run: async ({ message }) => {
     const apiDelayMS = Math.round(message.client.ws.ping);

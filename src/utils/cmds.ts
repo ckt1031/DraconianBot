@@ -21,11 +21,19 @@ export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
   if (cmd.data.usage) {
     embed.addFields([{ name: 'Usage', value: cmd.data.usage }]);
   }
+
   embed.addFields([
     { name: 'Catagory', value: cmd.data.catagory!, inline: true },
     {
       name: 'Cooldown',
       value: `${cmd.data.cooldownInterval! / 1000 || '3'} seconds`,
+      inline: true,
+    },
+    {
+      name: 'Allowed Intervals',
+      value: `${cmd.data.cooldownInterval! / 1000 || '3'} seconds
+      cmd.data.cooldownInterval
+      `,
       inline: true,
     },
   ]);
