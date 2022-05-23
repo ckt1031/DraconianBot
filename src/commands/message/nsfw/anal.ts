@@ -16,17 +16,15 @@ export const command: TextCommand = {
     const embed = new EmbedBuilder();
 
     try {
-      const url1 = 'https://nekobot.xyz/api/image';
+      const url = 'https://nekobot.xyz/api/image';
 
-      const response = await axios.get(url1, { params: { type: 'anal' } });
+      const response = await axios.get(url, { params: { type: 'anal' } });
       const responseData = response.data;
 
-      interface MemeResponse {
+      const data: {
         message: string;
         success: boolean;
-      }
-
-      const data: MemeResponse = responseData[0];
+      } = responseData[0];
 
       embed.setTitle('Anal here').setImage(data.message);
 

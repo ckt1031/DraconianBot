@@ -1,35 +1,32 @@
 import axios from 'axios';
 import { EmbedBuilder } from 'discord.js';
 
+import type { TextChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
   data: {
-    name: 'cat',
-    description: 'Fetch cat image.',
-    directMessageAllowed: true,
-    cooldownInterval: 6 * 1000,
+    name: 'pussy',
+    description: 'NSFW command, with NO information.',
+    nsfwChannelRequired: true,
   },
   run: async ({ message }) => {
+    if (!(message.channel as TextChannel).nsfw) return;
+
     const embed = new EmbedBuilder();
 
     try {
-      const url = 'https://api.thecatapi.com/v1/images/search?format=json';
+      const url = 'https://nekobot.xyz/api/image';
 
-      const response = await axios.get(url);
+      const response = await axios.get(url, { params: { type: 'pussy' } });
       const responseData = response.data;
 
       const data: {
-        id: string;
-        url: string;
+        message: string;
+        success: boolean;
       } = responseData[0];
 
-      embed
-        .setTitle('Cat here')
-        .setImage(data.url)
-        .setFooter({
-          text: `ID: ${data.id}`,
-        });
+      embed.setTitle('Pussy here').setImage(data.message);
 
       message.reply({
         embeds: [embed],

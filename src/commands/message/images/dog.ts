@@ -14,15 +14,13 @@ export const command: TextCommand = {
     const embed = new EmbedBuilder();
 
     try {
-      interface MemeResponse {
+      const url = 'https://dog.ceo/api/breeds/image/random';
+
+      const response = await axios.get(url);
+      const responseData: {
         status: string;
         message: string;
-      }
-
-      const url1 = 'https://dog.ceo/api/breeds/image/random';
-
-      const response = await axios.get(url1);
-      const responseData: MemeResponse = response.data;
+      } = response.data;
 
       if (responseData.status !== 'success') throw 0;
 

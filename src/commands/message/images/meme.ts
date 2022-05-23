@@ -14,17 +14,15 @@ export const command: TextCommand = {
     const embed = new EmbedBuilder();
 
     try {
-      interface MemeResponse {
+      const url = 'https://meme-api.herokuapp.com/gimme';
+
+      const response = await axios.get(url);
+      const responseData: {
         url: string;
         title: string;
         postLink: string;
         subreddit: string;
-      }
-
-      const url1 = 'https://meme-api.herokuapp.com/gimme';
-
-      const response = await axios.get(url1);
-      const responseData: MemeResponse = response.data;
+      } = response.data;
 
       embed
         .setTitle(responseData.title)
