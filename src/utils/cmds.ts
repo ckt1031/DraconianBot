@@ -22,14 +22,6 @@ export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
     embed.addFields([{ name: 'Usage', value: cmd.data.usage }]);
   }
 
-  cmd.data.intervalLimit!;
-
-  Object.entries(cmd.data.intervalLimit!)
-    .map(value => {
-      return `${value[0]} - \`${value[1]}\``;
-    })
-    .join('\n');
-
   embed.addFields([
     { name: 'Catagory', value: cmd.data.catagory!, inline: true },
     {
