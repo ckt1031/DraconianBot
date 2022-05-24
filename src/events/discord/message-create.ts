@@ -312,10 +312,15 @@ export const event: DiscordEvent = {
       const arguments_ = parsedContent.split(' ').slice(1);
 
       if (arguments_[0] === 'help') {
-        const helpInfo = getCommandHelpInfo(cmd);
-        message.reply({
-          embeds: [helpInfo],
-        });
+        if (
+          cmd.data.nsfwChannelRequired === true &&
+          (channel as TextChannel).nsfw
+        ) {
+          const helpInfo = getCommandHelpInfo(cmd);
+          message.reply({
+            embeds: [helpInfo],
+          });
+        }
         return;
       }
 
