@@ -71,11 +71,11 @@ if (process.env.CLIENT_ID) {
 // declare types.
 declare module 'discord.js' {
   export interface Client {
-    commands: Collection<string, TextCommand>;
-    commandsCatagories: Collection<string, string[]>;
-    slashcommands: Collection<string, SlashCommand>;
-    aliases: Collection<string, string>;
     distube: DisTube;
+    aliases: Collection<string, string>;
+    commands: Collection<string, TextCommand>;
+    slashcommands: Collection<string, SlashCommand>;
+    commandsCatagories: Collection<string, string[]>;
   }
 }
 
