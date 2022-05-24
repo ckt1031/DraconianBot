@@ -44,7 +44,7 @@ export const command: TextCommand = {
           })
           .filter(Boolean)
           .join(', ');
-          
+
         if (text.length > 0) {
           embed.addFields([{ name: catagory[0], value: text }]);
         }
