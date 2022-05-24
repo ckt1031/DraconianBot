@@ -35,7 +35,6 @@ client.commands = new Collection();
 client.commandsCatagories = new Collection();
 client.aliases = new Collection();
 client.slashcommands = new Collection();
-client.cooldown = new Collection();
 client.distube = new DisTube(client, {
   // While playing
   leaveOnStop: false,
@@ -76,7 +75,6 @@ declare module 'discord.js' {
     commandsCatagories: Collection<string, string[]>;
     slashcommands: Collection<string, SlashCommand>;
     aliases: Collection<string, string>;
-    cooldown: Collection<string, number | string>;
     distube: DisTube;
   }
 }

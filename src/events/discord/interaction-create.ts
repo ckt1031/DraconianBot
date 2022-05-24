@@ -1,3 +1,4 @@
+import { cooldownCache } from '../../utils/cache';
 import { parseMsToVisibleText } from '../../utils/formatters';
 
 import type { CommandInteraction } from 'discord.js';
@@ -48,13 +49,12 @@ export const event: DiscordEvent = {
       // Cooldown Validation
       const now = Date.now();
       const keyName = `CMD_${user.id}_${slash.slashData.name}`;
-      const cooldowns = client.cooldown;
       const cooldownInterval = slash?.data?.cooldownInterval ?? 3000;
 
       // Reject if user exists in cooldown.
-      if (cooldowns.has(keyName)) {
-        const expectedEnd = cooldowns.get(keyName);
-        if (expectedEnd && now < expectedEnd) {
+      if (cooldownCache.has(keyName)) {
+        const expectedEnd = cooldownCache.get(keyName);
+        if (expectedEnd && now < Number(expectedEnd)) {
           const timeleft = parseMsToVisibleText(Number(expectedEnd) - now);
           return returnOfInter(
             `Before using this command, please wait for **${timeleft}**.`,
@@ -63,8 +63,11 @@ export const event: DiscordEvent = {
       }
 
       // Set cooldown
-      cooldowns.set(keyName, now + cooldownInterval);
-      setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
+      cooldownCache.set(
+        keyName,
+        now + cooldownInterval,
+        cooldownInterval * 1000,
+      );
 
       try {
         return slash.run({ interaction });
