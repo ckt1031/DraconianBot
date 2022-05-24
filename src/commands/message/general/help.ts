@@ -37,9 +37,10 @@ export const command: TextCommand = {
           .map((index: string) => {
             let _text: string | undefined;
             const cmd = client.commands.get(index);
-            if (cmd && !guildId && cmd.data.directMessageAllowed === true) {
+            if (guildId || (cmd && cmd.data.directMessageAllowed === true)) {
               _text = `\`${index}\``;
             }
+
             return _text;
           })
           .filter(Boolean)
