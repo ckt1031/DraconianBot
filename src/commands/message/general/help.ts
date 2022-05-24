@@ -17,7 +17,7 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const embed = new EmbedBuilder();
 
-    const { client, channel } = message;
+    const { client, channel, guildId } = message;
 
     if (!args[0]) {
       const commandsCatagories = client.commandsCatagories;
@@ -34,9 +34,20 @@ export const command: TextCommand = {
           }
         }
         const text = catagory[1]
-          .map((index: string) => `\`${index}\``)
+          .map((index: string) => {
+            let _text: string | undefined;
+            const cmd = client.commands.get(index);
+            if (cmd && !guildId && cmd.data.directMessageAllowed === true) {
+              _text = `\`${index}\``;
+            }
+            return _text;
+          })
+          .filter(Boolean)
           .join(', ');
-        embed.addFields([{ name: catagory[0], value: text }]);
+          
+        if (text.length > 0) {
+          embed.addFields([{ name: catagory[0], value: text }]);
+        }
       }
 
       const avatarURL = client.user?.defaultAvatarURL;

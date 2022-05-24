@@ -50,6 +50,7 @@
     "enmap": "^5.9.0",
     "erlpack": "github:discord/erlpack",
     "eslint-plugin-sonarjs": "^0.13.0",
+    "fast-xml-parser": "^4.0.7",
     "fastify": "^3.29.0",
     "gifencoder": "^2.0.1",
     "glob": "^8.0.3",
@@ -60,7 +61,8 @@
     "string-similarity": "^4.0.4",
     "twemoji-parser": "^14.0.0",
     "utf-8-validate": "^5.0.9",
-    "weather-js": "^2.0.0"
+    "weather-js": "^2.0.0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
@@ -72,8 +74,9 @@
     "@types/pidusage": "^2.0.2",
     "@types/string-similarity": "^4.0.0",
     "@types/twemoji-parser": "^13.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@types/xml2js": "^0.4.11",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "concurrently": "^7.2.1",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
