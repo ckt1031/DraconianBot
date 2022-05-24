@@ -66,7 +66,7 @@ export const event: DiscordEvent = {
       cooldownCache.set(
         keyName,
         now + cooldownInterval,
-        cooldownInterval * 1000,
+        cooldownInterval / 1000,
       );
 
       try {
