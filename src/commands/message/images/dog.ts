@@ -14,7 +14,7 @@ export const command: TextCommand = {
     const embed = new EmbedBuilder();
 
     const url = 'https://dog.ceo/api/breeds/image/random';
-    
+
     try {
       const response = await axios.get(url);
       const responseData: {

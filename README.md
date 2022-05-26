@@ -18,7 +18,7 @@ This branch will be bumped to RELEASE channel after discord.js v14 is completely
 - 🏛️ Multi-Server Ready
 - 🐋 Fully Customizable
 - ✅ Anti ABUSING System (SOON)
-> Ensure the bot resources (RAM/CPU usage) will not be dominated by malicious servers/users.
+  > Ensure the bot resources (RAM/CPU usage) will not be dominated by malicious servers/users.
 - 🔒 High Tech Moderation System (SOON)
 - ✏️ Ticket System (SOON)
 - ⚡ Partial Anti RAID System (SOON)
@@ -29,10 +29,10 @@ This branch will be bumped to RELEASE channel after discord.js v14 is completely
 ### Requirements:
 
 1. NodeJS v16.9.0 or later (LTS/Latest)
-> Extra: Python3, FFmpeg, Build-essential, etc.
+   > Extra: Python3, FFmpeg, Build-essential, etc.
 1. Required RAM: 512 MB (Consider by amount of servers)
-2. Required Storage: 1 GB (20% Database)
-3. Required core of CPU: 1
+1. Required Storage: 1 GB (20% Database)
+1. Required core of CPU: 1
 
 ### Initiation
 
