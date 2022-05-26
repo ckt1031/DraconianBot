@@ -14,6 +14,12 @@ export const command: TextCommand = {
       'Speak',
       'RequestToSpeak',
     ],
+    requiredArgs: [
+      {
+        type: 'STRING',
+        rest: true,
+      },
+    ],
   },
   run: async ({ message, args }) => {
     const { member, client } = message;

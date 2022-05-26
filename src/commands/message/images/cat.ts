@@ -13,9 +13,9 @@ export const command: TextCommand = {
   run: async ({ message }) => {
     const embed = new EmbedBuilder();
 
-    try {
-      const url = 'https://api.thecatapi.com/v1/images/search?format=json';
+    const url = 'https://api.thecatapi.com/v1/images/search?format=json';
 
+    try {
       const response = await axios.get(url);
       const responseData = response.data;
 

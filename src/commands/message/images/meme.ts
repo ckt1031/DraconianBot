@@ -13,9 +13,9 @@ export const command: TextCommand = {
   run: async ({ message }) => {
     const embed = new EmbedBuilder();
 
-    try {
-      const url = 'https://meme-api.herokuapp.com/gimme';
+    const url = 'https://meme-api.herokuapp.com/gimme';
 
+    try {
       const response = await axios.get(url);
       const responseData: {
         url: string;

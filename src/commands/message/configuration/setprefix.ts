@@ -14,6 +14,16 @@ export const command: TextCommand = {
     intervalLimit: {
       hour: 2,
     },
+    requiredArgs: [
+      {
+        type: 'STRING',
+        rest: true,
+        length: {
+          min: 1,
+          max: 4,
+        },
+      },
+    ],
   },
   run: async ({ message, args }) => {
     const { guild, member } = message;

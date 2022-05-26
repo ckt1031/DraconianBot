@@ -8,6 +8,21 @@ export const command: TextCommand = {
     name: 'aes',
     description: 'Encrypt and Decrypt stuff by AES256.',
     directMessageAllowed: true,
+    requiredArgs: [
+      {
+        name: 'mode',
+        type: 'STRING',
+        text: ['encrypt', 'decrypt'],
+      },
+      {
+        name: 'key',
+        type: 'STRING',
+      },
+      {
+        name: 'value',
+        type: 'STRING',
+      },
+    ],
   },
   run: async ({ message, args }) => {
     const [mode, key, ...value] = args;
@@ -20,8 +35,6 @@ export const command: TextCommand = {
     switch (mode) {
       case 'encrypt': {
         const encryptedValue = AES.encrypt(string, key).toString();
-
-        console.log(encryptedValue);
 
         embed
           .setTitle('Encryped Data:')

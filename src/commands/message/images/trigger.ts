@@ -22,6 +22,8 @@ export const command: TextCommand = {
       if (index === 1) {
         image = author.displayAvatarURL({
           size: 256,
+          extension: 'png',
+          forceStatic: true,
         });
         break;
       }
@@ -32,6 +34,8 @@ export const command: TextCommand = {
           if (idMember) {
             image = idMember.user.displayAvatarURL({
               size: 256,
+              extension: 'png',
+              forceStatic: true,
             });
           }
         } else {
@@ -42,6 +46,8 @@ export const command: TextCommand = {
           if (target) {
             image = target.user.displayAvatarURL({
               size: 256,
+              extension: 'png',
+              forceStatic: true,
             });
           }
         }

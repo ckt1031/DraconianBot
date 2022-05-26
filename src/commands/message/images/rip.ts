@@ -19,7 +19,11 @@ export const command: TextCommand = {
       if (image) break;
 
       if (index === 1) {
-        image = author.displayAvatarURL();
+        image = author.displayAvatarURL({
+          size: 256,
+          extension: 'png',
+          forceStatic: true,
+        });
         break;
       }
 
@@ -27,7 +31,11 @@ export const command: TextCommand = {
         if (args[0].length >= 18) {
           const idMember = guild.members.cache.get(args[0]);
           if (idMember) {
-            image = idMember.user.displayAvatarURL();
+            image = idMember.user.displayAvatarURL({
+              size: 256,
+              extension: 'png',
+              forceStatic: true,
+            });
           }
         } else {
           const username = String(args[0]).toLowerCase();
@@ -35,7 +43,11 @@ export const command: TextCommand = {
             ur.user.username.toLowerCase().includes(username),
           );
           if (target) {
-            image = target.user.displayAvatarURL();
+            image = target.user.displayAvatarURL({
+              size: 256,
+              extension: 'png',
+              forceStatic: true,
+            });
           }
         }
       }

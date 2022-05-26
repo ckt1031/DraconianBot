@@ -13,9 +13,9 @@ export const command: TextCommand = {
   run: async ({ message }) => {
     const embed = new EmbedBuilder();
 
-    try {
-      const url = 'https://v2.jokeapi.dev/joke/Any?type=single';
+    const url = 'https://v2.jokeapi.dev/joke/Any?type=single';
 
+    try {
       const response = await axios.get(url);
       const responseData: {
         id: string;

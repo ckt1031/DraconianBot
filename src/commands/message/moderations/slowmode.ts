@@ -12,6 +12,13 @@ export const command: TextCommand = {
     cooldownInterval: 25 * 1000,
     authorRequiredPermissions: ['ManageChannels', 'ManageMessages'],
     clientRequiredPermissions: ['ManageChannels', 'ManageMessages'],
+    requiredArgs: [
+      {
+        name: 'duration',
+        type: 'STRING',
+        rest: true,
+      },
+    ],
   },
   run: async ({ message, args }) => {
     const duration = args[0];

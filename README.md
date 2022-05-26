@@ -11,13 +11,13 @@ This branch will be bumped to RELEASE channel after discord.js v14 is completely
 
 ### Features
 
-- :rocket: **STABLE**, **PERFORMANT**, **PRODUCTIVE**
+- 🚀 **STABLE**, **PERFORMANT**, **PRODUCTIVE**
 - 🧰 Mostly written by **_TypeScript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
 - 🧠 Explicit Bot's Processional LOGIC
-- :fire: Latest Discord.js Framework (**v14 DEV**)
+- 🔥 The Latest Discord.js Framework (**v14 DEV**)
 - 🏛️ Multi-Server Ready
 - 🐋 Fully Customizable
-- ✅ Anti ABUSING system (SOON)
+- ✅ Anti ABUSING System (SOON)
 > Ensure the bot resources (RAM/CPU usage) will not be dominated by malicious servers/users.
 - 🔒 High Tech Moderation System (SOON)
 - ✏️ Ticket System (SOON)

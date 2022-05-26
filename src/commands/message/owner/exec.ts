@@ -20,6 +20,12 @@ export const command: TextCommand = {
     developmentOnly: true,
     description: 'Execute shell command in Nodejs runtime.',
     directMessageAllowed: true,
+    requiredArgs: [
+      {
+        type: 'STRING',
+        rest: true,
+      },
+    ]
   },
   run: async ({ message, args }) => {
     const code = args.join(' ');

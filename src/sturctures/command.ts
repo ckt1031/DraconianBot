@@ -15,6 +15,29 @@ interface SlashCommandExecution {
   interaction: CommandInteraction;
 }
 
+interface TextCommandRequiredArgumentsString {
+  type: 'STRING';
+  text?: string[];
+  length?: {
+    min?: number;
+    max?: number;
+  };
+  name?: string;
+  rest?: boolean;
+  required?: boolean;
+}
+
+type TextCommandRequiredArgumentsDefault = {
+  name?: string;
+  rest?: boolean;
+  type: 'NUMBER' | 'ANY';
+  required?: boolean;
+};
+
+type TextCommandRequiredArguments =
+  | TextCommandRequiredArgumentsDefault
+  | TextCommandRequiredArgumentsString;
+
 /**
  * As default, command can only be accessed in guild.
  *
@@ -39,6 +62,7 @@ export interface TextCommand {
     threadChannelAllowed?: boolean;
     directMessageAllowed?: boolean;
     publicLevel?: 'All' | 'Permission' | 'None';
+    requiredArgs?: TextCommandRequiredArguments[];
 
     // Info
     name: string;

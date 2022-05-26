@@ -1,3 +1,4 @@
+import { EmbedBuilder } from '@discordjs/builders';
 import { createCanvas, loadImage } from 'canvas';
 
 import type { TextCommand } from '../../../sturctures/command';
@@ -19,7 +20,11 @@ export const command: TextCommand = {
       if (image) break;
 
       if (index === 1) {
-        image = author.displayAvatarURL();
+        image = author.displayAvatarURL({
+          size: 256,
+          extension: 'png',
+          forceStatic: true,
+        });
         break;
       }
 
@@ -27,7 +32,11 @@ export const command: TextCommand = {
         if (args[0].length >= 18) {
           const idMember = guild.members.cache.get(args[0]);
           if (idMember) {
-            image = idMember.user.displayAvatarURL();
+            image = idMember.user.displayAvatarURL({
+              size: 256,
+              extension: 'png',
+              forceStatic: true,
+            });
           }
         } else {
           const username = String(args[0]).toLowerCase();
@@ -35,7 +44,11 @@ export const command: TextCommand = {
             ur.user.username.toLowerCase().includes(username),
           );
           if (target) {
-            image = target.user.displayAvatarURL();
+            image = target.user.displayAvatarURL({
+              size: 256,
+              extension: 'png',
+              forceStatic: true,
+            });
           }
         }
       }
@@ -43,19 +56,29 @@ export const command: TextCommand = {
 
     if (!image) return;
 
-    const targetImage = await loadImage(image);
-    const background = await loadImage('./assets/delete.png');
+    try {
+      const targetImage = await loadImage(image);
+      const background = await loadImage('./assets/delete.png');
 
-    const canvas = createCanvas(background.width, background.height);
-    const context = canvas.getContext('2d');
+      const canvas = createCanvas(background.width, background.height);
+      const context = canvas.getContext('2d');
 
-    context.drawImage(background, 0, 0, canvas.width, canvas.height);
-    context.drawImage(targetImage, 120, 135, 195, 195);
+      context.drawImage(background, 0, 0, canvas.width, canvas.height);
+      context.drawImage(targetImage, 120, 135, 195, 195);
 
-    channel.send({
-      files: [
-        { name: `${Date.now()}_delete.png`, attachment: canvas.toBuffer() },
-      ],
-    });
+      channel.send({
+        files: [
+          { name: `${Date.now()}_delete.png`, attachment: canvas.toBuffer() },
+        ],
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        const embed = new EmbedBuilder().setTitle(error.message);
+
+        message.reply({
+          embeds: [embed],
+        });
+      }
+    }
   },
 };

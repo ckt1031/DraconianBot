@@ -283,7 +283,7 @@ export const event: DiscordEvent = {
         if (permMissing.length > 0) {
           const perms = permMissing.map(index => `\`${index}\``).join(', ');
           message.reply({
-            content: `I don't have permission: ${perms}`,
+            content: `I don't have **PERMISSIONS**: ${perms}`,
           });
           return;
         }
@@ -302,7 +302,7 @@ export const event: DiscordEvent = {
         if (permMissing.length > 0) {
           const perms = permMissing.map(index => `\`${index}\``).join(', ');
           message.reply({
-            content: `Missing Permission: \`${perms}\``,
+            content: `You do not have required **PERMISSIONS**: ${perms}`,
           });
           return;
         }
@@ -324,6 +324,58 @@ export const event: DiscordEvent = {
         return;
       }
 
+      // Arguments Checking
+      const requiredArugments = cmd.data.requiredArgs;
+      if (requiredArugments && requiredArugments?.length! > 0) {
+        let usage = `${prefix}${cmd.data.name}`;
+        for (const _argument_ of requiredArugments) {
+          let namedArguments: string = _argument_.type;
+          if (_argument_.type === 'STRING' && _argument_.text) {
+            namedArguments = _argument_.text?.join(' | ');
+          } else if (_argument_.name) {
+            namedArguments += `(${_argument_.name})`;
+          }
+          usage += ` [${namedArguments}]`;
+        }
+
+        for (
+          let index = 0, l = requiredArugments?.length;
+          index < l!;
+          index++
+        ) {
+          const _argument = requiredArugments[index];
+          const userArgument = arguments_[index];
+
+          switch (_argument.type) {
+            case 'STRING': {
+              if (!userArgument || userArgument.length === 0) {
+                return reject(message, usage, index.toString());
+              }
+              if (_argument.text && !_argument.text?.includes(userArgument)) {
+                return reject(message, usage, index.toString());
+              }
+              if (
+                _argument.text?.length! > _argument.length?.max! ||
+                _argument.text?.length! < _argument.length?.min!
+              ) {
+                return reject(message, usage, index.toString());
+              }
+              break;
+            }
+            case 'NUMBER': {
+              if (Number.isNaN(Number(userArgument))) {
+                return reject(message, usage, index.toString());
+              }
+              break;
+            }
+            default:
+              break;
+          }
+
+          if (_argument.rest) break;
+        }
+      }
+
       try {
         return cmd.run({ message, args: arguments_ });
       } catch (error) {
@@ -332,3 +384,17 @@ export const event: DiscordEvent = {
     }
   },
 };
+
+async function reject(
+  message: Message,
+  usage: string,
+  missing: string,
+): Promise<void> {
+  const postMessage = await message.reply({
+    content: `Usage: \`${usage}\`\nMissing: \`${missing}\``,
+    allowedMentions: { repliedUser: true },
+  });
+  setTimeout(() => {
+    if (postMessage.deletable) postMessage.delete();
+  }, 6000);
+}
