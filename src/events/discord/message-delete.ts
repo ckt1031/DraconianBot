@@ -11,13 +11,15 @@ import type { DiscordEvent } from '../../sturctures/event';
 export const event: DiscordEvent = {
   name: 'messageDelete',
   run: async (_, message: Message) => {
-    if (message.partial) {
-      await message.fetch();
-    }
+    // if (message.partial) {
+    //   await message.fetch();
+    // }
 
     const { guild, channel, content, attachments, author, client } = message;
 
-    if (guild && channel.isText()) {
+    const condition = channel.isThread() || channel.isText();
+
+    if (guild && condition) {
       const config = guildConfiguration.get(guild.id);
 
       ensureServerData(guild.id);
@@ -29,8 +31,15 @@ export const event: DiscordEvent = {
       ) {
         ensureSnipeChannel(channel.id);
 
-        // Set to database.
-        snipeDatabase.set(channel.id, {
+        const snipes = snipeDatabase.get(channel.id);
+
+        const modelData = snipes ?? { data: [] };
+
+        if (!modelData.data) {
+          modelData.data = [];
+        }
+
+        const snipe = {
           author: {
             id: author.id,
             name: author.tag,
@@ -40,7 +49,18 @@ export const event: DiscordEvent = {
             date: Date.now(),
             imageURL: attachments.first()?.proxyURL,
           },
-        });
+        };
+
+        modelData.data.unshift(snipe);
+
+        if (modelData.data.length >= 4) {
+          modelData.data.pop();
+        }
+
+        console.log(modelData.data);
+
+        // Set to database.
+        snipeDatabase.set(channel.id, modelData);
       }
     }
   },

@@ -1,5 +1,5 @@
-import translate from '@vitalets/google-translate-api';
 import { EmbedBuilder } from 'discord.js';
+import translate from '@vitalets/google-translate-api';
 
 import type { TextCommand } from '../../../sturctures/command';
 

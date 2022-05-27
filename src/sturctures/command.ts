@@ -15,28 +15,19 @@ interface SlashCommandExecution {
   interaction: CommandInteraction;
 }
 
-interface TextCommandRequiredArgumentsString {
-  type: 'STRING';
+type TextCommandRequiredArgumentsDefault = {
+  name?: string;
+  rest?: boolean;
   text?: string[];
+  type: 'NUMBER' | 'STRING';
   length?: {
     min?: number;
     max?: number;
   };
-  name?: string;
-  rest?: boolean;
-  required?: boolean;
-}
-
-type TextCommandRequiredArgumentsDefault = {
-  name?: string;
-  rest?: boolean;
-  type: 'NUMBER' | 'ANY';
   required?: boolean;
 };
 
-type TextCommandRequiredArguments =
-  | TextCommandRequiredArgumentsDefault
-  | TextCommandRequiredArgumentsString;
+type TextCommandRequiredArguments = TextCommandRequiredArgumentsDefault;
 
 /**
  * As default, command can only be accessed in guild.

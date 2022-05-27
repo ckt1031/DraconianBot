@@ -55,6 +55,13 @@ npm install
 npm run build
 ```
 
+- Copy Config (For FIRST / AFTER SYNCED)\
+  > Save the config first!
+
+```
+npx ts-node tools/copy-config.ts
+```
+
 - Start
 
 ```

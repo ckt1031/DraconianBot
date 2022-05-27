@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { EmbedBuilder } from 'discord.js';
 
-import type { TextChannel, VoiceChannel } from 'discord.js';
+import type { TextChannel, VoiceChannel, ThreadChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -41,7 +41,9 @@ export const command: TextCommand = {
       embed.setTitle(`${textChannel.name}'s information:`).addFields([
         { name: 'ID', value: textChannel.id },
         {
+          // eslint-disable-next-line sonarjs/no-duplicate-string
           name: 'Created on',
+          // eslint-disable-next-line sonarjs/no-duplicate-string
           value: dayjs(textChannel.createdAt.getTime()).format('DD/MM/YYYY'),
           inline: true,
         },
@@ -85,6 +87,51 @@ export const command: TextCommand = {
       });
 
       return;
+    }
+
+    if (targetChannel.isThread()) {
+      const voiceChannel = targetChannel as ThreadChannel;
+
+      embed.setTitle(`${voiceChannel.name}'s information:`).addFields([
+        { name: 'ID', value: voiceChannel.id },
+        {
+          name: 'Created on',
+          value: dayjs(voiceChannel.createdAt?.getTime()).format('DD/MM/YYYY'),
+          inline: true,
+        },
+      ]);
+
+      if (voiceChannel.parent?.name) {
+        embed.addFields([
+          {
+            name: 'Parent',
+            value: voiceChannel.parent?.name,
+            inline: true,
+          },
+        ]);
+      }
+
+      embed.addFields([
+        {
+          name: 'Joinable',
+          value: voiceChannel.joinable ? 'YES' : 'NO',
+          inline: true,
+        },
+        {
+          name: 'Locked',
+          value: voiceChannel.locked ? 'YES' : 'NO',
+          inline: true,
+        },
+      ]);
+
+      embed.setFooter({
+        iconURL: guild.iconURL()!,
+        text: `Shard ID: ${guild.shardId}`,
+      });
+
+      message.reply({
+        embeds: [embed],
+      });
     }
 
     if (targetChannel.isVoice()) {

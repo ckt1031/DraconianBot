@@ -109,6 +109,9 @@ export const event: DiscordEvent = {
 
       if (cmdData?.ownerOnly === true && author.id !== ownerId) return;
 
+      // Reject if dm mode while configurated to guild only.
+      if (!guild && !cmdData?.directMessageAllowed) return;
+
       // Reject if command can only be executed NSFW channel when it's not in.
       if (
         cmdData?.nsfwChannelRequired &&
@@ -120,14 +123,13 @@ export const event: DiscordEvent = {
           color: 'Red',
           mode: 'error',
         });
-        message.reply({
-          embeds: [cEmbed],
-        });
+        author
+          .send({
+            embeds: [cEmbed],
+          })
+          .catch(() => {});
         return;
       }
-
-      // Reject if dm mode while configurated to guild only.
-      if (!guild && !cmdData?.directMessageAllowed) return;
 
       // Reject when Target disabled or didn't reach the requirement.
       if (guild) {
@@ -152,6 +154,12 @@ export const event: DiscordEvent = {
             .find(x => x.id === channel.id)
             ?.cmds.includes(cmdName)
         ) {
+          author
+            .send({
+              content: `Command cannot be executed in this channel (#${channel.id})!`,
+              allowedMentions: { repliedUser: true },
+            })
+            .catch(() => {});
           return;
         }
 
@@ -172,6 +180,12 @@ export const event: DiscordEvent = {
             .find(x => x.id === author.id)
             ?.cmds.includes(cmdName)
         ) {
+          author
+            .send({
+              content: `You are disabled from executing this command!`,
+              allowedMentions: { repliedUser: true },
+            })
+            .catch(() => {});
           return;
         }
 
@@ -348,22 +362,26 @@ export const event: DiscordEvent = {
 
           switch (_argument.type) {
             case 'STRING': {
-              if (!userArgument || userArgument.length === 0) {
-                return reject(message, usage, index.toString());
-              }
-              if (_argument.text && !_argument.text?.includes(userArgument)) {
-                return reject(message, usage, index.toString());
-              }
-              if (
-                _argument.text?.length! > _argument.length?.max! ||
-                _argument.text?.length! < _argument.length?.min!
-              ) {
-                return reject(message, usage, index.toString());
+              if (_argument.required) {
+                if (!userArgument || userArgument.length === 0) {
+                  return reject(message, usage, index.toString());
+                }
+                if (_argument.text && !_argument.text?.includes(userArgument)) {
+                  const text = `${index.toString()} (NOT_MATCH)`;
+                  return reject(message, usage, text);
+                }
+                if (
+                  _argument.text?.length! > _argument.length?.max! ||
+                  _argument.text?.length! < _argument.length?.min!
+                ) {
+                  const text = `${index.toString()} (ERR_Length)`;
+                  return reject(message, usage, text);
+                }
               }
               break;
             }
             case 'NUMBER': {
-              if (Number.isNaN(Number(userArgument))) {
+              if (_argument.required && Number.isNaN(Number(userArgument))) {
                 return reject(message, usage, index.toString());
               }
               break;

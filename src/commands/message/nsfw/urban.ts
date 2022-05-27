@@ -1,4 +1,4 @@
-import urbanDictionary from 'urban-dictionary';
+import { define } from 'urban-dictionary';
 import { EmbedBuilder } from 'discord.js';
 
 import type { TextChannel } from 'discord.js';
@@ -9,6 +9,13 @@ export const command: TextCommand = {
     name: 'urban',
     description: 'Fetch Urban Dictionary.',
     nsfwChannelRequired: true,
+    requiredArgs: [
+      {
+        name: 'duration',
+        type: 'STRING',
+        rest: true,
+      },
+    ],
   },
   run: async ({ message, args }) => {
     if (!(message.channel as TextChannel).nsfw) return;
@@ -18,7 +25,7 @@ export const command: TextCommand = {
     const searchQuery = args.join(' ');
 
     try {
-      const result = await urbanDictionary.define(searchQuery);
+      const result = await define(searchQuery);
 
       embed.setTitle(`Dictionary:${result[0].word}`).setFields([
         {

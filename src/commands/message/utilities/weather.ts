@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { parseStringPromise } from 'xml2js';
 import { EmbedBuilder } from 'discord.js';
+import { parseStringPromise } from 'xml2js';
 
 import type { TextCommand } from '../../../sturctures/command';
 

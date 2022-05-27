@@ -21,12 +21,15 @@ export interface GuildConfig {
     roleDisabled: { id: string; cmds: string[] }[];
     channelDisabled: { id: string; cmds: string[] }[];
   };
+  thread: {
+    listen?: boolean;
+  };
   snipe: {
     channelDisabled: string[];
   };
 }
 
-export interface SnipeConfig {
+type SnipeData = {
   author: {
     id: string;
     name: string;
@@ -36,4 +39,8 @@ export interface SnipeConfig {
     date: number;
     imageURL: string | undefined;
   };
+};
+
+export interface SnipeConfig {
+  data: SnipeData[];
 }

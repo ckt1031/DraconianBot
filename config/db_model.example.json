@@ -11,19 +11,14 @@
       "roleDisabled": [],
       "channelDisabled": []
     },
+    "thread": {
+      "listen": false
+    },
     "snipe": {
       "channelDisabled": []
     }
   },
   "snipeConfig": {
-    "author": {
-      "id": "",
-      "name": ""
-    },
-    "content": {
-      "text": "",
-      "date": 0,
-      "imageURL": ""
-    }
+    "data": []
   }
 }

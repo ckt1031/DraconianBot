@@ -9,8 +9,15 @@ export const command: TextCommand = {
     name: 'snipe',
     aliases: ['s'],
     description: 'Snipe deleted message in current channel.',
+    requiredArgs: [
+      {
+        name: 'index',
+        type: 'NUMBER',
+        required: false,
+      },
+    ],
   },
-  run: async ({ message }) => {
+  run: async ({ message, args }) => {
     const channelId = message.channelId;
 
     const database = snipeDatabase.get(channelId);
@@ -22,12 +29,24 @@ export const command: TextCommand = {
       return;
     }
 
+    let index = 0;
+
+    const argumentNumebr = Number(args[0]);
+
+    if (argumentNumebr || argumentNumebr > 0 || argumentNumebr < 2) {
+      index = argumentNumebr;
+    }
+
+    let snipeData = database.data[index];
+
+    if (!snipeData) snipeData = database.data[0];
+
     const embed = new EmbedBuilder().setAuthor({
-      name: database.author.name ?? 'N/A',
+      name: snipeData.author.name ?? 'N/A',
     });
 
-    if (database.content.text) embed.setDescription(database.content.text);
-    if (database.content.imageURL) embed.setImage(database.content.imageURL);
+    if (snipeData.content.text) embed.setDescription(snipeData.content.text);
+    if (snipeData.content.imageURL) embed.setImage(snipeData.content.imageURL);
 
     message.reply({
       embeds: [embed],

@@ -1,5 +1,5 @@
-import { EmbedBuilder, Util } from 'discord.js';
 import { parse } from 'twemoji-parser';
+import { EmbedBuilder, Util } from 'discord.js';
 
 import { callbackEmbed } from '../../../utils/messages';
 
