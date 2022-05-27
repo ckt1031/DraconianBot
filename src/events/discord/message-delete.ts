@@ -57,8 +57,6 @@ export const event: DiscordEvent = {
           modelData.data.pop();
         }
 
-        console.log(modelData.data);
-
         // Set to database.
         snipeDatabase.set(channel.id, modelData);
       }
