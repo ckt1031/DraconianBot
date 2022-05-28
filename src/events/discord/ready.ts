@@ -2,7 +2,7 @@ import { ActivityType } from 'discord.js';
 
 import { ensureServerData } from '../../utils/database';
 
-import type { Guild } from 'discord.js';
+import type { Guild, Client } from 'discord.js';
 import type { DiscordEvent } from '../../sturctures/event';
 
 import { defaultPrefix } from '../../../config/bot.json';
@@ -10,7 +10,7 @@ import { defaultPrefix } from '../../../config/bot.json';
 export const event: DiscordEvent = {
   once: true,
   name: 'ready',
-  run: async client => {
+  run: async (client: Client) => {
     // Ensure all server data is synced and unified when booted.
     const guilds = client.guilds.cache.map((guild: Guild) => guild.id);
     for (const guildId of guilds) ensureServerData(guildId);
