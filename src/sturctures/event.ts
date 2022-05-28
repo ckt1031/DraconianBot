@@ -1,4 +1,3 @@
-import type { Client } from 'discord.js';
 import type { DisTubeEvents } from 'distube';
 
 /** Discord Client events */
