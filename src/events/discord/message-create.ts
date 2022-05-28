@@ -1,8 +1,10 @@
 import { cooldownCache } from '../../utils/cache';
 import { callbackEmbed } from '../../utils/messages';
+import { checkSpam } from '../../features/spam-check';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { guildConfiguration, ensureServerData } from '../../utils/database';
 import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
+import { CheckSpam } from '../../sturctures/validation';
 
 import type { Message, TextChannel, PermissionResolvable } from 'discord.js';
 import type { DiscordEvent } from '../../sturctures/event';
@@ -13,10 +15,19 @@ import { ownerId } from '../../../config/bot.json';
 
 export const event: DiscordEvent = {
   name: 'messageCreate',
-  run: async (client, message: Message) => {
+  run: async (message: Message) => {
     if (message.partial) await message.fetch();
 
-    const { content, channel, author, webhookId, member, guild } = message;
+    const {
+      content,
+      channel,
+      author,
+      webhookId,
+      member,
+      guild,
+      client,
+      deletable,
+    } = message;
 
     if (author.bot) return;
     if (webhookId || author.id === client.user?.id) return;
@@ -31,6 +42,49 @@ export const event: DiscordEvent = {
       }
 
       guildDatabase = guildConfiguration.get(guild.id);
+
+      // Spam Checks
+      if (guildDatabase?.antiSpam.enabled === true) {
+        const antiSpam = guildDatabase.antiSpam;
+
+        const isChannelWhitelisted = antiSpam.whitelistedChannels.includes(
+          channel.id,
+        );
+
+        const isUserWhitelisted = antiSpam.whitelistedUsers.includes(author.id);
+
+        let isRoleWhitelisted = false;
+
+        if (
+          antiSpam.inviteLinks.whitelistedRoles.length > 0 &&
+          member?.roles.cache
+        ) {
+          // eslint-disable-next-line no-unsafe-optional-chaining
+          for (const role of member?.roles.cache) {
+            const hasRole = antiSpam.whitelistedRoles.find(
+              x => x === role[1].id,
+            );
+            if (hasRole) isRoleWhitelisted = true;
+          }
+        }
+
+        if (
+          !isChannelWhitelisted &&
+          !isUserWhitelisted &&
+          !isRoleWhitelisted &&
+          !member?.permissions.has('Administrator')
+        ) {
+          const [status, reason] = await checkSpam(message);
+
+          if (status === CheckSpam.Detected) {
+            if (deletable) message.delete().catch(() => {});
+            const _message = await channel.send(`<@!${author.id}>, ${reason}`);
+            setTimeout(() => {
+              if (_message.deletable) _message.delete();
+            }, 6000);
+          }
+        }
+      }
 
       if (guildDatabase) prefix = guildDatabase.prefix;
 

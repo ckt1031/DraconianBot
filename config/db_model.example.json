@@ -11,6 +11,29 @@
       "roleDisabled": [],
       "channelDisabled": []
     },
+    "antiSpam": {
+      "enabled": false,
+      "whitelistedUsers": [],
+      "whitelistedRoles": [],
+      "whitelistedChannels": [],
+      "inviteLinks": {
+        "enabled": false,
+        "whitelistedUsers": [],
+        "whitelistedRoles": [],
+        "whitelistedChannels": []
+      },
+      "mentions": {
+        "enabled": false,
+        "maxmiumCheck": {
+          "enabled": false,
+          "value": 6
+        },
+        "publicRoleCheck": false,
+        "whitelistedUsers": [],
+        "whitelistedRoles": [],
+        "whitelistedChannels": []
+      }
+    },
     "thread": {
       "listen": false
     },
@@ -18,6 +41,7 @@
       "channelDisabled": []
     }
   },
+
   "snipeConfig": {
     "data": []
   }

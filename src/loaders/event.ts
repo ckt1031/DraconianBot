@@ -33,9 +33,11 @@ export async function loadDiscordEvent(client: Client) {
 
       // Check triggering mode.
       if (event.once === true) {
-        client.once(event.name, event.run.bind(undefined, client));
+        // eslint-disable-next-line unicorn/no-useless-undefined
+        client.once(event.name, event.run.bind(undefined));
       } else {
-        client.on(event.name, event.run.bind(undefined, client));
+        // eslint-disable-next-line unicorn/no-useless-undefined
+        client.on(event.name, event.run.bind(undefined));
       }
       // Remove cache.
       delete require.cache[require.resolve(filePath)];

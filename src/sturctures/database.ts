@@ -21,6 +21,29 @@ export interface GuildConfig {
     roleDisabled: { id: string; cmds: string[] }[];
     channelDisabled: { id: string; cmds: string[] }[];
   };
+  antiSpam: {
+    enabled: boolean;
+    whitelistedUsers: string[];
+    whitelistedRoles: string[];
+    whitelistedChannels: string[];
+    inviteLinks: {
+      enabled: boolean;
+      whitelistedUsers: string[];
+      whitelistedRoles: string[];
+      whitelistedChannels: string[];
+    };
+    mentions: {
+      enabled: boolean;
+      maxmiumCheck: {
+        enabled: boolean;
+        value: number;
+      };
+      publicRoleCheck: boolean;
+      whitelistedUsers: string[];
+      whitelistedRoles: string[];
+      whitelistedChannels: string[];
+    };
+  };
   thread: {
     listen?: boolean;
   };
@@ -29,7 +52,7 @@ export interface GuildConfig {
   };
 }
 
-type SnipeData = {
+interface SnipeData {
   author: {
     id: string;
     name: string;
@@ -39,7 +62,7 @@ type SnipeData = {
     date: number;
     imageURL: string | undefined;
   };
-};
+}
 
 export interface SnipeConfig {
   data: SnipeData[];

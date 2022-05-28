@@ -39,7 +39,10 @@ export const command: TextCommand = {
 
     let snipeData = database.data[index];
 
-    if (!snipeData) snipeData = database.data[0];
+    for (let index_ = 0; index_ < 2; index_++) {
+      if (!snipeData) snipeData = database.data[0];
+      if (index_ !== 0 && !snipeData) return;
+    }
 
     const embed = new EmbedBuilder().setAuthor({
       name: snipeData.author.name ?? 'N/A',

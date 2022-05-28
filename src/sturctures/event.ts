@@ -7,12 +7,12 @@ export interface DiscordEvent {
   name: string;
   once?: boolean;
   // eslint-disable-next-line no-unused-vars
-  run: (client: Client, ...arguments_: any[]) => Promise<void>;
+  run: (...arguments_: any[]) => Promise<void>;
 }
 
 /** Discord Distube events */
 export interface DistubeEvent {
   name: keyof DisTubeEvents;
   // eslint-disable-next-line no-unused-vars
-  run: (client: Client, ...arguments_: any[]) => Promise<void>;
+  run: (...arguments_: any[]) => Promise<void>;
 }

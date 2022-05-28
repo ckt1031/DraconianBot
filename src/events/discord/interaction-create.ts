@@ -8,7 +8,7 @@ import { ownerId } from '../../../config/bot.json';
 
 export const event: DiscordEvent = {
   name: 'interactionCreate',
-  run: async (client, interaction: CommandInteraction) => {
+  run: async (interaction: CommandInteraction) => {
     if (interaction.guild && !interaction.member) {
       await interaction.guild.members.fetch(interaction.user.id);
     }
@@ -18,7 +18,7 @@ export const event: DiscordEvent = {
     };
 
     if (interaction.isCommand()) {
-      const { commandName, user } = interaction;
+      const { commandName, user, client } = interaction;
 
       const slashCollection = client.slashcommands;
 

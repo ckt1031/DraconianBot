@@ -5,7 +5,7 @@ import type { DiscordEvent } from '../../sturctures/event';
 
 export const event: DiscordEvent = {
   name: 'threadCreate',
-  run: async (_, thread: ThreadChannel) => {
+  run: async (thread: ThreadChannel) => {
     if (guildConfiguration.has(thread.guildId)) {
       const config = guildConfiguration.get(thread.guildId);
       // eslint-disable-next-line unicorn/require-array-join-separator

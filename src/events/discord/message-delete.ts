@@ -10,7 +10,7 @@ import type { DiscordEvent } from '../../sturctures/event';
 
 export const event: DiscordEvent = {
   name: 'messageDelete',
-  run: async (_, message: Message) => {
+  run: async (message: Message) => {
     // if (message.partial) {
     //   await message.fetch();
     // }

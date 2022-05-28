@@ -5,7 +5,7 @@ import type { DiscordEvent } from '../../sturctures/event';
 
 export const event: DiscordEvent = {
   name: 'guildCreate',
-  run: async (_, guild: Guild) => {
+  run: async (guild: Guild) => {
     ensureServerData(guild.id);
   },
 };

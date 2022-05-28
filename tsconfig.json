@@ -38,5 +38,5 @@
     "noPropertyAccessFromIndexSignature": false
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["tools", "src", "config/*.json", "package.json"]
+  "include": ["tools", "__tests__", "src", "config/*.json", "package.json"]
 }
