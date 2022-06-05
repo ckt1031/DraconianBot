@@ -1,4 +1,5 @@
 import { createCanvas, loadImage } from 'canvas';
+import { AttachmentBuilder } from 'discord.js';
 
 import { blur } from '../../../utils/canvas';
 
@@ -68,10 +69,13 @@ export const command: TextCommand = {
     context.drawImage(background, 0, 0);
     context.drawImage(targetImage, 309, 0, 309, 309);
 
+    const attachment = new AttachmentBuilder(
+      canvas.toBuffer(),
+      `${Date.now()}_trash.png`,
+    );
+
     channel.send({
-      files: [
-        { name: `${Date.now()}_trash.png`, attachment: canvas.toBuffer() },
-      ],
+      files: [attachment],
     });
   },
 };

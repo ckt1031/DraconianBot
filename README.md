@@ -17,6 +17,7 @@ This branch will be bumped to RELEASE channel after discord.js v14 is completely
 - 🔥 The Latest Discord.js Framework (**v14 DEV**)
 - 🏛️ Multi-Server Ready
 - 🐋 Fully Customizable
+- 🤤 Moving to a stable database system (MongoDB) (TODO)
 - ✅ Anti ABUSING System (SOON)
   > Ensure the bot resources (RAM/CPU usage) will not be dominated by malicious servers/users.
 - 🔒 High Tech Moderation System (SOON)

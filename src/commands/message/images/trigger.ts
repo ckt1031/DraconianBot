@@ -1,4 +1,5 @@
 import GIFEncoder from 'gifencoder';
+import { AttachmentBuilder } from 'discord.js';
 import { createCanvas, loadImage } from 'canvas';
 
 import type { TextCommand } from '../../../sturctures/command';
@@ -94,10 +95,13 @@ export const command: TextCommand = {
 
     gif.finish();
 
+    const attachment = new AttachmentBuilder(
+      gif.out.getData(),
+      `${Date.now()}_trgigered.gif`,
+    );
+
     channel.send({
-      files: [
-        { name: `${Date.now()}_trgigered.gif`, attachment: gif.out.getData() },
-      ],
+      files: [attachment],
     });
   },
 };

@@ -1,5 +1,5 @@
-import { EmbedBuilder } from '@discordjs/builders';
 import { createCanvas, loadImage } from 'canvas';
+import { AttachmentBuilder, EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -66,10 +66,13 @@ export const command: TextCommand = {
       context.drawImage(background, 0, 0, canvas.width, canvas.height);
       context.drawImage(targetImage, 120, 135, 195, 195);
 
+      const attachment = new AttachmentBuilder(
+        canvas.toBuffer(),
+        `${Date.now()}_delete.png`,
+      );
+
       channel.send({
-        files: [
-          { name: `${Date.now()}_delete.png`, attachment: canvas.toBuffer() },
-        ],
+        files: [attachment],
       });
     } catch (error) {
       if (error instanceof Error) {
