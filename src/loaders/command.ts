@@ -1,19 +1,15 @@
-import { join, dirname, basename } from 'node:path';
-
-import glob from 'glob';
-import chalk from 'chalk';
-
 import { REST } from '@discordjs/rest';
+import chalk from 'chalk';
 import {
-  Routes,
   RESTPostAPIApplicationCommandsJSONBody,
+  Routes,
 } from 'discord-api-types/v9';
-
 import type { Client } from 'discord.js';
-
-import type { TextCommand, SlashCommand } from '../sturctures/command';
+import glob from 'glob';
+import { basename, dirname, join } from 'node:path';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
+import type { SlashCommand, TextCommand } from '../sturctures/command';
 
 /** Text Command Loaders */
 export async function loadTextCommand(client: Client): Promise<void> {

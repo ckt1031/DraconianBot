@@ -1,6 +1,6 @@
-import GIFEncoder from 'gifencoder';
-import { AttachmentBuilder } from 'discord.js';
 import { createCanvas, loadImage } from 'canvas';
+import { AttachmentBuilder } from 'discord.js';
+import GIFEncoder from 'gifencoder';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -95,10 +95,9 @@ export const command: TextCommand = {
 
     gif.finish();
 
-    const attachment = new AttachmentBuilder(
-      gif.out.getData(),
-      `${Date.now()}_trgigered.gif`,
-    );
+    const attachment = new AttachmentBuilder(gif.out.getData(), {
+      name: `${Date.now()}_trgigered.gif`,
+    });
 
     channel.send({
       files: [attachment],

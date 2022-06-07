@@ -1,17 +1,16 @@
-import { cooldownCache } from '../../utils/cache';
-import { callbackEmbed } from '../../utils/messages';
-import { checkSpam } from '../../features/spam-check';
-import { parseMsToVisibleText } from '../../utils/formatters';
-import { guildConfiguration, ensureServerData } from '../../utils/database';
-import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
-import { CheckSpam } from '../../sturctures/validation';
-
-import type { Message, TextChannel, PermissionResolvable } from 'discord.js';
-import type { DiscordEvent } from '../../sturctures/event';
-import type { TextCommand } from '../../sturctures/command';
-import type { GuildConfig } from '../../sturctures/database';
+import type { Message, PermissionResolvable, TextChannel } from 'discord.js';
 
 import { ownerId } from '../../../config/bot.json';
+import { checkSpam } from '../../features/spam-check';
+import type { TextCommand } from '../../sturctures/command';
+import type { GuildConfig } from '../../sturctures/database';
+import type { DiscordEvent } from '../../sturctures/event';
+import { CheckSpam } from '../../sturctures/validation';
+import { cooldownCache } from '../../utils/cache';
+import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
+import { ensureServerData, guildConfiguration } from '../../utils/database';
+import { parseMsToVisibleText } from '../../utils/formatters';
+import { callbackEmbed } from '../../utils/messages';
 
 export const event: DiscordEvent = {
   name: 'messageCreate',
@@ -80,7 +79,7 @@ export const event: DiscordEvent = {
             if (deletable) message.delete().catch(() => {});
             const _message = await channel.send(`<@!${author.id}>, ${reason}`);
             setTimeout(() => {
-              if (_message.deletable) _message.delete();
+              if (_message.deletable) _message.delete().catch(() => {});
             }, 6000);
           }
         }
@@ -169,7 +168,7 @@ export const event: DiscordEvent = {
       // Reject if command can only be executed NSFW channel when it's not in.
       if (
         cmdData?.nsfwChannelRequired &&
-        (!guild || !channel.isText()) &&
+        (!guild || !channel.isTextBased()) &&
         !(channel as TextChannel).nsfw
       ) {
         const cEmbed = callbackEmbed({
@@ -279,7 +278,7 @@ export const event: DiscordEvent = {
             allowedMentions: { repliedUser: true },
           });
           setTimeout(() => {
-            if (postMessage.deletable) postMessage.delete();
+            if (postMessage.deletable) postMessage.delete().catch(() => {});
           }, 6000);
           return;
         }
@@ -307,8 +306,10 @@ export const event: DiscordEvent = {
           if (!ms) continue;
           const keyTyped = key as keyof typeof intervalList;
           if (!intervalList[keyTyped]) continue;
+
           const userFeq = cooldownCache.get(keyTyped + key1) ?? '0';
 
+          // Do Rejection if number reached specified amount of allowed cooldown.
           if (Number(userFeq) === intervalList[keyTyped]) {
             doRejection = { is: true, which: keyTyped };
             break;
@@ -321,13 +322,14 @@ export const event: DiscordEvent = {
             customTTL[keyTyped],
           );
         }
+
         if (doRejection.is) {
           const postMessage = await message.reply({
             content: `You have reached the maxmium usage in 1 **${doRejection.which}**!`,
             allowedMentions: { repliedUser: true },
           });
           setTimeout(() => {
-            if (postMessage.deletable) postMessage.delete();
+            if (postMessage.deletable) postMessage.delete().catch(() => {});
           }, 6000);
           return;
         }
@@ -467,6 +469,6 @@ async function reject(
     allowedMentions: { repliedUser: true },
   });
   setTimeout(() => {
-    if (postMessage.deletable) postMessage.delete();
+    if (postMessage.deletable) postMessage.delete().catch(() => {});
   }, 6000);
 }

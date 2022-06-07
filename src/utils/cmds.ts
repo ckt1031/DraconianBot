@@ -1,16 +1,16 @@
-import { findBestMatch } from 'string-similarity';
 import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   EmbedBuilder,
 } from 'discord.js';
-
 import type {
   CollectorFilter,
   Message,
   MessageComponentInteraction,
 } from 'discord.js';
+import { findBestMatch } from 'string-similarity';
+
 import type { TextCommand } from '../sturctures/command';
 
 /** Send command information message embed. */
@@ -105,7 +105,11 @@ export async function resembleCommandCheck(
         time: 30_000,
       })
       .then(async _inter => {
-        await _message.delete();
+        // Delete message first
+        if (_message.deletable) {
+          // eslint-disable-next-line promise/no-nesting
+          await _message.delete().catch(() => {});
+        }
         if (_inter.customId === acceptButtonId) {
           const timeTaken = timeStarted - Date.now();
           return resolve({ name: bestMatch.target, timeTaken });

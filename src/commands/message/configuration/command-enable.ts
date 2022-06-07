@@ -1,9 +1,7 @@
-import { callbackEmbed } from '../../../utils/messages';
-
-import { confirmInformationButtons } from '../../../utils/messages';
-import { guildConfiguration } from '../../../utils/database';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { guildConfiguration } from '../../../utils/database';
+import { callbackEmbed } from '../../../utils/messages';
+import { confirmInformationButtons } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {

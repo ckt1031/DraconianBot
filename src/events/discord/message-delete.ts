@@ -1,12 +1,12 @@
+import type { Message } from 'discord.js';
+
+import type { DiscordEvent } from '../../sturctures/event';
 import {
+  ensureServerData,
+  ensureSnipeChannel,
   guildConfiguration,
   snipeDatabase,
-  ensureSnipeChannel,
-  ensureServerData,
 } from '../../utils/database';
-
-import type { Message } from 'discord.js';
-import type { DiscordEvent } from '../../sturctures/event';
 
 export const event: DiscordEvent = {
   name: 'messageDelete',
@@ -17,7 +17,7 @@ export const event: DiscordEvent = {
 
     const { guild, channel, content, attachments, author, client } = message;
 
-    const condition = channel.isThread() || channel.isText();
+    const condition = channel.isThread() || channel.isTextBased();
 
     if (guild && condition) {
       const config = guildConfiguration.get(guild.id);

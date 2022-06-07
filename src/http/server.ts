@@ -1,5 +1,5 @@
-import fastify from 'fastify';
 import rateLimit from '@fastify/rate-limit';
+import fastify from 'fastify';
 
 const server = fastify();
 

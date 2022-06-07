@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { EmbedBuilder } from 'discord.js';
-
 import type { TextChannel } from 'discord.js';
+
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {

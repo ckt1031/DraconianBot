@@ -1,11 +1,9 @@
-import pidusage from 'pidusage';
 import { EmbedBuilder, version as discordJsVersion } from 'discord.js';
-
-import { parseMsToVisibleText } from '../../../utils/formatters';
+import pidusage from 'pidusage';
 
 import { version as packageVersion } from '../../../../package.json';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { parseMsToVisibleText } from '../../../utils/formatters';
 
 export const command: TextCommand = {
   data: {

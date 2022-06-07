@@ -1,7 +1,6 @@
 import Enmap from 'enmap';
 
 import { guildConfig, snipeConfig } from '../../config/db_model.json';
-
 import type { GuildConfig, SnipeConfig } from '../sturctures/database';
 
 export const guildConfiguration: Enmap<string, GuildConfig> = new Enmap({

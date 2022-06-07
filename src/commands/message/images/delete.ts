@@ -66,10 +66,9 @@ export const command: TextCommand = {
       context.drawImage(background, 0, 0, canvas.width, canvas.height);
       context.drawImage(targetImage, 120, 135, 195, 195);
 
-      const attachment = new AttachmentBuilder(
-        canvas.toBuffer(),
-        `${Date.now()}_delete.png`,
-      );
+      const attachment = new AttachmentBuilder(canvas.toBuffer(), {
+        name: `${Date.now()}_delete.png`,
+      });
 
       channel.send({
         files: [attachment],

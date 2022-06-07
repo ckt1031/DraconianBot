@@ -1,6 +1,5 @@
-import { callbackEmbed } from '../../../utils/messages';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {

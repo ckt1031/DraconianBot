@@ -1,5 +1,5 @@
-import { AttachmentBuilder } from 'discord.js';
 import { createCanvas, loadImage } from 'canvas';
+import { AttachmentBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -65,10 +65,9 @@ export const command: TextCommand = {
     context.drawImage(targetImage, 0, 0, canvas.width, canvas.height);
     context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-    const attachment = new AttachmentBuilder(
-      canvas.toBuffer(),
-      `${Date.now()}_jail.png`,
-    );
+    const attachment = new AttachmentBuilder(canvas.toBuffer(), {
+      name: `${Date.now()}_jail.png`,
+    });
 
     channel.send({
       files: [attachment],

@@ -1,16 +1,17 @@
-import { snipeDatabase } from '../../utils/database';
+import type { Channel, TextChannel } from 'discord.js';
 
-import type { Channel } from 'discord.js';
 import type { DiscordEvent } from '../../sturctures/event';
+import { snipeDatabase } from '../../utils/database';
 
 export const event: DiscordEvent = {
   name: 'channelDelete',
   run: async (channel: Channel) => {
-    if (channel.isText()) {
-      if (snipeDatabase.has(channel.id)) {
-        snipeDatabase.delete(channel.id);
+    if (channel.isTextBased()) {
+      const textChanne = channel as TextChannel;
+      if (snipeDatabase.has(textChanne.id)) {
+        snipeDatabase.delete(textChanne.id);
       }
-      if (channel.name.startsWith('ticket-')) {
+      if (textChanne.name.startsWith('ticket-')) {
         // TODO: Ticket System
       }
     }

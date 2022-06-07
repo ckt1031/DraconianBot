@@ -1,12 +1,10 @@
 import { EmbedBuilder } from 'discord.js';
-
-import { callbackEmbed } from '../../../utils/messages';
-import { getCommandHelpInfo } from '../../../utils/cmds';
+import type { TextChannel } from 'discord.js';
 
 import { name as botname, githubLink } from '../../../../config/bot.json';
-
-import type { TextChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
+import { getCommandHelpInfo } from '../../../utils/cmds';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {

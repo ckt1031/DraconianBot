@@ -1,9 +1,8 @@
-import { EmbedBuilder } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
-
-import { command as TextCommand } from '../message/general/ping';
+import { EmbedBuilder } from 'discord.js';
 
 import type { SlashCommand } from '../../sturctures/command';
+import { command as TextCommand } from '../message/general/ping';
 
 export const command: SlashCommand = {
   slashData: new SlashCommandBuilder()

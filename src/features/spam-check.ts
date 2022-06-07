@@ -1,12 +1,11 @@
 import { Message } from 'discord.js';
 
-import { guildConfiguration } from '../utils/database';
 import {
   CheckInviteLinks,
-  CheckMentions,
-  // CheckLinks,
+  CheckMentions, // CheckLinks,
   CheckSpam,
 } from '../sturctures/validation';
+import { guildConfiguration } from '../utils/database';
 
 // const uneUnicode = (string_: string) =>
 //   string_.replace(/\\u([\dA-Fa-f]{4})/g, (_, word) =>

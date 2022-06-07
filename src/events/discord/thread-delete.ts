@@ -1,7 +1,7 @@
-import { snipeDatabase } from '../../utils/database';
-
 import type { ThreadChannel } from 'discord.js';
+
 import type { DiscordEvent } from '../../sturctures/event';
+import { snipeDatabase } from '../../utils/database';
 
 export const event: DiscordEvent = {
   name: 'threadDelete',

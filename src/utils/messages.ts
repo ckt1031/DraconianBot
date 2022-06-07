@@ -1,19 +1,18 @@
 import {
-  EmbedBuilder,
-  ButtonBuilder,
   ActionRowBuilder,
+  ButtonBuilder,
   ButtonStyle,
+  EmbedBuilder,
+} from 'discord.js';
+import type {
+  CollectorFilter,
+  ColorResolvable,
+  EmbedFieldData,
+  Message,
+  MessageComponentInteraction,
 } from 'discord.js';
 
 import emoji from '../../config/emojis.json';
-
-import type {
-  Message,
-  EmbedFieldData,
-  CollectorFilter,
-  ColorResolvable,
-  MessageComponentInteraction,
-} from 'discord.js';
 
 interface ConfirmInformationButtons {
   title: string;
@@ -63,7 +62,7 @@ export async function confirmInformationButtons({
     time: 30_000,
   });
 
-  if (respondAwaiting.deletable) await respondAwaiting.delete();
+  if (respondAwaiting.deletable) await respondAwaiting.delete().catch(() => {});
 
   return interaction.customId === confirmId;
 }

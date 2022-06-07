@@ -1,8 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 
-import { parseMsToVisibleText } from '../../../utils/formatters';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { parseMsToVisibleText } from '../../../utils/formatters';
 
 export const command: TextCommand = {
   data: {

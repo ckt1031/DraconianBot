@@ -1,10 +1,9 @@
-import { cooldownCache } from '../../utils/cache';
-import { parseMsToVisibleText } from '../../utils/formatters';
-
 import type { CommandInteraction } from 'discord.js';
-import type { DiscordEvent } from '../../sturctures/event';
 
 import { ownerId } from '../../../config/bot.json';
+import type { DiscordEvent } from '../../sturctures/event';
+import { cooldownCache } from '../../utils/cache';
+import { parseMsToVisibleText } from '../../utils/formatters';
 
 export const event: DiscordEvent = {
   name: 'interactionCreate',

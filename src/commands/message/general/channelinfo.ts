@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { EmbedBuilder } from 'discord.js';
+import type { TextChannel, ThreadChannel, VoiceChannel } from 'discord.js';
 
-import type { TextChannel, VoiceChannel, ThreadChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -35,7 +35,7 @@ export const command: TextCommand = {
 
     const embed = new EmbedBuilder();
 
-    if (targetChannel.isText()) {
+    if (targetChannel.isTextBased()) {
       const textChannel = targetChannel as TextChannel;
 
       embed.setTitle(`${textChannel.name}'s information:`).addFields([
@@ -134,8 +134,8 @@ export const command: TextCommand = {
       });
     }
 
-    if (targetChannel.isVoice()) {
-      const voiceChannel = targetChannel as VoiceChannel;
+    if (targetChannel.isVoiceBased()) {
+      const voiceChannel = targetChannel as unknown as VoiceChannel;
 
       embed.setTitle(`${voiceChannel.name}'s information:`).addFields([
         { name: 'ID', value: voiceChannel.id },

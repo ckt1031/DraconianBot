@@ -1,7 +1,7 @@
-import { guildConfiguration } from '../../utils/database';
-
 import type { ThreadChannel } from 'discord.js';
+
 import type { DiscordEvent } from '../../sturctures/event';
+import { guildConfiguration } from '../../utils/database';
 
 export const event: DiscordEvent = {
   name: 'threadCreate',

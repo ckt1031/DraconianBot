@@ -30,7 +30,7 @@ export const command: TextCommand = {
 
     const embed = new EmbedBuilder();
 
-    if (message.deletable) message.delete();
+    if (message.deletable) message.delete().catch(() => {});
 
     switch (mode) {
       case 'encrypt': {

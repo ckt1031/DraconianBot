@@ -1,10 +1,9 @@
+import type { SlashCommandBuilder } from '@discordjs/builders';
 import type {
+  CommandInteraction,
   Message,
   PermissionResolvable,
-  CommandInteraction,
 } from 'discord.js';
-
-import type { SlashCommandBuilder } from '@discordjs/builders';
 
 interface TextCommandExecution {
   message: Message;

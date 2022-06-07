@@ -1,11 +1,9 @@
 import { ActivityType } from 'discord.js';
-
-import { ensureServerData } from '../../utils/database';
-
-import type { Guild, Client } from 'discord.js';
-import type { DiscordEvent } from '../../sturctures/event';
+import type { Client, Guild } from 'discord.js';
 
 import { defaultPrefix } from '../../../config/bot.json';
+import type { DiscordEvent } from '../../sturctures/event';
+import { ensureServerData } from '../../utils/database';
 
 export const event: DiscordEvent = {
   once: true,

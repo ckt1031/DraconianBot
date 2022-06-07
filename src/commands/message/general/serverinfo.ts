@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { EmbedBuilder } from 'discord.js';
-
 import type { GuildMember } from 'discord.js';
+
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {

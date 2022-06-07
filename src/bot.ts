@@ -1,15 +1,13 @@
-import './http/server';
-
-import { Client, Collection, Partials, GatewayIntentBits } from 'discord.js';
-import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
-import { loadSlashCommand, loadTextCommand } from './loaders/command';
-
-// Distube
-import { DisTube } from 'distube';
+import { SoundCloudPlugin } from '@distube/soundcloud';
 import { SpotifyPlugin } from '@distube/spotify';
 import { YtDlpPlugin } from '@distube/yt-dlp';
-import { SoundCloudPlugin } from '@distube/soundcloud';
+import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
+// Distube
+import { DisTube } from 'distube';
 
+import './http/server';
+import { loadSlashCommand, loadTextCommand } from './loaders/command';
+import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
 import type { SlashCommand, TextCommand } from './sturctures/command';
 
 const client = new Client({

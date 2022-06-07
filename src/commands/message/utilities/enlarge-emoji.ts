@@ -1,9 +1,8 @@
-import { parse } from 'twemoji-parser';
 import { EmbedBuilder, Util } from 'discord.js';
-
-import { callbackEmbed } from '../../../utils/messages';
+import { parse } from 'twemoji-parser';
 
 import type { TextCommand } from '../../../sturctures/command';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {

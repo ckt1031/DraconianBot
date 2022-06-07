@@ -1,8 +1,8 @@
-import glob from 'glob';
 import chalk from 'chalk';
+import type { Client } from 'discord.js';
+import glob from 'glob';
 import { join } from 'node:path';
 
-import type { Client } from 'discord.js';
 import type { DiscordEvent, DistubeEvent } from '../sturctures/event';
 
 export async function loadDiscordEvent(client: Client) {

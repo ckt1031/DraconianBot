@@ -1,9 +1,8 @@
+import type { TextChannel } from 'discord.js';
 import ms from 'ms';
 
-import { callbackEmbed } from '../../../utils/messages';
-
-import type { TextChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {
@@ -25,7 +24,7 @@ export const command: TextCommand = {
 
     const { channel } = message;
 
-    if (channel.isText()) {
+    if (channel.isTextBased()) {
       if (!duration) return;
 
       const seconds = ms(duration) / 1000;

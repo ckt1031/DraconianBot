@@ -1,8 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 
-import { snipeDatabase } from '../../../utils/database';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { snipeDatabase } from '../../../utils/database';
 
 export const command: TextCommand = {
   data: {
