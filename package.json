@@ -45,7 +45,7 @@
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.3",
     "discord-api-types": "^0.33.5",
-    "discord.js": "^14.0.0-dev.1654733437-3ae2633",
+    "discord.js": "^14.0.0-dev.1654819804-2791c86",
     "distube": "^4.0.0-dev.5",
     "dotenv": "^16.0.1",
     "enmap": "^5.9.0",

@@ -16,7 +16,7 @@ export const event: DiscordEvent = {
       interaction.reply({ content, ephemeral });
     };
 
-    if (interaction.isCommand()) {
+    if (interaction.isChatInputCommand()) {
       const { commandName, user, client } = interaction;
 
       const slashCollection = client.slashcommands;
