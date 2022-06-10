@@ -11,7 +11,7 @@ export const event: DiscordEvent = {
       if (snipeDatabase.has(textChanne.id)) {
         snipeDatabase.delete(textChanne.id);
       }
-      
+
       if (textChanne.name.startsWith('ticket-')) {
         // TODO: Ticket System
       }
