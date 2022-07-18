@@ -28,7 +28,7 @@
     "tsc:watch": "rimraf ./dist && tsc -w"
   },
   "dependencies": {
-    "@discordjs/builders": "^0.13.0",
+    "@discordjs/builders": "^0.15.0",
     "@discordjs/rest": "^0.4.1",
     "@discordjs/voice": "^0.9.0",
     "@distube/soundcloud": "^1.1.0",
