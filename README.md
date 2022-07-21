@@ -1,9 +1,3 @@
-[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine)
-
-# :warning: DEPRECIATED :warning:
-
-NO LONGER USING DISCORD.JS
-
 # Draconian Bot
 
 **PRODUCTIVITY** Concentrated with the latest redesigned bot system.
