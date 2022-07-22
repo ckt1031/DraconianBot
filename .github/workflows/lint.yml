@@ -30,39 +30,11 @@ jobs:
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: latest
-
       - name: Install Dependencies
-        run: pnpm i
+        run: npm i
 
       - name: Init Project
-        run: pnpx ts-node ./tools/copy-config.ts
+        run: npx ts-node ./tools/copy-config.ts
 
       - name: Lint Project
-        run: pnpm lint
-
-      - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v10
-        id: verify-changed-files
-        with:
-          files: |
-            **.js
-            **.jsx
-            **.ts
-            **.tsx
-            **.json
-            package.json
-            src
-            config
-
-      - name: Push to repositary
-        if: steps.verify-changed-files.outputs.files_changed == 'true'
-        run: |
-          git init
-          git config --global user.email "cktsun1031@gmail.com"
-          git config --global user.name "cktsun1031"
-          git add .
-          git commit -m "Auto Lint & Analyzed"
-          git push
+        run: npm run lint

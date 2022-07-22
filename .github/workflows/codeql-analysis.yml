@@ -24,18 +24,14 @@ jobs:
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: latest
-
       - name: Install Dependencies
-        run: pnpm i
+        run: npm i
 
       - name: Init Project
-        run: pnpx ts-node ./tools/copy-config.ts
+        run: npx ts-node ./tools/copy-config.ts
 
       - name: Complie to javascript
-        run: pnpm build
+        run: npm run build
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
