@@ -59,4 +59,4 @@ const ModuleSchema = new Schema<GuildConfig>({
   },
 });
 
-export default model('bans', ModuleSchema);
+export default model('servers', ModuleSchema);
