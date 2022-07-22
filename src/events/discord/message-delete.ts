@@ -1,8 +1,8 @@
 import type { Message } from 'discord.js';
 
-import Server from '../../models/server';
 import Snipe from '../../models/snipe';
 import type { DiscordEvent } from '../../sturctures/event';
+import { getServerData } from '../../utils/database';
 
 export const event: DiscordEvent = {
   name: 'messageDelete',
@@ -12,19 +12,15 @@ export const event: DiscordEvent = {
     const condition = channel.isThread() || channel.isTextBased();
 
     if (guild && condition) {
-      const config = await Server.findOne({
-        serverId: guild.id,
-      });
+      const config = await getServerData(guild.id);
 
-      // Validate whether it can be stored into Sniping system.
       if (
         config &&
-        !config?.snipe.channelDisabled.includes(channel.id) &&
+        !config.snipe.channelDisabled.includes(channel.id) &&
         client.user?.id !== author.id
       ) {
-        const filter = { channelId: channel.id };
-        const snipes = Snipe.findOne({
-          ...filter,
+        const snipes = await Snipe.findOne({
+          channelId: channel.id,
         });
 
         const snipe = {
@@ -41,13 +37,13 @@ export const event: DiscordEvent = {
 
         if (!snipes) {
           const nSnipe = new Snipe({
-            ...filter,
+            channelId: channel.id,
             ...snipe,
           });
-          await nSnipe.save().catch(() => {});
+          await nSnipe.save();
         } else {
-          await Snipe.updateOne(
-            { ...filter },
+          await Snipe.findOneAndUpdate(
+            { channelId: channel.id },
             {
               $set: {
                 ...snipe,
