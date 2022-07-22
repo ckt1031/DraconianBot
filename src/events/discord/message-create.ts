@@ -127,6 +127,9 @@ export const event: DiscordEvent = {
         return;
       }
 
+      // Reject if dm mode while configurated to guild only.
+      if (!guild && !cmdData?.directMessageAllowed) return;
+
       // Reject when Target disabled or didn't reach the requirement.
       if (guild) {
         const commandDatasbase = guildDatabase?.commands!;
