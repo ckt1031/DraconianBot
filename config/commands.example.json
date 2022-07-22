@@ -1,0 +1,27 @@
+{
+  "text": {
+    "commands": [
+      {
+        "name": "test",
+        "data": {
+          "clientRequiredPermissions": [],
+          "authorRequiredPermissions": [],
+          "ownerOnly": true,
+          "developmentOnly": true,
+          "nsfwChannelRequired": true,
+          "inVoiceChannelRequired": true,
+          "threadChannelAllowed": true,
+          "directMessageAllowed": true,
+          "aliases": ["test1"],
+          "cooldownInterval": 10000,
+          "intervalLimit": {
+            "minute": 0,
+            "hour": 0,
+            "day": 0
+          }
+        }
+      }
+    ],
+    "disabledCommands": ["test"]
+  }
+}

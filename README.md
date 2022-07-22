@@ -1,13 +1,37 @@
 # Draconian Bot
 
-**PRODUCTIVITY** Concentrated with the latest redesigned bot system.
+Tackle the situation by adding myriad of BOTS for specified features. \
+Here provided all-in-one solution.
+
+## STATUS
+
+This branch will be bumped to RELEASE channel after discord.js v14 is completely released and in stable.
+
+### Features
+
+- 🚀 **STABLE**, **PERFORMANT**, **PRODUCTIVE**
+- 🧰 Mostly written by **_TypeScript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
+- 🧠 Explicit Bot's Processional LOGIC
+- 🔥 The Latest Discord.js Framework (**v14 DEV**)
+- 🏛️ Multi-Server Ready
+- 🐋 Fully Customizable
+- 🤤 Moving to a stable database system (MongoDB) (TODO)
+- ✅ Anti ABUSING System (SOON)
+  > Ensure the bot resources (RAM/CPU usage) will not be dominated by malicious servers/users.
+- 🔒 High Tech Moderation System (SOON)
+- ✏️ Ticket System (SOON)
+- ⚡ Partial Anti RAID System (SOON)
+
+> Rest of cool functions which is practicable to this project will be possibly added.
+> If complicated features, they will be integrated to a dedicated bot.
 
 ### Requirements:
 
-1. NodeJS v16.6.0 or later (LTS/Latest)
-2. Minimum RAM: 512 MB
-3. Minimum Free Space: 5 GB
-4. Minimum core of CPU: 1
+1. NodeJS v16.9.0 or later (LTS/Latest)
+   > Extra: Python3, FFmpeg, Build-essential, etc.
+1. Required RAM: 512 MB (Considered by the amount of servers)
+1. Required Storage: 1 GB
+1. Required core of CPU: 1
 
 ### Initiation
 
@@ -16,6 +40,7 @@
 ```
 TOKEN=XXXXX.ABCDEFG
 CLIENT_ID=XXXXXXXXXXXXXXXXXX
+MONGODB_URL=XXXXXXXXXXXXXXXX
 ```
 
 - Install Required Dependencies
@@ -24,10 +49,17 @@ CLIENT_ID=XXXXXXXXXXXXXXXXXX
 npm install
 ```
 
-- Build & Compile to JavaScript
+- Build & Compile to JS (With SWC compiler)
 
 ```
 npm run build
+```
+
+- Copy Config (For FIRST / AFTER SYNCED)
+  > Save the config first!
+
+```
+npx ts-node tools/copy-config.ts
 ```
 
 - Start
@@ -36,14 +68,10 @@ npm run build
 npm run start
 ```
 
-### New features and Enhancement are introduced
+### Routine Backup (Recommended)
 
-- Concentrating to **PRODUCTIVITY**
-- Mostly written by **_typescript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
-- Redesigning bot handling logic
-- Discord.js Latest (v13)
-- Improving speed and memory usage
-- Better multiserver supports
+Backup the folder `/data` frequently. \
+Prevents the abrupt data loses by unexpected accidents.
 
 #### Legacy Version
 

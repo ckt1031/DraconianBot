@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -11,20 +11,18 @@ export const command: TextCommand = {
     cooldownInterval: 6 * 1000,
   },
   run: async ({ message }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
+
+    const url = 'https://meme-api.herokuapp.com/gimme';
 
     try {
-      interface MemeResponse {
+      const response = await axios.get(url);
+      const responseData: {
         url: string;
         title: string;
         postLink: string;
         subreddit: string;
-      }
-
-      const url1 = 'https://meme-api.herokuapp.com/gimme';
-
-      const response = await axios.get(url1);
-      const responseData: MemeResponse = response.data;
+      } = response.data;
 
       embed
         .setTitle(responseData.title)

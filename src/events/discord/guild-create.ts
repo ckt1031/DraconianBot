@@ -1,11 +1,11 @@
-import { ensureServerData } from '../../utils/database';
-
 import type { Guild } from 'discord.js';
+
 import type { DiscordEvent } from '../../sturctures/event';
+import { getServerData } from '../../utils/database';
 
 export const event: DiscordEvent = {
   name: 'guildCreate',
-  run: async (_, guild: Guild) => {
-    ensureServerData(guild.id);
+  run: async (guild: Guild) => {
+    getServerData(guild.id);
   },
 };

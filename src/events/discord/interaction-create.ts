@@ -1,13 +1,13 @@
-import { parseMsToVisibleText } from '../../utils/formatters';
-
 import type { CommandInteraction } from 'discord.js';
-import type { DiscordEvent } from '../../sturctures/event';
 
 import { ownerId } from '../../../config/bot.json';
+import type { DiscordEvent } from '../../sturctures/event';
+import { cooldownCache } from '../../utils/cache';
+import { parseMsToVisibleText } from '../../utils/formatters';
 
 export const event: DiscordEvent = {
   name: 'interactionCreate',
-  run: async (client, interaction: CommandInteraction) => {
+  run: async (interaction: CommandInteraction) => {
     if (interaction.guild && !interaction.member) {
       await interaction.guild.members.fetch(interaction.user.id);
     }
@@ -16,8 +16,8 @@ export const event: DiscordEvent = {
       interaction.reply({ content, ephemeral });
     };
 
-    if (interaction.isCommand()) {
-      const { commandName, user } = interaction;
+    if (interaction.isChatInputCommand()) {
+      const { commandName, user, client } = interaction;
 
       const slashCollection = client.slashcommands;
 
@@ -48,13 +48,12 @@ export const event: DiscordEvent = {
       // Cooldown Validation
       const now = Date.now();
       const keyName = `CMD_${user.id}_${slash.slashData.name}`;
-      const cooldowns = client.cooldown;
       const cooldownInterval = slash?.data?.cooldownInterval ?? 3000;
 
       // Reject if user exists in cooldown.
-      if (cooldowns.has(keyName)) {
-        const expectedEnd = cooldowns.get(keyName);
-        if (expectedEnd && now < expectedEnd) {
+      if (cooldownCache.has(keyName)) {
+        const expectedEnd = cooldownCache.get(keyName);
+        if (expectedEnd && now < Number(expectedEnd)) {
           const timeleft = parseMsToVisibleText(Number(expectedEnd) - now);
           return returnOfInter(
             `Before using this command, please wait for **${timeleft}**.`,
@@ -63,8 +62,11 @@ export const event: DiscordEvent = {
       }
 
       // Set cooldown
-      cooldowns.set(keyName, now + cooldownInterval);
-      setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
+      cooldownCache.set(
+        keyName,
+        now + cooldownInterval,
+        cooldownInterval / 1000,
+      );
 
       try {
         return slash.run({ interaction });

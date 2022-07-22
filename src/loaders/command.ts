@@ -1,19 +1,19 @@
-import { join, dirname, basename } from 'node:path';
-
-import glob from 'glob';
-import chalk from 'chalk';
-
 import { REST } from '@discordjs/rest';
-import {
-  Routes,
-  RESTPostAPIApplicationCommandsJSONBody,
-} from 'discord-api-types/v9';
-
+import chalk from 'chalk';
 import type { Client } from 'discord.js';
-
-import type { TextCommand, SlashCommand } from '../sturctures/command';
+import {
+  RESTPostAPIApplicationCommandsJSONBody,
+  Routes,
+} from 'discord-api-types/v9';
+import glob from 'glob';
+import { basename, dirname, join } from 'node:path';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
+import type { SlashCommand, TextCommand } from '../sturctures/command';
+
+interface TextCommandCatagories {
+  [key: string]: string[];
+}
 
 /** Text Command Loaders */
 export async function loadTextCommand(client: Client): Promise<void> {
@@ -35,11 +35,7 @@ export async function loadTextCommand(client: Client): Promise<void> {
       );
     }
 
-    interface Catagories {
-      [key: string]: string[];
-    }
-
-    let catagories: Catagories = {};
+    let catagories: TextCommandCatagories = {};
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];
@@ -74,7 +70,15 @@ export async function loadTextCommand(client: Client): Promise<void> {
           }
         }
 
+        if (command.data.intervalLimit) {
+          const list = command.data.intervalLimit;
+          if (list.minute! > list.hour! || list.hour! > list.day!) {
+            throw `Impolitic Custom Interval style!`;
+          }
+        }
+
         client.commands.set(cmdName, command);
+
         if (command.data.aliases) {
           for (const alias of command.data.aliases) {
             if (client.aliases.has(alias)) {

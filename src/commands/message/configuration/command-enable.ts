@@ -1,19 +1,23 @@
-import { callbackEmbed } from '../../../utils/messages';
-
-import { confirmInformationButtons } from '../../../utils/messages';
-import { guildConfiguration } from '../../../utils/database';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { getServerData } from '../../../utils/database';
+import { callbackEmbed } from '../../../utils/messages';
+import { confirmInformationButtons } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {
     name: 'commandEnable',
     description: 'Enable command in local server.',
     directMessageAllowed: false,
-    authorRequiredPermissions: ['MANAGE_GUILD'],
+    authorRequiredPermissions: ['ManageGuild'],
     intervalLimit: {
       hour: 2,
     },
+    requiredArgs: [
+      {
+        name: 'command',
+        type: 'STRING',
+      },
+    ],
   },
   run: async ({ message, args }) => {
     const { guild, member, client } = message;
@@ -23,7 +27,7 @@ export const command: TextCommand = {
     if (!guild) {
       const cEmbed = callbackEmbed({
         text: 'This command can only be executed in SERVER!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -32,13 +36,14 @@ export const command: TextCommand = {
       return;
     }
 
-    const originalPrefix = guildConfiguration.get(guild.id)?.commands.global
-      .disabled;
+    const guildData = await getServerData(guild.id);
 
-    if (!originalPrefix?.includes(targetCommand)) {
+    const disabledCommands = guildData.commands.global.disabled;
+
+    if (!disabledCommands?.includes(targetCommand)) {
       const cEmbed = callbackEmbed({
         text: 'This command had not been disabled!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -52,7 +57,7 @@ export const command: TextCommand = {
     if (!commandMatching || commandMatching.enabled === false) {
       const cEmbed = callbackEmbed({
         text: 'Requested command is not valid!',
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -65,6 +70,7 @@ export const command: TextCommand = {
       {
         name: 'Action',
         value: `\`\`\`Enable command that's disabled in this server.\`\`\``,
+        inline: false,
       },
       {
         name: 'Command',
@@ -85,20 +91,17 @@ export const command: TextCommand = {
     });
 
     if (status) {
-      const index = originalPrefix.indexOf(targetCommand);
+      const index = disabledCommands.indexOf(targetCommand);
 
-      if (index > -1) originalPrefix.splice(index, 1);
+      if (index > -1) disabledCommands.splice(index, 1);
 
-      // Set to Database
-      guildConfiguration.set(
-        guild.id,
-        originalPrefix,
-        'commands.global.disabled',
-      );
+      guildData.commands.global.disabled = disabledCommands;
+
+      await guildData.save();
 
       const cEmbed = callbackEmbed({
         text: `Successfully enabled command: \`${commandMatching.data.name}\``,
-        color: 'GREEN',
+        color: 'Green',
         mode: 'success',
       });
       message.reply({

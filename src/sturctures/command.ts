@@ -1,10 +1,9 @@
+import type { SlashCommandBuilder } from '@discordjs/builders';
 import type {
+  CommandInteraction,
   Message,
   PermissionResolvable,
-  CommandInteraction,
 } from 'discord.js';
-
-import type { SlashCommandBuilder } from '@discordjs/builders';
 
 interface TextCommandExecution {
   message: Message;
@@ -14,6 +13,20 @@ interface TextCommandExecution {
 interface SlashCommandExecution {
   interaction: CommandInteraction;
 }
+
+type TextCommandRequiredArgumentsDefault = {
+  name?: string;
+  rest?: boolean;
+  text?: string[];
+  type: 'NUMBER' | 'STRING';
+  length?: {
+    min?: number;
+    max?: number;
+  };
+  required?: boolean;
+};
+
+type TextCommandRequiredArguments = TextCommandRequiredArgumentsDefault;
 
 /**
  * As default, command can only be accessed in guild.
@@ -39,6 +52,7 @@ export interface TextCommand {
     threadChannelAllowed?: boolean;
     directMessageAllowed?: boolean;
     publicLevel?: 'All' | 'Permission' | 'None';
+    requiredArgs?: TextCommandRequiredArguments[];
 
     // Info
     name: string;

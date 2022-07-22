@@ -1,12 +1,10 @@
-import { MessageEmbed } from 'discord.js';
-
-import { callbackEmbed } from '../../../utils/messages';
-import { getCommandHelpInfo } from '../../../utils/cmds';
-
-import { name as botname, githubLink } from '../../../../config/bot.json';
-
 import type { TextChannel } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
+
+import { githubLink, name as botname } from '../../../../config/bot.json';
 import type { TextCommand } from '../../../sturctures/command';
+import { getCommandHelpInfo } from '../../../utils/cmds';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {
@@ -15,9 +13,9 @@ export const command: TextCommand = {
     directMessageAllowed: true,
   },
   run: async ({ message, args }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
-    const { client, channel } = message;
+    const { client, channel, guildId } = message;
 
     if (!args[0]) {
       const commandsCatagories = client.commandsCatagories;
@@ -34,9 +32,21 @@ export const command: TextCommand = {
           }
         }
         const text = catagory[1]
-          .map((index: string) => `\`${index}\``)
+          .map((index: string) => {
+            let _text: string | undefined;
+            const cmd = client.commands.get(index);
+            if (guildId || (cmd && cmd.data.directMessageAllowed === true)) {
+              _text = `\`${index}\``;
+            }
+
+            return _text;
+          })
+          .filter(Boolean)
           .join(', ');
-        embed.addField(catagory[0], text);
+
+        if (text.length > 0) {
+          embed.addFields([{ name: catagory[0], value: text }]);
+        }
       }
 
       const avatarURL = client.user?.defaultAvatarURL;
@@ -62,7 +72,7 @@ export const command: TextCommand = {
       } else {
         const cEmbed = callbackEmbed({
           text: 'Command requested does not exist!',
-          color: 'RED',
+          color: 'Red',
           mode: 'error',
         });
         message.reply({

@@ -1,7 +1,6 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
-import { snipeDatabase } from '../../../utils/database';
-
+import Snipe from '../../../models/snipe';
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -13,21 +12,21 @@ export const command: TextCommand = {
   run: async ({ message }) => {
     const channelId = message.channelId;
 
-    const database = snipeDatabase.get(channelId);
+    const snipeData = await Snipe.findOne({ channelId });
 
-    if (!snipeDatabase.has(channelId) || !database) {
+    if (!snipeData) {
       message.reply({
         content: "This channel doesn't contain any **deleted** messages.",
       });
       return;
     }
 
-    const embed = new MessageEmbed().setAuthor({
-      name: database.author.name ?? 'N/A',
+    const embed = new EmbedBuilder().setAuthor({
+      name: snipeData.author.name ?? 'N/A',
     });
 
-    if (database.content.text) embed.setDescription(database.content.text);
-    if (database.content.imageURL) embed.setImage(database.content.imageURL);
+    if (snipeData.content.text) embed.setDescription(snipeData.content.text);
+    if (snipeData.content.imageURL) embed.setImage(snipeData.content.imageURL);
 
     message.reply({
       embeds: [embed],

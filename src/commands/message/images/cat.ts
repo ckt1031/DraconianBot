@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -11,20 +11,18 @@ export const command: TextCommand = {
     cooldownInterval: 6 * 1000,
   },
   run: async ({ message }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
+
+    const url = 'https://api.thecatapi.com/v1/images/search?format=json';
 
     try {
-      const url1 = 'https://api.thecatapi.com/v1/images/search?format=json';
-
-      const response = await axios.get(url1);
+      const response = await axios.get(url);
       const responseData = response.data;
 
-      interface MemeResponse {
+      const data: {
         id: string;
         url: string;
-      }
-
-      const data: MemeResponse = responseData[0];
+      } = responseData[0];
 
       embed
         .setTitle('Cat here')

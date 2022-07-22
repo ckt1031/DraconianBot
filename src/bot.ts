@@ -1,20 +1,34 @@
 import './http/server';
 
-import { Client, Collection, Intents } from 'discord.js';
-import type { SlashCommand, TextCommand } from './sturctures/command';
-import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
-import { loadSlashCommand, loadTextCommand } from './loaders/command';
-
-// Distube
-import { DisTube } from 'distube';
 import { SoundCloudPlugin } from '@distube/soundcloud';
 import { SpotifyPlugin } from '@distube/spotify';
 import { YtDlpPlugin } from '@distube/yt-dlp';
+import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
+import { DisTube } from 'distube';
+
+import { loadSlashCommand, loadTextCommand } from './loaders/command';
+import { loadDiscordEvent, loadMusicEvent } from './loaders/event';
+import type { SlashCommand, TextCommand } from './sturctures/command';
+import { connect } from './utils/database';
+
+connect();
 
 const client = new Client({
-  intents: new Intents(32_767),
+  intents: [
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildVoiceStates,
+  ],
   allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
-  partials: ['GUILD_MEMBER', 'USER', 'MESSAGE', 'CHANNEL', 'REACTION'],
+  partials: [
+    Partials.GuildMember,
+    Partials.User,
+    Partials.Message,
+    Partials.Channel,
+  ],
 });
 
 client.login(process.env.TOKEN);
@@ -23,7 +37,6 @@ client.commands = new Collection();
 client.commandsCatagories = new Collection();
 client.aliases = new Collection();
 client.slashcommands = new Collection();
-client.cooldown = new Collection();
 client.distube = new DisTube(client, {
   // While playing
   leaveOnStop: false,
@@ -33,11 +46,11 @@ client.distube = new DisTube(client, {
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
-  // Misc
-  youtubeDL: false,
   // Plugins
   plugins: [
-    new YtDlpPlugin(),
+    new YtDlpPlugin({
+      update: true,
+    }),
     new SoundCloudPlugin(),
     new SpotifyPlugin({
       emitEventsAfterFetching: true,
@@ -45,11 +58,9 @@ client.distube = new DisTube(client, {
   ],
 });
 
-if (process.env.NODE_ENV === 'production') {
-  process.on('exit', client.destroy);
-  process.on('SIGTERM', client.destroy);
-  process.on('SIGINT', client.destroy);
-}
+process.on('exit', client.destroy);
+process.on('SIGTERM', client.destroy);
+process.on('SIGINT', client.destroy);
 
 loadDiscordEvent(client);
 loadMusicEvent(client);
@@ -62,11 +73,10 @@ if (process.env.CLIENT_ID) {
 // declare types.
 declare module 'discord.js' {
   export interface Client {
-    commands: Collection<string, TextCommand>;
-    commandsCatagories: Collection<string, string[]>;
-    slashcommands: Collection<string, SlashCommand>;
     aliases: Collection<string, string>;
-    cooldown: Collection<string, number | string>;
+    commands: Collection<string, TextCommand>;
+    slashcommands: Collection<string, SlashCommand>;
+    commandsCatagories: Collection<string, string[]>;
     distube: DisTube;
   }
 }

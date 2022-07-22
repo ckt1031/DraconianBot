@@ -1,7 +1,9 @@
-import GIFEncoder from 'gifencoder';
-import { createCanvas, loadImage } from 'canvas';
-
 import type { Image } from 'canvas';
+import { createCanvas, loadImage } from 'canvas';
+import type { GuildMember } from 'discord.js';
+import { AttachmentBuilder } from 'discord.js';
+import GIFEncoder from 'gifencoder';
+
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -22,9 +24,9 @@ export const command: TextCommand = {
 
       if (index === 1) {
         image = author.displayAvatarURL({
-          dynamic: false,
-          format: 'png',
           size: 256,
+          extension: 'png',
+          forceStatic: true,
         });
         break;
       }
@@ -34,21 +36,21 @@ export const command: TextCommand = {
           const idMember = guild.members.cache.get(args[0]);
           if (idMember) {
             image = idMember.user.displayAvatarURL({
-              dynamic: false,
-              format: 'png',
               size: 256,
+              extension: 'png',
+              forceStatic: true,
             });
           }
         } else {
           const username = String(args[0]).toLowerCase();
-          const target = guild.members.cache.find(ur =>
+          const target = guild.members.cache.find((ur: GuildMember) =>
             ur.user.username.toLowerCase().includes(username),
           );
           if (target) {
             image = target.user.displayAvatarURL({
-              dynamic: false,
-              format: 'png',
               size: 256,
+              extension: 'png',
+              forceStatic: true,
             });
           }
         }
@@ -107,10 +109,12 @@ export const command: TextCommand = {
 
     petGifCache.length = 0;
 
+    const attachment = new AttachmentBuilder(gif.out.getData(), {
+      name: `${Date.now()}_trgigered.gif`,
+    });
+
     channel.send({
-      files: [
-        { name: `${Date.now()}_trgigered.gif`, attachment: gif.out.getData() },
-      ],
+      files: [attachment],
     });
   },
 };

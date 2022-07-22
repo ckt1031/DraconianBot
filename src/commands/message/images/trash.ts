@@ -1,8 +1,9 @@
 import { createCanvas, loadImage } from 'canvas';
-
-import { blur } from '../../../utils/canvas';
+import type { GuildMember } from 'discord.js';
+import { AttachmentBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
+import { blur } from '../../../utils/canvas';
 
 export const command: TextCommand = {
   data: {
@@ -22,9 +23,9 @@ export const command: TextCommand = {
 
       if (index === 1) {
         image = author.displayAvatarURL({
-          dynamic: false,
-          format: 'png',
           size: 256,
+          extension: 'png',
+          forceStatic: true,
         });
         break;
       }
@@ -34,19 +35,21 @@ export const command: TextCommand = {
           const idMember = guild.members.cache.get(args[0]);
           if (idMember) {
             image = idMember.user.displayAvatarURL({
-              dynamic: false,
-              format: 'png',
+              size: 256,
+              extension: 'png',
+              forceStatic: true,
             });
           }
         } else {
           const username = String(args[0]).toLowerCase();
-          const target = guild.members.cache.find(ur =>
+          const target = guild.members.cache.find((ur: GuildMember) =>
             ur.user.username.toLowerCase().includes(username),
           );
           if (target) {
             image = target.user.displayAvatarURL({
-              dynamic: false,
-              format: 'png',
+              size: 256,
+              extension: 'png',
+              forceStatic: true,
             });
           }
         }
@@ -66,10 +69,12 @@ export const command: TextCommand = {
     context.drawImage(background, 0, 0);
     context.drawImage(targetImage, 309, 0, 309, 309);
 
+    const attachment = new AttachmentBuilder(canvas.toBuffer(), {
+      name: `${Date.now()}_trash.png`,
+    });
+
     channel.send({
-      files: [
-        { name: `${Date.now()}_trash.png`, attachment: canvas.toBuffer() },
-      ],
+      files: [attachment],
     });
   },
 };

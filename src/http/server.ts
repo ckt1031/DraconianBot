@@ -1,5 +1,5 @@
-import fastify from 'fastify';
 import rateLimit from '@fastify/rate-limit';
+import fastify from 'fastify';
 
 const server = fastify();
 
@@ -11,7 +11,6 @@ server.register(rateLimit, {
 
 server.get('/', async () => 'Draconian Bot');
 
-server.listen(process.env.PORT!, '0.0.0.0', (error, address) => {
-  if (error) throw error;
-  console.log(`HTTP Server Ready!\nServer listening at ${address}`);
+server.listen({
+  port: Number(process.env.PORT!),
 });

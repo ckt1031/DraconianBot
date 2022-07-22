@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
-import { MessageEmbed } from 'discord.js';
-
 import type { GuildMember } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
+
 import type { TextCommand } from '../../../sturctures/command';
 
 export const command: TextCommand = {
@@ -17,27 +17,54 @@ export const command: TextCommand = {
 
     const owner = await guild.fetchOwner();
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setThumbnail(guild.iconURL()!)
       .setTitle(`${guild.name}'s information:`)
-      .addField('Owner', owner.user.tag, true)
-      .addField(
-        'Created on',
-        dayjs(guild.createdAt.getTime()).format('DD/MM/YYYY'),
-        true,
-      )
-      .addField('User Count', guild.memberCount.toString(), true)
-      .addField(
-        'Bot Count',
-        guild.members.cache
-          .filter((m: GuildMember) => m.user.bot)
-          .size.toString(),
-        true,
-      )
-      .addField('Roles', guild.roles.cache.size.toString(), true)
-      .addField('Channels', guild.channels.cache.size.toString(), true)
-      .addField('Emojis', guild.emojis.cache.size.toString(), true)
-      .addField('Verification Level', guild.verificationLevel, true)
+      .addFields([
+        { name: 'Owner', value: owner.user.tag, inline: true },
+
+        {
+          name: 'Created on',
+          value: dayjs(guild.createdAt.getTime()).format('DD/MM/YYYY'),
+          inline: true,
+        },
+
+        {
+          name: 'User Count',
+          value: guild.memberCount.toString(),
+          inline: true,
+        },
+
+        {
+          name: 'Bot Count',
+          value: guild.members.cache
+            .filter((m: GuildMember) => m.user.bot)
+            .size.toString(),
+          inline: true,
+        },
+        {
+          name: 'Roles',
+          value: guild.members.cache
+            .filter((m: GuildMember) => m.user.bot)
+            .size.toString(),
+          inline: true,
+        },
+        {
+          name: 'Roles',
+          value: guild.roles.cache.size.toString(),
+          inline: true,
+        },
+        {
+          name: 'Emojis',
+          value: guild.channels.cache.size.toString(),
+          inline: true,
+        },
+        {
+          name: 'Verification Level',
+          value: guild.verificationLevel.toString(),
+          inline: true,
+        },
+      ])
       .setFooter({
         text: `Shard ID: ${guild.shardId}`,
       });
@@ -45,16 +72,20 @@ export const command: TextCommand = {
     if (guild.description) embed.setDescription(guild.description);
 
     if (guild.premiumSubscriptionCount) {
-      embed.addField(
-        'Total Boosts',
-        guild.premiumSubscriptionCount.toString(),
-        true,
-      );
+      embed.addFields([
+        {
+          name: 'Total Boosts',
+          value: guild.premiumSubscriptionCount.toString(),
+          inline: true,
+        },
+      ]);
     }
 
     if (guild.vanityURLCode) {
       const url = `https://discord.gg/${guild.vanityURLCode}`;
-      embed.addField('Vanity Invite URL', `[${url}](${url})`);
+      embed.addFields([
+        { name: 'Vanity Invite URL', value: `[${url}](${url})` },
+      ]);
     }
 
     message.reply({

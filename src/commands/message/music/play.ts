@@ -1,6 +1,5 @@
-import { callbackEmbed } from '../../../utils/messages';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {
@@ -8,12 +7,17 @@ export const command: TextCommand = {
     aliases: ['p'],
     description: 'Play song.',
     inVoiceChannelRequired: true,
-
     clientRequiredPermissions: [
-      'CONNECT',
-      'PRIORITY_SPEAKER',
-      'SPEAK',
-      'REQUEST_TO_SPEAK',
+      'Connect',
+      'PrioritySpeaker',
+      'Speak',
+      'RequestToSpeak',
+    ],
+    requiredArgs: [
+      {
+        type: 'STRING',
+        rest: true,
+      },
     ],
   },
   run: async ({ message, args }) => {
@@ -30,7 +34,7 @@ export const command: TextCommand = {
     if (!string) {
       const cEmbed = callbackEmbed({
         text: `Please enter a song url or query to search.`,
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({

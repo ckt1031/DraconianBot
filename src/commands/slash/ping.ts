@@ -1,9 +1,8 @@
-import { MessageEmbed } from 'discord.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
-
-import { command as TextCommand } from '../message/general/ping';
+import { EmbedBuilder } from 'discord.js';
 
 import type { SlashCommand } from '../../sturctures/command';
+import { command as TextCommand } from '../message/general/ping';
 
 export const command: SlashCommand = {
   slashData: new SlashCommandBuilder()
@@ -13,7 +12,7 @@ export const command: SlashCommand = {
     const apiDelayMS = Math.round(interaction.client.ws.ping);
     const messageDelayMS = Date.now() - interaction.createdTimestamp;
 
-    const embed = new MessageEmbed().setDescription(
+    const embed = new EmbedBuilder().setDescription(
       `Action Delay: \`${messageDelayMS}ms\`\nAPI Delay: \`${apiDelayMS}ms\``,
     );
 

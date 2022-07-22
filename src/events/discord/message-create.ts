@@ -1,21 +1,22 @@
-import { callbackEmbed } from '../../utils/messages';
-import { parseMsToVisibleText } from '../../utils/formatters';
-import { guildConfiguration, ensureServerData } from '../../utils/database';
-import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
-
-import type { Message, TextChannel, PermissionResolvable } from 'discord.js';
-import type { DiscordEvent } from '../../sturctures/event';
-import type { TextCommand } from '../../sturctures/command';
-import type { GuildConfig } from '../../sturctures/database';
+import type { Message, PermissionResolvable, TextChannel } from 'discord.js';
 
 import { ownerId } from '../../../config/bot.json';
+import type { TextCommand } from '../../sturctures/command';
+import type { GuildConfig } from '../../sturctures/database';
+import type { DiscordEvent } from '../../sturctures/event';
+import { cooldownCache } from '../../utils/cache';
+import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
+import { getServerData } from '../../utils/database';
+import { parseMsToVisibleText } from '../../utils/formatters';
+import { callbackEmbed } from '../../utils/messages';
 
 export const event: DiscordEvent = {
   name: 'messageCreate',
-  run: async (client, message: Message) => {
+  run: async (message: Message) => {
     if (message.partial) await message.fetch();
 
-    const { content, channel, author, webhookId, member, guild } = message;
+    const { content, channel, author, webhookId, member, guild, client } =
+      message;
 
     if (author.bot) return;
     if (webhookId || author.id === client.user?.id) return;
@@ -25,11 +26,7 @@ export const event: DiscordEvent = {
     let guildDatabase: GuildConfig | undefined;
 
     if (guild) {
-      if (!guildConfiguration.has(guild.id)) {
-        ensureServerData(guild.id);
-      }
-
-      guildDatabase = guildConfiguration.get(guild.id);
+      guildDatabase = await getServerData(guild.id);
 
       if (guildDatabase) prefix = guildDatabase.prefix;
 
@@ -108,20 +105,25 @@ export const event: DiscordEvent = {
 
       if (cmdData?.ownerOnly === true && author.id !== ownerId) return;
 
+      // Reject if dm mode while configurated to guild only.
+      if (!guild && !cmdData?.directMessageAllowed) return;
+
       // Reject if command can only be executed NSFW channel when it's not in.
       if (
         cmdData?.nsfwChannelRequired &&
-        (!guild || !channel.isText()) &&
+        (!guild || !channel.isTextBased()) &&
         !(channel as TextChannel).nsfw
       ) {
         const cEmbed = callbackEmbed({
           text: `You must be in **NSFW** channel before executing this commmand.`,
-          color: 'RED',
+          color: 'Red',
           mode: 'error',
         });
-        message.reply({
-          embeds: [cEmbed],
-        });
+        author
+          .send({
+            embeds: [cEmbed],
+          })
+          .catch(() => {});
         return;
       }
 
@@ -151,6 +153,12 @@ export const event: DiscordEvent = {
             .find(x => x.id === channel.id)
             ?.cmds.includes(cmdName)
         ) {
+          author
+            .send({
+              content: `Command cannot be executed in this channel (#${channel.id})!`,
+              allowedMentions: { repliedUser: true },
+            })
+            .catch(() => {});
           return;
         }
 
@@ -171,6 +179,12 @@ export const event: DiscordEvent = {
             .find(x => x.id === author.id)
             ?.cmds.includes(cmdName)
         ) {
+          author
+            .send({
+              content: `You are disabled from executing this command!`,
+              allowedMentions: { repliedUser: true },
+            })
+            .catch(() => {});
           return;
         }
 
@@ -180,7 +194,7 @@ export const event: DiscordEvent = {
         ) {
           const cEmbed = callbackEmbed({
             text: `You must be in voice channel before executing this commmand.`,
-            color: 'RED',
+            color: 'Red',
             mode: 'error',
           });
           message.reply({
@@ -198,28 +212,74 @@ export const event: DiscordEvent = {
       const now = Date.now();
       const keyName = `CMD_${author.id}_${cmdName}`;
 
-      const cooldowns = client.cooldown;
       const cooldownInterval = cmd.data.cooldownInterval ?? 3000;
 
       // Reject if user exists in cooldown.
-      if (cooldowns.has(keyName)) {
-        const expectedEnd = cooldowns.get(keyName);
-        if (expectedEnd && now < expectedEnd) {
+      if (cooldownCache.has(keyName)) {
+        const expectedEnd = cooldownCache.get(keyName);
+        if (expectedEnd && now < Number(expectedEnd)) {
           const timeleft = parseMsToVisibleText(Number(expectedEnd) - now);
           const postMessage = await message.reply({
             content: `Before using this command, please wait for **${timeleft}**.`,
             allowedMentions: { repliedUser: true },
           });
           setTimeout(() => {
-            if (postMessage.deletable) postMessage.delete();
+            if (postMessage.deletable) postMessage.delete().catch(() => {});
           }, 6000);
           return;
         }
       }
 
       // Set cooldown.
-      cooldowns.set(keyName, now + cooldownInterval);
-      setTimeout(() => cooldowns.delete(keyName), cooldownInterval);
+      cooldownCache.set(
+        keyName,
+        now + cooldownInterval,
+        cooldownInterval / 1000,
+      );
+
+      // Reject if excess usage.
+      if (cmd.data.intervalLimit) {
+        const key1 = 'INTERVAL' + keyName;
+
+        let doRejection = { is: false, which: '' };
+        const customTTL = {
+          minute: 60 * 1000,
+          hour: 60 * 60 * 1000,
+          day: 24 * 60 * 60 * 1000,
+        };
+        const intervalList = cmd.data.intervalLimit;
+        for (const [key, ms] of Object.entries(intervalList)) {
+          if (!ms) continue;
+          const keyTyped = key as keyof typeof intervalList;
+          if (!intervalList[keyTyped]) continue;
+
+          const userFeq = cooldownCache.get(keyTyped + key1) ?? '0';
+
+          // Do Rejection if number reached specified amount of allowed cooldown.
+          if (Number(userFeq) === intervalList[keyTyped]) {
+            doRejection = { is: true, which: keyTyped };
+            break;
+          }
+
+          // Set to Database with TTL.
+          cooldownCache.set(
+            keyTyped + key1,
+            (Number(userFeq) + 1).toString(),
+            customTTL[keyTyped],
+          );
+        }
+
+        if (doRejection.is) {
+          const postMessage = await message.reply({
+            content: `You have reached the maxmium usage in 1 **${doRejection.which}**!`,
+            allowedMentions: { repliedUser: true },
+          });
+          setTimeout(() => {
+            if (postMessage.deletable) postMessage.delete().catch(() => {});
+          }, 6000);
+          return;
+        }
+      }
 
       // Permission Check (BOT)
       const requestPermsClient = cmd.data.clientRequiredPermissions;
@@ -239,7 +299,7 @@ export const event: DiscordEvent = {
         if (permMissing.length > 0) {
           const perms = permMissing.map(index => `\`${index}\``).join(', ');
           message.reply({
-            content: `I don't have permission: ${perms}`,
+            content: `I don't have **PERMISSIONS**: ${perms}`,
           });
           return;
         }
@@ -258,7 +318,7 @@ export const event: DiscordEvent = {
         if (permMissing.length > 0) {
           const perms = permMissing.map(index => `\`${index}\``).join(', ');
           message.reply({
-            content: `Missing Permission: \`${perms}\``,
+            content: `You do not have required **PERMISSIONS**: ${perms}`,
           });
           return;
         }
@@ -268,11 +328,72 @@ export const event: DiscordEvent = {
       const arguments_ = parsedContent.split(' ').slice(1);
 
       if (arguments_[0] === 'help') {
-        const helpInfo = getCommandHelpInfo(cmd);
-        message.reply({
-          embeds: [helpInfo],
-        });
+        if (
+          cmd.data.nsfwChannelRequired === true &&
+          (channel as TextChannel).nsfw
+        ) {
+          const helpInfo = getCommandHelpInfo(cmd);
+          message.reply({
+            embeds: [helpInfo],
+          });
+        }
         return;
+      }
+
+      // Arguments Checking
+      const requiredArugments = cmd.data.requiredArgs;
+      if (requiredArugments && requiredArugments?.length! > 0) {
+        let usage = `${prefix}${cmd.data.name}`;
+        for (const _argument_ of requiredArugments) {
+          let namedArguments: string = _argument_.type;
+          if (_argument_.type === 'STRING' && _argument_.text) {
+            namedArguments = _argument_.text?.join(' | ');
+          } else if (_argument_.name) {
+            namedArguments += `(${_argument_.name})`;
+          }
+          usage += ` [${namedArguments}]`;
+        }
+
+        for (
+          let index = 0, l = requiredArugments?.length;
+          index < l!;
+          index++
+        ) {
+          const _argument = requiredArugments[index];
+          const userArgument = arguments_[index];
+
+          switch (_argument.type) {
+            case 'STRING': {
+              if (_argument.required) {
+                if (!userArgument || userArgument.length === 0) {
+                  return reject(message, usage, index.toString());
+                }
+                if (_argument.text && !_argument.text?.includes(userArgument)) {
+                  const text = `${index.toString()} (NOT_MATCH)`;
+                  return reject(message, usage, text);
+                }
+                if (
+                  _argument.text?.length! > _argument.length?.max! ||
+                  _argument.text?.length! < _argument.length?.min!
+                ) {
+                  const text = `${index.toString()} (ERR_Length)`;
+                  return reject(message, usage, text);
+                }
+              }
+              break;
+            }
+            case 'NUMBER': {
+              if (_argument.required && Number.isNaN(Number(userArgument))) {
+                return reject(message, usage, index.toString());
+              }
+              break;
+            }
+            default:
+              break;
+          }
+
+          if (_argument.rest) break;
+        }
       }
 
       try {
@@ -283,3 +404,17 @@ export const event: DiscordEvent = {
     }
   },
 };
+
+async function reject(
+  message: Message,
+  usage: string,
+  missing: string,
+): Promise<void> {
+  const postMessage = await message.reply({
+    content: `Usage: \`${usage}\`\nMissing: \`${missing}\``,
+    allowedMentions: { repliedUser: true },
+  });
+  setTimeout(() => {
+    if (postMessage.deletable) postMessage.delete().catch(() => {});
+  }, 6000);
+}

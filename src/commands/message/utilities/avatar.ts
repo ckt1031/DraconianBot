@@ -1,4 +1,5 @@
-import { MessageEmbed } from 'discord.js';
+import type { GuildMember } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -10,7 +11,7 @@ export const command: TextCommand = {
     directMessageAllowed: true,
   },
   run: async ({ message, args }) => {
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
 
     const { guild, mentions, author } = message;
 
@@ -25,7 +26,7 @@ export const command: TextCommand = {
           }
         } else {
           const username = String(args[0]).toLowerCase();
-          const target = guild.members.cache.find(ur =>
+          const target = guild.members.cache.find((ur: GuildMember) =>
             ur.user.username.toLowerCase().includes(username),
           );
           if (target) targetUser = target.user;
@@ -38,8 +39,6 @@ export const command: TextCommand = {
     if (!targetUser) targetUser = author;
 
     const avatarURL = targetUser.displayAvatarURL({
-      dynamic: false,
-      format: 'png',
       size: 4096,
     });
 

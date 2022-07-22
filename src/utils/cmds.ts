@@ -1,25 +1,49 @@
-import { findBestMatch } from 'string-similarity';
-import { MessageActionRow, MessageButton, MessageEmbed } from 'discord.js';
-
 import type {
   CollectorFilter,
   Message,
   MessageComponentInteraction,
 } from 'discord.js';
+import {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  EmbedBuilder,
+} from 'discord.js';
+import { findBestMatch } from 'string-similarity';
+
 import type { TextCommand } from '../sturctures/command';
 
 /** Send command information message embed. */
-export function getCommandHelpInfo(cmd: TextCommand): MessageEmbed {
-  const embed = new MessageEmbed()
+export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
+  const embed = new EmbedBuilder()
     .setTitle(`Command: ${cmd.data.name}`)
-    .addField('Description', cmd.data.description);
-  if (cmd.data.usage) embed.addField('Usage', cmd.data.usage);
-  embed
-    .addField('Catagory', cmd.data.catagory!, true)
-    .addField(
-      'Cooldown',
-      `${cmd.data.cooldownInterval! / 1000 || '3'} seconds`,
-    );
+    .addFields([{ name: 'Description', value: cmd.data.description }]);
+  if (cmd.data.usage) {
+    embed.addFields([{ name: 'Usage', value: cmd.data.usage }]);
+  }
+
+  embed.addFields([
+    { name: 'Catagory', value: cmd.data.catagory!, inline: true },
+    {
+      name: 'Cooldown',
+      value: `${cmd.data.cooldownInterval! / 1000 || '3'} seconds`,
+      inline: true,
+    },
+  ]);
+
+  if (cmd.data.intervalLimit) {
+    embed.addFields([
+      {
+        name: 'Allowed Intervals',
+        value: Object.entries(cmd.data.intervalLimit)
+          .map(value => {
+            return `${value[0]} - \`${value[1]}\``;
+          })
+          .join('\n'),
+        inline: false,
+      },
+    ]);
+  }
   return embed;
 }
 
@@ -44,16 +68,19 @@ export async function resembleCommandCheck(
   const acceptButtonId = 'accCMD';
   const declineButtonId = 'denCMD';
 
-  const acceptButton = new MessageButton()
-    .setStyle('SUCCESS')
+  const acceptButton = new ButtonBuilder()
+    .setStyle(ButtonStyle.Success)
     .setEmoji('👍')
     .setCustomId(acceptButtonId);
-  const declineButton = new MessageButton()
-    .setStyle('DANGER')
+  const declineButton = new ButtonBuilder()
+    .setStyle(ButtonStyle.Danger)
     .setEmoji('👎')
     .setCustomId(declineButtonId);
 
-  const row = new MessageActionRow().addComponents(acceptButton, declineButton);
+  const row: ActionRowBuilder<any> = new ActionRowBuilder().addComponents([
+    acceptButton,
+    declineButton,
+  ]);
 
   const matchRate = Number(bestMatch.rating.toFixed(2));
 
@@ -78,7 +105,11 @@ export async function resembleCommandCheck(
         time: 30_000,
       })
       .then(async _inter => {
-        await _message.delete();
+        // Delete message first
+        if (_message.deletable) {
+          // eslint-disable-next-line promise/no-nesting
+          await _message.delete().catch(() => {});
+        }
         if (_inter.customId === acceptButtonId) {
           const timeTaken = timeStarted - Date.now();
           return resolve({ name: bestMatch.target, timeTaken });

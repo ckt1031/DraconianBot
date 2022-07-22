@@ -1,9 +1,8 @@
 import 'dotenv/config';
 
-import { basename } from 'node:path';
-
 import chalk from 'chalk';
 import { ShardingManager } from 'discord.js';
+import { basename } from 'node:path';
 
 import { useShards } from '../config/bot.json';
 

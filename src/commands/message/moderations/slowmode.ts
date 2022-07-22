@@ -1,24 +1,30 @@
+import type { TextChannel } from 'discord.js';
 import ms from 'ms';
 
-import { callbackEmbed } from '../../../utils/messages';
-
-import type { TextChannel } from 'discord.js';
 import type { TextCommand } from '../../../sturctures/command';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {
     name: 'slowmode',
     description: "Configure channel's slowmode",
     cooldownInterval: 25 * 1000,
-    authorRequiredPermissions: ['MANAGE_CHANNELS', 'MANAGE_MESSAGES'],
-    clientRequiredPermissions: ['MANAGE_CHANNELS', 'MANAGE_MESSAGES'],
+    authorRequiredPermissions: ['ManageChannels', 'ManageMessages'],
+    clientRequiredPermissions: ['ManageChannels', 'ManageMessages'],
+    requiredArgs: [
+      {
+        name: 'duration',
+        type: 'STRING',
+        rest: true,
+      },
+    ],
   },
   run: async ({ message, args }) => {
     const duration = args[0];
 
     const { channel } = message;
 
-    if (channel.isText()) {
+    if (channel.isTextBased()) {
       if (!duration) return;
 
       const seconds = ms(duration) / 1000;
@@ -26,7 +32,7 @@ export const command: TextCommand = {
       if (Number.isNaN(seconds) || seconds < 0 || seconds > 21_601) {
         const cEmbed = callbackEmbed({
           text: 'Specified duration is not valid!',
-          color: 'RED',
+          color: 'Red',
           mode: 'error',
         });
         message.reply({
@@ -40,7 +46,7 @@ export const command: TextCommand = {
       if (textChannel.rateLimitPerUser === seconds) {
         const cEmbed = callbackEmbed({
           text: `Remain unchanged: \`${duration}\``,
-          color: 'GREEN',
+          color: 'Green',
           mode: 'success',
         });
 
@@ -54,7 +60,7 @@ export const command: TextCommand = {
 
       const cEmbed = callbackEmbed({
         text: `Successfully configurated: \`${duration}\``,
-        color: 'GREEN',
+        color: 'Green',
         mode: 'success',
       });
 

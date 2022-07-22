@@ -20,6 +20,12 @@ export const command: TextCommand = {
     ownerOnly: true,
     developmentOnly: true,
     directMessageAllowed: true,
+    requiredArgs: [
+      {
+        type: 'STRING',
+        rest: true,
+      },
+    ],
   },
   run: async ({ message, args }) => {
     const code = args.join(' ');

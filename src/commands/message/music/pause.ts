@@ -1,18 +1,16 @@
-import { callbackEmbed } from '../../../utils/messages';
-
 import type { TextCommand } from '../../../sturctures/command';
+import { callbackEmbed } from '../../../utils/messages';
 
 export const command: TextCommand = {
   data: {
     name: 'pause',
     description: 'Pause song.',
     inVoiceChannelRequired: true,
-
     clientRequiredPermissions: [
-      'CONNECT',
-      'PRIORITY_SPEAKER',
-      'SPEAK',
-      'REQUEST_TO_SPEAK',
+      'Connect',
+      'PrioritySpeaker',
+      'Speak',
+      'RequestToSpeak',
     ],
   },
   run: async ({ message }) => {
@@ -29,7 +27,7 @@ export const command: TextCommand = {
     if (!queue) {
       const cEmbed = callbackEmbed({
         text: `There is **NOTHING** in the queue right now!`,
-        color: 'RED',
+        color: 'Red',
         mode: 'error',
       });
       message.reply({
@@ -44,7 +42,7 @@ export const command: TextCommand = {
 
       const cEmbed = callbackEmbed({
         text: `**Resumed** the song for you.`,
-        color: 'GREEN',
+        color: 'Green',
         mode: 'success',
       });
       message.reply({
@@ -58,7 +56,7 @@ export const command: TextCommand = {
 
     const cEmbed = callbackEmbed({
       text: `**Paused** the song for you.`,
-      color: 'GREEN',
+      color: 'Green',
       mode: 'success',
     });
     message.reply({

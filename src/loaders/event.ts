@@ -1,8 +1,8 @@
-import glob from 'glob';
 import chalk from 'chalk';
+import type { Client } from 'discord.js';
+import glob from 'glob';
 import { join } from 'node:path';
 
-import type { Client } from 'discord.js';
 import type { DiscordEvent, DistubeEvent } from '../sturctures/event';
 
 export async function loadDiscordEvent(client: Client) {
@@ -33,9 +33,11 @@ export async function loadDiscordEvent(client: Client) {
 
       // Check triggering mode.
       if (event.once === true) {
-        client.once(event.name, event.run.bind(undefined, client));
+        // eslint-disable-next-line unicorn/no-useless-undefined
+        client.once(event.name, event.run.bind(undefined));
       } else {
-        client.on(event.name, event.run.bind(undefined, client));
+        // eslint-disable-next-line unicorn/no-useless-undefined
+        client.on(event.name, event.run.bind(undefined));
       }
       // Remove cache.
       delete require.cache[require.resolve(filePath)];
@@ -68,7 +70,7 @@ export async function loadMusicEvent(client: Client) {
       const eventFile = require(filePath);
       const event: DistubeEvent = eventFile.event;
 
-      // Check triggering mode.
+      // @ts-ignore
       client.distube.on(event.name, event.run.bind(undefined, client));
 
       // Remove cache.
