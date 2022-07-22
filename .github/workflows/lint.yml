@@ -6,7 +6,7 @@ on:
     - cron: '13 21 * * *'
   push:
     branches:
-      - dev
+      - ['dev', 'main']
     paths:
       - '**.js'
       - '**.jsx'
