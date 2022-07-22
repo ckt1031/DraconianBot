@@ -34,7 +34,7 @@ jobs:
           version: latest
 
       - name: Install Dependencies
-        run: pnpm i --legacy-peer-deps
+        run: pnpm i
 
       - name: Init Project
         run: pnpx ts-node ./tools/copy-config.ts
