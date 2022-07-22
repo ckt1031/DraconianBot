@@ -1,5 +1,5 @@
 import type { TextCommand } from '../../../sturctures/command';
-import { ensureServerData, guildConfiguration } from '../../../utils/database';
+import { getServerData } from '../../../utils/database';
 import { callbackEmbed } from '../../../utils/messages';
 import { confirmInformationButtons } from '../../../utils/messages';
 
@@ -39,7 +39,10 @@ export const command: TextCommand = {
     }
 
     const targetPrefix: string = args[0];
-    const originalPrefix = guildConfiguration.get(guild.id)?.prefix;
+
+    const serverData = await getServerData(guild.id);
+
+    const originalPrefix = serverData.prefix;
 
     if (!targetPrefix || targetPrefix.length > 3) {
       const cEmbed = callbackEmbed({
@@ -64,8 +67,6 @@ export const command: TextCommand = {
       });
       return;
     }
-
-    ensureServerData(guild.id);
 
     const fields = [
       {
@@ -92,8 +93,9 @@ export const command: TextCommand = {
     });
 
     if (status) {
-      // Set to database.
-      guildConfiguration.set(guild.id, targetPrefix, 'prefix');
+      serverData.prefix = targetPrefix;
+
+      await serverData.save();
 
       const cEmbed = callbackEmbed({
         text: `Bot's prefix successfully configurated: \`${targetPrefix}\``,

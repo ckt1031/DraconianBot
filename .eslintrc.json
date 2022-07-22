@@ -6,7 +6,13 @@
     "es6": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "unicorn", "sonarjs", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "unicorn",
+    "sonarjs",
+    "prettier",
+    "simple-import-sort"
+  ],
   "extends": [
     "prettier",
     "eslint:recommended",
@@ -20,7 +26,9 @@
   "rules": {
     "semi": [2, "always"],
     "unicorn/prefer-module": 0,
-    "sonarjs/cognitive-complexity": 0
+    "sonarjs/cognitive-complexity": 0,
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   },
   "settings": {
     "import/resolver": {

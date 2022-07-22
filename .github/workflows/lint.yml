@@ -17,40 +17,33 @@ on:
 jobs:
   Analyze:
     name: Project Analyzing
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     timeout-minutes: 5
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [16.x]
 
     steps:
       - name: Checkout Repositary
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: latest
 
       - name: Install Dependencies
-        run: npm i --legacy-peer-deps
-
-      - name: Formate All JSON File
-        run: npx prettier-package-json --write **/*.json *.json
-
-      # - name: Check NPM Peer Dependencies
-      #   run: npx check-peer-dependencies
+        run: pnpm i --legacy-peer-deps
 
       - name: Init Project
-        run: npx ts-node ./tools/copy-config.ts
+        run: pnpx ts-node ./tools/copy-config.ts
 
       - name: Lint Project
-        run: npm run lint
+        run: pnpm lint
 
       - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v9
+        uses: tj-actions/verify-changed-files@v10
         id: verify-changed-files
         with:
           files: |
@@ -67,8 +60,8 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
           git init
-          git config --global user.email "realkoolisw@gmail.com"
-          git config --global user.name "RealKoolisw"
+          git config --global user.email "cktsun1031@gmail.com"
+          git config --global user.name "cktsun1031"
           git add .
           git commit -m "Auto Lint & Analyzed"
           git push

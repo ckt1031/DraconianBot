@@ -1,5 +1,5 @@
-import { EmbedBuilder } from 'discord.js';
 import type { TextChannel } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import { define } from 'urban-dictionary';
 
 import type { TextCommand } from '../../../sturctures/command';

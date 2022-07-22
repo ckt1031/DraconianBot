@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
-import { EmbedBuilder } from 'discord.js';
 import type { TextChannel, ThreadChannel, VoiceChannel } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -24,8 +24,8 @@ export const command: TextCommand = {
       if (fetchedChannel) targetChannel = fetchedChannel;
       else {
         const name = String(targetNameId).toLowerCase();
-        const fetchedChannelByKW = guild.channels.cache.find(ur =>
-          ur.name.toLowerCase().includes(name),
+        const fetchedChannelByKW = guild.channels.cache.find(
+          (ur: TextChannel) => ur.name.toLowerCase().includes(name),
         );
         if (fetchedChannelByKW) targetChannel = fetchedChannelByKW;
       }

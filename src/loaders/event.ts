@@ -3,8 +3,6 @@ import type { Client } from 'discord.js';
 import glob from 'glob';
 import { join } from 'node:path';
 
-import distube from '../distube';
-
 import type { DiscordEvent, DistubeEvent } from '../sturctures/event';
 
 export async function loadDiscordEvent(client: Client) {
@@ -72,7 +70,8 @@ export async function loadMusicEvent(client: Client) {
       const eventFile = require(filePath);
       const event: DistubeEvent = eventFile.event;
 
-      distube.on(event.name, event.run.bind(undefined, client));
+      // @ts-ignore
+      client.distube.on(event.name, event.run.bind(undefined, client));
 
       // Remove cache.
       delete require.cache[require.resolve(filePath)];

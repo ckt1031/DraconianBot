@@ -1,15 +1,15 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  EmbedBuilder,
-} from 'discord.js';
 import type {
   CollectorFilter,
   ColorResolvable,
   EmbedField,
   Message,
   MessageComponentInteraction,
+} from 'discord.js';
+import {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  EmbedBuilder,
 } from 'discord.js';
 
 import emoji from '../../config/emojis.json';

@@ -1,13 +1,13 @@
+import type {
+  CollectorFilter,
+  Message,
+  MessageComponentInteraction,
+} from 'discord.js';
 import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
   EmbedBuilder,
-} from 'discord.js';
-import type {
-  CollectorFilter,
-  Message,
-  MessageComponentInteraction,
 } from 'discord.js';
 import { findBestMatch } from 'string-similarity';
 

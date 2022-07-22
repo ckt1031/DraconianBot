@@ -1,5 +1,7 @@
+import type { EmbedField } from 'discord.js';
+
 import type { TextCommand } from '../../../sturctures/command';
-import { guildConfiguration } from '../../../utils/database';
+import { getServerData } from '../../../utils/database';
 import { callbackEmbed } from '../../../utils/messages';
 import { confirmInformationButtons } from '../../../utils/messages';
 
@@ -36,8 +38,9 @@ export const command: TextCommand = {
       return;
     }
 
-    const originalPrefix = guildConfiguration.get(guild.id)?.commands.global
-      .disabled;
+    const guildData = await getServerData(guild.id);
+
+    const originalPrefix = guildData.commands.global.disabled;
 
     if (!originalPrefix || originalPrefix?.includes(targetCommand)) {
       const cEmbed = callbackEmbed({
@@ -65,10 +68,11 @@ export const command: TextCommand = {
       return;
     }
 
-    const fields = [
+    const fields: EmbedField[] = [
       {
         name: 'Action',
         value: `\`\`\`Disable command that's enabled in this server.\`\`\``,
+        inline: false,
       },
       {
         name: 'Command',
@@ -89,11 +93,9 @@ export const command: TextCommand = {
     });
 
     if (status) {
-      guildConfiguration.push(
-        guild.id,
-        commandMatching.data.name,
-        'commands.global.disabled',
-      );
+      guildData.commands.global.disabled.push(commandMatching.data.name);
+
+      await guildData.save();
 
       const cEmbed = callbackEmbed({
         text: `Successfully disabled command: \`${commandMatching.data.name}\``,

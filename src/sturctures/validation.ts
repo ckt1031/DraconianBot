@@ -24,4 +24,4 @@ enum CheckSpam {
   Error = 999,
 }
 
-export { CheckInviteLinks, CheckMentions, CheckSpam, CheckLinks };
+export { CheckInviteLinks, CheckLinks, CheckMentions, CheckSpam };

@@ -1,5 +1,6 @@
-import { createCanvas, loadImage } from 'canvas';
 import type { Image } from 'canvas';
+import { createCanvas, loadImage } from 'canvas';
+import type { GuildMember } from 'discord.js';
 import { AttachmentBuilder } from 'discord.js';
 import GIFEncoder from 'gifencoder';
 
@@ -42,7 +43,7 @@ export const command: TextCommand = {
           }
         } else {
           const username = String(args[0]).toLowerCase();
-          const target = guild.members.cache.find(ur =>
+          const target = guild.members.cache.find((ur: GuildMember) =>
             ur.user.username.toLowerCase().includes(username),
           );
           if (target) {

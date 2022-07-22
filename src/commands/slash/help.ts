@@ -1,8 +1,8 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { EmbedBuilder } from 'discord.js';
 import type { TextChannel } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
-import { name as botname, githubLink } from '../../../config/bot.json';
+import { githubLink, name as botname } from '../../../config/bot.json';
 import type { SlashCommand, TextCommand } from '../../sturctures/command';
 import { getCommandHelpInfo } from '../../utils/cmds';
 import { callbackEmbed } from '../../utils/messages';

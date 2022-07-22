@@ -1,15 +1,19 @@
 import { REST } from '@discordjs/rest';
 import chalk from 'chalk';
+import type { Client } from 'discord.js';
 import {
   RESTPostAPIApplicationCommandsJSONBody,
   Routes,
 } from 'discord-api-types/v9';
-import type { Client } from 'discord.js';
 import glob from 'glob';
 import { basename, dirname, join } from 'node:path';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
 import type { SlashCommand, TextCommand } from '../sturctures/command';
+
+interface TextCommandCatagories {
+  [key: string]: string[];
+}
 
 /** Text Command Loaders */
 export async function loadTextCommand(client: Client): Promise<void> {
@@ -31,11 +35,7 @@ export async function loadTextCommand(client: Client): Promise<void> {
       );
     }
 
-    interface Catagories {
-      [key: string]: string[];
-    }
-
-    let catagories: Catagories = {};
+    let catagories: TextCommandCatagories = {};
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
       const filePath = allFiles[index];

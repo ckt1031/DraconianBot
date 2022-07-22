@@ -1,8 +1,8 @@
 import type { Message } from 'discord.js';
 
-import type { DiscordEvent } from '../../sturctures/event';
 import Server from '../../models/server';
 import Snipe from '../../models/snipe';
+import type { DiscordEvent } from '../../sturctures/event';
 
 export const event: DiscordEvent = {
   name: 'messageDelete',
@@ -18,18 +18,14 @@ export const event: DiscordEvent = {
 
       // Validate whether it can be stored into Sniping system.
       if (
+        config &&
         !config?.snipe.channelDisabled.includes(channel.id) &&
         client.user?.id !== author.id
       ) {
+        const filter = { channelId: channel.id };
         const snipes = Snipe.findOne({
-          channelId: channel.id,
+          ...filter,
         });
-
-        const modelData = snipes ?? { data: [] };
-
-        if (!modelData.data) {
-          modelData.data = [];
-        }
 
         const snipe = {
           author: {
@@ -43,14 +39,22 @@ export const event: DiscordEvent = {
           },
         };
 
-        modelData.data.unshift(snipe);
-
-        if (modelData.data.length >= 4) {
-          modelData.data.pop();
+        if (!snipes) {
+          const nSnipe = new Snipe({
+            ...filter,
+            ...snipe,
+          });
+          await nSnipe.save().catch(() => {});
+        } else {
+          await Snipe.updateOne(
+            { ...filter },
+            {
+              $set: {
+                ...snipe,
+              },
+            },
+          );
         }
-
-        // Set to database.
-        snipeDatabase.set(channel.id, modelData);
       }
     }
   },

@@ -1,7 +1,7 @@
 import type { Channel, TextChannel } from 'discord.js';
 
-import type { DiscordEvent } from '../../sturctures/event';
 import Snipe from '../../models/snipe';
+import type { DiscordEvent } from '../../sturctures/event';
 
 export const event: DiscordEvent = {
   name: 'channelDelete',

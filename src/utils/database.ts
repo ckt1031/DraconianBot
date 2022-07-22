@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 import Server from '../models/server';
 
 export function connect() {

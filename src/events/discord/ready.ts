@@ -1,5 +1,5 @@
-import { ActivityType } from 'discord.js';
 import type { Client, Guild } from 'discord.js';
+import { ActivityType } from 'discord.js';
 
 import { defaultPrefix } from '../../../config/bot.json';
 import type { DiscordEvent } from '../../sturctures/event';
