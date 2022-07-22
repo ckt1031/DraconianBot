@@ -1,5 +1,6 @@
 export interface GuildConfig {
   prefix: string;
+  serverId: string;
   commands: {
     global: {
       // Access
@@ -52,7 +53,8 @@ export interface GuildConfig {
   };
 }
 
-interface SnipeData {
+export interface SnipeConfig {
+  channelId: string;
   author: {
     id: string;
     name: string;
@@ -62,8 +64,4 @@ interface SnipeData {
     date: number;
     imageURL: string | undefined;
   };
-}
-
-export interface SnipeConfig {
-  data: SnipeData[];
 }

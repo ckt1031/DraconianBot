@@ -8,7 +8,7 @@ import type { DiscordEvent } from '../../sturctures/event';
 import { CheckSpam } from '../../sturctures/validation';
 import { cooldownCache } from '../../utils/cache';
 import { getCommandHelpInfo, resembleCommandCheck } from '../../utils/cmds';
-import { ensureServerData, guildConfiguration } from '../../utils/database';
+import { getServerData } from '../../utils/database';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { callbackEmbed } from '../../utils/messages';
 
@@ -36,11 +36,7 @@ export const event: DiscordEvent = {
     let guildDatabase: GuildConfig | undefined;
 
     if (guild) {
-      if (!guildConfiguration.has(guild.id)) {
-        ensureServerData(guild.id);
-      }
-
-      guildDatabase = guildConfiguration.get(guild.id);
+      guildDatabase = await getServerData(guild.id);
 
       // Spam Checks
       if (guildDatabase?.antiSpam.enabled === true) {

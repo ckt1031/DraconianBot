@@ -1,37 +1,29 @@
 import type { Message } from 'discord.js';
 
 import type { DiscordEvent } from '../../sturctures/event';
-import {
-  ensureServerData,
-  ensureSnipeChannel,
-  guildConfiguration,
-  snipeDatabase,
-} from '../../utils/database';
+import Server from '../../models/server';
+import Snipe from '../../models/snipe';
 
 export const event: DiscordEvent = {
   name: 'messageDelete',
   run: async (message: Message) => {
-    // if (message.partial) {
-    //   await message.fetch();
-    // }
-
     const { guild, channel, content, attachments, author, client } = message;
 
     const condition = channel.isThread() || channel.isTextBased();
 
     if (guild && condition) {
-      const config = guildConfiguration.get(guild.id);
-
-      ensureServerData(guild.id);
+      const config = await Server.findOne({
+        serverId: guild.id,
+      });
 
       // Validate whether it can be stored into Sniping system.
       if (
         !config?.snipe.channelDisabled.includes(channel.id) &&
         client.user?.id !== author.id
       ) {
-        ensureSnipeChannel(channel.id);
-
-        const snipes = snipeDatabase.get(channel.id);
+        const snipes = Snipe.findOne({
+          channelId: channel.id,
+        });
 
         const modelData = snipes ?? { data: [] };
 

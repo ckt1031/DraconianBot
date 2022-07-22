@@ -31,8 +31,8 @@ This branch will be bumped to RELEASE channel after discord.js v14 is completely
 
 1. NodeJS v16.9.0 or later (LTS/Latest)
    > Extra: Python3, FFmpeg, Build-essential, etc.
-1. Required RAM: 512 MB (Consider by amount of servers)
-1. Required Storage: 1 GB (20% Database)
+1. Required RAM: 512 MB (Considered by the amount of servers)
+1. Required Storage: 1 GB
 1. Required core of CPU: 1
 
 ### Initiation
@@ -42,6 +42,7 @@ This branch will be bumped to RELEASE channel after discord.js v14 is completely
 ```
 TOKEN=XXXXX.ABCDEFG
 CLIENT_ID=XXXXXXXXXXXXXXXXXX
+MONGODB_URL=XXXXXXXXXXXXXXXX
 ```
 
 - Install Required Dependencies
@@ -56,7 +57,7 @@ npm install
 npm run build
 ```
 
-- Copy Config (For FIRST / AFTER SYNCED)\
+- Copy Config (For FIRST / AFTER SYNCED)
   > Save the config first!
 
 ```

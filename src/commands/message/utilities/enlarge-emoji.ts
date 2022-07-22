@@ -1,4 +1,4 @@
-import { EmbedBuilder, Util } from 'discord.js';
+import { EmbedBuilder, Utils } from 'discord.js';
 import { parse } from 'twemoji-parser';
 
 import type { TextCommand } from '../../../sturctures/command';
@@ -27,7 +27,7 @@ export const command: TextCommand = {
       return;
     }
 
-    const emojiParsed = Util.parseEmoji(emoji);
+    const emojiParsed = Utils.isLinkButton(emoji);
 
     if (!emojiParsed) {
       const cEmbed = callbackEmbed({

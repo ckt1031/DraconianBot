@@ -7,7 +7,7 @@ import {
 import type {
   CollectorFilter,
   ColorResolvable,
-  EmbedFieldData,
+  EmbedField,
   Message,
   MessageComponentInteraction,
 } from 'discord.js';
@@ -17,7 +17,7 @@ import emoji from '../../config/emojis.json';
 interface ConfirmInformationButtons {
   title: string;
   message: Message;
-  fields: EmbedFieldData[];
+  fields: EmbedField[];
 }
 
 export async function confirmInformationButtons({
