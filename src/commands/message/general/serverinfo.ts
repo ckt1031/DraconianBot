@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import type { GuildMember } from 'discord.js';
 import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
@@ -18,7 +17,7 @@ export const command: TextCommand = {
     const owner = await guild.fetchOwner();
 
     const embed = new EmbedBuilder()
-      .setThumbnail(guild.iconURL()!)
+      .setThumbnail(guild.iconURL() ?? '')
       .setTitle(`${guild.name}'s information:`)
       .addFields([
         { name: 'Owner', value: owner.user.tag, inline: true },
@@ -37,16 +36,12 @@ export const command: TextCommand = {
 
         {
           name: 'Bot Count',
-          value: guild.members.cache
-            .filter((m: GuildMember) => m.user.bot)
-            .size.toString(),
+          value: guild.members.cache.filter(mb => mb.user.bot).size.toString(),
           inline: true,
         },
         {
           name: 'Roles',
-          value: guild.members.cache
-            .filter((m: GuildMember) => m.user.bot)
-            .size.toString(),
+          value: guild.members.cache.filter(mb => mb.user.bot).size.toString(),
           inline: true,
         },
         {

@@ -78,7 +78,7 @@ export const command: TextCommand = {
       ]);
 
       embed.setFooter({
-        iconURL: guild.iconURL()!,
+        iconURL: guild.iconURL() ?? '',
         text: `Shard ID: ${guild.shardId}`,
       });
 
@@ -125,7 +125,7 @@ export const command: TextCommand = {
       ]);
 
       embed.setFooter({
-        iconURL: guild.iconURL()!,
+        iconURL: guild.iconURL() ?? '',
         text: `Shard ID: ${guild.shardId}`,
       });
 
@@ -175,7 +175,7 @@ export const command: TextCommand = {
       ]);
 
       embed.setFooter({
-        iconURL: guild.iconURL()!,
+        iconURL: guild.iconURL() ?? '',
         text: `Shard ID: ${guild.shardId}`,
       });
 

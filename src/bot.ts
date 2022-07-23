@@ -31,8 +31,6 @@ const client = new Client({
   ],
 });
 
-client.login(process.env.TOKEN);
-
 client.commands = new Collection();
 client.commandsCatagories = new Collection();
 client.aliases = new Collection();
@@ -58,16 +56,13 @@ client.distube = new DisTube(client, {
   ],
 });
 
-process.on('exit', client.destroy);
-process.on('SIGTERM', client.destroy);
-process.on('SIGINT', client.destroy);
-
 loadDiscordEvent(client);
 loadMusicEvent(client);
 loadTextCommand(client);
 
-if (process.env.CLIENT_ID) {
-  loadSlashCommand(client, process.env.CLIENT_ID!, process.env.TOKEN!);
+if (process.env.CLIENT_ID && process.env.TOKEN) {
+  client.login(process.env.TOKEN);
+  loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
 }
 
 // declare types.

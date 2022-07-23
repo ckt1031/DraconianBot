@@ -12,5 +12,5 @@ server.register(rateLimit, {
 server.get('/', async () => 'Draconian Bot');
 
 server.listen({
-  port: Number(process.env.PORT!),
+  port: Number(process.env.PORT ?? 3000),
 });

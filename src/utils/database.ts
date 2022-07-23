@@ -17,7 +17,7 @@ export async function getServerData(serverId: string) {
     serverData = new Server({
       serverId,
     });
-    await serverData.save().catch(error => console.log(error));
+    await serverData.save();
   }
 
   return serverData;

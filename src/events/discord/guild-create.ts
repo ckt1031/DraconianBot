@@ -6,6 +6,6 @@ import { getServerData } from '../../utils/database';
 export const event: DiscordEvent = {
   name: 'guildCreate',
   run: async (guild: Guild) => {
-    getServerData(guild.id);
+    await getServerData(guild.id);
   },
 };

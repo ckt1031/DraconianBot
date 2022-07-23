@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import type { Client } from 'discord.js';
 import glob from 'glob';
 import { join } from 'node:path';
@@ -17,11 +16,7 @@ export async function loadDiscordEvent(client: Client) {
     if (error) throw error;
 
     if (allFiles.length === 0) {
-      console.log(
-        chalk.blueBright.bold(
-          '\nWARNING: Cannot find any possible event target.\n',
-        ),
-      );
+      return;
     }
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
@@ -56,11 +51,7 @@ export async function loadMusicEvent(client: Client) {
   glob(folderPath, (error, allFiles) => {
     if (error) throw error;
     if (allFiles.length === 0) {
-      console.log(
-        chalk.blueBright.bold(
-          '\nWARNING: Cannot find any possible music event target.\n',
-        ),
-      );
+      return;
     }
 
     for (let index = 0, l = allFiles.length; index < l; index++) {

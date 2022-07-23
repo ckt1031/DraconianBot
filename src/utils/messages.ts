@@ -75,7 +75,7 @@ interface CallbackEmbed {
 
 export function callbackEmbed({
   text,
-  color,
+  color = 'Grey',
   mode,
 }: CallbackEmbed): EmbedBuilder {
   let emojiText = '';
@@ -86,5 +86,5 @@ export function callbackEmbed({
 
   return new EmbedBuilder()
     .setDescription(`${emojiText} ${text}`)
-    .setColor(color!);
+    .setColor(color);
 }

@@ -49,7 +49,7 @@ export const command: SlashCommand = {
 
       embed.setTitle('Bot Assistance Centre').setFooter({
         text: `© ${new Date().getFullYear()} ${botname}`,
-        iconURL: avatarURL!,
+        iconURL: avatarURL ?? '',
       });
 
       interaction.reply({

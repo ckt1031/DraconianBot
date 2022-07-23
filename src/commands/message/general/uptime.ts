@@ -10,7 +10,7 @@ export const command: TextCommand = {
     directMessageAllowed: true,
   },
   run: async ({ message }) => {
-    const instanceBoot = message.client.uptime!;
+    const instanceBoot = message.client.uptime ?? 0;
     const bootTimeMS = Math.round((Date.now() - instanceBoot) / 1000);
 
     const embed = new EmbedBuilder()

@@ -62,11 +62,13 @@ export const event: DiscordEvent = {
 
         if (commandMatching) {
           cmd = commandMatching;
-          cmdName = cmd?.data.name!;
+          cmdName = cmd?.data.name;
           break;
         } else if (aliasesMatching) {
           cmd = client.commands.get(aliasesMatching);
-          cmdName = cmd?.data.name!;
+          if (cmd) {
+            cmdName = cmd.data.name;
+          }
           break;
         } else {
           if (index === 0) {
@@ -84,14 +86,14 @@ export const event: DiscordEvent = {
         }
       }
 
-      const cmdData = cmd!.data;
+      // Reject if no.
+      if (!cmd) return;
+
+      const cmdData = cmd.data;
 
       /**
        * Command's eligibility vaildation.
        */
-
-      // Reject if no.
-      if (!cmd) return;
 
       if (cmd.enabled === false) return;
 
@@ -342,7 +344,7 @@ export const event: DiscordEvent = {
 
       // Arguments Checking
       const requiredArugments = cmd.data.requiredArgs;
-      if (requiredArugments && requiredArugments?.length! > 0) {
+      if (requiredArugments && requiredArugments.length > 0) {
         let usage = `${prefix}${cmd.data.name}`;
         for (const _argument_ of requiredArugments) {
           let namedArguments: string = _argument_.type;
@@ -354,11 +356,7 @@ export const event: DiscordEvent = {
           usage += ` [${namedArguments}]`;
         }
 
-        for (
-          let index = 0, l = requiredArugments?.length;
-          index < l!;
-          index++
-        ) {
+        for (let index = 0, l = requiredArugments?.length; index < l; index++) {
           const _argument = requiredArugments[index];
           const userArgument = arguments_[index];
 
