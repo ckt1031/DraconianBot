@@ -16,7 +16,7 @@ export const command: TextCommand = {
       {
         type: 'STRING',
         rest: true,
-        length: {
+        customLength: {
           min: 1,
           max: 4,
         },

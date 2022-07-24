@@ -19,7 +19,7 @@ type TextCommandRequiredArgumentsDefault = {
   rest?: boolean;
   text?: string[];
   type: 'NUMBER' | 'STRING';
-  length?: {
+  customLength?: {
     min?: number;
     max?: number;
   };

@@ -371,8 +371,9 @@ export const event: DiscordEvent = {
                   return reject(message, usage, text);
                 }
                 if (
-                  _argument.text?.length! > _argument.length?.max! ||
-                  _argument.text?.length! < _argument.length?.min!
+                  _argument.customLength &&
+                  (content.length > _argument.customLength?.max! ||
+                    content.length < _argument.customLength?.min!)
                 ) {
                   const text = `${index.toString()} (ERR_Length)`;
                   return reject(message, usage, text);
