@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:alpine
 
 WORKDIR /bot
 
@@ -8,9 +8,10 @@ RUN npm install
 
 COPY . .
 
-# Build and Optimize Disk Space
+ENV NODE_ENV=production
+
 RUN npm run build
 
-ENV NODE_ENV=production
+EXPOSE 3000
 
 CMD [ "npm", "start" ]

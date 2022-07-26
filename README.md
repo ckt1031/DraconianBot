@@ -3,19 +3,13 @@
 Tackle the situation by adding myriad of BOTS for specified features. \
 Here provided all-in-one solution.
 
-## STATUS
-
-This branch will be bumped to RELEASE channel after discord.js v14 is completely released and in stable.
-
 ### Features
 
 - 🚀 **STABLE**, **PERFORMANT**, **PRODUCTIVE**
 - 🧰 Mostly written by **_TypeScript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
 - 🧠 Explicit Bot's Processional LOGIC
-- 🔥 The Latest Discord.js Framework (**v14 DEV**)
 - 🏛️ Multi-Server Ready
 - 🐋 Fully Customizable
-- 🤤 Moving to a stable database system (MongoDB) (TODO)
 - ✅ Anti ABUSING System (SOON)
   > Ensure the bot resources (RAM/CPU usage) will not be dominated by malicious servers/users.
 - 🔒 High Tech Moderation System (SOON)
