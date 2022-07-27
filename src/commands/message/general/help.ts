@@ -60,7 +60,9 @@ export const command: TextCommand = {
         embeds: [embed],
       });
     } else {
+
       let cmd: TextCommand | undefined;
+      
       const commandMatching = client.commands.get(args[0]);
       const aliasesMatching = client.aliases.get(args[0]);
 

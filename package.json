@@ -1,16 +1,16 @@
 {
   "private": true,
-  "name": "draconianbot",
+  "name": "draconian-bot",
   "version": "2.0.0",
   "description": "Multi-Purpose & Productivity concentrated Discord BOT.",
   "license": "MIT",
   "author": "CKTSUN",
-  "homepage": "https://github.com/RealKoolisw/DraconianBot#readme",
+  "homepage": "https://github.com/cktsun1031/DraconianBot#readme",
   "repository": {
-    "url": "git+https://github.com/RealKoolisw/DraconianBot.git"
+    "url": "git+https://github.com/cktsun1031/DraconianBot.git"
   },
   "bugs": {
-    "url": "https://github.com/RealKoolisw/DraconianBot/issues"
+    "url": "https://github.com/cktsun1031/DraconianBot/issues"
   },
   "main": "src/index.ts",
   "scripts": {
@@ -45,7 +45,7 @@
     "fastify": "^4.3.0",
     "gifencoder": "^2.0.1",
     "glob": "^8.0.3",
-    "mongoose": "^6.4.7",
+    "mongoose": "^6.5.0",
     "ms": "^2.1.3",
     "node-cache": "^5.1.2",
     "pidusage": "^3.0.0",
@@ -81,9 +81,5 @@
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.4"
-  },
-  "engines": {
-    "node": ">=16.9.0",
-    "npm": ">=8.x"
   }
 }

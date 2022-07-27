@@ -11,5 +11,6 @@ export function parseMsToVisibleText(ms: number): string {
   seconds = seconds > 0 ? `${seconds}s` : '';
   minutes = minutes > 0 ? `${minutes}m ` : '';
   hours = hours > 0 ? `${hours}h ` : '';
+  
   return `${hours}${minutes}${seconds}`;
 }

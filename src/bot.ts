@@ -7,8 +7,6 @@ import { loadDiscordEvent } from './loaders/event';
 import type { SlashCommand, TextCommand } from './sturctures/command';
 import { connect } from './utils/database';
 
-connect();
-
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -19,10 +17,10 @@ const client = new Client({
   ],
   allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
   partials: [
-    Partials.GuildMember,
     Partials.User,
-    Partials.Message,
     Partials.Channel,
+    Partials.Message,
+    Partials.GuildMember,
   ],
 });
 
@@ -34,10 +32,14 @@ client.slashcommands = new Collection();
 loadDiscordEvent(client);
 loadTextCommand(client);
 
+connect();
+
 if (process.env.CLIENT_ID && process.env.TOKEN) {
   client.login(process.env.TOKEN);
   loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
 }
+
+export default client;
 
 // declare types.
 declare module 'discord.js' {
@@ -48,5 +50,3 @@ declare module 'discord.js' {
     commandsCatagories: Collection<string, string[]>;
   }
 }
-
-export default client;

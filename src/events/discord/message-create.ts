@@ -10,6 +10,17 @@ import { getServerData } from '../../utils/database';
 import { parseMsToVisibleText } from '../../utils/formatters';
 import { callbackEmbed } from '../../utils/messages';
 
+async function reject(message: Message, usage: string, missing: string) {
+  const postMessage = await message.reply({
+    content: `Usage: \`${usage}\`\nMissing: \`${missing}\``,
+    allowedMentions: { repliedUser: true },
+  });
+
+  setTimeout(() => {
+    if (postMessage.deletable) postMessage.delete().catch(() => {});
+  }, 6000);
+}
+
 export const event: DiscordEvent = {
   name: 'messageCreate',
   run: async (message: Message) => {
@@ -276,9 +287,11 @@ export const event: DiscordEvent = {
             content: `You have reached the maxmium usage in 1 **${doRejection.which}**!`,
             allowedMentions: { repliedUser: true },
           });
+
           setTimeout(() => {
             if (postMessage.deletable) postMessage.delete().catch(() => {});
           }, 6000);
+
           return;
         }
       }
@@ -300,9 +313,11 @@ export const event: DiscordEvent = {
         // Reject if BOT doesn't own permission(s).
         if (permMissing.length > 0) {
           const perms = permMissing.map(index => `\`${index}\``).join(', ');
+
           message.reply({
             content: `I don't have **PERMISSIONS**: ${perms}`,
           });
+
           return;
         }
       }
@@ -319,9 +334,11 @@ export const event: DiscordEvent = {
         // Reject if AUTHOR doesn't own permission(s).
         if (permMissing.length > 0) {
           const perms = permMissing.map(index => `\`${index}\``).join(', ');
+
           message.reply({
             content: `You do not have required **PERMISSIONS**: ${perms}`,
           });
+
           return;
         }
       }
@@ -395,6 +412,7 @@ export const event: DiscordEvent = {
         }
       }
 
+      // Run the actual command.
       try {
         return cmd.run({ message, args: arguments_ });
       } catch (error) {
@@ -403,17 +421,3 @@ export const event: DiscordEvent = {
     }
   },
 };
-
-async function reject(
-  message: Message,
-  usage: string,
-  missing: string,
-): Promise<void> {
-  const postMessage = await message.reply({
-    content: `Usage: \`${usage}\`\nMissing: \`${missing}\``,
-    allowedMentions: { repliedUser: true },
-  });
-  setTimeout(() => {
-    if (postMessage.deletable) postMessage.delete().catch(() => {});
-  }, 6000);
-}

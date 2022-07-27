@@ -3,21 +3,16 @@
 Tackle the situation by adding myriad of BOTS for specified features. \
 Here provided all-in-one solution.
 
+⚠️ MAINTAINING MODE ⚠️
+> There will be no any new features adding into this bot because I am moving from discord.js into another programming langauge like golang/rust. 
+
 ### Features
 
 - 🚀 **STABLE**, **PERFORMANT**, **PRODUCTIVE**
 - 🧰 Mostly written by **_TypeScript_** ([instead of JavaScript](https://medium.com/swlh/the-major-benefits-of-using-typescript-aa8553f5e2ed))
-- 🧠 Explicit Bot's Processional LOGIC
-- 🏛️ Multi-Server Ready
-- 🐋 Fully Customizable
-- ✅ Anti ABUSING System (SOON)
-  > Ensure the bot resources (RAM/CPU usage) will not be dominated by malicious servers/users.
-- 🔒 High Tech Moderation System (SOON)
-- ✏️ Ticket System (SOON)
-- ⚡ Partial Anti RAID System (SOON)
-
-> Rest of cool functions which is practicable to this project will be possibly added.
-> If complicated features, they will be integrated to a dedicated bot.
+- 🧠 Clear processional logic
+- 🏛️ Multi-Server ready
+- 🐋 Fully customizable
 
 ### Requirements:
 

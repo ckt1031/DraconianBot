@@ -18,6 +18,7 @@ export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setTitle(`Command: ${cmd.data.name}`)
     .addFields([{ name: 'Description', value: cmd.data.description }]);
+
   if (cmd.data.usage) {
     embed.addFields([{ name: 'Usage', value: cmd.data.usage }]);
   }
@@ -44,6 +45,7 @@ export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
       },
     ]);
   }
+  
   return embed;
 }
 
