@@ -1,10 +1,10 @@
+## ⚠️ MAINTAINING MODE
+> There will be no any new features adding into this bot because I am moving from discord.js into another programming langauge like golang/rust. 
+
 # Draconian Bot
 
 Tackle the situation by adding myriad of BOTS for specified features. \
 Here provided all-in-one solution.
-
-⚠️ MAINTAINING MODE ⚠️
-> There will be no any new features adding into this bot because I am moving from discord.js into another programming langauge like golang/rust. 
 
 ### Features
 
@@ -56,11 +56,6 @@ npx ts-node tools/copy-config.ts
 ```
 npm run start
 ```
-
-### Routine Backup (Recommended)
-
-Backup the folder `/data` frequently. \
-Prevents the abrupt data loses by unexpected accidents.
 
 #### Legacy Version
 
