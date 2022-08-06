@@ -1,5 +1,6 @@
 ## ⚠️ MAINTAINING MODE
-> There will be no any new features adding into this bot because I am moving from discord.js into another programming langauge like golang/rust. 
+
+> There will be no any new features adding into this bot because I am moving from discord.js into another programming langauge like golang/rust.
 
 # Draconian Bot
 

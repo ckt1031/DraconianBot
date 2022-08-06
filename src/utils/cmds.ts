@@ -45,7 +45,7 @@ export function getCommandHelpInfo(cmd: TextCommand): EmbedBuilder {
       },
     ]);
   }
-  
+
   return embed;
 }
 
