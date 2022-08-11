@@ -16,7 +16,7 @@ interface TextCommandCatagories {
 }
 
 /** Text Command Loaders */
-export async function loadTextCommand(client: Client): Promise<void> {
+export async function loadTextCommand(client: Client) {
   let folderPath = join(__dirname, '../commands/message/**/*.js');
 
   // Parse path in windows
@@ -103,7 +103,7 @@ export async function loadSlashCommand(
   client: Client,
   clientId: string,
   token: string,
-): Promise<void> {
+) {
   let folderPath = join(__dirname, '../commands/slash/*.js');
 
   // Parse path in windows
