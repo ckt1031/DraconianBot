@@ -33,7 +33,7 @@ CLIENT_ID=XXXXXXXXXXXXXXXXXX
 MONGODB_URL=XXXXXXXXXXXXXXXX
 ```
 
-- Install Required Dependencies
+- Install Dependencies
 
 ```
 npm install

@@ -13,20 +13,15 @@ on:
       - '**.jsx'
       - '**.ts'
       - '**.tsx'
-      - src
 
 jobs:
   Analyze:
-    name: Project Analyzing
     runs-on: ubuntu-latest
-    timeout-minutes: 5
 
     steps:
-      - name: Checkout Repositary
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
 
