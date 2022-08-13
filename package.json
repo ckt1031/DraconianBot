@@ -34,7 +34,7 @@
     "@vitalets/google-translate-api": "8.0.0",
     "axios": "0.27.2",
     "canvas": "2.9.3",
-    "chalk": "4.1.2",
+    "chalk": "5.0.1",
     "cross-env": "7.0.3",
     "crypto-js": "4.1.1",
     "dayjs": "1.11.5",
