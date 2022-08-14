@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import { ShardingManager } from 'discord.js';
 import { basename } from 'node:path';
 
-import { useShards } from '../config/bot.json' assert { type: 'json' };
+import { useShards } from '../config/bot.json';
 
 // Check NODE Version
 const nodeVersions = process.versions.node.split('.');
