@@ -4,7 +4,7 @@
     "composite": true,
     "target": "es2022",
     "lib": ["es2022"],
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "baseUrl": ".",
     "resolveJsonModule": true,
