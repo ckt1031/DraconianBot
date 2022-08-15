@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@swc/cli": "0.1.57",
-    "@swc/core": "1.2.230",
+    "@swc/core": "1.2.233",
     "@types/crypto-js": "4.1.1",
     "@types/gifencoder": "2.0.1",
     "@types/glob": "7.2.0",
