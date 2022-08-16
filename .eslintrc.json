@@ -6,27 +6,13 @@
     "es6": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "unicorn",
-    "sonarjs",
-    "prettier",
-    "simple-import-sort"
-  ],
-  "extends": [
-    "prettier",
-    "eslint:recommended",
-    "plugin:promise/recommended",
-    "plugin:unicorn/all",
-    "plugin:sonarjs/recommended"
-  ],
+  "plugins": ["@typescript-eslint", "simple-import-sort"],
+  "extends": ["eslint:recommended"],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
   "rules": {
     "semi": [2, "always"],
-    "unicorn/prefer-module": 0,
-    "sonarjs/cognitive-complexity": 0,
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
   },

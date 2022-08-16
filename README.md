@@ -49,7 +49,7 @@ npm run build
   > Save the config first!
 
 ```
-npx ts-node tools/copy-config.ts
+npx node tools/copy-config.js
 ```
 
 - Start

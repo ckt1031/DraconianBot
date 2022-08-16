@@ -1,7 +1,7 @@
-import chalk from 'chalk';
-import glob from 'glob';
-import { copyFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+const chalk = require('chalk');
+const glob = require('glob');
+const { copyFileSync, existsSync } = require('node:fs');
+const { join } = require('node:path');
 
 let folderPath = join(__dirname, '../config/*.example.json');
 
