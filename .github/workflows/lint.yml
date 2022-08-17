@@ -24,7 +24,7 @@ jobs:
         run: npm i
 
       - name: Init Project
-        run: npx ts-node ./tools/copy-config.ts
+        run: node ./tools/copy-config.js
 
       - name: Lint Project
         run: npm run lint
