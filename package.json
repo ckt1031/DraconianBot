@@ -37,7 +37,7 @@
     "cross-env": "7.0.3",
     "crypto-js": "4.1.1",
     "dayjs": "1.11.5",
-    "discord-api-types": "0.37.2",
+    "discord-api-types": "0.37.3",
     "discord.js": "14.2.0",
     "dotenv": "16.0.1",
     "fastify": "4.4.0",
