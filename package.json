@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@discordjs/builders": "1.1.0",
-    "@discordjs/rest": "1.0.1",
+    "@discordjs/rest": "1.1.0",
     "@fastify/rate-limit": "7.3.0",
     "@vitalets/google-translate-api": "8.0.0",
     "axios": "0.27.2",
