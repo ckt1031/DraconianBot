@@ -11,7 +11,7 @@
     "checkJs": true,
     "rootDir": ".",
     "outDir": "dist",
-    "noEmit": false,
+    "noEmit": true,
     "removeComments": true,
     "importHelpers": false,
     "importsNotUsedAsValues": "remove",
