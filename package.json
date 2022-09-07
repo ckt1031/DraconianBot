@@ -64,7 +64,7 @@
     "@types/xml2js": "0.4.11",
     "@typescript-eslint/eslint-plugin": "5.36.1",
     "@typescript-eslint/parser": "5.36.1",
-    "concurrently": "7.3.0",
+    "concurrently": "7.4.0",
     "eslint": "8.23.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "nodemon": "2.0.19",
