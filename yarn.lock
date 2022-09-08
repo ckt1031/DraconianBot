@@ -761,7 +761,16 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-canvas@2.10.0, canvas@^2.2.0:
+canvas@2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.10.1.tgz#fbfd4b1b3b106c3454481d79d363ebadf8811c08"
+  integrity sha512-29pIjn9uwTUsIgJUNd7GXxKk8sg4iyJwLm1wIilNIqX1mVzXSc2nUij9exW1LqNpis1d2ebMYfMqTWcokZ4pdA==
+  dependencies:
+    "@mapbox/node-pre-gyp" "^1.0.0"
+    nan "^2.15.0"
+    simple-get "^3.0.3"
+
+canvas@^2.2.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/canvas/-/canvas-2.10.0.tgz#5f48c8d1ff86c96356809097020336c3a1ccce27"
   integrity sha512-A0RPxLcH0pPKAY2VN243LdCNcOJXAT8n7nJnN7TZMGv9OuF8we9wfpWgVT/eFMzi+cDYf/384w4BpfjGCD9aKQ==
