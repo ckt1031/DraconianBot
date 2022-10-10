@@ -40,7 +40,7 @@
     "dayjs": "1.11.5",
     "discord-api-types": "0.37.10",
     "discord.js": "14.5.0",
-    "dotenv": "16.0.2",
+    "dotenv": "16.0.3",
     "fastify": "4.8.1",
     "gifencoder": "2.0.1",
     "glob": "8.0.3",
