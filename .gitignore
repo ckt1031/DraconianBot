@@ -5,7 +5,6 @@ node_modules/
 .gitpod.yml
 dist
 .env
-yarn.lock
 
 .breakpoints
 .replit
