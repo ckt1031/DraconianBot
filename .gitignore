@@ -16,3 +16,5 @@ replit.nix
 !/config/*.example.json
 
 pnpm-lock.yaml
+.yarn
+.pnp*

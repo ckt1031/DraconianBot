@@ -1,10 +1,11 @@
 name: Typecheck and Lint
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '13 21 * * *'
   push:
+    branches:
+      - main
+      - dev
+  pull_request:
     branches:
       - main
       - dev
@@ -18,13 +19,11 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
+          cache: yarn
           node-version: 16
 
-      - name: Install Dependencies
-        run: npm i
+      - run: yarn
 
-      - name: Init Project
-        run: node ./tools/copy-config.js
+      - run: node ./tools/copy-config.js
 
-      - name: Lint Project
-        run: npm run lint
+      - run: yarn lint
