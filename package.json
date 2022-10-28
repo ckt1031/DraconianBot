@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "draconian-bot",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Multi-Purpose & Productivity concentrated Discord BOT.",
   "license": "MIT",
   "author": "cktsun1031",
@@ -16,19 +16,15 @@
   "engines": {
     "node": ">=16.9.0"
   },
+  "type": "module",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "tsup src --clean --minify",
-    "dev": "concurrently npm:watch npm:start:watch",
+    "dev": "nodemon",
     "lint": "tsc && eslint --fix .",
     "format": "prettier -w .",
     "lint:type": "tsc",
-    "start": "cross-env NODE_ENV=production npm-run-all build start:pm2",
-    "start:node": "cross-env NODE_ENV=production node dist/index.js",
-    "start:pm2": "pm2 start .pm2.config.js --no-daemon --env production",
-    "start:watch": "nodemon dist/index.js",
-    "watch": "tsup src --watch --clean",
-    "sync": "node tools/copy-config.js"
+    "start": "cross-env NODE_ENV=production node --loader @esbuild-kit/esm-loader dist/index.js",
+    "sync": "node --loader @esbuild-kit/esm-loader tools/copy-config.ts"
   },
   "dependencies": {
     "@discordjs/builders": "1.3.0",
@@ -37,20 +33,20 @@
     "@vitalets/google-translate-api": "8.0.0",
     "axios": "1.1.3",
     "canvas": "2.10.1",
-    "chalk": "4.1.2",
+    "chalk": "5.1.2",
     "cross-env": "7.0.3",
     "crypto-js": "4.1.1",
     "dayjs": "1.11.6",
-    "discord-api-types": "0.37.14",
+    "discord-api-types": "0.37.15",
     "discord.js": "14.6.0",
     "dotenv": "16.0.3",
     "fastify": "4.9.2",
     "gifencoder": "2.0.1",
     "glob": "8.0.3",
-    "mongoose": "6.6.7",
+    "mongoose": "6.7.0",
     "ms": "2.1.3",
     "node-cache": "5.1.2",
-    "pidusage": "3.0.1",
+    "pidusage": "3.0.2",
     "string-similarity": "4.0.4",
     "urban-dictionary": "3.0.2",
     "xml2js": "0.4.23"
@@ -60,22 +56,29 @@
     "@types/gifencoder": "2.0.1",
     "@types/glob": "8.0.0",
     "@types/ms": "0.7.31",
-    "@types/node": "18.11.4",
+    "@types/node": "18.11.7",
     "@types/pidusage": "2.0.2",
     "@types/string-similarity": "4.0.0",
     "@types/urban-dictionary": "3.0.0",
     "@types/xml2js": "0.4.11",
-    "@typescript-eslint/eslint-plugin": "5.40.1",
-    "@typescript-eslint/parser": "5.40.1",
+    "@typescript-eslint/eslint-plugin": "5.41.0",
+    "@typescript-eslint/parser": "5.41.0",
     "concurrently": "7.5.0",
     "eslint": "8.26.0",
     "eslint-plugin-simple-import-sort": "8.0.0",
     "nodemon": "2.0.20",
     "npm-run-all": "4.1.5",
-    "pm2": "5.2.2",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
-    "tsup": "6.3.0",
     "typescript": "4.8.4"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "delay": 2500,
+    "ignore": "dist,temp,node_modules",
+    "exec": "node --loader @esbuild-kit/esm-loader --inspect src/index.ts"
   }
 }

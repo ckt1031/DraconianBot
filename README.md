@@ -49,7 +49,7 @@ npm run build
   > Save the config first!
 
 ```
-node tools/copy-config.js
+npm sync
 ```
 
 - Start
