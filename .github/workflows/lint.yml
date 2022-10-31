@@ -24,6 +24,6 @@ jobs:
 
       - run: yarn
 
-      - run: node ./tools/copy-config.js
+      - run: yarn sync
 
       - run: yarn lint
