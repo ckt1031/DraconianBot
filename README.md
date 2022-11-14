@@ -15,7 +15,7 @@ Here provided all-in-one solution.
 - 🏛️ Multi-Server ready
 - 🐋 Fully customizable
 
-### Requirements:
+### Requirements
 
 1. NodeJS v16.9.0 or later (LTS/Latest)
    > Extra: Python3, FFmpeg, Build-essential, etc.
