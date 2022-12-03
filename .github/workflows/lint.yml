@@ -19,11 +19,11 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          cache: yarn
+          cache: npm
           node-version: 16
 
-      - run: yarn
+      - run: npm i
 
-      - run: yarn sync
+      - run: npm run sync
 
-      - run: yarn lint
+      - run: npm run lint
