@@ -22,7 +22,7 @@ jobs:
           cache: npm
           node-version: 16
 
-      - run: npm
+      - run: npm i
 
       - run: npm run sync
 
