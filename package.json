@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@discordjs/builders": "1.4.0",
-    "@discordjs/rest": "1.4.0",
+    "@discordjs/rest": "1.5.0",
     "@esbuild-kit/esm-loader": "^2.5.4",
     "@fastify/rate-limit": "7.6.0",
     "@vitalets/google-translate-api": "9.0.0",
