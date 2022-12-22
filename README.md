@@ -36,13 +36,13 @@ MONGODB_URL=XXXXXXXXXXXXXXXX
 - Install Dependencies
 
 ```
-npm install
+yarn install
 ```
 
 - Build & Compile to JS (With SWC compiler)
 
 ```
-npm run build
+yarn build
 ```
 
 - Copy Config (For FIRST / AFTER SYNCED)
