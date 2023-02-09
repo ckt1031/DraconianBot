@@ -41,7 +41,7 @@
     "discord-api-types": "0.37.24",
     "discord.js": "14.7.1",
     "dotenv": "16.0.3",
-    "fastify": "4.10.2",
+    "fastify": "4.13.0",
     "gifencoder": "2.0.1",
     "glob": "8.0.3",
     "mongoose": "6.8.1",
