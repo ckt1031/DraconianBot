@@ -1,5 +1,5 @@
 import { exec } from 'node:child_process';
-import { isDev } from 'src/utils/constants';
+import { isDev } from '../../../utils/constants';
 
 import type { TextCommand } from '../../../sturctures/command';
 

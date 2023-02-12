@@ -1,5 +1,5 @@
 import type { CommandInteraction } from 'discord.js';
-import { isDev } from 'src/utils/constants';
+import { isDev } from '../../utils/constants';
 
 import { ownerId } from '../../../config/bot.json';
 import type { DiscordEvent } from '../../sturctures/event';
