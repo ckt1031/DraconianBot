@@ -1,4 +1,5 @@
 import type { Message, PermissionResolvable, TextChannel } from 'discord.js';
+import { isDev } from 'src/utils/constants';
 
 import { ownerId } from '../../../config/bot.json';
 import type { TextCommand } from '../../sturctures/command';
@@ -109,10 +110,7 @@ export const event: DiscordEvent = {
       if (cmd.enabled === false) return;
 
       // Reject if not in development mode
-      if (
-        cmdData?.developmentOnly === true &&
-        process.env.NODE_ENV !== 'development'
-      ) {
+      if (cmdData?.developmentOnly === true && !isDev) {
         return;
       }
 

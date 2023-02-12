@@ -10,6 +10,7 @@ import { basename, dirname, join } from 'node:path';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
 import type { SlashCommand, TextCommand } from '../sturctures/command';
+import { isDev } from 'src/utils/constants';
 
 interface TextCommandCatagories {
   [key: string]: string[];
@@ -137,9 +138,7 @@ export async function loadSlashCommand(
 
     const rest = new REST({ version: '9' }).setToken(token);
 
-    const isProduction = process.env.NODE_ENV === 'production';
-
-    if (isProduction) {
+    if (!isDev) {
       // Global Commands
       await rest.put(Routes.applicationCommands(clientId), {
         body: slashCommandData,
@@ -147,6 +146,7 @@ export async function loadSlashCommand(
     } else {
       // Guild Only & Development Only Commands.
       const guildId = process.env.DEV_GUILD_ID;
+      
       if (guildId) {
         const { applicationGuildCommands } = Routes;
 

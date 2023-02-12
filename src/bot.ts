@@ -34,10 +34,8 @@ loadTextCommand(client);
 
 connect();
 
-if (process.env.CLIENT_ID && process.env.TOKEN) {
-  client.login(process.env.TOKEN);
-  loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
-}
+client.login(process.env.TOKEN);
+loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
 
 export default client;
 
