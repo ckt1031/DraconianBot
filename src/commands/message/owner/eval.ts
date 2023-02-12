@@ -1,5 +1,5 @@
 import { inspect } from 'node:util';
-import { isDev } from 'src/utils/constants';
+import { isDev } from '../../../utils/constants';
 
 import type { TextCommand } from '../../../sturctures/command';
 

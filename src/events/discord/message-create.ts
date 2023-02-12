@@ -1,5 +1,5 @@
 import type { Message, PermissionResolvable, TextChannel } from 'discord.js';
-import { isDev } from 'src/utils/constants';
+import { isDev } from '../../utils/constants';
 
 import { ownerId } from '../../../config/bot.json';
 import type { TextCommand } from '../../sturctures/command';

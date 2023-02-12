@@ -10,7 +10,7 @@ import { basename, dirname, join } from 'node:path';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
 import type { SlashCommand, TextCommand } from '../sturctures/command';
-import { isDev } from 'src/utils/constants';
+import { isDev } from '../utils/constants';
 
 interface TextCommandCatagories {
   [key: string]: string[];
