@@ -1,4 +1,5 @@
 import { inspect } from 'node:util';
+import { isDev } from 'src/utils/constants';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -12,7 +13,7 @@ function clean(text: string) {
 }
 
 export const command: TextCommand = {
-  enabled: process.env.NODE_ENV === 'development',
+  enabled: isDev,
   data: {
     name: 'eval',
     publicLevel: 'None',

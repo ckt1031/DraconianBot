@@ -1,4 +1,5 @@
 import type { CommandInteraction } from 'discord.js';
+import { isDev } from 'src/utils/constants';
 
 import { ownerId } from '../../../config/bot.json';
 import type { DiscordEvent } from '../../sturctures/event';
@@ -36,10 +37,7 @@ export const event: DiscordEvent = {
         return returnOfInter('This command is not enabled to execute.');
       }
 
-      if (
-        slash?.data?.developmentOnly === true &&
-        process.env.NODE_ENV !== 'development'
-      ) {
+      if (slash?.data?.developmentOnly === true && !isDev) {
         return returnOfInter(
           'This command is not enabled to execute in current state.',
         );

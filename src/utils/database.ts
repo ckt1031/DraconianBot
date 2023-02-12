@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import Server from '../models/server';
 
 export function connect() {
-  mongoose.connect(`${process.env.MONGO_DB}Bot`, {
+  mongoose.connect(`${process.env.MONGODB_URL}Bot`, {
     autoIndex: false,
   });
 }
