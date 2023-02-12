@@ -1,17 +1,10 @@
 {
   "private": true,
-  "name": "draconian-bot",
+  "name": "draconian",
   "version": "2.1.0",
   "description": "Multi-Purpose & Productivity concentrated Discord BOT.",
   "license": "MIT",
-  "author": "cktsun1031",
-  "homepage": "https://github.com/cktsun1031/DraconianBot#readme",
-  "repository": {
-    "url": "git+https://github.com/cktsun1031/DraconianBot.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cktsun1031/DraconianBot/issues"
-  },
+  "author": "ckt1031",
   "main": "src/index.ts",
   "engines": {
     "node": ">=16.9.0",
@@ -24,7 +17,7 @@
     "lint": "tsc && eslint --fix .",
     "format": "prettier -w .",
     "typecheck": "tsc",
-    "start": "cross-env NODE_ENV=production node --loader @esbuild-kit/esm-loader dist/index.js",
+    "start": "cross-env NODE_ENV=production node --loader @esbuild-kit/esm-loader src/index.ts",
     "sync": "node --loader @esbuild-kit/esm-loader tools/copy-config.ts"
   },
   "dependencies": {
