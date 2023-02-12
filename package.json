@@ -31,6 +31,7 @@
     "cross-env": "7.0.3",
     "crypto-js": "4.1.1",
     "dayjs": "1.11.7",
+    "deepmerge": "^4.3.0",
     "discord-api-types": "0.37.25",
     "discord.js": "14.7.1",
     "dotenv": "16.0.3",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@types/crypto-js": "4.1.1",
+    "@types/deepmerge": "^2.2.0",
     "@types/gifencoder": "2.0.1",
     "@types/glob": "8.0.0",
     "@types/ms": "0.7.31",
