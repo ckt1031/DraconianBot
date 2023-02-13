@@ -11,7 +11,7 @@ const ZodEnvironmentVariables = z.object({
   TOKEN: z.string(),
   CLIENT_ID: z.string(),
   MONGODB_URL: z.string(),
-  
+
   DEV_GUILD_ID: z.string().optional(),
   PORT: z.string().optional().default('3000'),
   USE_SHARD: z.string().optional().default('NO'),

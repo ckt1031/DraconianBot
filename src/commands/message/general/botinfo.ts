@@ -58,7 +58,7 @@ export const command: TextCommand = {
         },
       ]);
 
-   await message.reply({
+    await message.reply({
       embeds: [embed],
     });
   },

@@ -2,16 +2,16 @@
   "env": {
     "commonjs": true,
     "es2021": true,
-    "node": true,
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "extends": ["@ckt1031/eslint-config/typescript-strict"],
+  "ignorePatterns": ["dist", "node_modules", "assets"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "project": "./tsconfig.json"
   },
   "rules": {
     "sonarjs/cognitive-complexity": 0
-  },
-  "ignorePatterns": ["dist", "node_modules", "assets"]
+  }
 }

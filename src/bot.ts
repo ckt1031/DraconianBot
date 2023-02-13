@@ -16,12 +16,7 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
   allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
-  partials: [
-    Partials.User,
-    Partials.Channel,
-    Partials.Message,
-    Partials.GuildMember,
-  ],
+  partials: [Partials.User, Partials.Channel, Partials.Message, Partials.GuildMember],
 });
 
 client.commands = new Collection();

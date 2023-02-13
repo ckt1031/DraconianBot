@@ -16,18 +16,14 @@ export const command: TextCommand = {
     const destination = args[0];
 
     try {
-      const url = `https://is.gd/create.php?format=simple&url=${encodeURI(
-        destination,
-      )}`;
+      const url = `https://is.gd/create.php?format=simple&url=${encodeURI(destination)}`;
 
       const response = await axios.get(url);
       const responseData: string = response.data;
 
       embed
         .setTitle('Converted!')
-        .setDescription(
-          `URL: ${responseData}\nDestination: \`${destination}\``,
-        );
+        .setDescription(`URL: ${responseData}\nDestination: \`${destination}\``);
 
       await message.reply({
         embeds: [embed],

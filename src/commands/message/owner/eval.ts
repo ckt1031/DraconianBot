@@ -36,7 +36,9 @@ export const command: TextCommand = {
         let evaled = eval(code);
         if (typeof evaled !== 'string') evaled = inspect(evaled);
         if (evaled.length > 1999) return console.log(evaled);
-        await message.channel.send({ content: `\`\`\`${clean(evaled as string)}\`\`\`` });
+        await message.channel.send({
+          content: `\`\`\`${clean(evaled as string)}\`\`\``,
+        });
       } catch (error) {
         if (error instanceof Error && error.message.length < 1999) {
           await message.channel.send({

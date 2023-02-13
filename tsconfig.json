@@ -1,8 +1,8 @@
 {
-  "extends": "@ckt1031/tsconfig/base.json",
   "compilerOptions": {
-    "noEmit": true,
+    "noEmit": true
   },
   "exclude": ["node_modules", "dist", "assets"],
+  "extends": "@ckt1031/tsconfig/base.json",
   "include": ["tools", "__tests__", "src", "config/*.json", "package.json"]
 }

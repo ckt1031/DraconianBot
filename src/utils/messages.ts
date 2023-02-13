@@ -5,12 +5,7 @@ import type {
   Message,
   MessageComponentInteraction,
 } from 'discord.js';
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  EmbedBuilder,
-} from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
 
 import emoji from '../../config/emojis.json';
 
@@ -51,10 +46,7 @@ export async function confirmInformationButtons({
   });
 
   const filter: CollectorFilter<[MessageComponentInteraction]> = inter => {
-    return (
-      [confirmId, cancelId].includes(inter.customId) &&
-      inter.user.id === message.author.id
-    );
+    return [confirmId, cancelId].includes(inter.customId) && inter.user.id === message.author.id;
   };
 
   const interaction = await respondAwaiting.awaitMessageComponent({
@@ -73,18 +65,12 @@ interface CallbackEmbed {
   mode?: 'error' | 'success' | 'warning';
 }
 
-export function callbackEmbed({
-  text,
-  color = 'Grey',
-  mode,
-}: CallbackEmbed): EmbedBuilder {
+export function callbackEmbed({ text, color = 'Grey', mode }: CallbackEmbed): EmbedBuilder {
   let emojiText = '';
 
   if (mode && typeof mode === 'string') {
     emojiText = emoji[mode];
   }
 
-  return new EmbedBuilder()
-    .setDescription(`${emojiText} ${text}`)
-    .setColor(color);
+  return new EmbedBuilder().setDescription(`${emojiText} ${text}`).setColor(color);
 }

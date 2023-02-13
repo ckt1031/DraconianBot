@@ -2,24 +2,24 @@
   "text": {
     "commands": [
       {
-        "name": "test",
         "data": {
-          "clientRequiredPermissions": [],
-          "authorRequiredPermissions": [],
-          "ownerOnly": true,
-          "developmentOnly": true,
-          "nsfwChannelRequired": true,
-          "inVoiceChannelRequired": true,
-          "threadChannelAllowed": true,
-          "directMessageAllowed": true,
           "aliases": ["test1"],
+          "authorRequiredPermissions": [],
+          "clientRequiredPermissions": [],
           "cooldownInterval": 10000,
+          "developmentOnly": true,
+          "directMessageAllowed": true,
+          "inVoiceChannelRequired": true,
           "intervalLimit": {
-            "minute": 0,
+            "day": 0,
             "hour": 0,
-            "day": 0
-          }
-        }
+            "minute": 0
+          },
+          "nsfwChannelRequired": true,
+          "ownerOnly": true,
+          "threadChannelAllowed": true
+        },
+        "name": "test"
       }
     ],
     "disabledCommands": ["test"]

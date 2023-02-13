@@ -29,9 +29,7 @@ glob(folderPath, (error, allFiles) => {
 
     // The example config file
     const defaultConfigFile = readFileSync(filePath);
-    const defaultConfig: object = JSON.parse(
-      defaultConfigFile as unknown as string,
-    );
+    const defaultConfig: object = JSON.parse(defaultConfigFile as unknown as string);
 
     // If file exist, merge it
     if (existsSync(targetPath)) {

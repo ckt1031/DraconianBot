@@ -1,26 +1,12 @@
 {
   "guildConfig": {
-    "prefix": "d!",
-    "commands": {
-      "global": {
-        "disabled": [],
-        "disabledCatagories": [],
-        "customCooldown": []
-      },
-      "userDisabled": [],
-      "roleDisabled": [],
-      "channelDisabled": []
-    },
     "antiSpam": {
       "enabled": false,
-      "whitelistedUsers": [],
-      "whitelistedRoles": [],
-      "whitelistedChannels": [],
       "inviteLinks": {
         "enabled": false,
-        "whitelistedUsers": [],
+        "whitelistedChannels": [],
         "whitelistedRoles": [],
-        "whitelistedChannels": []
+        "whitelistedUsers": []
       },
       "mentions": {
         "enabled": false,
@@ -29,16 +15,30 @@
           "value": 6
         },
         "publicRoleCheck": false,
-        "whitelistedUsers": [],
+        "whitelistedChannels": [],
         "whitelistedRoles": [],
-        "whitelistedChannels": []
-      }
+        "whitelistedUsers": []
+      },
+      "whitelistedChannels": [],
+      "whitelistedRoles": [],
+      "whitelistedUsers": []
+    },
+    "commands": {
+      "channelDisabled": [],
+      "global": {
+        "customCooldown": [],
+        "disabled": [],
+        "disabledCatagories": []
+      },
+      "roleDisabled": [],
+      "userDisabled": []
+    },
+    "prefix": "d!",
+    "snipe": {
+      "channelDisabled": []
     },
     "thread": {
       "listen": false
-    },
-    "snipe": {
-      "channelDisabled": []
     }
   },
   "snipeConfig": {

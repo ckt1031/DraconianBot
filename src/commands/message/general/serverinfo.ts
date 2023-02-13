@@ -78,9 +78,7 @@ export const command: TextCommand = {
 
     if (guild.vanityURLCode) {
       const url = `https://discord.gg/${guild.vanityURLCode}`;
-      embed.addFields([
-        { name: 'Vanity Invite URL', value: `[${url}](${url})` },
-      ]);
+      embed.addFields([{ name: 'Vanity Invite URL', value: `[${url}](${url})` }]);
     }
 
     await message.reply({

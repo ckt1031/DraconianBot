@@ -13,10 +13,7 @@ export const command: SlashCommand = {
     .setName('help')
     .setDescription(helpTextCommand.data.description)
     .addStringOption(option =>
-      option
-        .setName('command')
-        .setDescription('Get specified Text Command')
-        .setRequired(false),
+      option.setName('command').setDescription('Get specified Text Command').setRequired(false),
     ),
   run: async ({ interaction }) => {
     const embed = new EmbedBuilder();
@@ -40,9 +37,7 @@ export const command: SlashCommand = {
             continue;
           }
         }
-        const text = catagory[1]
-          .map((index: string) => `\`${index}\``)
-          .join(', ');
+        const text = catagory[1].map((index: string) => `\`${index}\``).join(', ');
         embed.addFields([{ name: catagory[0], value: text }]);
       }
 
