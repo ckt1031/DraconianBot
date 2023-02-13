@@ -26,7 +26,7 @@ export const command: TextCommand = {
 
       embed.setTitle('Result:').setDescription(result.text);
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     } catch (error) {
@@ -34,10 +34,10 @@ export const command: TextCommand = {
         embed
           .setTitle(error.message)
           .setDescription(
-            '[Supported Languages](https://raw.githubusercontent.com/RealKoolisw/DraconianBot/main/assets/public/translationlist.js)',
+            '[Supported Languages](https://raw.githubusercontent.com/ckt1031/DraconianBot/main/assets/public/translationlist.js)',
           );
 
-        message.reply({
+        await message.reply({
           embeds: [embed],
         });
       }

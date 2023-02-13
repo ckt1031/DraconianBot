@@ -28,13 +28,13 @@ export const command: TextCommand = {
 
       embed.setTitle('Pussy here').setImage(data.message);
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     } catch {
       embed.setDescription('Error occured when fetching meme content.');
 
-      message.reply({
+      await  message.reply({
         embeds: [embed],
       });
     }

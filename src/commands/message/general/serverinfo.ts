@@ -83,7 +83,7 @@ export const command: TextCommand = {
       ]);
     }
 
-    message.reply({
+    await message.reply({
       embeds: [embed],
     });
   },

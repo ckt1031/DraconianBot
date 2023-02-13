@@ -1,10 +1,11 @@
+import { join } from 'node:path';
+
 import type { Client } from 'discord.js';
 import glob from 'glob';
-import { join } from 'node:path';
 
 import type { DiscordEvent } from '../sturctures/event';
 
-export async function loadDiscordEvent(client: Client) {
+export function loadDiscordEvent(client: Client) {
   let folderPath = join(__dirname, '../events/discord/**/*.js');
 
   // Parse path in windows
@@ -12,7 +13,7 @@ export async function loadDiscordEvent(client: Client) {
     folderPath = folderPath.replaceAll('\\', '/');
   }
 
-  glob(folderPath, (error, allFiles) => {
+  glob(folderPath, async (error, allFiles) => {
     if (error) throw error;
 
     if (allFiles.length === 0) {
@@ -20,10 +21,10 @@ export async function loadDiscordEvent(client: Client) {
     }
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
-      const filePath = allFiles[index];
+      const filePath = allFiles[Number(index)];
 
       // Get event content.
-      const eventFile = require(filePath);
+      const eventFile = (await import(filePath)).default;
       const event: DiscordEvent = eventFile.event;
 
       // Check triggering mode.

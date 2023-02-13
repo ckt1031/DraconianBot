@@ -3,6 +3,6 @@
   "compilerOptions": {
     "noEmit": true,
   },
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "dist", "assets"],
   "include": ["tools", "__tests__", "src", "config/*.json", "package.json"]
 }

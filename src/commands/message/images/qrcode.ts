@@ -21,7 +21,7 @@ export const command: TextCommand = {
         color: 'Red',
         mode: 'error',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
       return;
@@ -34,7 +34,7 @@ export const command: TextCommand = {
 
     embed.setImage(url);
 
-    message.channel.send({
+    await message.channel.send({
       embeds: [embed],
     });
   },

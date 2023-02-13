@@ -13,9 +13,7 @@ export const event: DiscordEvent = {
         channelId: textChannel.id,
       });
 
-      if (snipeData) {
-        snipeData.deleteOne();
-      }
+      await snipeData.deleteOne();
     }
   },
 };

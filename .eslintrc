@@ -5,23 +5,13 @@
     "node": true,
     "es6": true
   },
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "simple-import-sort"],
-  "extends": ["eslint:recommended"],
+  "extends": ["@ckt1031/eslint-config/typescript-strict"],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "project": "./tsconfig.json"
   },
   "rules": {
-    "semi": [2, "always"],
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "sonarjs/cognitive-complexity": 0
   },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
-  },
-  "ignorePatterns": ["dist"]
+  "ignorePatterns": ["dist", "node_modules", "assets"]
 }

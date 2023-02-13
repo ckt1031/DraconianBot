@@ -16,7 +16,7 @@ export const command: TextCommand = {
       `Action Delay: \`${messageDelayMS}ms\`\nAPI Delay: \`${apiDelayMS}ms\``,
     );
 
-    message.reply({
+    await message.reply({
       embeds: [embed],
     });
   },

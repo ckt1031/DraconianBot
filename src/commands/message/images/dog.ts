@@ -22,17 +22,17 @@ export const command: TextCommand = {
         message: string;
       } = response.data;
 
-      if (responseData.status !== 'success') throw 0;
+      if (responseData.status === 'success') {
+        embed.setTitle('Dog here').setImage(responseData.message);
 
-      embed.setTitle('Dog here').setImage(responseData.message);
-
-      message.reply({
-        embeds: [embed],
-      });
+        await message.reply({
+          embeds: [embed],
+        });
+      }
     } catch {
       embed.setDescription('Error occured when fetching meme content.');
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     }

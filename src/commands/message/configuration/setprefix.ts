@@ -32,7 +32,7 @@ export const command: TextCommand = {
         color: 'Red',
         mode: 'error',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
       return;
@@ -50,7 +50,7 @@ export const command: TextCommand = {
         color: 'Red',
         mode: 'error',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
       return;
@@ -62,7 +62,7 @@ export const command: TextCommand = {
         color: 'Red',
         mode: 'error',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
       return;
@@ -81,7 +81,7 @@ export const command: TextCommand = {
       },
       {
         name: 'User',
-        value: `\`${member?.user.tag}\``,
+        value: `\`${member?.user.tag ?? ''}\``,
         inline: true,
       },
     ];
@@ -101,7 +101,7 @@ export const command: TextCommand = {
         text: `Bot's prefix successfully configurated: \`${targetPrefix}\``,
         color: 'Green',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
     }

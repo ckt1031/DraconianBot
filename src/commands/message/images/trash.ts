@@ -72,7 +72,7 @@ export const command: TextCommand = {
       name: `${Date.now()}_trash.png`,
     });
 
-    channel.send({
+    await channel.send({
       files: [attachment],
     });
   },

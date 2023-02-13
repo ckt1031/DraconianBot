@@ -48,6 +48,7 @@
     "zod": "^3.20.6"
   },
   "devDependencies": {
+    "@ckt1031/eslint-config": "0.1.1",
     "@ckt1031/tsconfig": "0.1.1",
     "@types/crypto-js": "4.1.1",
     "@types/deepmerge": "^2.2.0",

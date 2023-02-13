@@ -14,7 +14,7 @@ interface SlashCommandExecution {
   interaction: CommandInteraction;
 }
 
-type TextCommandRequiredArgumentsDefault = {
+interface TextCommandRequiredArgumentsDefault {
   name?: string;
   rest?: boolean;
   text?: string[];
@@ -24,7 +24,7 @@ type TextCommandRequiredArgumentsDefault = {
     max?: number;
   };
   required?: boolean;
-};
+}
 
 type TextCommandRequiredArguments = TextCommandRequiredArgumentsDefault;
 
@@ -70,7 +70,7 @@ export interface TextCommand {
     };
   };
   // eslint-disable-next-line no-unused-vars
-  run: ({ message, args }: TextCommandExecution) => Promise<void>;
+  run: ({ message, args }: TextCommandExecution) => Promise<void> | void;
 }
 
 export interface SlashCommand {

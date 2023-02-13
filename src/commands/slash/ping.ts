@@ -16,7 +16,7 @@ export const command: SlashCommand = {
       `Action Delay: \`${messageDelayMS}ms\`\nAPI Delay: \`${apiDelayMS}ms\``,
     );
 
-    interaction.reply({
+    await interaction.reply({
       embeds: [embed],
     });
   },

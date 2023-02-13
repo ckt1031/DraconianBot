@@ -34,9 +34,10 @@ export const command: SlashCommand = {
 
       for (const catagory of commandsCatagories) {
         if (catagory[0].toLocaleLowerCase() === 'nsfw') {
-          if (!(channel as TextChannel).nsfw) continue;
-          else {
+          if ((channel as TextChannel).nsfw) {
             catagory[0] += ' THIS CHANNEL ONLY';
+          } else {
+            continue;
           }
         }
         const text = catagory[1]
@@ -45,14 +46,14 @@ export const command: SlashCommand = {
         embed.addFields([{ name: catagory[0], value: text }]);
       }
 
-      const avatarURL = client.user?.defaultAvatarURL;
+      const avatarURL = client.user.defaultAvatarURL;
 
       embed.setTitle('Bot Assistance Centre').setFooter({
         text: `© ${new Date().getFullYear()} ${botname}`,
-        iconURL: avatarURL ?? '',
+        iconURL: avatarURL,
       });
 
-      interaction.reply({
+      await interaction.reply({
         embeds: [embed],
       });
       return;
@@ -73,7 +74,7 @@ export const command: SlashCommand = {
         color: 'Red',
         mode: 'error',
       });
-      interaction.reply({
+      await interaction.reply({
         embeds: [cEmbed],
       });
       return;
@@ -81,7 +82,7 @@ export const command: SlashCommand = {
 
     if (cmd) {
       const helpInfo = getCommandHelpInfo(cmd);
-      interaction.reply({
+      await interaction.reply({
         embeds: [helpInfo],
       });
     }

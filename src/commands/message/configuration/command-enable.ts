@@ -30,7 +30,7 @@ export const command: TextCommand = {
         color: 'Red',
         mode: 'error',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
       return;
@@ -40,13 +40,13 @@ export const command: TextCommand = {
 
     const disabledCommands = guildData.commands.global.disabled;
 
-    if (!disabledCommands?.includes(targetCommand)) {
+    if (!disabledCommands.includes(targetCommand)) {
       const cEmbed = callbackEmbed({
         text: 'This command had not been disabled!',
         color: 'Red',
         mode: 'error',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
       return;
@@ -60,7 +60,7 @@ export const command: TextCommand = {
         color: 'Red',
         mode: 'error',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
       return;
@@ -69,7 +69,7 @@ export const command: TextCommand = {
     const fields = [
       {
         name: 'Action',
-        value: `\`\`\`Enable command that's disabled in this server.\`\`\``,
+        value: "```Enable command that's disabled in this server.```",
         inline: false,
       },
       {
@@ -79,7 +79,7 @@ export const command: TextCommand = {
       },
       {
         name: 'User',
-        value: `\`${member?.user.tag}\``,
+        value: `\`${member?.user.tag ?? ''}\``,
         inline: true,
       },
     ];
@@ -104,7 +104,7 @@ export const command: TextCommand = {
         color: 'Green',
         mode: 'success',
       });
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
     }

@@ -15,9 +15,8 @@ export const event: DiscordEvent = {
       const config = await getServerData(guild.id);
 
       if (
-        config &&
         !config.snipe.channelDisabled.includes(channel.id) &&
-        client.user?.id !== author.id
+        client.user.id !== author.id
       ) {
         const snipes = await Snipe.findOne({
           channelId: channel.id,
@@ -35,13 +34,7 @@ export const event: DiscordEvent = {
           },
         };
 
-        if (!snipes) {
-          const nSnipe = new Snipe({
-            channelId: channel.id,
-            ...snipe,
-          });
-          await nSnipe.save();
-        } else {
+        if (snipes) {
           await Snipe.findOneAndUpdate(
             { channelId: channel.id },
             {
@@ -50,6 +43,12 @@ export const event: DiscordEvent = {
               },
             },
           );
+        } else {
+          const nSnipe = new Snipe({
+            channelId: channel.id,
+            ...snipe,
+          });
+          await nSnipe.save();
         }
       }
     }

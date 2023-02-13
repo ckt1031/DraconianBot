@@ -37,14 +37,14 @@ export const command: TextCommand = {
 
       if (!responseData.includes('<')) {
         if (responseData.search(/not found/i) !== -1) {
-          throw 'Information cannot be found!';
+          throw new Error('Location not found!');
         }
-        throw 'Invalid body content!';
+        throw new Error('Unknown error!');
       }
 
       const data = await parseStringPromise(responseData);
 
-      type CurrentWeather = {
+      interface CurrentWeather {
         $: {
           temperature: string;
           skytext: string;
@@ -58,7 +58,7 @@ export const command: TextCommand = {
           shortday: string;
           windspeed: string;
         };
-      };
+      }
 
       interface WeatherData {
         $: {
@@ -123,14 +123,14 @@ export const command: TextCommand = {
           },
         ]);
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     } catch (error) {
       if (error instanceof Error) {
         embed.setTitle(error.message);
 
-        message.reply({
+        await message.reply({
           embeds: [embed],
         });
       }

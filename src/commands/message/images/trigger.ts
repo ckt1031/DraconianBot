@@ -99,7 +99,7 @@ export const command: TextCommand = {
       name: `${Date.now()}_trgigered.gif`,
     });
 
-    channel.send({
+    await channel.send({
       files: [attachment],
     });
   },

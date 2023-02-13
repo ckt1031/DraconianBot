@@ -99,7 +99,13 @@ export const command: TextCommand = {
         resolution * height,
       );
 
-      context.drawImage(petGifCache[index], 0, 0, resolution, resolution);
+      context.drawImage(
+        petGifCache[Number(index)],
+        0,
+        0,
+        resolution,
+        resolution,
+      );
 
       gif.addFrame(context);
     }
@@ -112,7 +118,7 @@ export const command: TextCommand = {
       name: `${Date.now()}_trgigered.gif`,
     });
 
-    channel.send({
+    await channel.send({
       files: [attachment],
     });
   },

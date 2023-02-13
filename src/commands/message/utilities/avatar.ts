@@ -46,7 +46,7 @@ export const command: TextCommand = {
       .setDescription(`Link: [Click Here](${avatarURL})`)
       .setImage(avatarURL);
 
-    message.reply({
+      await message.reply({
       embeds: [embed],
     });
   },
