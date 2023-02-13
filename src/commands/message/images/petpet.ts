@@ -99,13 +99,7 @@ export const command: TextCommand = {
         resolution * height,
       );
 
-      context.drawImage(
-        petGifCache[Number(index)],
-        0,
-        0,
-        resolution,
-        resolution,
-      );
+      context.drawImage(petGifCache[Number(index)], 0, 0, resolution, resolution);
 
       gif.addFrame(context);
     }

@@ -71,7 +71,7 @@ export const command: TextCommand = {
     const fields: EmbedField[] = [
       {
         name: 'Action',
-        value: '```Disable command that\'s enabled in this server.```',
+        value: "```Disable command that's enabled in this server.```",
         inline: false,
       },
       {

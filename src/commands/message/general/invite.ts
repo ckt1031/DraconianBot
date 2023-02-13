@@ -15,9 +15,7 @@ export const command: TextCommand = {
     if (isDev || client.application.botPublic) {
       const link = `https://discord.com/api/oauth2/authorize?client_id=${client.application.id}&permissions=1636381879799&scope=applications.commands%20bot`;
 
-      const embed = new EmbedBuilder().setDescription(
-        `Invite to your server: [HERE](${link})`,
-      );
+      const embed = new EmbedBuilder().setDescription(`Invite to your server: [HERE](${link})`);
 
       await message.reply({
         embeds: [embed],

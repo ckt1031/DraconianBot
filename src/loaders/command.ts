@@ -3,7 +3,10 @@ import { basename, dirname, join } from 'node:path';
 import { REST } from '@discordjs/rest';
 import chalk from 'chalk';
 import type { Client } from 'discord.js';
-import type { RESTGetAPIApplicationCommandsResult,RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/v9';
+import type {
+  RESTGetAPIApplicationCommandsResult,
+  RESTPostAPIApplicationCommandsJSONBody,
+} from 'discord-api-types/v9';
 import { Routes } from 'discord-api-types/v9';
 import glob from 'glob';
 
@@ -26,11 +29,7 @@ export function loadTextCommand(client: Client) {
     if (error) throw error;
 
     if (allFiles.length === 0) {
-      console.log(
-        chalk.blueBright.bold(
-          '\nWARNING: Cannot find any possible command target.\n',
-        ),
-      );
+      console.log(chalk.blueBright.bold('\nWARNING: Cannot find any possible command target.\n'));
     }
 
     const catagories: TextCommandCatagories = {};
@@ -91,11 +90,7 @@ export function loadTextCommand(client: Client) {
 }
 
 /** Load Slash commands to API & Collection */
-export function loadSlashCommand(
-  client: Client,
-  clientId: string,
-  token: string,
-) {
+export function loadSlashCommand(client: Client, clientId: string, token: string) {
   let folderPath = join(__dirname, '../commands/slash/*.js');
 
   // Parse path in windows
@@ -134,15 +129,10 @@ export function loadSlashCommand(
       const guildId = process.env.DEV_GUILD_ID;
 
       if (guildId) {
-        const guildCommands = await rest.get(
-          Routes.applicationGuildCommands(clientId, guildId),
-        );
+        const guildCommands = await rest.get(Routes.applicationGuildCommands(clientId, guildId));
 
         for (const command of guildCommands as RESTGetAPIApplicationCommandsResult) {
-          const deleteUrl = `${Routes.applicationGuildCommands(
-            clientId,
-            guildId,
-          )}/${command.id}`;
+          const deleteUrl = `${Routes.applicationGuildCommands(clientId, guildId)}/${command.id}`;
           await rest.delete(`/${deleteUrl}`);
         }
 

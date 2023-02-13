@@ -14,10 +14,7 @@ export const event: DiscordEvent = {
     if (guild && condition) {
       const config = await getServerData(guild.id);
 
-      if (
-        !config.snipe.channelDisabled.includes(channel.id) &&
-        client.user.id !== author.id
-      ) {
+      if (!config.snipe.channelDisabled.includes(channel.id) && client.user.id !== author.id) {
         const snipes = await Snipe.findOne({
           channelId: channel.id,
         });

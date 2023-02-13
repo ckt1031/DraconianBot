@@ -5,9 +5,7 @@ import type { SlashCommand } from '../../sturctures/command';
 import { command as TextCommand } from '../message/general/ping';
 
 export const command: SlashCommand = {
-  slashData: new SlashCommandBuilder()
-    .setName('ping')
-    .setDescription(TextCommand.data.description),
+  slashData: new SlashCommandBuilder().setName('ping').setDescription(TextCommand.data.description),
   run: async ({ interaction }) => {
     const apiDelayMS = Math.round(interaction.client.ws.ping);
     const messageDelayMS = Date.now() - interaction.createdTimestamp;

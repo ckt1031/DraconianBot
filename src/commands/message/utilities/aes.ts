@@ -36,9 +36,7 @@ export const command: TextCommand = {
       case 'encrypt': {
         const encryptedValue = AES.encrypt(string, key).toString();
 
-        embed
-          .setTitle('Encryped Data:')
-          .setDescription(`\`\`\`${encryptedValue}\`\`\``);
+        embed.setTitle('Encryped Data:').setDescription(`\`\`\`${encryptedValue}\`\`\``);
 
         await message.channel.send({
           embeds: [embed],
@@ -48,9 +46,7 @@ export const command: TextCommand = {
       case 'decrypt': {
         const decryptedValue = AES.decrypt(string, key).toString(enc.Utf8);
 
-        embed
-          .setTitle('Decryped Data:')
-          .setDescription(`\`\`\`${decryptedValue}\`\`\``);
+        embed.setTitle('Decryped Data:').setDescription(`\`\`\`${decryptedValue}\`\`\``);
 
         await message.channel.send({
           embeds: [embed],
@@ -58,9 +54,7 @@ export const command: TextCommand = {
         break;
       }
       default: {
-        embed
-          .setTitle('Wrong Type!')
-          .setDescription('`encrypt / decrypt` [key] [value...]');
+        embed.setTitle('Wrong Type!').setDescription('`encrypt / decrypt` [key] [value...]');
         await message.reply({
           embeds: [embed],
         });

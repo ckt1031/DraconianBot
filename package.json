@@ -5,20 +5,16 @@
   "description": "Multi-Purpose & Productivity concentrated Discord BOT.",
   "license": "MIT",
   "author": "ckt1031",
-  "main": "src/index.ts",
-  "engines": {
-    "node": ">=16.9.0",
-    "npm": ">=7"
-  },
   "type": "module",
+  "main": "src/index.ts",
   "scripts": {
     "clean": "rimraf ./dist",
     "dev": "nodemon",
-    "lint": "tsc && eslint --fix .",
     "format": "prettier -w .",
-    "typecheck": "tsc",
+    "lint": "tsc && eslint --fix .",
     "start": "cross-env NODE_ENV=production node --loader @esbuild-kit/esm-loader src/index.ts",
-    "sync": "node --loader @esbuild-kit/esm-loader tools/copy-config.ts"
+    "sync": "node --loader @esbuild-kit/esm-loader tools/copy-config.ts",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@discordjs/builders": "1.4.0",
@@ -49,6 +45,7 @@
   },
   "devDependencies": {
     "@ckt1031/eslint-config": "0.1.1",
+    "@ckt1031/prettier-config": "0.1.1",
     "@ckt1031/tsconfig": "0.1.1",
     "@types/crypto-js": "4.1.1",
     "@types/deepmerge": "^2.2.0",
@@ -68,6 +65,10 @@
     "prettier": "2.8.4",
     "rimraf": "4.1.2",
     "typescript": "4.9.5"
+  },
+  "engines": {
+    "node": ">=16.9.0",
+    "npm": ">=7"
   },
   "nodemonConfig": {
     "watch": [

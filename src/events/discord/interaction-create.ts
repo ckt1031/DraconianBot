@@ -39,9 +39,7 @@ export const event: DiscordEvent = {
       }
 
       if (slash.data?.developmentOnly === true && !isDev) {
-        return returnOfInter(
-          'This command is not enabled to execute in current state.',
-        );
+        return returnOfInter('This command is not enabled to execute in current state.');
       }
 
       // Cooldown Validation
@@ -54,18 +52,12 @@ export const event: DiscordEvent = {
         const expectedEnd = cooldownCache.get(keyName);
         if (expectedEnd && now < Number(expectedEnd)) {
           const timeleft = parseMsToVisibleText(Number(expectedEnd) - now);
-          return returnOfInter(
-            `Before using this command, please wait for **${timeleft}**.`,
-          );
+          return returnOfInter(`Before using this command, please wait for **${timeleft}**.`);
         }
       }
 
       // Set cooldown
-      cooldownCache.set(
-        keyName,
-        now + cooldownInterval,
-        cooldownInterval / 1000,
-      );
+      cooldownCache.set(keyName, now + cooldownInterval, cooldownInterval / 1000);
 
       try {
         return slash.run({ interaction });

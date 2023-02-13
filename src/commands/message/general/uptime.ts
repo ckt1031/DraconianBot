@@ -15,11 +15,7 @@ export const command: TextCommand = {
 
     const embed = new EmbedBuilder()
       .setTitle("Bot's Uptime")
-      .setDescription(
-        `\`${parseMsToVisibleText(
-          instanceBoot,
-        )}\`\n**Booted at** <t:${bootTimeMS}>`,
-      );
+      .setDescription(`\`${parseMsToVisibleText(instanceBoot)}\`\n**Booted at** <t:${bootTimeMS}>`);
 
     await message.reply({
       embeds: [embed],
