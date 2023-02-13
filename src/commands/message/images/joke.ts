@@ -30,13 +30,13 @@ export const command: TextCommand = {
         text: `Category: ${responseData.category} • ID: ${responseData.id}`,
       });
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     } catch {
       embed.setDescription('Error occured when fetching meme content.');
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     }

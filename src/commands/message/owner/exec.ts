@@ -1,7 +1,7 @@
 import { exec } from 'node:child_process';
-import { isDev } from '../../../utils/constants';
 
 import type { TextCommand } from '../../../sturctures/command';
+import { isDev } from '../../../utils/constants';
 
 function clean(text: string) {
   if (typeof text === 'string') {
@@ -28,26 +28,26 @@ export const command: TextCommand = {
       },
     ],
   },
-  run: async ({ message, args }) => {
+  run: ({ message, args }) => {
     const code = args.join(' ');
 
     if (code) {
-      exec(code, (error, stdout, stderr) => {
+      exec(code, async (error, stdout, stderr) => {
         if (error) {
-          message.channel.send({
+          await message.channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
           });
           return;
         }
 
         if (stderr) {
-          message.channel.send({
+          await message.channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(stderr)}\n\`\`\``,
           });
           return;
         }
 
-        message.channel.send({ content: `\`\`\`${clean(stdout)}\`\`\`` });
+        await message.channel.send({ content: `\`\`\`${clean(stdout)}\`\`\`` });
       });
     }
   },

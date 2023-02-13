@@ -1,7 +1,7 @@
 import { inspect } from 'node:util';
-import { isDev } from '../../../utils/constants';
 
 import type { TextCommand } from '../../../sturctures/command';
+import { isDev } from '../../../utils/constants';
 
 function clean(text: string) {
   if (typeof text === 'string') {
@@ -36,10 +36,10 @@ export const command: TextCommand = {
         let evaled = eval(code);
         if (typeof evaled !== 'string') evaled = inspect(evaled);
         if (evaled.length > 1999) return console.log(evaled);
-        message.channel.send({ content: `\`\`\`${clean(evaled)}\`\`\`` });
+        await message.channel.send({ content: `\`\`\`${clean(evaled as string)}\`\`\`` });
       } catch (error) {
         if (error instanceof Error && error.message.length < 1999) {
-          message.channel.send({
+          await message.channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
           });
         }

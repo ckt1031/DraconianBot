@@ -48,7 +48,7 @@ export const command: TextCommand = {
         },
         {
           name: 'Uptime',
-          value: `\`${parseMsToVisibleText(message.client.uptime ?? 0)}\``,
+          value: `\`${parseMsToVisibleText(message.client.uptime)}\``,
           inline: true,
         },
         {
@@ -58,7 +58,7 @@ export const command: TextCommand = {
         },
       ]);
 
-    message.reply({
+   await message.reply({
       embeds: [embed],
     });
   },

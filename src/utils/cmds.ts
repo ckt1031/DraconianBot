@@ -109,14 +109,13 @@ export async function resembleCommandCheck(
       .then(async _inter => {
         // Delete message first
         if (_message.deletable) {
-          // eslint-disable-next-line promise/no-nesting
-          await _message.delete().catch(() => {});
+          await _message.delete().catch(() => undefined);
         }
         if (_inter.customId === acceptButtonId) {
           const timeTaken = timeStarted - Date.now();
           return resolve({ name: bestMatch.target, timeTaken });
         }
-        throw 0;
+        throw new Error('Declined');
       })
       .catch(() => {
         // eslint-disable-next-line unicorn/no-useless-undefined

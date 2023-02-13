@@ -21,7 +21,7 @@ export const command: TextCommand = {
       )}`;
 
       const response = await axios.get(url);
-      const responseData = response.data;
+      const responseData: string = response.data;
 
       embed
         .setTitle('Converted!')
@@ -29,13 +29,13 @@ export const command: TextCommand = {
           `URL: ${responseData}\nDestination: \`${destination}\``,
         );
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     } catch {
       embed.setDescription('Error occured when fetching the content.');
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     }

@@ -35,7 +35,7 @@ export const command: TextCommand = {
           color: 'Red',
           mode: 'error',
         });
-        message.reply({
+        await message.reply({
           embeds: [cEmbed],
         });
         return;
@@ -50,7 +50,7 @@ export const command: TextCommand = {
           mode: 'success',
         });
 
-        message.reply({
+        await message.reply({
           embeds: [cEmbed],
         });
         return;
@@ -64,7 +64,7 @@ export const command: TextCommand = {
         mode: 'success',
       });
 
-      message.reply({
+      await message.reply({
         embeds: [cEmbed],
       });
     }

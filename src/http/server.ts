@@ -2,8 +2,8 @@ import fastify from 'fastify';
 
 const server = fastify();
 
-server.get('/', async () => 'Draconian Bot');
+server.get('/', () => 'Draconian Bot');
 
-server.listen({
+await server.listen({
   port: Number(process.env.PORT),
 });

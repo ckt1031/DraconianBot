@@ -53,13 +53,13 @@ export const command: TextCommand = {
         },
       ]);
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     } catch {
       embed.setDescription('Error occured when fetching meme content.');
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     }

@@ -31,13 +31,13 @@ export const command: TextCommand = {
           text: `Credit: ${responseData.subreddit} • ${responseData.postLink}`,
         });
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     } catch {
       embed.setDescription('Error occured when fetching meme content.');
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     }

@@ -30,7 +30,7 @@ export const command: TextCommand = {
 
     const embed = new EmbedBuilder();
 
-    if (message.deletable) message.delete().catch(() => {});
+    if (message.deletable) message.delete().catch(() => undefined);
 
     switch (mode) {
       case 'encrypt': {
@@ -40,7 +40,7 @@ export const command: TextCommand = {
           .setTitle('Encryped Data:')
           .setDescription(`\`\`\`${encryptedValue}\`\`\``);
 
-        message.channel.send({
+        await message.channel.send({
           embeds: [embed],
         });
         break;
@@ -52,7 +52,7 @@ export const command: TextCommand = {
           .setTitle('Decryped Data:')
           .setDescription(`\`\`\`${decryptedValue}\`\`\``);
 
-        message.channel.send({
+        await message.channel.send({
           embeds: [embed],
         });
         break;
@@ -60,8 +60,8 @@ export const command: TextCommand = {
       default: {
         embed
           .setTitle('Wrong Type!')
-          .setDescription(`\`encrypt / decrypt\` [key] [value...]`);
-        message.reply({
+          .setDescription('`encrypt / decrypt` [key] [value...]');
+        await message.reply({
           embeds: [embed],
         });
         break;

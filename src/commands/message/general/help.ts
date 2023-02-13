@@ -12,12 +12,43 @@ export const command: TextCommand = {
     description: 'Get information or help from the bot.',
     directMessageAllowed: true,
   },
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   run: async ({ message, args }) => {
     const embed = new EmbedBuilder();
 
     const { client, channel, guildId } = message;
 
-    if (!args[0]) {
+    if (args[0]) {
+      let cmd: TextCommand | undefined;
+
+      const commandMatching = client.commands.get(args[0]);
+      const aliasesMatching = client.aliases.get(args[0]);
+
+      // Fetch command destination.
+      if (commandMatching) {
+        cmd = commandMatching;
+      } else if (aliasesMatching) {
+        cmd = client.commands.get(aliasesMatching);
+      } else {
+        const cEmbed = callbackEmbed({
+          text: 'Command requested does not exist!',
+          color: 'Red',
+          mode: 'error',
+        });
+        await message.reply({
+          embeds: [cEmbed],
+        });
+
+        return;
+      }
+
+      if (cmd) {
+        const helpInfo = getCommandHelpInfo(cmd);
+        await message.reply({
+          embeds: [helpInfo],
+        });
+      }
+    } else {
       const commandsCatagories = client.commandsCatagories;
 
       embed.setDescription(
@@ -26,9 +57,10 @@ export const command: TextCommand = {
 
       for (const catagory of commandsCatagories) {
         if (catagory[0].toLocaleLowerCase() === 'nsfw') {
-          if (!(channel as TextChannel).nsfw) continue;
-          else {
+          if ((channel as TextChannel).nsfw) {
             catagory[0] += ' THIS CHANNEL ONLY';
+          } else {
+            continue;
           }
         }
         const text = catagory[1]
@@ -49,46 +81,16 @@ export const command: TextCommand = {
         }
       }
 
-      const avatarURL = client.user?.defaultAvatarURL;
+      const avatarURL = client.user.defaultAvatarURL;
 
       embed.setTitle('Bot Assistance Centre').setFooter({
         text: `© ${new Date().getFullYear()} ${botname}`,
         iconURL: avatarURL ?? '',
       });
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
-    } else {
-      let cmd: TextCommand | undefined;
-
-      const commandMatching = client.commands.get(args[0]);
-      const aliasesMatching = client.aliases.get(args[0]);
-
-      // Fetch command destination.
-      if (commandMatching) {
-        cmd = commandMatching;
-      } else if (aliasesMatching) {
-        cmd = client.commands.get(aliasesMatching);
-      } else {
-        const cEmbed = callbackEmbed({
-          text: 'Command requested does not exist!',
-          color: 'Red',
-          mode: 'error',
-        });
-        message.reply({
-          embeds: [cEmbed],
-        });
-
-        return;
-      }
-
-      if (cmd) {
-        const helpInfo = getCommandHelpInfo(cmd);
-        message.reply({
-          embeds: [helpInfo],
-        });
-      }
     }
   },
 };

@@ -1,6 +1,6 @@
-import './http/server';
-
 import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
+
+import './http/server';
 
 import { loadSlashCommand, loadTextCommand } from './loaders/command';
 import { loadDiscordEvent } from './loaders/event';
@@ -32,9 +32,9 @@ client.slashcommands = new Collection();
 loadDiscordEvent(client);
 loadTextCommand(client);
 
-connect();
+await connect();
 
-client.login(process.env.TOKEN);
+await client.login(process.env.TOKEN);
 loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
 
 export default client;

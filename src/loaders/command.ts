@@ -1,23 +1,20 @@
+import { basename, dirname, join } from 'node:path';
+
 import { REST } from '@discordjs/rest';
 import chalk from 'chalk';
 import type { Client } from 'discord.js';
-import {
-  RESTPostAPIApplicationCommandsJSONBody,
-  Routes,
-} from 'discord-api-types/v9';
+import type { RESTGetAPIApplicationCommandsResult,RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/v9';
+import { Routes } from 'discord-api-types/v9';
 import glob from 'glob';
-import { basename, dirname, join } from 'node:path';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
 import type { SlashCommand, TextCommand } from '../sturctures/command';
 import { isDev } from '../utils/constants';
 
-interface TextCommandCatagories {
-  [key: string]: string[];
-}
+type TextCommandCatagories = Record<string, string[]>;
 
 /** Text Command Loaders */
-export async function loadTextCommand(client: Client) {
+export function loadTextCommand(client: Client) {
   let folderPath = join(__dirname, '../commands/message/**/*.js');
 
   // Parse path in windows
@@ -25,7 +22,7 @@ export async function loadTextCommand(client: Client) {
     folderPath = folderPath.replaceAll('\\', '/');
   }
 
-  glob(folderPath, (error, allFiles) => {
+  glob(folderPath, async (error, allFiles) => {
     if (error) throw error;
 
     if (allFiles.length === 0) {
@@ -36,24 +33,20 @@ export async function loadTextCommand(client: Client) {
       );
     }
 
-    let catagories: TextCommandCatagories = {};
+    const catagories: TextCommandCatagories = {};
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
-      const filePath = allFiles[index];
-      const commandFile = require(filePath);
+      const filePath = allFiles[Number(index)];
+      const commandFile = (await import(filePath)).default;
       const command: TextCommand = commandFile.command;
 
       // Neglect if disabled.
-      if (command?.enabled === false) continue;
-
-      if (!command?.data) {
-        throw `Error: ${filePath}`;
-      }
+      if (command.enabled === false) continue;
 
       // Store command to memory.
       const cmdName = command.data.name;
       if (client.commands.has(cmdName)) {
-        throw 'Duplicated command is found!';
+        throw new Error('Duplicated command is found!');
       }
 
       const catagory = basename(dirname(filePath));
@@ -64,17 +57,15 @@ export async function loadTextCommand(client: Client) {
         if (catagory) {
           command.data.catagory = catagory;
           if (command.data.publicLevel !== 'None') {
-            if (!catagories[catagory]) {
-              catagories[catagory] = [];
-            }
-            catagories[catagory].push(cmdName);
+            catagories[String(catagory)] = [];
+            catagories[String(catagory)].push(cmdName);
           }
         }
 
         if (command.data.intervalLimit) {
           const list = command.data.intervalLimit;
           if (list.minute! > list.hour! || list.hour! > list.day!) {
-            throw `Impolitic Custom Interval style!`;
+            throw 'Impolitic Custom Interval style!';
           }
         }
 
@@ -83,7 +74,7 @@ export async function loadTextCommand(client: Client) {
         if (command.data.aliases) {
           for (const alias of command.data.aliases) {
             if (client.aliases.has(alias)) {
-              throw 'Duplicated command alias is found!';
+              throw new Error('Duplicated alias is found!');
             }
             // Store aliase(s) to memory if exists.
             client.aliases.set(alias, command.data.name);
@@ -100,7 +91,7 @@ export async function loadTextCommand(client: Client) {
 }
 
 /** Load Slash commands to API & Collection */
-export async function loadSlashCommand(
+export function loadSlashCommand(
   client: Client,
   clientId: string,
   token: string,
@@ -118,15 +109,15 @@ export async function loadSlashCommand(
     if (error) throw error;
 
     for (let index = 0, l = allFiles.length; index < l; index++) {
-      const filePath = allFiles[index];
-      const commandFile = require(filePath);
+      const filePath = allFiles[Number(index)];
+      const commandFile = (await import(filePath)).default;
       const slashCommand: SlashCommand = commandFile.command;
 
       const slashCommandCollection = client.slashcommands;
       const name = slashCommand.slashData.name;
 
       if (slashCommandCollection.has(name)) {
-        throw 'Duplicated slash command is found!';
+        throw new Error('Duplicated slash command is found!');
       }
 
       client.slashcommands.set(name, slashCommand);
@@ -138,23 +129,16 @@ export async function loadSlashCommand(
 
     const rest = new REST({ version: '9' }).setToken(token);
 
-    if (!isDev) {
-      // Global Commands
-      await rest.put(Routes.applicationCommands(clientId), {
-        body: slashCommandData,
-      });
-    } else {
+    if (isDev) {
       // Guild Only & Development Only Commands.
       const guildId = process.env.DEV_GUILD_ID;
-      
-      if (guildId) {
-        const { applicationGuildCommands } = Routes;
 
+      if (guildId) {
         const guildCommands = await rest.get(
           Routes.applicationGuildCommands(clientId, guildId),
         );
 
-        for (const command of guildCommands as any) {
+        for (const command of guildCommands as RESTGetAPIApplicationCommandsResult) {
           const deleteUrl = `${Routes.applicationGuildCommands(
             clientId,
             guildId,
@@ -162,10 +146,15 @@ export async function loadSlashCommand(
           await rest.delete(`/${deleteUrl}`);
         }
 
-        await rest.put(applicationGuildCommands(clientId, guildId), {
+        await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
           body: slashCommandData,
         });
       }
+    } else {
+      // Global Commands
+      await rest.put(Routes.applicationCommands(clientId), {
+        body: slashCommandData,
+      });
     }
   });
 }

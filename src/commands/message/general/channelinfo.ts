@@ -10,10 +10,11 @@ export const command: TextCommand = {
     description: "Check server's channel information.",
     directMessageAllowed: false,
   },
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   run: async ({ message, args }) => {
     const { guild, channel, mentions, member } = message;
 
-    if (!guild || !channel || !member) return;
+    if (!guild || !member) return;
 
     const targetNameId = args[0];
 
@@ -53,7 +54,7 @@ export const command: TextCommand = {
         embed.addFields([
           {
             name: 'Parent',
-            value: textChannel.parent?.name,
+            value: textChannel.parent.name,
             inline: true,
           },
         ]);
@@ -82,7 +83,7 @@ export const command: TextCommand = {
         text: `Shard ID: ${guild.shardId}`,
       });
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
 
@@ -105,7 +106,7 @@ export const command: TextCommand = {
         embed.addFields([
           {
             name: 'Parent',
-            value: voiceChannel.parent?.name,
+            value: voiceChannel.parent.name,
             inline: true,
           },
         ]);
@@ -129,7 +130,7 @@ export const command: TextCommand = {
         text: `Shard ID: ${guild.shardId}`,
       });
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     }
@@ -150,7 +151,7 @@ export const command: TextCommand = {
         embed.addFields([
           {
             name: 'Parent',
-            value: voiceChannel.parent?.name,
+            value: voiceChannel.parent.name,
             inline: true,
           },
         ]);
@@ -179,7 +180,7 @@ export const command: TextCommand = {
         text: `Shard ID: ${guild.shardId}`,
       });
 
-      message.reply({
+      await message.reply({
         embeds: [embed],
       });
     }

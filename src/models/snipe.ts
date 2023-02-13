@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { SnipeConfig } from '../sturctures/database';
+import type { SnipeConfig } from '../sturctures/database';
 
 const ModuleSchema = new Schema<SnipeConfig>({
   channelId: { type: String },

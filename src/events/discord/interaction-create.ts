@@ -1,20 +1,21 @@
 import type { CommandInteraction } from 'discord.js';
-import { isDev } from '../../utils/constants';
 
 import { ownerId } from '../../../config/bot.json';
 import type { DiscordEvent } from '../../sturctures/event';
 import { cooldownCache } from '../../utils/cache';
+import { isDev } from '../../utils/constants';
 import { parseMsToVisibleText } from '../../utils/formatters';
 
 export const event: DiscordEvent = {
   name: 'interactionCreate',
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   run: async (interaction: CommandInteraction) => {
     if (interaction.guild && !interaction.member) {
       await interaction.guild.members.fetch(interaction.user.id);
     }
 
-    const returnOfInter = (content: string, ephemeral = true) => {
-      interaction.reply({ content, ephemeral });
+    const returnOfInter = async (content: string, ephemeral = true) => {
+      await interaction.reply({ content, ephemeral });
     };
 
     if (interaction.isChatInputCommand()) {
@@ -29,15 +30,15 @@ export const event: DiscordEvent = {
       }
 
       // Eligibility Validations
-      if (slash?.enabled === false) {
+      if (slash.enabled === false) {
         return returnOfInter('This command is not enabled to execute.');
       }
 
-      if (slash?.data?.ownerOnly === true && user.id !== ownerId) {
+      if (slash.data?.ownerOnly === true && user.id !== ownerId) {
         return returnOfInter('This command is not enabled to execute.');
       }
 
-      if (slash?.data?.developmentOnly === true && !isDev) {
+      if (slash.data?.developmentOnly === true && !isDev) {
         return returnOfInter(
           'This command is not enabled to execute in current state.',
         );
@@ -46,7 +47,7 @@ export const event: DiscordEvent = {
       // Cooldown Validation
       const now = Date.now();
       const keyName = `CMD_${user.id}_${slash.slashData.name}`;
-      const cooldownInterval = slash?.data?.cooldownInterval ?? 3000;
+      const cooldownInterval = slash.data?.cooldownInterval ?? 3000;
 
       // Reject if user exists in cooldown.
       if (cooldownCache.has(keyName)) {

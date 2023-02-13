@@ -7,7 +7,7 @@ import type { DiscordEvent } from '../../sturctures/event';
 export const event: DiscordEvent = {
   once: true,
   name: 'ready',
-  run: async (client: Client) => {
+  run: (client: Client) => {
     // Dynamic Status
     let index = 0;
 

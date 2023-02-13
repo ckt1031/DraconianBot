@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import { GuildConfig } from '../sturctures/database';
+import type { GuildConfig } from '../sturctures/database';
 
 const ModuleSchema = new Schema<GuildConfig>({
   prefix: { type: String, default: 'd!' },

@@ -15,20 +15,20 @@ export const command: TextCommand = {
     const snipeData = await Snipe.findOne({ channelId });
 
     if (!snipeData) {
-      message.reply({
+      await message.reply({
         content: "This channel doesn't contain any **deleted** messages.",
       });
       return;
     }
 
     const embed = new EmbedBuilder().setAuthor({
-      name: snipeData.author.name ?? 'N/A',
+      name: snipeData.author.name,
     });
 
     if (snipeData.content.text) embed.setDescription(snipeData.content.text);
     if (snipeData.content.imageURL) embed.setImage(snipeData.content.imageURL);
 
-    message.reply({
+    await message.reply({
       embeds: [embed],
     });
   },
