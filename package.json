@@ -8,7 +8,6 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "clean": "rimraf ./dist",
     "dev": "nodemon",
     "format": "prettier -w .",
     "lint": "tsc && eslint --fix .",
@@ -57,13 +56,9 @@
     "@types/string-similarity": "4.0.0",
     "@types/urban-dictionary": "3.0.0",
     "@types/xml2js": "0.4.11",
-    "@typescript-eslint/eslint-plugin": "5.51.0",
-    "@typescript-eslint/parser": "5.51.0",
     "eslint": "8.34.0",
-    "eslint-plugin-simple-import-sort": "10.0.0",
     "nodemon": "2.0.20",
     "prettier": "2.8.4",
-    "rimraf": "4.1.2",
     "typescript": "4.9.5"
   },
   "engines": {
