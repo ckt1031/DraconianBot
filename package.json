@@ -15,7 +15,6 @@
     "sync": "node --loader @esbuild-kit/esm-loader tools/copy-config.ts",
     "typecheck": "tsc"
   },
-  "packageManager": "pnpm@7.26.3",
   "dependencies": {
     "@discordjs/builders": "1.4.0",
     "@discordjs/rest": "1.5.0",
@@ -77,5 +76,6 @@
       "node_modules"
     ],
     "exec": "node --loader @esbuild-kit/esm-loader --inspect src/index.ts"
-  }
+  },
+  "packageManager": "pnpm@7.26.3"
 }

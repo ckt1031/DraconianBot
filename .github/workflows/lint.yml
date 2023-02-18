@@ -28,3 +28,6 @@ jobs:
 
       - name: Typecheck and Lint
         run: pnpm lint
+
+      - name: Check Prettier
+        run: pnpm prettier --check .
