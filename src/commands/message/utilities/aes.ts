@@ -26,7 +26,7 @@ export const command: TextCommand = {
   },
   run: async ({ message, args }) => {
     if (message.channel.isVoiceBased()) return;
-    
+
     const [mode, key, ...value] = args;
     const string = value.join(' ');
 
