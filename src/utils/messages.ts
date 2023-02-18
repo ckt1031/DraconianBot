@@ -20,6 +20,8 @@ export async function confirmInformationButtons({
   fields,
   message,
 }: ConfirmInformationButtons): Promise<boolean> {
+  if (message.channel.isVoiceBased()) return false;
+
   const now = Date.now();
   const embed = new EmbedBuilder().setTitle(title).addFields(fields);
 

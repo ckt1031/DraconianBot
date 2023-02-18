@@ -29,25 +29,28 @@ export const command: TextCommand = {
     ],
   },
   run: ({ message, args }) => {
+    const { channel } = message;
+    if (channel.isVoiceBased()) return;
+
     const code = args.join(' ');
 
     if (code) {
       exec(code, async (error, stdout, stderr) => {
         if (error) {
-          await message.channel.send({
+          await channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
           });
           return;
         }
 
         if (stderr) {
-          await message.channel.send({
+          await channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(stderr)}\n\`\`\``,
           });
           return;
         }
 
-        await message.channel.send({ content: `\`\`\`${clean(stdout)}\`\`\`` });
+        await channel.send({ content: `\`\`\`${clean(stdout)}\`\`\`` });
       });
     }
   },
