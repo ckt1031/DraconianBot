@@ -11,6 +11,8 @@ export const command: TextCommand = {
     cooldownInterval: 5 * 1000,
   },
   run: async ({ message, args }) => {
+    if (message.channel.isVoiceBased()) return;
+
     const embed = new EmbedBuilder();
 
     const data = args.join(' ');

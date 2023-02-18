@@ -28,8 +28,7 @@ export const event: DiscordEvent = {
   run: async (message: Message) => {
     const { content, channel, author, webhookId, member, guild, client } = message;
 
-    if (author.bot) return;
-    if (webhookId || author.id === client.user.id) return;
+    if (author.bot || channel.isVoiceBased() || webhookId || author.id === client.user.id) return;
 
     let prefix = 'd!';
 

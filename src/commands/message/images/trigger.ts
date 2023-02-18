@@ -14,6 +14,8 @@ export const command: TextCommand = {
   run: async ({ message, args }) => {
     const { attachments, author, guild, channel } = message;
 
+    if (channel.isVoiceBased()) return;
+
     // Image fetching
     let image = attachments.first()?.proxyURL;
 

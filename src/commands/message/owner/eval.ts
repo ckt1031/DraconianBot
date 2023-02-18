@@ -29,6 +29,10 @@ export const command: TextCommand = {
     ],
   },
   run: async ({ message, args }) => {
+    const { channel } = message;
+
+    if (channel.isVoiceBased()) return;
+
     const code = args.join(' ');
 
     if (code) {
@@ -36,12 +40,12 @@ export const command: TextCommand = {
         let evaled = eval(code);
         if (typeof evaled !== 'string') evaled = inspect(evaled);
         if (evaled.length > 1999) return console.log(evaled);
-        await message.channel.send({
+        await channel.send({
           content: `\`\`\`${clean(evaled as string)}\`\`\``,
         });
       } catch (error) {
         if (error instanceof Error && error.message.length < 1999) {
-          await message.channel.send({
+          await channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,
           });
         }
