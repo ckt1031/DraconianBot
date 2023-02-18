@@ -2,13 +2,7 @@ name: Typecheck and Lint
 
 on:
   push:
-    branches:
-      - main
-      - dev
   pull_request:
-    branches:
-      - main
-      - dev
 
 jobs:
   Analyze:
@@ -17,13 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+
       - uses: actions/setup-node@v3
         with:
-          cache: npm
-          node-version: 16
+          cache: pnpm
+          node-version: 18
 
-      - run: npm i
+      - name: Install dependencies
+        run: pnpm i
 
-      - run: npm run sync
+      - name: Sync and Merge config files
+        run: pnpm sync
 
-      - run: npm run lint
+      - name: Typecheck and Lint
+        run: pnpm lint
