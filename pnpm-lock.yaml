@@ -31,7 +31,7 @@ specifiers:
   fastify: 4.13.0
   gifencoder: 2.0.1
   glob: 8.1.0
-  mongoose: 6.9.2
+  mongoose: 6.9.3
   ms: 2.1.3
   node-cache: 5.1.2
   nodemon: 2.0.20
@@ -61,7 +61,7 @@ dependencies:
   fastify: 4.13.0
   gifencoder: 2.0.1
   glob: 8.1.0
-  mongoose: 6.9.2
+  mongoose: 6.9.3
   ms: 2.1.3
   node-cache: 5.1.2
   pidusage: 3.0.2
@@ -4166,8 +4166,8 @@ packages:
       - aws-crt
     dev: false
 
-  /mongoose/6.9.2:
-    resolution: {integrity: sha512-Yb9rWJhYm+7Yf839QuKx2dXcclbA0GAMxtdDiaedHsOQU+y28cD/8gKYp1wTwwyAjKesqaGfLG4ez7D9lKpwBw==}
+  /mongoose/6.9.3:
+    resolution: {integrity: sha512-WiuqEXblyd6NLASmTsdgkA3hEndf8CJ8qEEVt7QjSvyImNATn5J7mbPbbZMgFz2MvkPHnpqSbfjyxFoYSdTZOg==}
     engines: {node: '>=12.0.0'}
     dependencies:
       bson: 4.7.2
