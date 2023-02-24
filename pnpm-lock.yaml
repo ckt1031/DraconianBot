@@ -9,7 +9,7 @@ specifiers:
   '@esbuild-kit/esm-loader': 2.5.5
   '@types/crypto-js': 4.1.1
   '@types/gifencoder': 2.0.1
-  '@types/glob': 8.0.1
+  '@types/glob': 8.1.0
   '@types/ms': 0.7.31
   '@types/node': 18.14.1
   '@types/pidusage': 2.0.2
@@ -76,7 +76,7 @@ devDependencies:
   '@ckt1031/tsconfig': 0.1.2_typescript@4.9.5
   '@types/crypto-js': 4.1.1
   '@types/gifencoder': 2.0.1
-  '@types/glob': 8.0.1
+  '@types/glob': 8.1.0
   '@types/ms': 0.7.31
   '@types/node': 18.14.1
   '@types/pidusage': 2.0.2
@@ -1615,8 +1615,8 @@ packages:
       '@types/node': 18.14.1
     dev: true
 
-  /@types/glob/8.0.1:
-    resolution: {integrity: sha512-8bVUjXZvJacUFkJXHdyZ9iH1Eaj5V7I8c4NdH5sQJsdXkqT4CA5Dhb4yb4VE/3asyx4L9ayZr1NIhTsWHczmMw==}
+  /@types/glob/8.1.0:
+    resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
     dependencies:
       '@types/minimatch': 5.1.2
       '@types/node': 18.14.1
