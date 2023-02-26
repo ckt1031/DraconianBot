@@ -25,6 +25,9 @@ jobs:
 
       - name: Sync and Merge config files
         run: pnpm sync
+        
+      - name: Run Type Checking
+        run: pnpm typecheck
 
       - name: Typecheck and Lint
         run: pnpm lint
