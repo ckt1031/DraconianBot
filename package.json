@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon",
     "format": "prettier -w .",
-    "lint": "tsc && eslint --fix .",
+    "lint": "eslint --fix .",
     "start": "cross-env NODE_ENV=production node --loader @esbuild-kit/esm-loader src/index.ts",
     "sync": "node --loader @esbuild-kit/esm-loader tools/copy-config.ts",
     "typecheck": "tsc"
