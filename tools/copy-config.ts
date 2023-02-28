@@ -17,39 +17,35 @@ if (process.platform === 'win32') {
   folderPath = folderPath.replaceAll('\\', '/');
 }
 
-glob(folderPath, (error, allFiles) => {
-  if (error) throw error;
+const allFiles = await glob(folderPath);
 
-  for (let index = 0, l = allFiles.length; index < l; index++) {
-    const filePath = allFiles[Number(index)];
+for (const filePath of allFiles) {
+  // Path that used in code, user specified config path
+  const targetPath = filePath.replace('.example', '');
+  const tagretFileName = path.basename(targetPath);
 
-    // Path that used in code, user specified config path
-    const targetPath = filePath.replace('.example', '');
-    const tagretFileName = path.basename(targetPath);
+  // The example config file
+  const defaultConfigFile = readFileSync(filePath);
+  const defaultConfig: object = JSON.parse(defaultConfigFile.toString());
 
-    // The example config file
-    const defaultConfigFile = readFileSync(filePath);
-    const defaultConfig: object = JSON.parse(defaultConfigFile as unknown as string);
+  // If file exist, merge it
+  if (existsSync(targetPath)) {
+    // User specified config file
+    const oldConfigFile = readFileSync(targetPath);
+    const oldConfig: object = JSON.parse(oldConfigFile.toString());
 
-    // If file exist, merge it
-    if (existsSync(targetPath)) {
-      // User specified config file
-      const oldConfigFile = readFileSync(targetPath);
-      const oldConfig: object = JSON.parse(oldConfigFile as unknown as string);
+    // Merged config
+    const newConfig = deepmerge(defaultConfig, oldConfig);
 
-      // Merged config
-      const newConfig = deepmerge(defaultConfig, oldConfig);
+    console.log(chalk.yellow('📀 MERGE SUCCEED:' + ` ${tagretFileName}`));
 
-      console.log(chalk.yellow('📀 MERGE SUCCEED:' + ` ${tagretFileName}`));
+    writeFileSync(targetPath, JSON.stringify(newConfig, null, 2));
 
-      writeFileSync(targetPath, JSON.stringify(newConfig, null, 2));
-
-      continue;
-    }
-
-    console.log(chalk.green('✅ COPY SUCCEED:' + ` ${tagretFileName}`));
-
-    // If file not exist, copy it
-    copyFileSync(filePath, targetPath);
+    continue;
   }
-});
+
+  console.log(chalk.green('✅ COPY SUCCEED:' + ` ${tagretFileName}`));
+
+  // If file not exist, copy it
+  copyFileSync(filePath, targetPath);
+}
