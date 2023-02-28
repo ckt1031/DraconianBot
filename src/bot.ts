@@ -24,13 +24,14 @@ client.commandsCatagories = new Collection();
 client.aliases = new Collection();
 client.slashcommands = new Collection();
 
-loadDiscordEvent(client);
-loadTextCommand(client);
+await client.login(process.env.TOKEN);
+
+await loadDiscordEvent(client);
+await loadTextCommand(client);
 
 await connect();
 
-await client.login(process.env.TOKEN);
-loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
+await loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
 
 export default client;
 

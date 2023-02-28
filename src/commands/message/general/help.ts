@@ -85,7 +85,7 @@ export const command: TextCommand = {
 
       embed.setTitle('Bot Assistance Centre').setFooter({
         text: `© ${new Date().getFullYear()} ${botname}`,
-        iconURL: avatarURL ?? '',
+        iconURL: avatarURL,
       });
 
       await message.reply({
