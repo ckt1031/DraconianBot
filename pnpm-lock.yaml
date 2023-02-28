@@ -9,7 +9,6 @@ specifiers:
   '@esbuild-kit/esm-loader': 2.5.5
   '@types/crypto-js': 4.1.1
   '@types/gifencoder': 2.0.1
-  '@types/glob': 8.1.0
   '@types/ms': 0.7.31
   '@types/node': 18.14.2
   '@types/pidusage': 2.0.2
@@ -76,7 +75,6 @@ devDependencies:
   '@ckt1031/tsconfig': 0.1.2_typescript@4.9.5
   '@types/crypto-js': 4.1.1
   '@types/gifencoder': 2.0.1
-  '@types/glob': 8.1.0
   '@types/ms': 0.7.31
   '@types/node': 18.14.2
   '@types/pidusage': 2.0.2
@@ -805,13 +803,6 @@ packages:
       '@types/node': 18.14.2
     dev: true
 
-  /@types/glob/8.1.0:
-    resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
-    dependencies:
-      '@types/minimatch': 5.1.2
-      '@types/node': 18.14.2
-    dev: true
-
   /@types/http-errors/1.8.2:
     resolution: {integrity: sha512-EqX+YQxINb+MeXaIqYDASb6U6FCHbWjkj4a1CKDBks3d/QiB2+PqBLyO72vLDgAO1wUI4O+9gweRcQK11bTL/w==}
     dev: false
@@ -822,10 +813,6 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-    dev: true
-
-  /@types/minimatch/5.1.2:
-    resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
     dev: true
 
   /@types/ms/0.7.31:
