@@ -15,9 +15,9 @@ With its robust performance, intuitive design, and vast array of functionalities
 
 1. NodeJS v16.9.0 or later (LTS or Latest)
    > Additional requirements: Python3, FFmpeg, Build-essential, etc.
-1. 512 MB RAM (based on number of servers)
-1. 1 GB Storage
-1. 1 CPU Core
+2. 512 MB RAM (based on number of servers)
+3. 1 GB Storage
+4. 1 CPU Core
 
 ## 🚀 Getting Started
 
@@ -32,19 +32,19 @@ MONGODB_URL=XXXXXXXXXXXXXXXX
 2. Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
-3. Sync your config:
+3. Merge your config:
 
 ```bash
-npm sync
+pnpm merge-config
 ```
 
 4. Start the bot:
 
 ```bash
-npm run start
+pnpm run start
 ```
 
 ## Legacy Version

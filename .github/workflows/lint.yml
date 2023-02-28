@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Sync and Merge config files
-        run: pnpm sync
+      - name: Merge config files
+        run: pnpm merge-config
 
       - name: Run Type Checking
         run: pnpm typecheck
