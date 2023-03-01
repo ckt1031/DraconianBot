@@ -29,7 +29,7 @@ specifiers:
   eslint: 8.35.0
   fastify: 4.13.0
   gifencoder: 2.0.1
-  glob: 9.0.1
+  glob: 9.0.2
   mongoose: 7.0.0
   ms: 2.1.3
   node-cache: 5.1.2
@@ -59,7 +59,7 @@ dependencies:
   dotenv: 16.0.3
   fastify: 4.13.0
   gifencoder: 2.0.1
-  glob: 9.0.1
+  glob: 9.0.2
   mongoose: 7.0.0
   ms: 2.1.3
   node-cache: 5.1.2
@@ -2739,8 +2739,8 @@ packages:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  /glob/9.0.1:
-    resolution: {integrity: sha512-psRdn8MI0gRcH0xow0VOhYxXD/6ZaRGmgtfN0oWN/hCgjxpRQBMCl7wE4JRJSAUTdJsW+FmD0EtE0CgJhKqSVw==}
+  /glob/9.0.2:
+    resolution: {integrity: sha512-s6v83yj/qsUHZTp4d1Pq9HkB2tROINGxXhKYspF0kGvVqPlEPrUo4WDnSffO1611xYvkuK3mgoo86mdulYCX4A==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       fs.realpath: 1.0.0
