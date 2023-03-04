@@ -40,7 +40,7 @@ specifiers:
   typescript: 4.9.5
   urban-dictionary: 3.0.2
   xml2js: 0.4.23
-  zod: 3.20.6
+  zod: 3.21.0
 
 dependencies:
   '@discordjs/builders': 1.4.0
@@ -67,7 +67,7 @@ dependencies:
   string-similarity: 4.0.4
   urban-dictionary: 3.0.2
   xml2js: 0.4.23
-  zod: 3.20.6
+  zod: 3.21.0
 
 devDependencies:
   '@ckt1031/eslint-config': 0.1.3_hq7lnvrv5ha7243vitu5od56di
@@ -5119,6 +5119,6 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /zod/3.20.6:
-    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
+  /zod/3.21.0:
+    resolution: {integrity: sha512-UYdykTcVxB6lfdyLzAqLyyYAlOcpoluECvjsdoaqfQmz9p+3LRaIqYcNiL/J2kFYp66fBM8wwBvIGVEjq7KtZw==}
     dev: false
