@@ -76,5 +76,5 @@
     ],
     "exec": "node --loader @esbuild-kit/esm-loader --inspect src/index.ts"
   },
-  "packageManager": "pnpm@7.30.5"
+  "packageManager": "pnpm@8.0.0"
 }
