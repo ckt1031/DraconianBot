@@ -50,8 +50,8 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1
   glob:
-    specifier: 9.3.2
-    version: 9.3.2
+    specifier: 9.3.4
+    version: 9.3.4
   mongoose:
     specifier: 7.0.3
     version: 7.0.3
@@ -2781,12 +2781,12 @@ packages:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  /glob@9.3.2:
-    resolution: {integrity: sha512-BTv/JhKXFEHsErMte/AnfiSv8yYOLLiyH2lTg8vn02O21zWFgHPTfxtgn1QRe7NRgggUhC8hacR2Re94svHqeA==}
+  /glob@9.3.4:
+    resolution: {integrity: sha512-qaSc49hojMOv1EPM4EuyITjDSgSKI0rthoHnvE81tcOi1SCVndHko7auqxdQ14eiQG2NDBJBE86+2xIrbIvrbA==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       fs.realpath: 1.0.0
-      minimatch: 7.4.1
+      minimatch: 8.0.2
       minipass: 4.2.4
       path-scurry: 1.6.1
     dev: false
@@ -3364,9 +3364,9 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
 
-  /minimatch@7.4.1:
-    resolution: {integrity: sha512-Oz1iPEP+MGl7KS3SciLsLLcuZ7VsBfb7Qrz/jYt/s/sYAv272P26HSLz2f77Y6hzTKXiBi6g765fqpEDNc5fJw==}
-    engines: {node: '>=10'}
+  /minimatch@8.0.2:
+    resolution: {integrity: sha512-ikHGF67ODxj7vS5NKU2wvTsFLbExee+KXVCnBWh8Cg2hVJfBMQIrlo50qru/09E0EifjnU8dZhJ/iHhyXJM6Mw==}
+    engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       brace-expansion: 2.0.1
     dev: false
