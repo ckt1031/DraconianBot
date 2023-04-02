@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@discordjs/builders':
-    specifier: 1.5.0
-    version: 1.5.0
+    specifier: 1.6.0
+    version: 1.6.0
   '@discordjs/rest':
     specifier: 1.7.0
     version: 1.7.0
@@ -238,8 +238,8 @@ packages:
       typescript: 5.0.3
     dev: true
 
-  /@discordjs/builders@1.5.0:
-    resolution: {integrity: sha512-7XxT78mnNBPigHn2y6KAXkicxIBFtZREGWaRZ249EC1l6gBUEP8IyVY5JTciIjJArxkF+tg675aZvsTNTKBpmA==}
+  /@discordjs/builders@1.6.0:
+    resolution: {integrity: sha512-fiN66GV7ArEXAzIdu/pZ3F08YGpunjcdhCePAxnGoVs1LZDD7ek08rgCPWicxvn7BOgfyPq/rVmDzpAGZgRxvg==}
     engines: {node: '>=16.9.0'}
     dependencies:
       '@discordjs/formatters': 0.2.0
@@ -1861,7 +1861,7 @@ packages:
     resolution: {integrity: sha512-UOxYtc/YnV7jAJ2gISluJyYeBw4e+j8gWn+IoqG8unaHAVuvZ13DdYN0M1f9fbUgUvSarV798inIrYFtDNDjwQ==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/builders': 1.5.0
+      '@discordjs/builders': 1.6.0
       '@discordjs/collection': 1.4.0
       '@discordjs/formatters': 0.2.0
       '@discordjs/rest': 1.7.0
