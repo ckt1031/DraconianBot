@@ -5,8 +5,8 @@ dependencies:
     specifier: 1.5.0
     version: 1.5.0
   '@discordjs/rest':
-    specifier: 1.6.0
-    version: 1.6.0
+    specifier: 1.7.0
+    version: 1.7.0
   '@esbuild-kit/esm-loader':
     specifier: 2.5.5
     version: 2.5.5
@@ -256,6 +256,11 @@ packages:
     engines: {node: '>=16.9.0'}
     dev: false
 
+  /@discordjs/collection@1.5.0:
+    resolution: {integrity: sha512-suyVndkEAAWrGxyw/CPGdtXoRRU6AUNkibtnbJevQzpelkJh3Q1gQqWDpqf5i39CnAn5+LrN0YS+cULeEjq2Yw==}
+    engines: {node: '>=16.9.0'}
+    dev: false
+
   /@discordjs/formatters@0.2.0:
     resolution: {integrity: sha512-vn4oMSXuMZUm8ITqVOtvE7/fMMISj4cI5oLsR09PEQXHKeKDAMLltG/DWeeIs7Idfy6V8Fk3rn1e69h7NfzuNA==}
     engines: {node: '>=16.9.0'}
@@ -263,18 +268,18 @@ packages:
       discord-api-types: 0.37.37
     dev: false
 
-  /@discordjs/rest@1.6.0:
-    resolution: {integrity: sha512-HGvqNCZ5Z5j0tQHjmT1lFvE5ETO4hvomJ1r0cbnpC1zM23XhCpZ9wgTCiEmaxKz05cyf2CI9p39+9LL+6Yz1bA==}
+  /@discordjs/rest@1.7.0:
+    resolution: {integrity: sha512-r2HzmznRIo8IDGYBWqQfkEaGN1LrFfWQd3dSyC4tOpMU8nuVvFUEw6V/lwnG44jyOq+vgyDny2fxeUDMt9I4aQ==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/collection': 1.4.0
+      '@discordjs/collection': 1.5.0
       '@discordjs/util': 0.2.0
       '@sapphire/async-queue': 1.5.0
       '@sapphire/snowflake': 3.4.0
       discord-api-types: 0.37.37
       file-type: 18.2.1
       tslib: 2.5.0
-      undici: 5.20.0
+      undici: 5.21.0
     dev: false
 
   /@discordjs/util@0.2.0:
@@ -1859,7 +1864,7 @@ packages:
       '@discordjs/builders': 1.5.0
       '@discordjs/collection': 1.4.0
       '@discordjs/formatters': 0.2.0
-      '@discordjs/rest': 1.6.0
+      '@discordjs/rest': 1.7.0
       '@discordjs/util': 0.2.0
       '@sapphire/snowflake': 3.4.0
       '@types/ws': 8.5.4
@@ -4864,6 +4869,13 @@ packages:
 
   /undici@5.20.0:
     resolution: {integrity: sha512-J3j60dYzuo6Eevbawwp1sdg16k5Tf768bxYK4TUJRH7cBM4kFCbf3mOnM/0E3vQYXvpxITbbWmBafaDbxLDz3g==}
+    engines: {node: '>=12.18'}
+    dependencies:
+      busboy: 1.6.0
+    dev: false
+
+  /undici@5.21.0:
+    resolution: {integrity: sha512-HOjK8l6a57b2ZGXOcUsI5NLfoTrfmbOl90ixJDl0AEFG4wgHNDQxtZy15/ZQp7HhjkpaGlp/eneMgtsu1dIlUA==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0
