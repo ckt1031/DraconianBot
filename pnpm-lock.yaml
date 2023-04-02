@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@discordjs/builders':
-    specifier: 1.6.0
-    version: 1.6.0
+    specifier: 1.6.1
+    version: 1.6.1
   '@discordjs/rest':
     specifier: 1.7.0
     version: 1.7.0
@@ -238,11 +238,11 @@ packages:
       typescript: 5.0.3
     dev: true
 
-  /@discordjs/builders@1.6.0:
-    resolution: {integrity: sha512-fiN66GV7ArEXAzIdu/pZ3F08YGpunjcdhCePAxnGoVs1LZDD7ek08rgCPWicxvn7BOgfyPq/rVmDzpAGZgRxvg==}
+  /@discordjs/builders@1.6.1:
+    resolution: {integrity: sha512-CCcLwn/8ANhlAbhlE18fcaN0hfXTen53/JiwZs1t9oE/Cqa9maA8ZRarkCIsXF4J7J/MYnd0J6IsxeKsq+f6mw==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/formatters': 0.2.0
+      '@discordjs/formatters': 0.3.0
       '@discordjs/util': 0.2.0
       '@sapphire/shapeshift': 3.8.1
       discord-api-types: 0.37.37
@@ -254,13 +254,6 @@ packages:
   /@discordjs/collection@1.5.0:
     resolution: {integrity: sha512-suyVndkEAAWrGxyw/CPGdtXoRRU6AUNkibtnbJevQzpelkJh3Q1gQqWDpqf5i39CnAn5+LrN0YS+cULeEjq2Yw==}
     engines: {node: '>=16.9.0'}
-    dev: false
-
-  /@discordjs/formatters@0.2.0:
-    resolution: {integrity: sha512-vn4oMSXuMZUm8ITqVOtvE7/fMMISj4cI5oLsR09PEQXHKeKDAMLltG/DWeeIs7Idfy6V8Fk3rn1e69h7NfzuNA==}
-    engines: {node: '>=16.9.0'}
-    dependencies:
-      discord-api-types: 0.37.37
     dev: false
 
   /@discordjs/formatters@0.3.0:
@@ -1863,7 +1856,7 @@ packages:
     resolution: {integrity: sha512-ygGms5xP4hG+QrrY9k7d/OYCzMltSMtdl/2Snzq/nLCiZo+Sna91Ulv9l0+B5Jd/Czcq37B7wJAnmja7GOa+bg==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/builders': 1.6.0
+      '@discordjs/builders': 1.6.1
       '@discordjs/collection': 1.5.0
       '@discordjs/formatters': 0.3.0
       '@discordjs/rest': 1.7.0
