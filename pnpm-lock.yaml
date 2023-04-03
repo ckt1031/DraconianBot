@@ -82,8 +82,8 @@ devDependencies:
     specifier: 1.0.0
     version: 1.0.0(eslint-plugin-import@2.27.5)(eslint-plugin-react-hooks@4.6.0)(eslint@8.37.0)(prettier@2.8.7)(tailwindcss@3.2.7)(typescript@5.0.3)
   '@ckt1031/prettier-config':
-    specifier: 1.0.2
-    version: 1.0.2(eslint@8.37.0)(prettier@2.8.7)
+    specifier: 1.0.3
+    version: 1.0.3(eslint@8.37.0)(prettier@2.8.7)
   '@ckt1031/tsconfig':
     specifier: 1.0.0
     version: 1.0.0(typescript@5.0.3)
@@ -187,17 +187,17 @@ packages:
       - tailwindcss
     dev: true
 
-  /@ckt1031/prettier-config@1.0.2(eslint@8.37.0)(prettier@2.8.7):
-    resolution: {integrity: sha512-ZB4u7ZzuLnUBgoGFVxDuw9/GdJWAeKSM2k2v8/k6NmTDG0HDNokgfSnotgqAEDnXCisnTeetB0z+YylWTlxP+g==}
+  /@ckt1031/prettier-config@1.0.3(eslint@8.37.0)(prettier@2.8.7):
+    resolution: {integrity: sha512-X+Dt89TCLA0UEToHkQvbJmms0JAlIB1fmLpKLOqQYkZK6nJEvlRw+kR+KY8uUhpDyJmnxdS7yx0IHE8UUhW6Yw==}
     peerDependencies:
       prettier: 2.x
     dependencies:
       prettier: 2.8.7
       prettier-plugin-package-perfection: 1.1.0(eslint@8.37.0)
-      prettier-plugin-prisma: 4.10.0(prettier@2.8.7)
+      prettier-plugin-prisma: 4.12.0(prettier@2.8.7)
       prettier-plugin-sort-json: 1.0.0(prettier@2.8.7)
-      prettier-plugin-tailwindcss: 0.2.5(prettier@2.8.7)
-      vitest: 0.29.7
+      prettier-plugin-tailwindcss: 0.2.6(prettier@2.8.7)
+      vitest: 0.29.8
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@ianvs/prettier-plugin-sort-imports'
@@ -212,6 +212,7 @@ packages:
       - happy-dom
       - jsdom
       - less
+      - playwright
       - prettier-plugin-astro
       - prettier-plugin-css-order
       - prettier-plugin-import-sort
@@ -810,8 +811,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@prisma/prisma-fmt-wasm@4.10.0-85.d02666423b9d2b618381d5bee85532527a012123:
-    resolution: {integrity: sha512-0ZBIrOQ3Glr4l7l/ehu+nl8EzJ/FgqNjlhVodEWCk649DVeb7+czOrpCDv+DJO3uU9Xai4mBQ5TifzYzGsndNQ==}
+  /@prisma/prisma-fmt-wasm@4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7:
+    resolution: {integrity: sha512-jh9ajkGl3Lw9uTKEwlNBSh79a1v6C1JducqxakgkQyLev6kG1xxkuc2rDGrIDxUdpCOuuPRjuSCHhjnv7qLLgQ==}
     dev: true
 
   /@sapphire/async-queue@1.5.0:
@@ -1141,30 +1142,30 @@ packages:
       - encoding
     dev: false
 
-  /@vitest/expect@0.29.7:
-    resolution: {integrity: sha512-UtG0tW0DP6b3N8aw7PHmweKDsvPv4wjGvrVZW7OSxaFg76ShtVdMiMcUkZJgCE8QWUmhwaM0aQhbbVLo4F4pkA==}
+  /@vitest/expect@0.29.8:
+    resolution: {integrity: sha512-xlcVXn5I5oTq6NiZSY3ykyWixBxr5mG8HYtjvpgg6KaqHm0mvhX18xuwl5YGxIRNt/A5jidd7CWcNHrSvgaQqQ==}
     dependencies:
-      '@vitest/spy': 0.29.7
-      '@vitest/utils': 0.29.7
+      '@vitest/spy': 0.29.8
+      '@vitest/utils': 0.29.8
       chai: 4.3.7
     dev: true
 
-  /@vitest/runner@0.29.7:
-    resolution: {integrity: sha512-Yt0+csM945+odOx4rjZSjibQfl2ymxqVsmYz6sO2fiO5RGPYDFCo60JF6tLL9pz4G/kjY4irUxadeB1XT+H1jg==}
+  /@vitest/runner@0.29.8:
+    resolution: {integrity: sha512-FzdhnRDwEr/A3Oo1jtIk/B952BBvP32n1ObMEb23oEJNO+qO5cBet6M2XWIDQmA7BDKGKvmhUf2naXyp/2JEwQ==}
     dependencies:
-      '@vitest/utils': 0.29.7
+      '@vitest/utils': 0.29.8
       p-limit: 4.0.0
       pathe: 1.1.0
     dev: true
 
-  /@vitest/spy@0.29.7:
-    resolution: {integrity: sha512-IalL0iO6A6Xz8hthR8sctk6ZS//zVBX48EiNwQguYACdgdei9ZhwMaBFV70mpmeYAFCRAm+DpoFHM5470Im78A==}
+  /@vitest/spy@0.29.8:
+    resolution: {integrity: sha512-VdjBe9w34vOMl5I5mYEzNX8inTxrZ+tYUVk9jxaZJmHFwmDFC/GV3KBFTA/JKswr3XHvZL+FE/yq5EVhb6pSAw==}
     dependencies:
       tinyspy: 1.1.1
     dev: true
 
-  /@vitest/utils@0.29.7:
-    resolution: {integrity: sha512-vNgGadp2eE5XKCXtZXL5UyNEDn68npSct75OC9AlELenSK0DiV1Mb9tfkwJHKjRb69iek+e79iipoJx8+s3SdA==}
+  /@vitest/utils@0.29.8:
+    resolution: {integrity: sha512-qGzuf3vrTbnoY+RjjVVIBYfuWMjn3UMUqyQtdGNZ6ZIIyte7B37exj6LaVkrZiUTvzSadVvO/tJm8AEgbGCBPg==}
     dependencies:
       cli-truncate: 3.1.0
       diff: 5.1.0
@@ -3959,13 +3960,13 @@ packages:
       tslib: 2.5.0
     dev: true
 
-  /prettier-plugin-prisma@4.10.0(prettier@2.8.7):
-    resolution: {integrity: sha512-tSt7ILOdva2IXbHzzqsBxwSKgsbNQQGUwtCpKnFpjMACIjbX4ghZTM9jYuZMfByCjhv0IJLl+eQlfxO17rRLew==}
-    engines: {node: '>=14'}
+  /prettier-plugin-prisma@4.12.0(prettier@2.8.7):
+    resolution: {integrity: sha512-5wb4B+9UfJEwp+e5amuOINh23yCjjaEUXDrIzbvFWFHUx2SmbVHdyd9VsRo9VNP34gqVdLBaltyTXV5NCAaAUA==}
+    engines: {node: '>=14', npm: '>=8'}
     peerDependencies:
       prettier: '>=2'
     dependencies:
-      '@prisma/prisma-fmt-wasm': 4.10.0-85.d02666423b9d2b618381d5bee85532527a012123
+      '@prisma/prisma-fmt-wasm': 4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7
       prettier: 2.8.7
     dev: true
 
@@ -3979,8 +3980,8 @@ packages:
       prettier: 2.8.7
     dev: true
 
-  /prettier-plugin-tailwindcss@0.2.5(prettier@2.8.7):
-    resolution: {integrity: sha512-vZ/iKieyCx0WTxHbkf5E1rBlv/ybFk8WTT4hL5W2jlVxum2Zbe0jMUpuQdDrpa4z2vnPiJ5KIWCqL/kd16fKYg==}
+  /prettier-plugin-tailwindcss@0.2.6(prettier@2.8.7):
+    resolution: {integrity: sha512-F+7XCl9RLF/LPrGdUMHWpsT6TM31JraonAUyE6eBmpqymFvDwyl0ETHsKFHP1NG+sEfv8bmKqnTxEbWQbHPlBA==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -4894,8 +4895,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-node@0.29.7(@types/node@18.15.11):
-    resolution: {integrity: sha512-PakCZLvz37yFfUPWBnLa1OYHPCGm5v4pmRrTcFN4V/N/T3I6tyP3z07S//9w+DdeL7vVd0VSeyMZuAh+449ZWw==}
+  /vite-node@0.29.8(@types/node@18.15.11):
+    resolution: {integrity: sha512-b6OtCXfk65L6SElVM20q5G546yu10/kNrhg08afEoWlFRJXFq9/6glsvSVY+aI6YeC1tu2TtAqI2jHEQmOmsFw==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     dependencies:
@@ -4949,8 +4950,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest@0.29.7:
-    resolution: {integrity: sha512-aWinOSOu4jwTuZHkb+cCyrqQ116Q9TXaJrNKTHudKBknIpR0VplzeaOUuDF9jeZcrbtQKZQt6yrtd+eakbaxHg==}
+  /vitest@0.29.8:
+    resolution: {integrity: sha512-JIAVi2GK5cvA6awGpH0HvH/gEG9PZ0a/WoxdiV3PmqK+3CjQMf8c+J/Vhv4mdZ2nRyXFw66sAg6qz7VNkaHfDQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4959,6 +4960,7 @@ packages:
       '@vitest/ui': '*'
       happy-dom: '*'
       jsdom: '*'
+      playwright: '*'
       safaridriver: '*'
       webdriverio: '*'
     peerDependenciesMeta:
@@ -4972,6 +4974,8 @@ packages:
         optional: true
       jsdom:
         optional: true
+      playwright:
+        optional: true
       safaridriver:
         optional: true
       webdriverio:
@@ -4980,10 +4984,10 @@ packages:
       '@types/chai': 4.3.4
       '@types/chai-subset': 1.3.3
       '@types/node': 18.15.11
-      '@vitest/expect': 0.29.7
-      '@vitest/runner': 0.29.7
-      '@vitest/spy': 0.29.7
-      '@vitest/utils': 0.29.7
+      '@vitest/expect': 0.29.8
+      '@vitest/runner': 0.29.8
+      '@vitest/spy': 0.29.8
+      '@vitest/utils': 0.29.8
       acorn: 8.8.2
       acorn-walk: 8.2.0
       cac: 6.7.14
@@ -4999,7 +5003,7 @@ packages:
       tinypool: 0.4.0
       tinyspy: 1.1.1
       vite: 4.1.2(@types/node@18.15.11)
-      vite-node: 0.29.7(@types/node@18.15.11)
+      vite-node: 0.29.8(@types/node@18.15.11)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
