@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 import chalk from 'chalk';
 import deepmerge from 'deepmerge';
-import glob from 'glob';
+import { glob } from 'glob';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
