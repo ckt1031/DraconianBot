@@ -16,13 +16,13 @@ process.setMaxListeners(15);
 
 // If instacne is not production mode.
 if (isDev) {
-  process.on('uncaughtException', console.error);
-  process.on('unhandledRejection', console.error);
-} else {
   const log = console.log;
 
   log(chalk.bold.red('DEVELOPMENT / MAINTAINANCE MODE'));
   log(chalk.red.bold('Some production features will be disrupted or terminated.'));
+} else {
+  process.on('uncaughtException', console.error);
+  process.on('unhandledRejection', console.error);
 }
 
 import('./bot');
