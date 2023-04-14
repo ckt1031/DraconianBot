@@ -1,13 +1,9 @@
 import 'dotenv/config';
 
-import { basename } from 'node:path';
-
 import chalk from 'chalk';
-import { ShardingManager } from 'discord.js';
 
 import './validate-env';
 
-import { useShards } from '../config/bot.json';
 import { isDev } from './utils/constants';
 
 // Check NODE Version
@@ -29,17 +25,4 @@ if (isDev) {
   log(chalk.red.bold('Some production features will be disrupted or terminated.'));
 }
 
-if (useShards) {
-  const directoryName = basename(__dirname);
-  const manager = new ShardingManager(`./${directoryName}/bot.js`, {
-    token: process.env.TOKEN,
-  });
-
-  process.env.USE_SHARD = 'YES';
-
-  manager.on('shardCreate', shard => console.log(`Launched shard ${shard.id}`));
-
-  await manager.spawn();
-} else {
-  import('./bot');
-}
+import('./bot');

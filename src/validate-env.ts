@@ -13,8 +13,7 @@ const ZodEnvironmentVariables = z.object({
   MONGODB_URL: z.string(),
 
   DEV_GUILD_ID: z.string().optional(),
-  PORT: z.string().optional().default('3000'),
-  USE_SHARD: z.string().optional().default('NO'),
+  PORT: z.string().optional(),
 });
 
 ZodEnvironmentVariables.parse(process.env);
