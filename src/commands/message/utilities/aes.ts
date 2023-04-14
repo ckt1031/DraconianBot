@@ -1,4 +1,4 @@
-import { AES, enc } from 'crypto-js';
+import AES from 'crypto-js/aes';
 import { EmbedBuilder } from 'discord.js';
 
 import type { TextCommand } from '../../../sturctures/command';
@@ -46,7 +46,7 @@ export const command: TextCommand = {
         break;
       }
       case 'decrypt': {
-        const decryptedValue = AES.decrypt(string, key).toString(enc.Utf8);
+        const decryptedValue = AES.decrypt(string, key).toString();
 
         embed.setTitle('Decryped Data:').setDescription(`\`\`\`${decryptedValue}\`\`\``);
 

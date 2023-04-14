@@ -1,6 +1,6 @@
 import type { TextChannel } from 'discord.js';
 import { EmbedBuilder } from 'discord.js';
-import { define } from 'urban-dictionary';
+import ud from 'urban-dictionary';
 
 import type { TextCommand } from '../../../sturctures/command';
 
@@ -25,7 +25,7 @@ export const command: TextCommand = {
     const searchQuery = args.join(' ');
 
     try {
-      const result = await define(searchQuery);
+      const result = await ud.define(searchQuery);
 
       embed.setTitle(`Dictionary:${result[0].word}`).setFields([
         {
