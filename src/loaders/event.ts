@@ -1,12 +1,16 @@
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
+import chalk from 'chalk';
 import type { Client } from 'discord.js';
 import glob from 'glob';
 
 import type { DiscordEvent } from '../sturctures/event';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 export async function loadDiscordEvent(client: Client) {
-  let folderPath = join(__dirname, '../events/discord/**/*.js');
+  let folderPath = join(__dirname, '../events/discord/**/*.ts');
 
   // Parse path in windows
   if (process.platform === 'win32') {
@@ -21,7 +25,7 @@ export async function loadDiscordEvent(client: Client) {
 
   for (const filePath of allFiles) {
     // Get event content.
-    const eventFile = (await import(filePath)).default;
+    const eventFile = await import(filePath);
     const event: DiscordEvent = eventFile.event;
 
     // Check triggering mode.
@@ -32,7 +36,8 @@ export async function loadDiscordEvent(client: Client) {
       // eslint-disable-next-line unicorn/no-useless-undefined
       client.on(event.name, event.run.bind(undefined));
     }
-    // Remove cache.
-    delete require.cache[require.resolve(filePath)];
   }
+
+  // Print number of loaded events.
+  console.log(chalk.greenBright.bold(`Loaded ${allFiles.length} Discord events.`));
 }
