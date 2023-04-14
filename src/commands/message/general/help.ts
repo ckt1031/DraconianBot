@@ -1,7 +1,7 @@
 import type { TextChannel } from 'discord.js';
 import { EmbedBuilder } from 'discord.js';
 
-import { githubLink, name as botname } from '../../../../config/bot.json';
+import config from '../../../../config/bot.json';
 import type { TextCommand } from '../../../sturctures/command';
 import { getCommandHelpInfo } from '../../../utils/cmds';
 import { callbackEmbed } from '../../../utils/messages';
@@ -52,7 +52,7 @@ export const command: TextCommand = {
       const commandsCatagories = client.commandsCatagories;
 
       embed.setDescription(
-        `Hello🙋‍♂️!\nOur source code: [Here](${githubLink})\nTurely appreciate that you are supporting us.`,
+        `Hello🙋‍♂️!\nOur source code: [Here](${config.githubLink})\nTurely appreciate that you are supporting us.`,
       );
 
       for (const catagory of commandsCatagories) {
@@ -84,7 +84,7 @@ export const command: TextCommand = {
       const avatarURL = client.user.defaultAvatarURL;
 
       embed.setTitle('Bot Assistance Centre').setFooter({
-        text: `© ${new Date().getFullYear()} ${botname}`,
+        text: `© ${new Date().getFullYear()} ${config.name}`,
         iconURL: avatarURL,
       });
 
