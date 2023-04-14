@@ -32,19 +32,19 @@ MONGODB_URL=XXXXXXXXXXXXXXXX
 2. Install dependencies:
 
 ```bash
-pnpm install
+npm install
 ```
 
 3. Merge your config:
 
 ```bash
-pnpm merge-config
+npm run merge-config
 ```
 
 4. Start the bot:
 
 ```bash
-pnpm run start
+npm run start
 ```
 
 ## Legacy Version
