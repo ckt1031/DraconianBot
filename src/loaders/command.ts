@@ -1,4 +1,5 @@
 import { basename, dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { REST } from '@discordjs/rest';
 import chalk from 'chalk';
@@ -16,9 +17,11 @@ import { isDev } from '../utils/constants';
 
 type TextCommandCatagories = Record<string, string[]>;
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 /** Text Command Loaders */
 export async function loadTextCommand(client: Client) {
-  let folderPath = join(__dirname, '../commands/message/**/*.js');
+  let folderPath = join(__dirname, '../commands/message/**/*.ts');
 
   // Parse path in windows
   if (process.platform === 'win32') {
@@ -28,13 +31,13 @@ export async function loadTextCommand(client: Client) {
   const allFiles = await glob(folderPath);
 
   if (allFiles.length === 0) {
-    console.log(chalk.blueBright.bold('\nWARNING: Cannot find any possible command target.\n'));
+    return;
   }
 
   const catagories: TextCommandCatagories = {};
 
   for (const filePath of allFiles) {
-    const commandFile = (await import(filePath)).default;
+    const commandFile = await import(filePath);
     const command: TextCommand = commandFile.command;
 
     // Neglect if disabled.
@@ -54,7 +57,9 @@ export async function loadTextCommand(client: Client) {
       if (catagory) {
         command.data.catagory = catagory;
         if (command.data.publicLevel !== 'None') {
-          catagories[String(catagory)] = [];
+          if (!catagories[String(catagory)]) {
+            catagories[String(catagory)] = [];
+          }
           catagories[String(catagory)].push(cmdName);
         }
       }
@@ -77,18 +82,20 @@ export async function loadTextCommand(client: Client) {
           client.aliases.set(alias, command.data.name);
         }
       }
-      delete require.cache[require.resolve(filePath)];
     }
   }
 
   for (const value of Object.entries(catagories)) {
     client.commandsCatagories.set(value[0], value[1]);
   }
+
+  // Print number of loaded commands.
+  console.log(chalk.greenBright.bold(`Loaded ${client.commands.size} text commands.`));
 }
 
 /** Load Slash commands to API & Collection */
 export async function loadSlashCommand(client: Client, clientId: string, token: string) {
-  let folderPath = join(__dirname, '../commands/slash/*.js');
+  let folderPath = join(__dirname, '../commands/slash/**/*.ts');
 
   // Parse path in windows
   if (process.platform === 'win32') {
@@ -100,7 +107,7 @@ export async function loadSlashCommand(client: Client, clientId: string, token: 
   const slashCommandData: RESTPostAPIApplicationCommandsJSONBody[] = [];
 
   for (const filePath of allFiles) {
-    const commandFile = (await import(filePath)).default;
+    const commandFile = await import(filePath);
     const slashCommand: SlashCommand = commandFile.command;
 
     const slashCommandCollection = client.slashcommands;
@@ -113,14 +120,12 @@ export async function loadSlashCommand(client: Client, clientId: string, token: 
     client.slashcommands.set(name, slashCommand);
 
     slashCommandData.push(slashCommand.slashData.toJSON());
-
-    delete require.cache[require.resolve(filePath)];
   }
 
   const rest = new REST({ version: '9' }).setToken(token);
 
   if (isDev) {
-    // Guild Only & Development Only Commands.
+    // Guild & Development Commands.
     const guildId = process.env.DEV_GUILD_ID;
 
     if (guildId) {
@@ -141,4 +146,7 @@ export async function loadSlashCommand(client: Client, clientId: string, token: 
       body: slashCommandData,
     });
   }
+
+  // Print number of loaded commands.
+  console.log(chalk.greenBright.bold(`Loaded ${client.slashcommands.size} slash commands.`));
 }
