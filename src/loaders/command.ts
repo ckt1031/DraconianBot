@@ -9,7 +9,7 @@ import type {
   RESTPostAPIApplicationCommandsJSONBody,
 } from 'discord-api-types/v9';
 import { Routes } from 'discord-api-types/v9';
-import glob from 'glob';
+import { glob } from 'glob';
 
 import { disabledCommandCatagories } from '../../config/bot.json';
 import type { SlashCommand, TextCommand } from '../sturctures/command';

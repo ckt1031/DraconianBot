@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import chalk from 'chalk';
 import type { Client } from 'discord.js';
-import glob from 'glob';
+import { glob } from 'glob';
 
 import type { DiscordEvent } from '../sturctures/event';
 
