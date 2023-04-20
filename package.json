@@ -76,5 +76,5 @@
     ],
     "exec": "node --loader @esbuild-kit/esm-loader --inspect src/index.ts"
   },
-  "packageManager": "npm@9.6.4"
+  "packageManager": "npm@9.6.5"
 }
