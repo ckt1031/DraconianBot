@@ -16,7 +16,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@discordjs/builders": "1.6.2",
+    "@discordjs/builders": "1.6.3",
     "@discordjs/rest": "1.7.1",
     "@esbuild-kit/esm-loader": "2.5.5",
     "@vitalets/google-translate-api": "9.1.0",
