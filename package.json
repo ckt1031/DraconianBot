@@ -50,7 +50,7 @@
     "@types/crypto-js": "4.1.1",
     "@types/gifencoder": "2.0.1",
     "@types/ms": "0.7.31",
-    "@types/node": "18.16.9",
+    "@types/node": "20.1.4",
     "@types/pidusage": "2.0.2",
     "@types/string-similarity": "4.0.0",
     "@types/urban-dictionary": "3.0.0",
