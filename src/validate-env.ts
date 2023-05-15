@@ -14,6 +14,8 @@ const ZodEnvironmentVariables = z.object({
 
   DEV_GUILD_ID: z.string().optional(),
   PORT: z.string().optional(),
+
+  SENTRY_DSN: z.string().optional(),
 });
 
 ZodEnvironmentVariables.parse(process.env);
