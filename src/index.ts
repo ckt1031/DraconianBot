@@ -1,10 +1,20 @@
 import 'dotenv/config';
 
+import * as Sentry from '@sentry/node';
 import chalk from 'chalk';
 
 import './validate-env';
 
 import { isDev } from './utils/constants';
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  enabled: !isDev && typeof process.env.SENTRY_DSN === 'string',
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1,
+});
 
 // Check NODE Version
 const nodeVersions = process.versions.node.split('.');
@@ -14,15 +24,12 @@ if (Number(nodeVersions[0]) <= 16 && Number(nodeVersions[1]) < 9) {
 
 process.setMaxListeners(15);
 
-// If instacne is not production mode.
-if (isDev) {
-  const log = console.log;
-
-  log(chalk.bold.red('DEVELOPMENT / MAINTAINANCE MODE'));
-  log(chalk.red.bold('Some production features will be disrupted or terminated.'));
-} else {
-  process.on('uncaughtException', console.error);
-  process.on('unhandledRejection', console.error);
+function logError(error: Error) {
+  console.error(chalk.redBright(error.stack ?? error.message));
+  if (typeof process.env.SENTRY_DSN === 'string') Sentry.captureException(error);
 }
+
+process.on('uncaughtException', logError);
+process.on('unhandledRejection', logError);
 
 import('./bot');

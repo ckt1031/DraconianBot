@@ -5,7 +5,7 @@ import './http/server';
 import { loadSlashCommand, loadTextCommand } from './loaders/command';
 import { loadDiscordEvent } from './loaders/event';
 import type { SlashCommand, TextCommand } from './sturctures/command';
-import { connect } from './utils/database';
+import { connectMongoDB } from './utils/database';
 
 const client = new Client({
   intents: [
@@ -27,11 +27,11 @@ client.slashcommands = new Collection();
 await loadDiscordEvent(client);
 await loadTextCommand(client);
 
-await connect();
+await connectMongoDB();
 
 await client.login(process.env.TOKEN);
 
-await loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN);
+await loadSlashCommand(client);
 
 export default client;
 

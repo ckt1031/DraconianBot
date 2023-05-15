@@ -94,7 +94,7 @@ export async function loadTextCommand(client: Client) {
 }
 
 /** Load Slash commands to API & Collection */
-export async function loadSlashCommand(client: Client, clientId: string, token: string) {
+export async function loadSlashCommand(client: Client) {
   let folderPath = join(__dirname, '../commands/slash/**/*.ts');
 
   // Parse path in windows
@@ -122,27 +122,31 @@ export async function loadSlashCommand(client: Client, clientId: string, token: 
     slashCommandData.push(slashCommand.slashData.toJSON());
   }
 
-  const rest = new REST({ version: '9' }).setToken(token);
+  const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
   if (isDev) {
     // Guild & Development Commands.
     const guildId = process.env.DEV_GUILD_ID;
 
     if (guildId) {
-      const guildCommands = await rest.get(Routes.applicationGuildCommands(clientId, guildId));
+      const guildCommands = await rest.get(
+        Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId),
+      );
 
       for (const command of guildCommands as RESTGetAPIApplicationCommandsResult) {
-        const deleteUrl = `${Routes.applicationGuildCommands(clientId, guildId)}/${command.id}`;
+        const deleteUrl = `${Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId)}/${
+          command.id
+        }`;
         await rest.delete(`/${deleteUrl}`);
       }
 
-      await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
+      await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId), {
         body: slashCommandData,
       });
     }
   } else {
     // Global Commands
-    await rest.put(Routes.applicationCommands(clientId), {
+    await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), {
       body: slashCommandData,
     });
   }

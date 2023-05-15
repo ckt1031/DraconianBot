@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 import Server from '../models/server';
 
-export async function connect() {
+export async function connectMongoDB() {
   await mongoose.connect(`${process.env.MONGODB_URL}Bot`, {
     autoIndex: false,
   });
