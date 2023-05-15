@@ -44,7 +44,7 @@
     "zod": "3.21.4"
   },
   "devDependencies": {
-    "@ckt1031/eslint-config": "1.1.4",
+    "@ckt1031/eslint-config": "1.1.5",
     "@ckt1031/prettier-config": "1.1.5",
     "@ckt1031/tsconfig": "1.1.4",
     "@types/crypto-js": "4.1.1",
