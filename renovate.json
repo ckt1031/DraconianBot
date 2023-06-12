@@ -1,4 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"]
+  "extends": ["config:base"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "automergeType": "pr",
+    "platformAutomerge": true
+  },
+  "packageRules": [
+    {
+      "groupName": "Ckt1031-Nodejs-Config",
+      "groupSlug": "ckt1031",
+      "matchPackageNames": [
+        "@ckt1031/eslint-config",
+        "@ckt1031/prettier-config",
+        "@ckt1031/tsconfig"
+      ],
+    }
+  ]
 }
