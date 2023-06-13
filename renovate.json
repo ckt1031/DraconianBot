@@ -15,7 +15,7 @@
         "@ckt1031/eslint-config",
         "@ckt1031/prettier-config",
         "@ckt1031/tsconfig"
-      ],
+      ]
     }
   ]
 }
