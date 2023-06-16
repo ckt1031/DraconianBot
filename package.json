@@ -55,7 +55,7 @@
     "@types/string-similarity": "4.0.0",
     "@types/urban-dictionary": "3.0.0",
     "@types/xml2js": "0.4.11",
-    "eslint": "8.42.0",
+    "eslint": "8.43.0",
     "nodemon": "2.0.22",
     "prettier": "2.8.8",
     "typescript": "5.1.3"
