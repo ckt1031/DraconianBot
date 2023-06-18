@@ -1,6 +1,6 @@
 # Draconian Bot
 
-With its robust performance, intuitive design, and vast array of functionalities, the Draconian Bot is the ultimate solution for all your needs.
+With its robust performance, intuitive design, and a vast array of functionalities, the Draconian Bot is the ultimate solution for all your needs.
 
 ## Features
 
