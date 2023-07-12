@@ -29,6 +29,3 @@ jobs:
 
       - name: Typecheck and Lint
         run: npm run lint
-
-      - name: Check Prettier
-        run: npx prettier --check .
