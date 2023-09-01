@@ -29,7 +29,7 @@
     "dayjs": "1.11.9",
     "deepmerge": "4.3.1",
     "discord-api-types": "0.37.56",
-    "discord.js": "14.12.1",
+    "discord.js": "14.13.0",
     "dotenv": "16.3.1",
     "fastify": "4.21.0",
     "gifencoder": "2.0.1",
