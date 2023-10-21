@@ -48,7 +48,7 @@
     "@ckt1031/prettier-config": "1.1.10",
     "@ckt1031/tsconfig": "1.1.10",
     "@types/crypto-js": "4.1.1",
-    "@types/gifencoder": "2.0.1",
+    "@types/gifencoder": "2.0.2",
     "@types/ms": "0.7.31",
     "@types/node": "20.6.0",
     "@types/pidusage": "2.0.2",
