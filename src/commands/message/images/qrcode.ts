@@ -29,7 +29,7 @@ export const command: TextCommand = {
       return;
     }
 
-    const url = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data.replace(
+    const url = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data.replaceAll(
       /\s/g,
       '%20',
     )}`;

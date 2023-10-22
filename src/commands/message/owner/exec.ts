@@ -7,7 +7,7 @@ function clean(text: string) {
   if (typeof text === 'string') {
     return text
       .replaceAll('`', `\`${String.fromCodePoint(8203)}`)
-      .replaceAll(/@/g, `@${String.fromCodePoint(8203)}`);
+      .replaceAll('@', `@${String.fromCodePoint(8203)}`);
   }
   return text;
 }

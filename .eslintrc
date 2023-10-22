@@ -12,6 +12,8 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "sonarjs/cognitive-complexity": 0
+    "sonarjs/cognitive-complexity": 1,
+    "@typescript-eslint/no-non-null-assertion": 1,
+    "@typescript-eslint/no-explicit-any": 1
   }
 }
