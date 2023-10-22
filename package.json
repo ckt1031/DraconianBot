@@ -22,7 +22,7 @@
     "@sentry/node": "7.74.1",
     "@vitalets/google-translate-api": "9.2.0",
     "axios": "1.5.1",
-    "canvas": "2.11.2",
+    "canvas": "2.10.2",
     "chalk": "5.3.0",
     "cross-env": "7.0.3",
     "crypto-js": "4.1.1",
