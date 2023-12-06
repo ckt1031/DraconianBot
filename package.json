@@ -44,9 +44,9 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "@ckt1031/eslint-config": "1.1.15",
-    "@ckt1031/prettier-config": "1.1.15",
-    "@ckt1031/tsconfig": "1.1.14",
+    "@ckt1031/eslint-config": "1.1.17",
+    "@ckt1031/prettier-config": "1.1.17",
+    "@ckt1031/tsconfig": "1.1.17",
     "@types/crypto-js": "4.1.3",
     "@types/gifencoder": "2.0.2",
     "@types/ms": "0.7.33",
