@@ -28,7 +28,7 @@
     "crypto-js": "4.2.0",
     "dayjs": "1.11.10",
     "deepmerge": "4.3.1",
-    "discord-api-types": "0.37.60",
+    "discord-api-types": "0.37.77",
     "discord.js": "14.13.0",
     "dotenv": "16.3.1",
     "fastify": "4.24.3",
