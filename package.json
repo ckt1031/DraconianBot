@@ -19,7 +19,7 @@
     "@discordjs/builders": "1.6.5",
     "@discordjs/rest": "2.0.1",
     "@esbuild-kit/esm-loader": "2.6.5",
-    "@sentry/node": "7.74.1",
+    "@sentry/node": "7.109.0",
     "@vitalets/google-translate-api": "9.2.0",
     "axios": "1.5.1",
     "canvas": "2.10.2",
