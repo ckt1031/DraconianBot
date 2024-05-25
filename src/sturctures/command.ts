@@ -1,4 +1,4 @@
-import type { SlashCommandBuilder } from '@discordjs/builders';
+import type { SlashCommandOptionsOnlyBuilder } from '@discordjs/builders';
 import type { CommandInteraction, Message, PermissionResolvable } from 'discord.js';
 
 interface TextCommandExecution {
@@ -73,7 +73,7 @@ export interface SlashCommand {
   enabled?: boolean;
 
   // Slash Data
-  slashData: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
+  slashData: Omit<SlashCommandOptionsOnlyBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
 
   readonly data?: {
     clientRequiredPermissions?: PermissionResolvable[];
