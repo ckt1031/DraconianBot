@@ -54,7 +54,7 @@
     "@types/pidusage": "2.0.5",
     "@types/string-similarity": "4.0.2",
     "@types/xml2js": "0.4.14",
-    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/eslint-plugin": "8.13.0",
     "eslint": "8.57.0",
     "nodemon": "3.1.1",
     "prettier": "3.2.5",
