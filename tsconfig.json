@@ -1,8 +1,14 @@
 {
   "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "noEmit": true
   },
   "exclude": ["node_modules", "dist", "assets"],
-  "extends": "@ckt1031/tsconfig/base.json",
-  "include": ["tools", "__tests__", "src", "config/*.json", "package.json"]
+  "include": ["tools", "src", "config/*.json", "package.json"]
 }

@@ -10,8 +10,7 @@
   "scripts": {
     "dev": "nodemon",
     "format": "prettier -w .",
-    "lint": "tsc --noEmit && eslint --fix .",
-    "lint:fix": "prettier -w . && eslint --fix .",
+    "lint": "tsc --noEmit",
     "merge-config": "node --loader @esbuild-kit/esm-loader tools/merge-config.ts",
     "start": "cross-env NODE_ENV=production node --loader @esbuild-kit/esm-loader src/index.ts",
     "typecheck": "tsc"
@@ -44,9 +43,6 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@ckt1031/eslint-config": "1.1.17",
-    "@ckt1031/prettier-config": "1.1.17",
-    "@ckt1031/tsconfig": "1.1.17",
     "@types/crypto-js": "4.2.2",
     "@types/gifencoder": "2.0.3",
     "@types/ms": "0.7.34",
