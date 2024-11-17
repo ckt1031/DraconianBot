@@ -101,6 +101,8 @@ export const command: TextCommand = {
       name: `${Date.now()}_trgigered.gif`,
     });
 
+    if (!channel.isSendable()) return;
+
     await channel.send({
       files: [attachment],
     });

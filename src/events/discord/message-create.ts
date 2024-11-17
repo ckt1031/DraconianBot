@@ -45,7 +45,7 @@ export const event: DiscordEvent = {
 
     const mentionReg = new RegExp(`^(<@!?${client.user.id}>)`);
     const mentionTest = mentionReg.test(content);
-    if (mentionTest) {
+    if (mentionTest && channel.isSendable()) {
       await channel.send(`Hey! My prefix is \`${prefix}\``);
       return;
     }

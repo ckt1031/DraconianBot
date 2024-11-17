@@ -71,6 +71,8 @@ export const command: TextCommand = {
       name: `${Date.now()}_jail.png`,
     });
 
+    if (!channel.isSendable()) return;
+
     await channel.send({
       files: [attachment],
     });

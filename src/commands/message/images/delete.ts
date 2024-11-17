@@ -72,9 +72,11 @@ export const command: TextCommand = {
         name: `${Date.now()}_delete.png`,
       });
 
-      await channel.send({
-        files: [attachment],
-      });
+      if (channel.isSendable()) {
+        await channel.send({
+          files: [attachment],
+        });
+      }
     } catch (error) {
       if (error instanceof Error) {
         const embed = new EmbedBuilder().setTitle(error.message);

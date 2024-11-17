@@ -36,6 +36,8 @@ export const command: TextCommand = {
 
     embed.setImage(url);
 
+    if (!message.channel.isSendable()) return;
+
     await message.channel.send({
       embeds: [embed],
     });

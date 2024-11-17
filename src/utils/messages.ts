@@ -42,6 +42,8 @@ export async function confirmInformationButtons({
     buttonCancel,
   ]);
 
+  if (!message.channel.isSendable()) return false;
+
   const respondAwaiting = await message.channel.send({
     embeds: [embed],
     components: [row],

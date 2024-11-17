@@ -36,6 +36,8 @@ export const command: TextCommand = {
 
     if (code) {
       exec(code, async (error, stdout, stderr) => {
+        if (!channel.isSendable()) return;
+
         if (error) {
           await channel.send({
             content: `\`ERROR\` \`\`\`xl\n${clean(error.message)}\n\`\`\``,

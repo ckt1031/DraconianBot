@@ -71,6 +71,8 @@ export const command: TextCommand = {
       name: `${Date.now()}_rip.png`,
     });
 
+    if (!channel.isSendable()) return;
+
     await channel.send({
       files: [attachment],
     });

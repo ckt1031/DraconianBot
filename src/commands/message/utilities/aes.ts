@@ -34,6 +34,8 @@ export const command: TextCommand = {
 
     if (message.deletable) message.delete().catch(() => undefined);
 
+    if (!message.channel.isSendable()) return;
+
     switch (mode) {
       case 'encrypt': {
         const encryptedValue = AES.encrypt(string, key).toString();
